@@ -1,37 +1,41 @@
 /**
- * Created by CLIF on 1/29/2017.
+ * comment 170201: innerHTML IS A PROPERTY NOT AN ATTRIBUTE!!
  */
-
 "use strict";
 
 let R = require('ramda'),
     curry = R.curry,
     compose = R.compose;
 // ***************************
-let VersionDct = require('../data/VersionDct');
-let getVersion = R.prop('version');// DCT -> STR
-let formatVersion = vers_str => "wbSample ver: " + vers_str;// STR -> STR
+let cb = x => console.log(`  => ${x}`);
 /**
- * ..... getVersionStr:: DICT -> STR
+ *  ..... pureDocQuery1:: STR -> (DOC -> ELEM)
+ *  usage: STR:querySelector
  */
-let getVersionStr = () => {
-    return R.compose(formatVersion, getVersion)(VersionDct)};
-
+let pureDocQuery1 = R.invoker(1, 'querySelector');// STR -> (DOC -> ELEM)
 // ***************************
-let cb = x => console.log('   -> ' + x);
-/**
- *  ..... pureElemQuery1:: DOC -> STR -> ELEM
- */
-let pureElemQuery1 = R.invoker(1, 'querySelector'); // N-> STR -> (DICT -> ELEM);
 /**
  *  ..... getTheTitleElem:: DOC -> Elem
  */
-let getTheTitleElem = pureElemQuery1('title');//DICT -> ELEM
+let getTheTitleElem = pureDocQuery1('title');//DICT -> ELEM
+
+/**
+ * ..... getVersionStr:: DICT -> STR
+ */
+let VersionDct = require('../data/VersionDct');
+let getVersion = R.prop('version');// DCT -> STR
+let formatVersion = vers_str => "wbSample ver: " + vers_str;// STR -> STR
+let getVersionStr = R.compose(formatVersion, getVersion);
+
 /**
  * ..... setInnerHTML_value:: Elem -> Elem
  */
-let setInnerHTML = el => el["innerHTML"] = getVersionStr();
-// let setInnerHTML = el => el["innerHTML"] = getVersionStr    ;// EL -> EL
+let setInnerHTML = el => {
+    el['innerText'] = getVersionStr(VersionDct);
+    // BREAKS R.assoc('innerText', getVersionStr(VersionDct, el));
+    return el
+};
+
 /**
  * ..... mutateTitle_VersionNumber:: DOC -> DOC
  *      sets document titleElement to
@@ -42,7 +46,13 @@ let setInnerHTML = el => el["innerHTML"] = getVersionStr();
  * @param doc
  */
 module.exports = doc => {
-    // compose(R.tap(cb), setInnerHTML, R.tap(cb), getTheTitleElem)(doc);
     compose(setInnerHTML, getTheTitleElem)(doc);
+    // R.compose(
+    //     R.tap(cb),
+    //     setInnerHTML,
+    //     R.tap(cb),
+    //     getTheTitleElem,
+    //     R.tap(cb))
+    // (doc);
     return doc
 };

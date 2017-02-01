@@ -6,16 +6,17 @@
 let R = require('ramda'),
     curry = R.curry,
     compose = R.compose;
-
+// ***************************
 /**
- *  ..... pureElemQuery:: DOC -> STR -> ELEM
+ *  ..... pureDocQuery1:: STR -> (DOC -> ELEM)
  */
-let pureElemQuery1 = R.invoker(1, 'querySelector'); // N-> STR -> (DICT -> ELEM);
-let pureElemQuery2 = R.invoker(2, 'querySelector'); // N-> STR -> (DICT -> ELEM);
+let pureDocQuery1 = R.invoker(1, 'querySelector');// STR -> (DOC -> ELEM)
+// ***************************
 /**
- *      ..... getTheFirstVerse:: DOC -> ELEM
+ *      ..... getTheFirstVerseElem:: DOC -> ELEM
+ *      USAGE: pureDocQuery1('#theFirst')(doc) -> theFirst Element
  */
-const getTheFirstVerse = pureElemQuery1('#theFirst');
+const getTheFirstVerseElem = pureDocQuery1('#theFirst');
 /**
  *      ..... getElemStyleCsd:: ELEM -> CSD
  */
@@ -23,13 +24,14 @@ const getElemStyleCsd = R.prop('style');
 /**
  *  ..... getFirstVerseStyleCsd:: DOC -> CSD
  */
-const getFirstElemStyleCsd = compose(getElemStyleCsd, getTheFirstVerse);
+const getFirstElemStyleCsd = compose(getElemStyleCsd, getTheFirstVerseElem);
+// ***************************
 /**
- *  ..... setStyleProperty:: STR -> (STR -> CSD)
+ *  ..... setThisProperty:: STR -> (STR -> CSD)
  */
-let setStyleProperty = R.invoker(2, 'setProperty');// STR -> (STR -> CSD)
-let setStyleColor = setStyleProperty('color');// STR -> CSD
-let setStyleOpacity = setStyleProperty('opacity');// STR -> CSD
+let setThisProperty = R.invoker(2, 'setProperty');// STR -> (STR -> CSD)
+let setStyleColor = setThisProperty('color');// STR -> CSD
+let setStyleOpacity = setThisProperty('opacity');// STR -> CSD
 
 /**
  *  ..... mutateTheFirstVerseStyle:: DOC -> DOC

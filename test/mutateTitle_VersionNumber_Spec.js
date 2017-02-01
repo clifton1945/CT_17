@@ -27,6 +27,7 @@ describe(`mutateTitle_VersionNumber:: Doc -> Doc `, ()=>{
     it(`should reset the <title> to include the data/VersionDct.version: value.`, ()=>{
         dct.version = '1_2_3';
         mutateTitle_VersionNumber(doc);
+        R.prop('innerHTML', doc.querySelector('title')).should.equal('wbSample ver: ' + '1_2_3');
         doc.querySelector('title').innerHTML.should.equal('wbSample ver: ' + '1_2_3');
     });
 });
