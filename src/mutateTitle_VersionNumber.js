@@ -1,5 +1,5 @@
 /**
- * Created by CLIF on 1/29/2017.
+ * comment 170201: innerHTML IS A PROPERTY NOT AN ATTRIBUTE!!
  */
 "use strict";
 
@@ -7,6 +7,7 @@ let R = require('ramda'),
     curry = R.curry,
     compose = R.compose;
 // ***************************
+let cb = x => console.log(`  => ${x}`);
 /**
  *  ..... pureDocQuery1:: STR -> (DOC -> ELEM)
  *  usage: STR:querySelector
@@ -17,6 +18,7 @@ let pureDocQuery1 = R.invoker(1, 'querySelector');// STR -> (DOC -> ELEM)
  *  ..... getTheTitleElem:: DOC -> Elem
  */
 let getTheTitleElem = pureDocQuery1('title');//DICT -> ELEM
+
 /**
  * ..... getVersionStr:: DICT -> STR
  */
@@ -28,7 +30,11 @@ let getVersionStr = R.compose(formatVersion, getVersion);
 /**
  * ..... setInnerHTML_value:: Elem -> Elem
  */
-let setInnerHTML = el => el["innerHTML"] = getVersionStr(VersionDct);// EL -> EL
+let setInnerHTML = el => {
+    el['innerText'] = getVersionStr(VersionDct);
+    // BREAKS R.assoc('innerText', getVersionStr(VersionDct, el));
+    return el
+};
 
 /**
  * ..... mutateTitle_VersionNumber:: DOC -> DOC
@@ -40,7 +46,13 @@ let setInnerHTML = el => el["innerHTML"] = getVersionStr(VersionDct);// EL -> EL
  * @param doc
  */
 module.exports = doc => {
-    // compose(R.tap(cb), setInnerHTML, R.tap(cb), getTheTitleElem)(doc);
     compose(setInnerHTML, getTheTitleElem)(doc);
+    // R.compose(
+    //     R.tap(cb),
+    //     setInnerHTML,
+    //     R.tap(cb),
+    //     getTheTitleElem,
+    //     R.tap(cb))
+    // (doc);
     return doc
 };
