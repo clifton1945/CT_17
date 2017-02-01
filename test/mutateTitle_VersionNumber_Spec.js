@@ -14,7 +14,7 @@ let chai = require('chai'),
     should = chai.should();
 
 //********************************
-let mutateTitle_VersionNumber = require('../src/mutateTitle_VersionNumber');
+const mutateTitle_VersionNumber = require('../src/mutateTitle_VersionNumber');
 const VersionDct = require('../data/VersionDct');
 
 describe(`mutateTitle_VersionNumber:: Doc -> Doc `, ()=>{
@@ -23,7 +23,6 @@ describe(`mutateTitle_VersionNumber:: Doc -> Doc `, ()=>{
         loadFixtures('index.html');
         doc = document;
         dct = require('../data/VersionDct');
-
     });
     it(`should reset the <title> to include the data/VersionDct.version: value.`, ()=>{
         dct.version = '1_2_3';

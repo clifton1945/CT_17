@@ -9,29 +9,29 @@ let R = require('ramda'),
     compose = R.compose;
 // ***************************
 let VersionDct = require('../data/VersionDct');
+let getVersion = R.prop('version');// DCT -> STR
+let formatVersion = vers_str => "wbSample ver: " + vers_str;// STR -> STR
+/**
+ * ..... getVersionStr:: DICT -> STR
+ */
+let getVersionStr = () => {
+    return R.compose(formatVersion, getVersion)(VersionDct)};
+
 // ***************************
 let cb = x => console.log('   -> ' + x);
 /**
- * ..... getVersionStr:: DCT -> STR
+ *  ..... pureElemQuery1:: DOC -> STR -> ELEM
  */
-let getVersionStr = () => {
-    let getVersion = R.prop('version');// DCT -> STR
-    let formatVersion = vers_str => "wbSample ver: " + vers_str;// STR -> STR
-    return R.compose(formatVersion, getVersion)(VersionDct)
-};
-/**
- *  ..... pureElemQuery:: DOC -> STR -> ELEM
- */
-let pureElemQuery = R.invoker(1, 'querySelector'); // N-> STR -> (DICT -> ELEM);
+let pureElemQuery1 = R.invoker(1, 'querySelector'); // N-> STR -> (DICT -> ELEM);
 /**
  *  ..... getTheTitleElem:: DOC -> Elem
  */
-let getTheTitleElem = pureElemQuery('title');//DICT -> ELEM
+let getTheTitleElem = pureElemQuery1('title');//DICT -> ELEM
 /**
  * ..... setInnerHTML_value:: Elem -> Elem
  */
-let setInnerHTML = el => el["innerHTML"] = getVersionStr()
-    ;// EL -> EL
+let setInnerHTML = el => el["innerHTML"] = getVersionStr();
+// let setInnerHTML = el => el["innerHTML"] = getVersionStr    ;// EL -> EL
 /**
  * ..... mutateTitle_VersionNumber:: DOC -> DOC
  *      sets document titleElement to

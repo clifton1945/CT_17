@@ -8,8 +8,8 @@ let R = require('ramda'),
     compose = R.compose;
 
 
-let mutateTheFirstLine = require(
-    '../src/mutateTheFirstLine');
+let mutateTheFirstVerseStyle = require(
+    '../src/mutateTheFirstVerseStyle');
 let mutateTitle = require(
     '../src/mutateTitle_VersionNumber');
 
@@ -20,5 +20,5 @@ let mutateTitle = require(
  */
 module.exports =
 // both below work!!
-compose(mutateTheFirstLine, mutateTitle);
-    // compose(mutateTitle, mutateTheFirstLine);
+compose(mutateTheFirstVerseStyle, mutateTitle);
+    // compose(mutateTitle, mutateTheFirstVerseStyle);
