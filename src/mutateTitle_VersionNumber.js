@@ -1,37 +1,35 @@
 /**
  * Created by CLIF on 1/29/2017.
  */
-
 "use strict";
 
 let R = require('ramda'),
     curry = R.curry,
     compose = R.compose;
 // ***************************
-let VersionDct = require('../data/VersionDct');
-let getVersion = R.prop('version');// DCT -> STR
-let formatVersion = vers_str => "wbSample ver: " + vers_str;// STR -> STR
 /**
- * ..... getVersionStr:: DICT -> STR
+ *  ..... pureDocQuery1:: STR -> (DOC -> ELEM)
+ *  usage: STR:querySelector
  */
-let getVersionStr = () => {
-    return R.compose(formatVersion, getVersion)(VersionDct)};
-
+let pureDocQuery1 = R.invoker(1, 'querySelector');// STR -> (DOC -> ELEM)
 // ***************************
-let cb = x => console.log('   -> ' + x);
-/**
- *  ..... pureElemQuery1:: DOC -> STR -> ELEM
- */
-let pureElemQuery1 = R.invoker(1, 'querySelector'); // N-> STR -> (DICT -> ELEM);
 /**
  *  ..... getTheTitleElem:: DOC -> Elem
  */
-let getTheTitleElem = pureElemQuery1('title');//DICT -> ELEM
+let getTheTitleElem = pureDocQuery1('title');//DICT -> ELEM
+/**
+ * ..... getVersionStr:: DICT -> STR
+ */
+let VersionDct = require('../data/VersionDct');
+let getVersion = R.prop('version');// DCT -> STR
+let formatVersion = vers_str => "wbSample ver: " + vers_str;// STR -> STR
+let getVersionStr = R.compose(formatVersion, getVersion);
+
 /**
  * ..... setInnerHTML_value:: Elem -> Elem
  */
-let setInnerHTML = el => el["innerHTML"] = getVersionStr();
-// let setInnerHTML = el => el["innerHTML"] = getVersionStr    ;// EL -> EL
+let setInnerHTML = el => el["innerHTML"] = getVersionStr(VersionDct);// EL -> EL
+
 /**
  * ..... mutateTitle_VersionNumber:: DOC -> DOC
  *      sets document titleElement to
