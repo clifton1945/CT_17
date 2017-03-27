@@ -5,11 +5,11 @@
 
 let R = require('ramda'),
     curry = R.curry,
-    pipe = R.pipe,
+    // pipe = R.pipe,
     compose = R.compose;
 
 let mutateTheFirstLine = require(
-    '../src/setStyleAttr');//    STR.css->ELM->ELM
+    '../h/alter/anElemStyleAttr');//    STR.css->ELM->ELM
 let mutateTitle = require(
     '../src/mutateTitle_VersionNumber');
 
