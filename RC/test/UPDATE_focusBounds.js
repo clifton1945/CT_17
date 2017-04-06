@@ -17,20 +17,22 @@ let chai = require('chai')
 ;
 
 let EVOLVE_RCBounds = require('../src/EVOLVE_RCBounds');
-// let UPDATE_focusBounds = require('../src/UPDATE_focusBounds');
-let UPDATE_focusBounds = R.always;
+let UPDATE_focus_beg = n => R.identity({focus: {beg: (R.always(n))}});
+let UPDATE_new_beg = n => R.identity({new: {beg: (R.always(n + 2))}}); // TODO USE some reference to the focus.len INSTEAD OF hard coded 2.
 
 describe(`the Fn: UPDATE_focusBounds(focus-ndx) -> DICT -> DICT 
 
     CALLS UPDATE_focus.ndx TO CREATE a new focus.ndx  IN a new RCBounds Obj 
     `, function () {
-    beforeEach(function () {
-        this.alterFns = {focus: {beg: UPDATE_focusBounds(19)}};
-    });
-    describe(`CONFIRM EVOLVE_DICT(STUB_alterFns) CAN alterFns the RCBounds DICT WHEN APPLIED TO EVOLVE_RCBounds().
+    // beforeEach(function () {
+    //     this.alterFns = (UPDATE_focus_beg(18));
+    //     this.alterFns = (UPDATE_new_beg(18));
+    // });
+    describe(`CONFIRM arguments:UPDATE_focus_beg() && UPDATE_new_beg() APPLIED TO EVOLVE_RCBounds() UPDATE the RCBounds.
     `, function () {
         it(`should see an altered key:value    `, function () {
-            expect(EVOLVE_RCBounds(this.alterFns).focus.beg).to.equal(19);
+            expect(EVOLVE_RCBounds(UPDATE_focus_beg(18)).focus.beg).to.equal(18);
+            expect(EVOLVE_RCBounds(UPDATE_new_beg(18)).new.beg).to.equal(20);
         });
     });
 });
