@@ -10,5 +10,5 @@ let R = require('ramda')
  * is a specific subset of EVOLVE_this. Its dict parameter is the default_RCBounds.
  * @param alterFns
  */
-let dflt_RCBounds = require('.Dflt_RCBounds');
-module.exports = alterFns => R.evolve(alterFns, dflt_RCBounds); //  DICT.alter_Fns -> DICT.new_RCBounds
+let dflt_RCBounds = require('./Dflt_RCBounds');
+module.exports = R.curry(alterFns => R.evolve(alterFns, dflt_RCBounds)); //  DICT.alter_Fns -> DICT.new_RCBounds
