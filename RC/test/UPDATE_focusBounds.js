@@ -16,23 +16,37 @@ let chai = require('chai')
     , expect = chai.expect
 ;
 
-let EVOLVE_RCBounds = require('../src/EVOLVE_RCBounds');
-let UPDATE_focus_beg = n => R.identity({focus: {beg: (R.always(n))}});
-let UPDATE_new_beg = n => R.identity({new: {beg: (R.always(n + 2))}}); // TODO USE some reference to the focus.len INSTEAD OF hard coded 2.
+/**
+ *  ..... EVOLVE_RCBounds_TRSFRMS:: N->DICT
+ *  USAGE:
+ * @param focus_ndx
+ * @return {{focus: {beg: *}, new: {beg: *, len: *}}}
+ * @param cv_set
+ */
+let EVOLVE_RCBounds_TRSFRMS = function (cv_set, focus_ndx) {
+    // let cv_len = R.length(cv_set);
+    return {
+        focus: {beg: R.always(focus_ndx)},
+        new: {
+            beg: R.always(focus_ndx + 2),
+            len: R.always(focus_ndx + 2)
+        }
+    }
+};
 
 describe(`the Fn: UPDATE_focusBounds(focus-ndx) -> DICT -> DICT 
 
-    CALLS UPDATE_focus.ndx TO CREATE a new focus.ndx  IN a new RCBounds Obj 
+    CALLS APPLYS EVOLVE_RCBounds_TRSFRMS TO EVOLVE_RCBounds WITH a new focus.ndx  TO RETURN a new RCBounds Obj 
     `, function () {
-    // beforeEach(function () {
-    //     this.alterFns = (UPDATE_focus_beg(18));
-    //     this.alterFns = (UPDATE_new_beg(18));
-    // });
-    describe(`CONFIRM arguments:UPDATE_focus_beg() && UPDATE_new_beg() APPLIED TO EVOLVE_RCBounds() UPDATE the RCBounds.
+    let EVOLVE_RCBounds = require('../src/EVOLVE_RCBounds');
+    beforeEach(function () {
+        this.newRCB = EVOLVE_RCBounds(EVOLVE_RCBounds_TRSFRMS([1, 2, 3, 4], 18));
+    });
+    describe(`CONFIRM EVOLVE_RCBounds_TRSFRMS APPLIED TO EVOLVE_RCBounds() RETURNS a new RCBounds.
     `, function () {
         it(`should see an altered key:value    `, function () {
-            expect(EVOLVE_RCBounds(UPDATE_focus_beg(18)).focus.beg).to.equal(18);
-            expect(EVOLVE_RCBounds(UPDATE_new_beg(18)).new.beg).to.equal(20);
+            expect(this.newRCB.focus.beg).to.equal(18);
+            expect(this.newRCB.new.beg).to.equal(20);
         });
     });
 });
