@@ -6,6 +6,5 @@
 let R = require('ramda')
 ;
 
-const EVOLVE_THIS = () => {
-}; //
-module.exports = EVOLVE_THIS; // LST.[a] -> LST.[N]
+const EVOLVE_this = (alterFn, dict) => R.evolve(alterFn, dict); // Fn.alterFn -> DICT.0 -> DICT.1
+module.exports = EVOLVE_this; // // Fn.alterFn -> DICT.0 -> DICT.1
