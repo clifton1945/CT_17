@@ -11,3 +11,4 @@ module.exports = {
     new: {beg: undefined, len: undefined, far: 0.3, near: 0.9, wt: undefined}
 };
 
+//
