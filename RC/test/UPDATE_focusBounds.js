@@ -4,11 +4,11 @@
 "use strict";
 
 let R = require('ramda')
-    // , pipe = R.pipe
+    , pipe = R.pipe
 //     , compose = R.compose
 //     , map = R.map
-//     , curry = R.curry
-//     , always = R.always
+    , curry = R.curry
+    , always = R.always
 ;
 
 let chai = require('chai')
@@ -16,23 +16,54 @@ let chai = require('chai')
     , expect = chai.expect
 ;
 
-let EVOLVE_RCBounds = require('../src/EVOLVE_RCBounds');
-let UPDATE_focus_beg = n => R.identity({focus: {beg: (R.always(n))}});
-let UPDATE_new_beg = n => R.identity({new: {beg: (R.always(n + 2))}}); // TODO USE some reference to the focus.len INSTEAD OF hard coded 2.
+let RCBounds_TRSFRMS = curry(
+    /**
+     *  ..... RCBounds_TRSFRMS:: N->DICT
+     *  USAGE:
+     * @param focus_ndx
+     * @return {{old: {len: *}, focus: {beg: *}, new: {beg: *, len: *}}}
+     * @param cv_set
+     */
+    function (cv_set, focus_ndx) {
+        let cv_len = R.subtract(R.length(cv_set)); // N -> N
+        return {
+            old: {len: always(focus_ndx - 1)},
+            focus: {beg: always(focus_ndx)},
+            new: {
+                beg: always(focus_ndx + 2),
+                len: always(cv_len(focus_ndx))
+            }
+        }
+    }
+);
+let STUB_CVRange = R.range(0, 8);
+let defaultRCB = require('../src/Dflt_RCBounds');
+
+let EVOLVE_ChptVerse_RCBounds_1 = n => R.evolve(RCBounds_TRSFRMS(STUB_CVRange, n), defaultRCB); // N -> DICT
+
+let hold = 0;
 
 describe(`the Fn: UPDATE_focusBounds(focus-ndx) -> DICT -> DICT 
 
-    CALLS UPDATE_focus.ndx TO CREATE a new focus.ndx  IN a new RCBounds Obj 
+    APPLES RCBounds_TRSFRMS TO EVOLVE_RCBounds WITH a new focus.ndx  TO RETURN a new RCBounds Obj 
     `, function () {
-    // beforeEach(function () {
-    //     this.alterFns = (UPDATE_focus_beg(18));
-    //     this.alterFns = (UPDATE_new_beg(18));
-    // });
-    describe(`CONFIRM arguments:UPDATE_focus_beg() && UPDATE_new_beg() APPLIED TO EVOLVE_RCBounds() UPDATE the RCBounds.
+    beforeEach(function () {
+        let STUB_CVRange = R.range(0, 8);
+        let ChptVerse_RCBounds_TRSFRMS = RCBounds_TRSFRMS(STUB_CVRange, R.__);// N -> OBJ
+        // let EVOLVE_RCBounds = require('../src/EVOLVE_RCBounds'); // N -> DICT
+        // let EVOLVE_ChptVerse_RCBounds = EVOLVE_RCBounds(ChptVerse_RCBounds_TRSFRMS); // N -> DICT
+        let EVOLVE_ChptVerse_RCBounds = R.evolve(ChptVerse_RCBounds_TRSFRMS); // N -> DICT
+        this.newRCB = EVOLVE_ChptVerse_RCBounds(4);//
+    });
+    describe(`CONFIRM RCBounds_TRSFRMS APPLIED TO EVOLVE_RCBounds() RETURNS a new RCBounds.
     `, function () {
-        it(`should see an altered key:value    `, function () {
-            expect(EVOLVE_RCBounds(UPDATE_focus_beg(18)).focus.beg).to.equal(18);
-            expect(EVOLVE_RCBounds(UPDATE_new_beg(18)).new.beg).to.equal(20);
+        xit(`should see an altered key:value    `, function () {
+            expect(this.newRCB.old.beg).to.equal(0);
+            expect(this.newRCB.old.len).to.equal(3);
+            expect(this.newRCB.focus.beg).to.equal(4);
+            expect(this.newRCB.focus.len).to.equal(2);
+            expect(this.newRCB.new.beg).to.equal(6);
+            expect(this.newRCB.new.len).to.equal(4);
         });
     });
 });
