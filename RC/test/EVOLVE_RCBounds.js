@@ -32,7 +32,7 @@ describe(`the Fn: EVOLVE_RCBounds IS EVOLVE_this( WITH a hard coded Default_RCBo
     });
     describe(`CONFIRM EVOLVE_DICT(STUB_alterFns) CAN alterFns the RCBounds DICT.    `, function () {
         it(`can return an altered RCBounds `, function () {
-            expect(EVOLVE_RCBounds(this.STUB_alterFns).focus).to.be.an('object').and.to.have.all.keys(['beg', 'len']);
+            expect(EVOLVE_RCBounds(this.STUB_alterFns).focus).to.be.an('object').and.to.have.any.keys(['beg', 'len']);
         });
         it(`should see an altered key:value    `, function () {
             expect(EVOLVE_RCBounds(this.STUB_alterFns).focus.beg).to.equal(20);
