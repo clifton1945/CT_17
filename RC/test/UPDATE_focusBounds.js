@@ -45,7 +45,7 @@ let hold = 0;
 
 describe(`the Fn: UPDATE_focusBounds(focus-ndx) -> DICT -> DICT 
 
-    CALLS APPLYS RCBounds_TRSFRMS TO EVOLVE_RCBounds WITH a new focus.ndx  TO RETURN a new RCBounds Obj 
+    APPLES RCBounds_TRSFRMS TO EVOLVE_RCBounds WITH a new focus.ndx  TO RETURN a new RCBounds Obj 
     `, function () {
     beforeEach(function () {
         let STUB_CVRange = R.range(0, 8);

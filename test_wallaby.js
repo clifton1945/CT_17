@@ -25,6 +25,7 @@ module.exports = function (wallaby) {
 
         tests: [
             {pattern: 'CV/test/*.js', load: false},
+            {pattern: 'CV/spec/*.js', load: false},
             {pattern: 'RC/test/*.js', load: false}
         ],
 
