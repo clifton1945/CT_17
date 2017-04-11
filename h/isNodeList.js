@@ -6,7 +6,7 @@
 
 
 module.exports = function (nodes) {
-    var stringRepr = Object.prototype.toString.call(nodes);
+    let stringRepr = Object.prototype.toString.call(nodes);
 
     return typeof nodes === 'object' &&
         /^\[object (HTMLCollection|NodeList|Object)\]$/.test(stringRepr) &&

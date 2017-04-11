@@ -1,5 +1,5 @@
 /**
- * SELECT_ChptVerses
+ ./spec/SELECT_ChptVerses
  */
 "use strict";
 
@@ -7,7 +7,7 @@ let R = require('ramda')
     , pipe = R.pipe
 //     , compose = R.compose
 //     , map = R.map
-//     , curry = R.curry
+    , curry = R.curry
 ;
 
 let chai = require('chai')
@@ -16,22 +16,30 @@ let chai = require('chai')
 ;
 
 // CODE UNDER TEST
-// const SELECT_ChptVerses = require('../src/SELECT_ChptVerses'); // LST.[a] -> LST>[N]
-let SELECT_ChptVerses = () => {
-};
+// const SELECT_ChptVerses = require('../src/SELECT_ChptVerses');
+let SELECT_ChptVerses = curry(
+    (doc) => { // DOC -> NL
+        let CVName = require('../src/Dflt_ChptVersesSelector');
+        let selectAll = R.invoker(1, 'querySelectorAll');
+        // console.log(CVName);
+        return selectAll(CVName, doc)
+        // return doc.querySelectorAll(CVName);
+    });
 
-xdescribe(`the Fn:  SELECT_ChptVerses() returns a NodeList of DIV.chptr SPANS.verse.
+describe(`the Fn: SELECT_ChptVerses(document) returns a NodeList of DIV.chptr SPAN.verses.
     
-    USAGE: the NL will map over the NL w/ a MUTATE_this FN to change each ELEM.style
+    USAGE: the returned NL  will be mapped over w/ a MUTATE_this FN to change each ELEM.style
     `, function () {
     beforeEach(function () {
-        this.stubCV = ['verse1', 'verse2', 'verse3', 'verse4'];
+        loadFixtures('index.html'); //TODO remember this breaks a mocha test
+        this.doc = document;
+        // console.log(this.doc);
     });
-    it(`should be an NL of length > 0 with a parent named 'chptr'.`, function () {
-        expect(SELECT_ChptVerses(this.stubCV)).to.be.an('array').with.lengthOf(4);
+    it(`should be a Fn returning w/arity:1. Expecting the DOM document.`, function () {
+        expect(SELECT_ChptVerses).is.a('function').and.has.length(1);
     });
-    xit(`should be ???.`, function () {
-        let ret = SELECT_ChptVerses(this.stubCV);
-        expect(R.reduce(R.add, 0)(ret)).equals(6);
+    it(`should, when invoked w/ the document, return a NL of length > 0 with a parent named 'chptr'.`, function () {
+        let isNodeList = require('../../h/isNodeList');
+        expect(isNodeList(SELECT_ChptVerses(this.doc))).to.be.true;
     });
 });
