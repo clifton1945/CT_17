@@ -20,18 +20,18 @@ let chai = require('chai')
 //     /**
 //      *  ..... RCBounds_TRSFRMS:: N->DICT
 //      *  USAGE:
-//      * @param focus_ndx
-//      * @return {{old: {len: *}, focus: {beg: *}, new: {beg: *, len: *}}}
+//      * @param cur_ndx
+//      * @return {{old: {len: *}, cur: {beg: *}, new: {beg: *, len: *}}}
 //      * @param cv_set
 //      */
-//     function (cv_set, focus_ndx) {
+//     function (cv_set, cur_ndx) {
 //         let cv_len = R.subtract(R.length(cv_set)); // N -> N
 //         return {
-//             old: {len: always(focus_ndx - 1)},
-//             focus: {beg: always(focus_ndx)},
+//             old: {len: always(cur_ndx - 1)},
+//             cur: {beg: always(cur_ndx)},
 //             new: {
-//                 beg: always(focus_ndx + 2),
-//                 len: always(cv_len(focus_ndx))
+//                 beg: always(cur_ndx + 2),
+//                 len: always(cv_len(cur_ndx))
 //             }
 //         }
 //     }
@@ -45,39 +45,37 @@ let chai = require('chai')
 
 //CODE UNDER TEST
 // let defaultRCB = require('../src/Dflt_RCBounds');
-// let focusLen = defaultRCB.focus.len;
-// let focusNdx;
+// let curLen = defaultRCB.cur.len;
+// let curNdx;
 
-// const isFocus = curry(
-//     (f_ndx) => {
-//         let dict = require('../src/Dflt_RCBounds');
-//         let gteFocusNdx0 = R.gte(R.__, f_ndx);
-//         let lteFocusNdx1 = R.lte(R.__, dict.focus.len + f_ndx - 1);
-//         return  R.both(gteFocusNdx0, lteFocusNdx1);
-//     });
+const isCur = curry(
+    (f_ndx) => {
+        let dict = require('../src/Dflt_RCBounds');
+        let gteCurNdx0 = R.gte(R.__, f_ndx);
+        let lteCurNdx1 = R.lte(R.__, dict.cur.len + f_ndx - 1);
+        return R.both(gteCurNdx0, lteCurNdx1);
+    });
+// const isThisCur = isCur(2);// N -> BOOL
 
-//PLAN to REPLACE mutating the RCBounds WITH converting everything on the fly to return any cvIndex's Weight
-describe(`..UPDATE_Weight: a Function w/ params(N.newFocus, NL.chptverses) that
-        REASSIGN RClss lengths, then CONVERT a cvNdx to its rcNdx, then RETRIEVES RCBound, then RETURN its Weight.`, () => {
-    describe(` USE Fn: isFocus TO begin triage of a cvNdx`, () => {
-        beforeEach(function () {
-            // loadFixtures('index.html'); //NOTE remember this breaks a mocha test
-            // this.doc = document;
-            this.isFocus = curry(
-                (f_ndx) => {
-                    let dict = require('../src/Dflt_RCBounds');
-                    let gteFocusNdx0 = R.gte(R.__, f_ndx);
-                    let lteFocusNdx1 = R.lte(R.__, dict.focus.len + f_ndx - 1);
-                    return R.both(gteFocusNdx0, lteFocusNdx1);
-                });
-        });
+describe(`USE boolean functions: isOld, isCur, isNew TO ReadClass TRIAGE a cvNdx.
+        They DEPEND ON the curNdx0
+        `, () => {
+    let isThisCur;
+    beforeEach(function () {
+        // loadFixtures('index.html'); //NOTE remember this breaks a mocha test
+        // this.doc = document;
+        isThisCur = isCur(2);// N -> BOOL
+    });
+
+    describe(`  CENTRAL CASE: USE Fn: isThisCur = isCur(cvNdx:2) TO begin triage of a cvNdx
+    `, () => {
         it(`should define and triage aCV_Ndx ReadClss.`, () => {
-
-            // expect(this.CUT(0)).be.false;
-            // expect(this.CUT(1)).be.false;
-            expect(this.isFocus(2)(2)).be.true;
-            // expect(this.CUT(3)).be.true;
-            // expect(this.CUT(4)).be.true
+            isThisCur = isCur(2);// N -> BOOL
+            expect(isThisCur(0)).be.false
+            expect(isThisCur(1)).be.false
+            expect(isThisCur(2)).be.true
+            expect(isThisCur(3)).be.true
+            expect(isThisCur(4)).be.false
         });
     });
 });
