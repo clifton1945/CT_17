@@ -16,15 +16,7 @@ let chai = require('chai')
 ;
 
 // CODE UNDER TEST
-// const SELECT_ChptVerses = require('../src/SELECT_ChptVerses');
-let SELECT_ChptVerses = curry(
-    (doc) => { // DOC -> NL
-        let CVName = require('../src/Dflt_ChptVersesSelector');
-        let selectAll = R.invoker(1, 'querySelectorAll');
-        // console.log(CVName);
-        return selectAll(CVName, doc)
-        // return doc.querySelectorAll(CVName);
-    });
+const SELECT_ChptVerses = require('../src/SELECT_ChptVerses');
 
 describe(`the Fn: SELECT_ChptVerses(document) returns a NodeList of DIV.chptr SPAN.verses.
     
