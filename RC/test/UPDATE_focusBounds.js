@@ -5,7 +5,6 @@
 
 let R = require('ramda')
     , pipe = R.pipe
-//     , compose = R.compose
     , map = R.map
     , curry = R.curry
     // , always = R.always
@@ -16,62 +15,36 @@ let chai = require('chai')
     , expect = chai.expect
 ;
 
-// let RCBounds_TRSFRMS = curry(
-//     /**
-//      *  ..... RCBounds_TRSFRMS:: N->DICT
-//      *  USAGE:
-//      * @param cur_ndx
-//      * @return {{old: {len: *}, cur: {beg: *}, new: {beg: *, len: *}}}
-//      * @param cv_set
-//      */
-//     function (cv_set, cur_ndx) {
-//         let cv_len = R.subtract(R.length(cv_set)); // N -> N
-//         return {
-//             old: {len: always(cur_ndx - 1)},
-//             cur: {beg: always(cur_ndx)},
-//             new: {
-//                 beg: always(cur_ndx + 2),
-//                 len: always(cv_len(cur_ndx))
-//             }
-//         }
-//     }
-// );
-// let STUB_CVRange = R.range(0, 8);
-// let defaultRCB = require('../src/Dflt_RCBounds');
-//
-// let EVOLVE_ChptVerse_RCBounds_1 = n => R.evolve(RCBounds_TRSFRMS(STUB_CVRange, n), defaultRCB); // N -> DICT
-//
-// let hold = 0;
-
 //CODE UNDER TEST
-// let defaultRCB = require('../src/Dflt_RCBounds');
-// let curLen = defaultRCB.cur.len;
-// let curNdx;
-
 const isCur = curry(
-    (f_ndx) => {
+    (curLen, curNdx) => {
         let dict = require('../src/Dflt_RCBounds');
-        let gteCurNdx0 = R.gte(R.__, f_ndx);
-        let lteCurNdx1 = R.lte(R.__, dict.cur.len + f_ndx - 1);
+        let gteCurNdx0 = R.gte(R.__, curNdx);
+        let lteCurNdx1 = R.lte(R.__, curLen + curNdx - 1);
         return R.both(gteCurNdx0, lteCurNdx1);
     });
 
 describe(`USE boolean functions: isOld, isCur, isNew TO TRIAGE a cvNdx in RC Space.
         They DEPEND ON the curNdx
         `, () => {
-    let isThisCur, pred, STUB_cvNdxs, STUB_curNdx;
+    let pred, STUB_cvNdxs;
     beforeEach(function () {
         // loadFixtures('index.html'); //NOTE remember this breaks a mocha test
         // this.doc = document;
         STUB_cvNdxs = [0, 1, 2, 3, 4];
-        pred = pipe(isCur, map(R.__, STUB_cvNdxs)); //
+        pred = pipe(isCur(2), map(R.__, STUB_cvNdxs)); //
     });
-    describe(`  Fn: isCENTRAL CASE: curNdx > 0 AND curNdx < cvLen
+    describe(`..Fn: isCur(len, ndx) -> Bool `, () => {
+        describe(` Fn:isCur CENTRAL CASE: 0 <= curNdx <= cvLen AND 0 <= curLen :????
     `, () => {
-        it(`should define and triage aCV_Ndx ReadClss.`, () => {
-            STUB_curNdx = 2;
-            expect(pred(STUB_curNdx)).to.eql([false, false, true, true, false])
-        })
+            it(`should TRIAGE a CV_Ndx AS BOOL`, () => {
+                expect(pred(0)).to.eql([true, true, false, false, false]);
+                expect(pred(1)).to.eql([false, true, true, false, false]);
+                expect(pred(2)).to.eql([false, false, true, true, false]);
+                expect(pred(3)).to.eql([false, false, false, true, true]);
+                expect(pred(4)).to.eql([false, false, false, false, true]);
+                expect(pred(5)).to.eql([false, false, false, false, false]);
+            })
+        });
     });
 });
-
