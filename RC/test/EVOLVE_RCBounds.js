@@ -16,7 +16,7 @@ let chai = require('chai')
     , expect = chai.expect
 ;
 
-let EVOLVE_RCBounds = require('../src/EVOLVE_RCBounds');
+let EVOLVE_RCBounds = require('../src/EVOLVE_RCBounds');//  DICT.alter_Fns -> DICT.new_RCBounds
 
 describe(`the Fn: EVOLVE_RCBounds IS EVOLVE_this( WITH a hard coded Default_RCBounds argument)
 
@@ -25,12 +25,12 @@ describe(`the Fn: EVOLVE_RCBounds IS EVOLVE_this( WITH a hard coded Default_RCBo
     beforeEach(function () {
         this.STUB_alterFns = {focus: {beg: R.add(20)}};
     });
-    describe(`CONFIRM [EVOLVE_DICT is a function wanting a DICT.alterFns.]`, function () {
+    describe(`CONFIRM [EVOLVE_RCBounds is a function wanting a DICT.alterFns.]`, function () {
         it(`should be a function with one argument.    `, function () {
             expect(EVOLVE_RCBounds).to.be.a('function').and.to.have.lengthOf(1);
         });
     });
-    describe(`CONFIRM EVOLVE_DICT(STUB_alterFns) CAN alterFns the RCBounds DICT.    `, function () {
+    describe(`CONFIRM EVOLVE_RCBounds(STUB_alterFns) CAN alterFns the RCBounds DICT.    `, function () {
         it(`can return an altered RCBounds `, function () {
             expect(EVOLVE_RCBounds(this.STUB_alterFns).focus).to.be.an('object').and.to.have.any.keys(['beg', 'len']);
         });

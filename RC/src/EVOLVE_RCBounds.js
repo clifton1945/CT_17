@@ -12,5 +12,4 @@ let R = require('ramda')
  */
 let dflt_RCBounds = require('./Dflt_RCBounds');
 let EVOLVE_this = require('./EVOLVE_this');
-// module.exports = EVOLVE_this( dflt_RCBounds); // BREAKS   DICT.alter_Fns -> DICT.new_RCBounds
 module.exports = R.curry(alterFns => R.evolve(alterFns, dflt_RCBounds)); //  DICT.alter_Fns -> DICT.new_RCBounds
