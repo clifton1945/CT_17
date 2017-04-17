@@ -14,11 +14,11 @@ let R = require('ramda')
 // CODE UNDER TEST
 // module.exports.cut = curry((cvLen, curLen, curBeg_Ndx) => {
 
-let DEFINES_curEnd = (cvLen, curLen, curBeg_Ndx) => {// (N.len,N.len,N.ndx,) -> N.ndx
-    let curEnd_Ndx = curLen + curBeg_Ndx;
-    return curEnd_Ndx > cvLen ? cvLen : curEnd_Ndx
+let DEFINES_curEnd_Ndx = (cvLen, curLen, curBeg_Ndx) => {// (N.len,N.len,N.ndx,) -> N.ndx
+    let sum = curLen + curBeg_Ndx;
+    return sum > cvLen ? cvLen : sum
 };
-module.exports.DEFINES_curEnd = DEFINES_curEnd;
+module.exports.DEFINES_curEnd_Ndx = DEFINES_curEnd_Ndx;
 
 let gte_0 = curry(R.gte(R.__, 0));
 module.exports.gte_0 = gte_0;

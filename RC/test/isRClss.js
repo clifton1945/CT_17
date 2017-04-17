@@ -17,7 +17,7 @@ let chai = require('chai')
 ;
 
 // CODE UNDER TEST
-let DEFINES_curEnd = (cvLen, curLen, curBeg) => {
+let DEFINES_curEnd_Ndx = (cvLen, curLen, curBeg) => {
     let maybeEnd = curLen + curBeg;
     return maybeEnd > cvLen ? cvLen : maybeEnd
 };
@@ -49,10 +49,10 @@ context(`the beginning{curBeg} and the end{curEnd} define the three is_RClss bou
     describe(`Fn: DEFINE_curEnd() shortens the default curLen by 
         not allowing the curEnd to extend beyond the cvLength. `, () => {
         it(`should normally set curEnd === curBeg + curLen`, function () {
-            expect(DEFINES_curEnd(cvLen, curLen, curBeg)).to.equal(4).and.to.equal(curBeg + curLen);
+            expect(DEFINES_curEnd_Ndx(cvLen, curLen, curBeg)).to.equal(4).and.to.equal(curBeg + curLen);
         });
         it(`should however never set curEnd beyond the end of the cvLen.`, function () {
-            expect(DEFINES_curEnd(3, curLen, curBeg)).to.equal(3).and.to.equal(curBeg + 2).to.not.equal(curBeg + curLen);
+            expect(DEFINES_curEnd_Ndx(3, curLen, curBeg)).to.equal(3).and.to.equal(curBeg + 2).to.not.equal(curBeg + curLen);
         });
     });
 });
@@ -65,7 +65,7 @@ context(`The is_xxxRClss DEFINE the RCWeightBounds.
             curLen = 3;
             curBeg = 1;
             lt_curBeg = lt_Beg(curBeg);
-            curEnd = DEFINES_curEnd(cvLen, curLen, curBeg);
+            curEnd = DEFINES_curEnd_Ndx(cvLen, curLen, curBeg);
             lte_curEnd = lte_End(curEnd);
             is_pstRClss = is_curR(lt_curBeg, lte_curEnd);
         });
@@ -83,7 +83,7 @@ context(`The is_xxxRClss DEFINE the RCWeightBounds.
             curLen = 3;
             curBeg = 1;
             gte_curBeg = gte_Beg(curBeg);
-            curEnd = DEFINES_curEnd(cvLen, curLen, curBeg);
+            curEnd = DEFINES_curEnd_Ndx(cvLen, curLen, curBeg);
             lte_curEnd = lte_End(curEnd);
             is_curRClss = is_curR(gte_curBeg, lte_curEnd);
         });

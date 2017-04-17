@@ -8,7 +8,7 @@ let R = require('ramda')
 //     , pipe = R.pipe
 //     , compose = R.compose
 //     , map = R.map
-    , curry = R.curry
+//    , curry = R.curry
 ;
 let context = describe;
 
@@ -20,7 +20,7 @@ let chai = require('chai')
 
 let rc = require('../src/is_RClss')
     , cut = rc.cut
-    , DEFINES_curEnd = rc.DEFINES_curEnd
+    , DEFINES_curEnd_Ndx = rc.DEFINES_curEnd_Ndx
     , is_pstRClss = rc.is_pstRClss
     , gte_0 = rc.gte_0
 ;
@@ -32,21 +32,21 @@ context(`the three isRC's Fns: isPst(), isCur() and isFut() effectively define t
 
 context(`the beginning{curBeg} and the end{curEnd} define the three is_RClss boundries: pst, cur, fut.  
     `, function () {
-    let curBeg, curLen, cvLen, newLen;
+    let curBeg, curLen, cvLen, curEnd_Ndx;
     beforeEach(function () {
         cvLen = 5;
         curLen = 3;
         curBeg = 1;
-        newLen = rc.DEFINES_curEnd(cvLen, curLen, curBeg)
+        curEnd_Ndx = rc.DEFINES_curEnd_Ndx(cvLen, curLen, curBeg)
     });
 
     describe(`Fn: DEFINE_curEnd() shortens the default curLen by 
         not allowing the curEnd to extend beyond the cvLength. `, () => {
         it(`should normally set curEnd === curBeg + curLen`, function () {
-            expect(newLen == 4).is.ok;//.and.to.be.equal(curBeg + curLen);
+            expect(curEnd_Ndx).to.be.equal(4).is.ok;//.and.to.be.equal(curBeg + curLen);
         });
         it(`should however never set curEnd beyond the end of the cvLen.`, function () {
-            expect(DEFINES_curEnd(3, curLen, curBeg)).is.equal(3).and.is.equal(curBeg + 2).to.not.equal(curBeg + curLen);
+            expect(DEFINES_curEnd_Ndx(3, curLen, curBeg)).is.equal(3).and.is.equal(curBeg + 2).to.not.equal(curBeg + curLen);
         });
     });
 });
@@ -82,7 +82,7 @@ context(`The is_xxxRClss DEFINE the RCWeightBounds.
             curLen = 3;
             curBeg = 1;
             gte_curBeg = gte_Beg(curBeg);
-            curEnd = DEFINES_curEnd(cvLen, curLen, curBeg);
+            curEnd = DEFINES_curEnd_Ndx(cvLen, curLen, curBeg);
             lte_curEnd = lte_End(curEnd);
         });
         it(`should be true for SIMPLE a cvNdx that is gte curBeg && lte curEnd.`, () => {
