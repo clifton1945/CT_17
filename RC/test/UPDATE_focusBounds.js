@@ -27,6 +27,8 @@ const isCur = curry(
 describe(`USE boolean functions: isOld, isCur, isNew TO TRIAGE a cvNdx in RC Space.
         They DEPEND ON the curNdx
         `, () => {
+
+
     let pred, STUB_cvNdxs;
     beforeEach(function () {
         // loadFixtures('index.html'); //NOTE remember this breaks a mocha test
@@ -34,7 +36,7 @@ describe(`USE boolean functions: isOld, isCur, isNew TO TRIAGE a cvNdx in RC Spa
         STUB_cvNdxs = [0, 1, 2, 3, 4];
         pred = pipe(isCur, map(R.__, STUB_cvNdxs)); //
     });
-    1
+
     describe(`..Fn: isCur(len, ndx) -> Bool `, () => {
         describe(` Fn:isCur(currentLength, currentNdx)  0 <= curNdx <= cvLen AND 0 <= curLen :????
     `, () => {
