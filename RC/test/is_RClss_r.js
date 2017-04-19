@@ -72,23 +72,20 @@ context(`The is_xxxRClss DEFINE the RCWeightBounds.
             expect(rc.is_pstRClss(curBeg, 1)).to.be.false
         });
     });
-    xdescribe(`Fn: is_curClss( cvNdx ) IS gte curBeg && lte curEnd..`, () => {
-        let curBeg, curLen, curEnd, cvLen, gte_curBeg, lte_curEnd;
+    describe(`Fn: is_curClss( cvNdx ) IS gte curBeg && lte curEnd..`, () => {
+        let curBeg, curLen, curEnd, cvLen;
         beforeEach(function () {
             cvLen = 5;
             curLen = 3;
             curBeg = 1;
-            gte_curBeg = gte_Beg(curBeg);
-            curEnd = DEFINES_curEnd_Ndx(cvLen, curLen, curBeg);
-            lte_curEnd = lte_End(curEnd);
         });
-        it(`should be true for SIMPLE cvNdx:1 that is gte curBeg:1 && lte curEnd:3.`, () => {
-            expect(gte_curBeg(1)).to.be.true;
-            expect(lte_curEnd(1)).to.be.true;
-            // expect(is_curRClss(1)).to.be.true;
+        xit(`should be true for SIMPLE cvNdx:1 that is gte curBeg:1 && lte curEnd:3.`, () => {
+            expect(rc.gte_curBeg(curBeg, 1)).to.be.true;
+            expect(rc.lte_curEnd(1)).to.be.true;
+            expect(is_curRClss(1)).to.be.true;
         });
         xit(`should be false for a cvNdx that is NOT gte curBeg && lte curEnd.`, () => {
-            expect(is_curRClss(0)).to.be.false;
+            expect(rc.is_curRClss(0)).to.be.false;
         });
         xit(`should be false for a cvNdx that is gte curBeg BUT NOT lte curEnd.`, () => {
             expect(is_curRClss(0)).to.be.false;

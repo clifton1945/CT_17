@@ -23,13 +23,16 @@ module.exports.DEFINES_curEnd_Ndx = DEFINES_curEnd_Ndx;
 // const _RClss = curry(
 // (cvLen, curLen, curBeg_Ndx) => {
 let gte_0 = curry(R.gte(R.__, 0));
-module.exports.gte_0 = gte_0;
 let lt_Beg = curry((beg, x) => x < beg);
-module.exports.lt_Beg = lt_Beg;
 let gte_Beg = curry(beg => R.gte(R.__, beg));
 let lte_End = curry(end => R.lte(R.__, end));
 let gt_End = curry(end => R.gt(R.__, end));
 let lte_cvLen = curry(cvl => R.lte(R.__, cvl));
+module.exports.gte_0 = gte_0;
+module.exports.lt_Beg = lt_Beg;
+module.exports.gte_Beg = gte_Beg;
+module.exports.lte_End = lte_End;
+
 
 // the 3 is_xxxRClss Fns.
 let is_pstRClss = curry((beg, ndx) => gte_0(ndx) && lt_Beg(beg, ndx));// N.beg -> N.cvNdx -> BOOL
