@@ -9,6 +9,7 @@ let R = require('ramda'),
     pipe = R.pipe,
     compose = R.compose;
 
+
 const Spans_FROM_theDocument_GIVEN_aSelector = curry(
     /**
      *  ..... Spans_FROM_theDocument_GIVEN_aSelector::

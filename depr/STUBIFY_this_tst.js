@@ -16,7 +16,7 @@ let chai = require('chai')
 ;
 
 // CODE UNDER TEST
-const RANGIFY_this = require('../src/RANGIFY_this'); // LST.[a] -> LST>[N]
+const RANGIFY_this = require('./STUBIFY_this'); // LST.[a] -> LST>[N]
 
 describe(`the Fn:  RANGIFY_this() returns a Lst of NUM.indexes.
     
