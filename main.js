@@ -1,9 +1,4 @@
 "use strict";
-// let R = require('ramda')
-// , curry = R.curry
-// , pipe = R.pipe
-// ;
-// let h = require('./h/H');
 
 //************** MAIN *************************
 let TRK = "wbSample/main.js";
