@@ -2,14 +2,13 @@
  * Created by CLIF on 4/21/2017.
  */
 /**
- *  STABLE  a_KeyPress::(initN) -> (fn) -> updatedChptr
- *  190906  @1512 each keyEvent triggers an entire Chptr Spans update for each RclssDIV.
- *  FILE:: bind_keyEvents.js  key event ->  sets a new curRclss begin Span and updates all spans.
+ *  WIP   a_KeyPress::(initN) -> (fn) -> updatedChptr
  */
 
 "use strict";
 let h = require('../../h/C_in_');
 let C_inConsole = h.C_inConsole;
+// let C_inDoc = h.C_inDoc;
 
 
 /**
@@ -17,9 +16,7 @@ let C_inConsole = h.C_inConsole;
  *      USED to increment the beginning of current Rclss DIV children
  * @constructor
  */
-let keyActions;
-/*
-keyActions = function (e, n) {
+let keyActions = function (e, n) {
     // read Last Chapter
     if (e.keyCode === 37) {
         e.preventDefault();
@@ -55,10 +52,7 @@ keyActions = function (e, n) {
     }
     return n;
 };
- */
-/*
 module.exports.keyActions = keyActions;
- */
 
 let x = n => ` -> x:${n}`;
 module.exports.x = x;
