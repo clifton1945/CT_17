@@ -18,6 +18,7 @@ let C_inConsole = h.C_inConsole;
  * @constructor
  */
 let keyActions;
+/*
 keyActions = function (e, n) {
     // read Last Chapter
     if (e.keyCode === 37) {
@@ -54,9 +55,12 @@ keyActions = function (e, n) {
     }
     return n;
 };
+ */
+/*
 module.exports.keyActions = keyActions;
+ */
 
-let x = n => C_inConsole(" -> x:" + n);
+let x = n => ` -> x:${n}`;
 module.exports.x = x;
 // let tst = require('./bind_keyEvents').a_KeyPress;
 // click Events **********************

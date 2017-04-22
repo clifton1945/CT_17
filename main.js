@@ -10,6 +10,6 @@ C_inConsole("< IN >" + TRK);
 let cut = require('./CV/src/main_keyActions');
 // document.addEventListener("keydown", keyActions, false);
 
-cut.x(10.0);
+C_inConsole((cut.x(101.0)));
 
 C_inConsole(' OUT> ' + TRK);
