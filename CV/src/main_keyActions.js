@@ -6,9 +6,10 @@
  */
 
 "use strict";
-let h = require('../../h/C_in_');
-let C_inConsole = h.C_inConsole;
-// let C_inDoc = h.C_inDoc;
+// let c = require('C:/Users/CLIF/WSProjects/wbSample/h/C_in_');
+let c = require('../../h/C_in_');
+// let C_inBoth = c.C_inBoth;
+// let C_inDoc = c.C_inDoc;
 
 
 /**
@@ -17,12 +18,13 @@ let C_inConsole = h.C_inConsole;
  * @constructor
  */
 let keyActions = function (e, n) {
+    n = 12345;
     // read Last Chapter
     if (e.keyCode === 37) {
         e.preventDefault();
         e.stopPropagation();
         n += -5; // FIX
-        C_inConsole("read Last Chptr:" + n);
+        c.C_inBoth("read Last Chptr:" + n);
         // return Fn(n);
     }
 
@@ -31,7 +33,7 @@ let keyActions = function (e, n) {
         e.preventDefault();
         e.stopPropagation();
         n += -1; // TODO limit this
-        C_inConsole("read Last Verse:" + n);
+        c.C_inBoth("read Last Verse:" + n);
         // return Fn(n);
     }
     // read Next Chptr.
@@ -39,7 +41,7 @@ let keyActions = function (e, n) {
         e.preventDefault();
         e.stopPropagation();
         n += 5;
-        C_inConsole("read Next Chptr:" + n);
+        c.C_inBoth("read Next Chptr:" + n);
         // return Fn(n);
     }
     // read Next verse.
@@ -47,7 +49,7 @@ let keyActions = function (e, n) {
         e.preventDefault();
         e.stopPropagation();
         n += +1;// TODO limit this
-        C_inConsole("read Next Verse:" + n);
+        c.C_inBoth("read Next Verse:" + n);
         // return Fn(n);
     }
     return n;
