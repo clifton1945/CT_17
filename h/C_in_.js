@@ -1,4 +1,5 @@
 /**
+ * C_in_.js
  * Created by CLIF on 4/21/2017.
  */
 const C_inDoc = (txt) => document.querySelector(".console").textContent = txt;

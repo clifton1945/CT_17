@@ -8,9 +8,8 @@
  */
 
 "use strict";
-// let assert = require('assert');
-
-let C_Both = require('../../h/C_Both');
+let h = require('../../h/C_in_');
+let C_inConsole = h.C_inConsole;
 
 
 /**
@@ -18,13 +17,14 @@ let C_Both = require('../../h/C_Both');
  *      USED to increment the beginning of current Rclss DIV children
  * @constructor
  */
-let keyActions = function (e, n) {
+let keyActions;
+keyActions = function (e, n) {
     // read Last Chapter
     if (e.keyCode === 37) {
         e.preventDefault();
         e.stopPropagation();
         n += -5; // FIX
-        C_Both("read Last Chptr:" + n);
+        C_inConsole("read Last Chptr:" + n);
         // return Fn(n);
     }
 
@@ -33,7 +33,7 @@ let keyActions = function (e, n) {
         e.preventDefault();
         e.stopPropagation();
         n += -1; // TODO limit this
-        C_Both("read Last Verse:" + n);
+        C_inConsole("read Last Verse:" + n);
         // return Fn(n);
     }
     // read Next Chptr.
@@ -41,7 +41,7 @@ let keyActions = function (e, n) {
         e.preventDefault();
         e.stopPropagation();
         n += 5;
-        C_Both("read Next Chptr:" + n);
+        C_inConsole("read Next Chptr:" + n);
         // return Fn(n);
     }
     // read Next verse.
@@ -49,14 +49,15 @@ let keyActions = function (e, n) {
         e.preventDefault();
         e.stopPropagation();
         n += +1;// TODO limit this
-        C_Both("read Next Verse:" + n);
+        C_inConsole("read Next Verse:" + n);
         // return Fn(n);
     }
     return n;
 };
-
 module.exports.keyActions = keyActions;
 
+let x = n => C_inConsole(" -> x:" + n);
+module.exports.x = x;
 // let tst = require('./bind_keyEvents').a_KeyPress;
 // click Events **********************
 // DEPR use of book till need CLICK EVENTS let BindHandlers = function BindHandlers(book)
@@ -83,5 +84,3 @@ module.exports.keyActions = keyActions;
 //         },false
 //     );
 // };
-
-

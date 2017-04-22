@@ -1,12 +1,15 @@
 "use strict";
-
+let h = require('./h/C_in_');
+let C_inConsole = h.C_inConsole;
+let C_inDoc = h.C_inDoc;
 //************** MAIN *************************
 let TRK = "wbSample/main.js";
-console.log("< IN >" + TRK);
+C_inConsole("< IN >" + TRK);
 
-let keyActions = require('./CV/src/main_keyActions');
-document.addEventListener("keydown", keyActions, false);
 
-keyActions(100);
+let cut = require('./CV/src/main_keyActions');
+// document.addEventListener("keydown", keyActions, false);
 
-console.log(' OUT> ' + TRK);
+cut.x(10.0);
+
+C_inConsole(' OUT> ' + TRK);
