@@ -35,7 +35,7 @@ context(`An Element's Ndx in RCSpace IS generally its Ndx in CVSpace minus {one 
     e.g. minuend - subtrahend  = difference
     e.g. augend + addend`, () => {
 
-    xdescribe(`rcNdx `, () => {
+    xdescribe(`cvTOrc `, () => {
         let cur_beg, cur_len, cv_len, trsnfrm, exp, cv_ndx;
         exp = {'0': 0, '1': 0, '2': 1, '3': 2, '4': 0, '5': 1};
 
