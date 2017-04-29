@@ -1,7 +1,7 @@
 "use strict";
 let C = require('./h/C_in_');
 let _inConsole = C._inConsole;
-//************** MAIN ********
+// ************** MAIN ********
 let TRK = "wbSample/main.js";
 _inConsole("< IN  " + TRK);
 

@@ -23,7 +23,13 @@ const IS_PstRC = ndxBegCurRC => R.gt(ndxBegCurRC);
 const IS_CurRC = ndxBegCurRC => R.equals(ndxBegCurRC);
 const IS_FutRC = ndxBegCurRC => R.lt(ndxBegCurRC);
 
+// ORIGINAL
 module.exports.IS_PstRC = IS_PstRC;
 module.exports.IS_CurRC = IS_CurRC;
 module.exports.IS_FutRC = IS_FutRC;
+
+// 4/29/17
+module.exports._PstRC = R.gt;// N.begCur -> N.ndxCV -> Bool
+module.exports._CurRC = R.equals;
+module.exports._FutRC = R.lt;
 
