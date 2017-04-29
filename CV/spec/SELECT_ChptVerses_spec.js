@@ -3,12 +3,12 @@
  */
 "use strict";
 
-let R = require('ramda')
-    , pipe = R.pipe
+// let R = require('ramda')
+// , pipe = R.pipe
 //     , compose = R.compose
 //     , map = R.map
-    , curry = R.curry
-;
+//     , curry = R.curry
+// ;
 
 let chai = require('chai')
     // , should = chai.should()
