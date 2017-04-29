@@ -16,15 +16,18 @@ let chai = require('chai')
 ;
 
 // CODE UNDER TEST
+
 const SELECT_ChptVerses = require('../src/SELECT_ChptVerses');
+
 
 describe(`the Fn: SELECT_ChptVerses(document) returns a NodeList of DIV.chptr SPAN.verses.
     
     USAGE: the returned NL  will be mapped over w/ a MUTATE_this FN to change each ELEM.style
     `, function () {
     beforeEach(function () {
-        loadFixtures('index.html'); //TODO remember this breaks a mocha test
+        loadFixtures('index.html'); //REMEMBER this BREAKS a mocha test !!
         this.doc = document;
+        this.CUT = SELECT_ChptVerses(document);
         // console.log(this.doc);
     });
     it(`should be a Fn returning w/arity:1. Expecting the DOM document.`, function () {
@@ -32,6 +35,6 @@ describe(`the Fn: SELECT_ChptVerses(document) returns a NodeList of DIV.chptr SP
     });
     it(`should, when invoked w/ the document, return a NL of length > 0 with a parent named 'chptr'.`, function () {
         let isNodeList = require('../../h/isNodeList');
-        expect(isNodeList(SELECT_ChptVerses(this.doc))).to.be.true;
+        expect(isNodeList(this.CUT)).to.be.true;
     });
 });

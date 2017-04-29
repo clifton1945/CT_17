@@ -18,7 +18,7 @@ module.exports = curry(
      * @return {*}
      */
     (doc) => { // DOC -> NL
-        let CVName = require('../src/Dflt_ChptVersesSelector');
+        let CVName = require('../Dflt_ChptVersesSelector');
         let selectAll = R.invoker(1, 'querySelectorAll');
         console.log(CVName);
         return selectAll(CVName)(doc)

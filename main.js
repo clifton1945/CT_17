@@ -9,3 +9,5 @@ let init_keyActions = require('./CV/src/main_keyActions').init_keyActions;
 document.addEventListener("keydown", init_keyActions(8), false);
 
 _inConsole(' OUT> ' + TRK);
+
+
