@@ -7,4 +7,4 @@ let R = require('ramda')
 ;
 
 const EVOLVE_this = R.curry((alterFn, dict) => R.evolve(alterFn, dict)); // Fn.alterFn -> DICT.0 -> DICT.1
-module.exports = EVOLVE_this; // Fn.alterFn -> DICT.0 -> DICT.1
+module.exports.EVOLVE_this = EVOLVE_this; // Fn.alterFn -> DICT.0 -> DICT.1

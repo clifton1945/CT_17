@@ -4,22 +4,16 @@
 "use strict";
 
 let R = require('ramda')
-    , pipe = R.pipe
+    // , pipe = R.pipe
+    , curry = R.curry
 //     , compose = R.compose
 //     , map = R.map
-    , curry = R.curry
 ;
 
-
-module.exports = curry(
+const _CVList = curry(
     /**
-     *  ..... SELECT_ChptVerses(document) -> NodeList of ChptVerses
-     * @param doc
-     * @return {*}
+     *  _CVList:: (DOC -> LIST)
      */
-    (doc) => { // DOC -> NL
-        let CVName = require('../Dflt_ChptVersesSelector');
-        let selectAll = R.invoker(1, 'querySelectorAll');
-        console.log(CVName);
-        return selectAll(CVName)(doc)
-    });
+    doc => doc.querySelectorAll('.chptr span')
+);
+module.exports._CVList = _CVList;

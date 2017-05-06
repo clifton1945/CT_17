@@ -12,7 +12,7 @@ let R = require('ramda')
 
 let EVOLVE_Style = curry(
     () => {
-        let dflt = require('.Dflt_Style')
+        let dflt = require('.Dflt_Style');
         //STUB
         return dflt
     }

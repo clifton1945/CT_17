@@ -1,5 +1,5 @@
 /**
- ./spec/SELECT_ChptVerses
+ ./spec/_CVList
  */
 "use strict";
 
@@ -17,21 +17,20 @@ let chai = require('chai')
 
 // CODE UNDER TEST
 
-const SELECT_ChptVerses = require('../src/SELECT_ChptVerses');
+const _CVList = require('../src/SELECT_ChptVerses')._CVList;
 
 
-describe(`the Fn: SELECT_ChptVerses(document) returns a NodeList of DIV.chptr SPAN.verses.
+describe(`the Fn: _CVList(document) returns a NodeList of DIV.chptr SPAN.verses.
     
     USAGE: the returned NL  will be mapped over w/ a MUTATE_this FN to change each ELEM.style
     `, function () {
     beforeEach(function () {
         loadFixtures('index.html'); //REMEMBER this BREAKS a mocha test !!
         this.doc = document;
-        this.CUT = SELECT_ChptVerses(document);
-        // console.log(this.doc);
+        this.CUT = _CVList(this.doc);
     });
     it(`should be a Fn returning w/arity:1. Expecting the DOM document.`, function () {
-        expect(SELECT_ChptVerses).is.a('function').and.has.length(1);
+        expect(_CVList).is.a('function').and.has.length(1);
     });
     it(`should, when invoked w/ the document, return a NL of length > 0 with a parent named 'chptr'.`, function () {
         let isNodeList = require('../../h/isNodeList');

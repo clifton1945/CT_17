@@ -1,5 +1,5 @@
 /**
- * Dflt_ChptVersesSelector.js
+ * Dflt_CV_Selector.js
  */
 "use strict";
 
