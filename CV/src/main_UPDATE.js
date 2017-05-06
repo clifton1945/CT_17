@@ -14,9 +14,8 @@ let R = require('ramda')
 let update = curry
 (
     (el, ndx, col) => {
-        const CVSpace_VerseList = require('./SELECT_ChptVerses')(document);
+        const CVSpace_VerseList = require('./SELECT_ChptVerses')(document);//TODOO CANNOT HAVE DOCUMENT HERE
         const dfltCSD = require('../../STYLE/Dflt_Style');
-        // return map()
     }
 );
 
