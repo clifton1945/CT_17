@@ -4,5 +4,5 @@
  */
 "use strict";
 
-let dfltCSD = {backgroundColor: '', opacity: '1.0', fontSize: '100%'};
-module.exports.dfltCSD = dfltCSD;
+let DfltCSD = {backgroundColor: '', opacity: '1.0', fontSize: '100%'};
+module.exports.DfltCSD = DfltCSD;

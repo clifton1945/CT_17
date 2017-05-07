@@ -18,7 +18,12 @@ let R = require('ramda')
 //     , opacity: always('0.5')
 // };
 let EVOLVE = curry(
-    (transformations, dflt) => R.evolve(trnsfrm, dflt)
+    /**
+     *  ..... EVOLVE:: OBJ -> OBJ -> OBJ
+     * @param trnsfrm
+     * @param dflt
+     */
+    (trnsfrm, dflt) => R.evolve(trnsfrm, dflt)
 );
 
 module.exports.EVOLVE = EVOLVE;

@@ -4,7 +4,8 @@ let _inConsole = C._inConsole;
 
 let R = require('ramda')
     , curry = R.curry
-    , map = R.map
+    // , always = R.always
+    // , map = R.map
     // , pipe = R.pipe
     // , compose = R.compose
 ;
@@ -18,15 +19,20 @@ document.addEventListener("keydown", init_keyActions(8), false);
 // get the CVList of Verses
 let _CVList = require('./CV/src/SELECT_ChptVerses')._CVList;
 let CVList = _CVList(document);
-// now get the Dflt_Style to EVOLVE
-let dfltCSD = require('./STYLE/Dflt_Style');
-// get the EVOLVER
-let EVOLVE_Style = require('./STYLE/src/EVOLVE_Style');
+let DfltCSD = require('./STYLE/Dflt_Style').DfltCSD;
+let transformations = {
+    backgroundColor: R.always('yellow')
+    , opacity: R.always('0.5')
+};
+/**
+ *  ..... EVOLVE:: OBJ -> OBJ -> OBJ
+ * @param transformations
+ * @param dflt
+ */
+let EVOLVE = require('./STYLE/src/EVOLVE_Style').EVOLVE;
+let NewCSD = EVOLVE(transformations, DfltCSD);
 
-// let style_backgroundColor = curry(
-//     el => el.style.backgroundColor = 'green'
-// );
-let ret = map(EVOLVE_Style(), CVList);
+// let ret = map(, CVList);
 
 _inConsole(' OUT> ' + TRK);
 
