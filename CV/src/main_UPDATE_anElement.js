@@ -10,16 +10,17 @@ let R = require('ramda')
     , curry = R.curry
 ;
 
-let UPDATE_anElement = curry(
+let UPDATE_Elem = curry(
     /**
-     *
-     * @param elem
+     * ..... UPDATE_Elem: (ELEM -> OBJ.old) -> OBJ.new
      * @param propertyObject
+     * @param elem
+     * @return new propertyObject
      */
-    (elem, propertyObject) => {
+    (propertyObject, elem) => {
         for (let property in propertyObject)
             elem.style[property] = propertyObject[property];
     }
 );
 
-module.exports.UPDATE = UPDATE_anElement;
+module.exports.UPDATE_Elem = UPDATE_Elem;

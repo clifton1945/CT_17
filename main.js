@@ -3,10 +3,10 @@ let C = require('./h/C_in_');
 let _inConsole = C._inConsole;
 
 let R = require('ramda')
-    , curry = R.curry
+    // , curry = R.curry
     // , always = R.always
     // , map = R.map
-    // , pipe = R.pipe
+    , pipe = R.pipe
     // , compose = R.compose
 ;
 // ************** MAIN ********
@@ -20,21 +20,37 @@ document.addEventListener("keydown", init_keyActions(8), false);
 let _CVList = require('./CV/src/SELECT_ChptVerses')._CVList;
 let CVList = _CVList(document);
 let DfltCSD = require('./STYLE/Dflt_Style').DfltCSD;
-let transformations = {
-    backgroundColor: R.always('yellow')
+// get the transformsObj
+let transformsObj = {
+    backgroundColor: R.always('aqua ')
     , opacity: R.always('0.5')
 };
 /**
  *  ..... EVOLVE:: OBJ -> OBJ -> OBJ
- * @param transformations
  * @param dflt
+ * @param transformsObj
+ * @return CSD.new
  */
 let EVOLVE = require('./STYLE/src/EVOLVE_Style').EVOLVE;
-let NewCSD = EVOLVE(transformations, DfltCSD);
+let EVOLVE_CSD = R.curry(EVOLVE(DfltCSD));
+// let NewCSD = pipe(EVOLVE_CSD)(transformsObj);
+/**
+ * ..... UPDATE_Elem: ( propertyObject, elem) -> OBJ.new
+ * @param propertyObject
+ * @param elem
+ * @return new propertyObject
+ */
+let UPDATE_Elem = require('./CV/src/main_UPDATE_anElement').UPDATE_Elem;
 
-let UPDATE = require('./CV/src/main_UPDATE_anElement').UPDATE;
+let STYLE_Elem = UPDATE_Elem(EVOLVE_CSD(transformsObj));
 
-UPDATE(CVList[2], NewCSD);
+
+R.addIndex(R.map)(
+    (el, ndx, lst) => {
+        STYLE_Elem(el)
+    })
+(CVList)
+;
 
 _inConsole(' OUT> ' + TRK);
 

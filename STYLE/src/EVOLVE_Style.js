@@ -20,10 +20,10 @@ let R = require('ramda')
 let EVOLVE = curry(
     /**
      *  ..... EVOLVE:: OBJ -> OBJ -> OBJ
-     * @param trnsfrm
      * @param dflt
+     * @param trnsfrm
      */
-    (trnsfrm, dflt) => R.evolve(trnsfrm, dflt)
+    (dflt, trnsfrm) => R.evolve(trnsfrm, dflt)
 );
 
 module.exports.EVOLVE = EVOLVE;
