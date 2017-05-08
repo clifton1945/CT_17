@@ -19,12 +19,10 @@ document.addEventListener("keydown", init_keyActions(8), false);
 // get the CVList of Verses
 let _CVList = require('./CV/src/SELECT_ChptVerses')._CVList;
 let CVList = _CVList(document);
-let DfltCSD = require('./STYLE/Dflt_Style').DfltCSD;
-// get the transformsObj
-let transformsObj = {
-    backgroundColor: R.always('aqua ')
-    , opacity: R.always('0.5')
-};
+
+
+// BUILD an new CSD
+
 /**
  *  ..... EVOLVE:: OBJ -> OBJ -> OBJ
  * @param dflt
@@ -32,22 +30,27 @@ let transformsObj = {
  * @return CSD.new
  */
 let EVOLVE = require('./STYLE/src/EVOLVE_Style').EVOLVE;
-let EVOLVE_CSD = R.curry(EVOLVE(DfltCSD));
-// let NewCSD = pipe(EVOLVE_CSD)(transformsObj);
+let DfltCSD = require('./STYLE/Dflt_Style').DfltCSD;
+let EVOLVE_CSD = EVOLVE(DfltCSD);
+// now the transformsObj
+let transformsObj = {
+    backgroundColor: R.always('pink')
+    , opacity: R.always('0.5')
+};
+
+
+let UPDATE_ElemStyle = require('./CV/src/main_UPDATE_anElement').UPDATE_ElemStyle;
 /**
- * ..... UPDATE_Elem: ( propertyObject, elem) -> OBJ.new
+ * ..... UPDATE_ElemStyle: ( propertyObject, elem) -> OBJ.new
  * @param propertyObject
  * @param elem
  * @return new propertyObject
  */
-let UPDATE_Elem = require('./CV/src/main_UPDATE_anElement').UPDATE_Elem;
-
-let STYLE_Elem = UPDATE_Elem(EVOLVE_CSD(transformsObj));
-
+let UPDATE_Elem = R.pipe(EVOLVE_CSD, UPDATE_ElemStyle)(transformsObj);
 
 R.addIndex(R.map)(
     (el, ndx, lst) => {
-        STYLE_Elem(el)
+        UPDATE_Elem(el)
     })
 (CVList)
 ;
