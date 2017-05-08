@@ -19,12 +19,7 @@ let UPDATE_anElement = curry(
     (elem, propertyObject) => {
         for (let property in propertyObject)
             elem.style[property] = propertyObject[property];
-    });
-
-let UPDATE = curry
-(
-    (el, ndx, col) => {
     }
 );
 
-module.exports.UPDATE = UPDATE;
+module.exports.UPDATE_anElement = UPDATE_anElement;
