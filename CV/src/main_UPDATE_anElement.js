@@ -22,4 +22,4 @@ let UPDATE_anElement = curry(
     }
 );
 
-module.exports.UPDATE_anElement = UPDATE_anElement;
+module.exports.UPDATE = UPDATE_anElement;
