@@ -32,7 +32,18 @@ let transformations = {
 let EVOLVE = require('./STYLE/src/EVOLVE_Style').EVOLVE;
 let NewCSD = EVOLVE(transformations, DfltCSD);
 
-// let ret = map(, CVList);
+let UPDATE_anElement = curry(
+    /**
+     *
+     * @param elem
+     * @param propertyObject
+     */
+    (elem, propertyObject) => {
+        for (let property in propertyObject)
+            elem.style[property] = propertyObject[property];
+    });
+
+UPDATE_anElement(CVList[1], {'fontSize': '12px', 'backgroundColor': 'pink'});
 
 _inConsole(' OUT> ' + TRK);
 
