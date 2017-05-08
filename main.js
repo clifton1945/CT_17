@@ -35,7 +35,8 @@ let EVOLVE_CSD = EVOLVE(DfltCSD);
 // now the transformsObj
 let transformsObj = {
     backgroundColor: R.always('pink')
-    , opacity: R.always('0.5')
+    , opacity: R.always('0.75')
+    , fontSize: R.always('70%')
 };
 
 
