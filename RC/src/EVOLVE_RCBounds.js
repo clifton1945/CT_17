@@ -6,10 +6,9 @@
 let R = require('ramda')
 ;
 /**
- * EVOLVE_RCBounds:: DICT.alter_Fns -> DICT.new_RCBounds REQUIRES a DICT of RCBounds transformations.
+ * EVOLVE_RCBounds:: DICT.Trnsfrm_dict -> DICT.new_RCBounds REQUIRES a DICT of RCBounds transformations.
  * is a specific subset of EVOLVE_this. Its dict parameter is the default_RCBounds.
  * @param alterFns
  */
 let dflt_RCBounds = require('./Dflt_RCBounds');
-let EVOLVE_this = require('./EVOLVE_this');
-module.exports = R.curry(alterFns => R.evolve(alterFns, dflt_RCBounds)); //  DICT.alter_Fns -> DICT.new_RCBounds
+module.exports = R.curry(R.evolve(R.__, dflt_RCBounds)); //  Fn( DICT.Trnsfrm_dict -> DICT.new_RCBounds )

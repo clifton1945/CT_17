@@ -34,7 +34,7 @@ let EVOLVE_CSD = require('./STYLE/src/EVOLVE_Style').EVOLVE_CSD; //  Fn( OBJ_trn
  * @type {{backgroundColor: *, opacity: *, fontSize: *}}
  */
 let CSD_OBJ_trnsfrms = {
-    backgroundColor: R.always('pink')
+    backgroundColor: R.always('green')
     , opacity: R.always('0.50')
     , fontSize: R.always('70%')
 };
