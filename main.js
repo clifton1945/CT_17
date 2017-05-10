@@ -6,48 +6,51 @@ let R = require('ramda')
     // , curry = R.curry
     // , always = R.always
     // , map = R.map
-    , pipe = R.pipe
-    // , compose = R.compose
+    // , pipe = R.pipe
 ;
 // ************** MAIN ********
 let TRK = "wbSample/main.js";
 _inConsole("< IN  " + TRK);
 
-let init_keyActions = require('./CV/src/main_keyActions').init_keyActions;
-document.addEventListener("keydown", init_keyActions(8), false);
-
 // get the CVList of Verses
+/**
+ *  _CVList:: Fn(DOC -> LIST)
+ */
 let _CVList = require('./CV/src/SELECT_ChptVerses')._CVList;
 let CVList = _CVList(document);
 
 
 // BUILD an new CSD
-
 /**
- *  ..... EVOLVE:: OBJ -> OBJ -> OBJ
- * @param dflt
- * @param transformsObj
- * @return CSD.new
+ *  ..... EVOLVE_CSD:: ( OBJ_trnsfrms -> CSD_new )
+ * @param OBJ_trnsfrms
+ * @return CSD_new
  */
-let EVOLVE = require('./STYLE/src/EVOLVE_Style').EVOLVE;
-let DfltCSD = require('./STYLE/Dflt_Style').DfltCSD;
-let EVOLVE_CSD = EVOLVE(DfltCSD);
-// now the transformsObj
-let transformsObj = {
+let EVOLVE_CSD = require('./STYLE/src/EVOLVE_Style').EVOLVE_CSD;//  ( OBJ_trnsfrms -> CSD_new )
+
+// now the CSD_OBJ_trnsfrms
+/**
+ *
+ * @type {{backgroundColor: *, opacity: *, fontSize: *}}
+ */
+let CSD_OBJ_trnsfrms = {
     backgroundColor: R.always('pink')
-    , opacity: R.always('0.75')
+    , opacity: R.always('0.60')
     , fontSize: R.always('70%')
 };
-
-
-let UPDATE_ElemStyle = require('./CV/src/main_UPDATE_anElement').UPDATE_ElemStyle;
 /**
- * ..... UPDATE_ElemStyle: ( propertyObject, elem) -> OBJ.new
- * @param propertyObject
+ * ..... UPDATE_ElemStyle:: OBJ.propertyCSD -> ( ELEM.elem -> ELEM.style.propertyCSD )
+ * @param propertyCSD
  * @param elem
- * @return new propertyObject
+ * @return Fn:  ELEM.style.propertyCS
  */
-let UPDATE_Elem = R.pipe(EVOLVE_CSD, UPDATE_ElemStyle)(transformsObj);
+let UPDATE_ElemStyle = require('./CV/src/main_UPDATE_anElement').UPDATE_ElemStyle;
+
+/**
+ * ..... UPDATE_Elem::  ( ELEM.elem -> ELEM.elem w/ elem.style.propertyCSD )
+ * @param elem
+ * @return Elem w/new propertyObject
+ */let UPDATE_Elem = R.pipe(EVOLVE_CSD, UPDATE_ElemStyle)(CSD_OBJ_trnsfrms);
 
 R.addIndex(R.map)(
     (el, ndx, lst) => {
@@ -55,6 +58,10 @@ R.addIndex(R.map)(
     })
 (CVList)
 ;
+
+let init_keyActions = require('./CV/src/main_keyActions').init_keyActions;
+document.addEventListener("keydown", init_keyActions(8), false);
+
 
 _inConsole(' OUT> ' + TRK);
 

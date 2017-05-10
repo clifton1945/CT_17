@@ -12,14 +12,14 @@ let R = require('ramda')
 
 let UPDATE_ElemStyle = curry(
     /**
-     * ..... UPDATE_ElemStyle: (ELEM -> OBJ.old) -> OBJ.new
-     * @param propertyObject
+     * ..... UPDATE_ElemStyle:: OBJ.propertyCSD -> ( ELEM.elem -> ELEM.style.propertyCSD )
+     * @param propertyCSD
      * @param elem
-     * @return new propertyObject
+     * @return Fn:  ELEM.style.propertyCS
      */
-    (propertyObject, elem) => {
-        for (let property in propertyObject)
-            elem.style[property] = propertyObject[property];
+    (propertyCSD, elem) => {
+        for (let property in propertyCSD)
+            elem.style[property] = propertyCSD[property];
     }
 );
 
