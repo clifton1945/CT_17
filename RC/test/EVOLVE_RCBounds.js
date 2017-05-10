@@ -18,7 +18,7 @@ let chai = require('chai')
 
 let EVOLVE_RCBounds = require('../src/EVOLVE_RCBounds');//  DICT.alter_Fns -> DICT.new_RCBounds
 
-describe(`the Fn: EVOLVE_RCBounds IS EVOLVE_this( WITH a hard coded Default_RCBounds argument)
+describe(`the Fn: EVOLVE_RCBounds IS R.evolve( WITH a hard coded Default_RCBounds argument)
 
     GIVEN an DICT.alterFns IT WILL RETURN a new EVOLVED_RCBounds.  
     `, function () {
