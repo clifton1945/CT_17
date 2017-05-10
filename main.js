@@ -16,8 +16,8 @@ _inConsole("< IN  " + TRK);
 /**
  *  _CVList:: Fn(DOC -> LIST)
  */
-let _CVList = require('./CV/src/SELECT_ChptVerses')._CVList;
-let CVList = _CVList(document);
+let _CVList = require('./CV/src/SELECT_ChptVerses')._CVList; //  Fn(DOC -> LIST)
+// let CVList = _CVList(document);
 
 
 // BUILD an new CSD
@@ -26,7 +26,7 @@ let CVList = _CVList(document);
  * @param OBJ_trnsfrms
  * @return CSD_new
  */
-let EVOLVE_CSD = require('./STYLE/src/EVOLVE_Style').EVOLVE_CSD;//  ( OBJ_trnsfrms -> CSD_new )
+let EVOLVE_CSD = require('./STYLE/src/EVOLVE_Style').EVOLVE_CSD; //  Fn( OBJ_trnsfrms -> CSD_new )
 
 // now the CSD_OBJ_trnsfrms
 /**
@@ -44,13 +44,15 @@ let CSD_OBJ_trnsfrms = {
  * @param elem
  * @return Fn:  ELEM.style.propertyCS
  */
-let UPDATE_ElemStyle = require('./CV/src/main_UPDATE_anElement').UPDATE_ElemStyle;
+let UPDATE_ElemStyle = require('./CV/src/main_UPDATE_anElement').UPDATE_ElemStyle; //  OBJ.propertyCSD -> ( ELEM.elem -> ELEM.style.propertyCSD )
 
 /**
  * ..... UPDATE_Elem::  ( ELEM.elem -> ELEM.elem w/ elem.style.propertyCSD )
  * @param elem
  * @return Elem w/new propertyObject
- */let UPDATE_Elem = R.pipe(EVOLVE_CSD, UPDATE_ElemStyle)(CSD_OBJ_trnsfrms);
+ */
+let UPDATE_Elem = R.pipe(EVOLVE_CSD, UPDATE_ElemStyle)(CSD_OBJ_trnsfrms); // Fn( ELEM.elem -> ELEM.elem w/ elem.style.propertyCSD )
+
 
 R.addIndex(R.map)(
     (el, ndx, lst) => {
