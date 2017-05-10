@@ -35,7 +35,7 @@ let EVOLVE_CSD = require('./STYLE/src/EVOLVE_Style').EVOLVE_CSD;//  ( OBJ_trnsfr
  */
 let CSD_OBJ_trnsfrms = {
     backgroundColor: R.always('pink')
-    , opacity: R.always('0.60')
+    , opacity: R.always('0.50')
     , fontSize: R.always('70%')
 };
 /**
@@ -56,7 +56,7 @@ R.addIndex(R.map)(
     (el, ndx, lst) => {
         UPDATE_Elem(el)
     })
-(CVList)
+(_CVList(document))
 ;
 
 let init_keyActions = require('./CV/src/main_keyActions').init_keyActions;
