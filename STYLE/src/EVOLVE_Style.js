@@ -14,21 +14,21 @@ let R = require('ramda')
 
 let EVOLVE = curry(
     /**
-     *  ..... EVOLVE:: CSD_dflt -> ( OBJ_trnsfrms -> CSD_new )
+     *  ..... EVOLVE:: CSD_dflt -> ( CSD_trnsfrms -> CSD_new )
      * @param CSD_dflt
-     * @param OBJ_trnsfrms
+     * @param CSD_trnsfrms
      * @return CSD_new
      */
-    (CSD_dflt, OBJ_trnsfrms) => R.evolve(OBJ_trnsfrms, CSD_dflt)
+    (CSD_dflt, CSD_trnsfrms) => R.evolve(CSD_trnsfrms, CSD_dflt)
 );
 
 let DfltCSD = require('../Dflt_Style').DfltCSD;
 /**
- *  ..... EVOLVE_CSD:: ( OBJ_trnsfrms -> CSD_new )
- * @param OBJ_trnsfrms
+ *  ..... EVOLVE_CSD:: ( CSD_trnsfrms -> CSD_new )
+ * @param CSD_trnsfrms
  * @return CSD_new
  */
 let EVOLVE_CSD = EVOLVE(DfltCSD);
 
-module.exports.EVOLVE = EVOLVE;
+module.exports.EVOLVE = EVOLVE; // TODO maybe REFACT to eliminate; not used in main.js
 module.exports.EVOLVE_CSD = EVOLVE_CSD;
