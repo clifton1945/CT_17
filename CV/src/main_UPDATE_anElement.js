@@ -21,6 +21,6 @@ let UPDATE_ElemStyle = curry(
         for (let property in propertyCSD)
             elem.style[property] = propertyCSD[property];
     }
-);
+);// OBJ.propertyCSD -> ( ELEM.elem -> ELEM.style.propertyCSD )
 
 module.exports.UPDATE_ElemStyle = UPDATE_ElemStyle;
