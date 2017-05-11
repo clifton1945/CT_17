@@ -13,7 +13,7 @@ let chai = require('chai')
 
 // let C = require('../../h/C_in_');
 const IS = require('../src/IS_xxxRC');
-
+//TODO MOVE THIS TO src
 let cvTOrc = R.curry(
     (ndx_CurBeg, ndx) => {
         let IS_PstRC = IS._PstRC(ndx_CurBeg);
