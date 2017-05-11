@@ -22,7 +22,7 @@ let EVOLVE = curry(
     (CSD_dflt, CSD_trnsfrms) => R.evolve(CSD_trnsfrms, CSD_dflt)
 );
 
-let DfltCSD = require('../Dflt_Style').DfltCSD;
+let DfltCSD = require('C:\\Users\\CLIF\\WSProjects\\wbSample\\STYLE\\Dflt_Style.js').DfltCSD;// Postproccessor run failure ignored
 /**
  *  ..... EVOLVE_CSD:: ( CSD_trnsfrms -> CSD_new )
  * @param CSD_trnsfrms

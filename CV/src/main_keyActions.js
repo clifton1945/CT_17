@@ -3,6 +3,8 @@
  */
 
 "use strict";
+// let R = require('ramda')
+// ;
 
 let init_keyActions = ndx => {
     let C = require('../../h/C_in_')
@@ -43,6 +45,6 @@ let init_keyActions = ndx => {
         }
         return n;
     }
-};
+}; // Fn -> N -> ( EVENT - >  Fn(N));
 
 module.exports.init_keyActions = init_keyActions;
