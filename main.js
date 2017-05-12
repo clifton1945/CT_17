@@ -65,12 +65,10 @@ const UPDATE_allElems =
     (_CVList(document))
 ;// Functor f => (a -> b ) -> f a -> f b
 
+
 let init_keyActions = require('./CV/src/main_keyActions').init_keyActions;
 
-
-document.addEventListener("keydown", init_keyActions(8), false);
-
+let f = n => _inConsole(' >>>> ' + n);
+document.addEventListener("keydown", init_keyActions(f, 4), false);
 
 _inConsole(' OUT> ' + TRK);
-
-
