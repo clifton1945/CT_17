@@ -33,6 +33,15 @@ const IS_PstRC = is_xxx.IS_PstRC;
 const IS_CurRC = is_xxx.IS_CurRC;
 const IS_FutRC = is_xxx.IS_FutRC;
 
+// /**
+//  *      IS_xxxRC:: N.curRC index in CVSpace -> N. -> Bool
+//  * @param ndxBegCurRC
+//  * @constructor
+//  */
+// const IS_PstRC = curry(ndxBegCurRC => R.gt(ndxBegCurRC));
+// const IS_CurRC = curry(ndxBegCurRC => R.equals(ndxBegCurRC));
+// const IS_FutRC = curry(ndxBegCurRC => R.lt(ndxBegCurRC));
+
 context(`the three is_RClss boundries: pst, cur, fut.  
     `, function () {
     let curBeg, cvLen, IS;

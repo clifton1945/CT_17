@@ -11,19 +11,7 @@ let chai = require('chai')
     , expect = chai.expect
 ;
 
-// let C = require('../../h/C_in_');
-const IS = require('../src/IS_xxxRC');
-//TODO MOVE THIS TO src
-let cvTOrc = R.curry(
-    (ndx_CurBeg, ndx) => {
-        let IS_PstRC = IS._PstRC(ndx_CurBeg);
-        let IS_CurRC = IS._CurRC(ndx_CurBeg);
-        // let IS_FutRC = IS._FutRC(ndx_CurBeg);
-
-        let subtra = IS_PstRC(ndx) ? 0 :
-            IS_CurRC(ndx) ? ndx_CurBeg : ndx_CurBeg + 1;
-        return ndx - subtra
-    });
+const cvTOrc = require('../src/CVSpace_TO_RCSpace').cvTOrc;
 
 context(`An Element's Ndx in RCSpace IS generally its Ndx in CVSpace minus {one of 3 subtrahends)
     { pst: 0, cur: cur_beg, fur: cur_beg + 1
@@ -39,7 +27,7 @@ context(`An Element's Ndx in RCSpace IS generally its Ndx in CVSpace minus {one 
         let cur_beg, trsnfrm, cv_ndx;
         beforeEach(function () {
             cur_beg = 1;
-            trsnfrm = cvTOrc(cur_beg);
+            trsnfrm = cvTOrc(cur_beg, R.__);
         });
         it(`should equal (cv_ndx - subtra: pst:0; cur:cur_beg; fut:cur_beg+1`, () => {
             expect(trsnfrm(0)).to.equal(0);
