@@ -50,7 +50,7 @@ let init_keyActions = R.curry(
                 C._inBoth("DWN Arrow: read Next verse." + n);
                 return Fn(n);
             }
-            // Fn(100); // NOT SEEN
+            Fn(100); // NOT SEEN
         }
     }
 ); //???? N -> ( EVENT - >  N );
