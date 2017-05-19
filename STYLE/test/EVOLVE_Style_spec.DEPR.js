@@ -30,7 +30,7 @@ describe(`the Fn: EVOLVE_Style( transformFn, dflt_CSD) -> an evolved copy of the
     `, function () {
     beforeEach(function () {
         // loadFixtures('index.html'); //REMEMBER this BREAKS a mocha test !!
-        this.DfltCSD = require('../Dflt_Style').DfltCSD;
+        this.DfltCSD = require('./Dflt_Style').DfltCSD;
         let transformFn = {backgroundColor: R.always('yellow'), opacity: R.always('0.5')};
         this.EVOLVED = EVOLVE(transformFn, transformFn)
     });

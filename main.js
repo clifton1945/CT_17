@@ -3,7 +3,7 @@ let C = require('./h/C_in_')
     , _inConsole = C._inConsole
 ;
 let R = require('ramda')
-    , curry = R.curry
+    // , curry = R.curry
     // , always = R.always
     // , map = R.map
     // , pipe = R.pipe
@@ -65,12 +65,13 @@ const UPDATE_allElems =
     (_CVList(document))
 ;// Functor f => (a -> b ) -> f a -> f b
 
+
 let init_keyActions = require('./CV/src/main_keyActions').init_keyActions;
 
+let f = n => _inConsole(' >>>> ' + n); //TODO   expand this to change the elem
 
-document.addEventListener("keydown", init_keyActions(8), false);
+let x = document.addEventListener("keydown", init_keyActions(f), false);
+x;
 
-
+_inConsole(' n is now: ' + x);
 _inConsole(' OUT> ' + TRK);
-
-

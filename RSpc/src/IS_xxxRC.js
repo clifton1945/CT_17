@@ -12,16 +12,15 @@ let R = require('ramda')
 ;
 
 // CODE UNDER TEST
-// module.exports.cut =
 
 /**
  *      IS_xxxRC:: N.curRC index in CVSpace -> N. -> Bool
  * @param ndxBegCurRC
  * @constructor
  */
-const IS_PstRC = ndxBegCurRC => R.gt(ndxBegCurRC);
-const IS_CurRC = ndxBegCurRC => R.equals(ndxBegCurRC);
-const IS_FutRC = ndxBegCurRC => R.lt(ndxBegCurRC);
+const IS_PstRC = curry(ndxBegCurRC => R.gt(ndxBegCurRC));
+const IS_CurRC = curry(ndxBegCurRC => R.equals(ndxBegCurRC));
+const IS_FutRC = curry(ndxBegCurRC => R.lt(ndxBegCurRC));
 
 // ORIGINAL
 module.exports.IS_PstRC = IS_PstRC;

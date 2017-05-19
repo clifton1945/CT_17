@@ -3,46 +3,56 @@
  */
 
 "use strict";
+let R = require('ramda')
+;
 
-let init_keyActions = ndx => {
-    let C = require('../../h/C_in_')
-    ;
-    let n = ndx;
-    return function keyActions(e) {
-        /*Left Arrow: read Last Chapter*/
-        if (e.keyCode === 37) {
-            e.preventDefault();
-            e.stopPropagation();
-            n += -5; // FIX
-            C._inBoth("read Last Chptr:" + n);
-            // return Fn(n);
+let init_keyActions = R.curry(
+    (f, ndx = 0) => {
+        let C = require('../../h/C_in_')
+        ;
+        // let n = n === undefined ? 0: ndx;
+        let n = ndx;
+        let Fn = f;
+        let VALID_ndx = n => (n >= 0) ? n : 0;// FIX NEED <= SOMETHING
+        return function keyActions(e) {
+            /*Left Arrow: read Last Chapter*/
+            if (e.keyCode === 37) {
+                e.preventDefault();
+                e.stopPropagation();
+                n += -5; // FIX
+                n = VALID_ndx(n);
+                C._inBoth("Left Arrow: read Last Chapter." + n);
+                return Fn(n);
+                // return n;
+            }
+            /*UP Arrow: read Last verse.*/
+            if (e.keyCode === 38) {
+                e.preventDefault();
+                e.stopPropagation();
+                n += -1;
+                n = VALID_ndx(n);
+                C._inBoth("UP Arrow: read Last verse." + n);
+                return Fn(n);
+            }
+            /*Right Arrow: read Next Chptr.*/
+            if (e.keyCode === 39 || e.keyCode === 96) { // rt arrow || num pad 0
+                e.preventDefault();
+                e.stopPropagation();
+                n += 5; // TODO limit this
+                C._inBoth("Right Arrow: read Next Chptr." + n);
+                return Fn(n)
+            }
+            /*DWN Arrow: read Next verse.*/
+            if (e.keyCode === 32 || e.keyCode === 40) {
+                e.preventDefault();
+                e.stopPropagation();
+                n += +1;// TODO limit this
+                C._inBoth("DWN Arrow: read Next verse." + n);
+                return Fn(n);
+            }
+            Fn(100); // NOT SEEN
         }
-        /*UP Arrow: read Last verse.*/
-        if (e.keyCode === 38) {
-            e.preventDefault();
-            e.stopPropagation();
-            n += -1; // TODO limit this
-            C._inBoth("read Last Verse:" + n);
-            // return Fn(n);
-        }
-        /*Right Arrow: read Next Chptr.*/
-        if (e.keyCode === 39 || e.keyCode === 96) { // rt arrow || num pad 0
-            e.preventDefault();
-            e.stopPropagation();
-            n += 5;
-            C._inBoth("read Next Chptr:" + n);
-            // return Fn(n);
-        }
-        /*DWN Arrow: read Next verse.*/
-        if (e.keyCode === 32 || e.keyCode === 40) {
-            e.preventDefault();
-            e.stopPropagation();
-            n += +1;// TODO limit this
-            C._inBoth("read Next Verse:" + n);
-            // return Fn(n);
-        }
-        return n;
     }
-};
+); //???? N -> ( EVENT - >  N );
 
 module.exports.init_keyActions = init_keyActions;
