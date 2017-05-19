@@ -1,8 +1,8 @@
 /**
- ./spec/_CVList
- */
-"use strict";
-
+ // ./spec/_CVList
+ // */
+// "use strict";
+//
 let R = require('ramda')
 // , pipe = R.pipe
 //     , compose = R.compose
