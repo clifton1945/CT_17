@@ -9,7 +9,7 @@ let R = require('ramda')
 
 let RSpace_Lengths = curry(
     /**
-     *
+     *  ...... RSpace_Lengths::
      * @param cspc_len
      * @param cspc_focus
      * @return RSpc_Lengths Obj/Dict{*}
@@ -23,6 +23,6 @@ let RSpace_Lengths = curry(
         }
         return R.evolve(trnsfrms, dflt);
     }
-);
+); // CSpc_Length -> ( CSpc_Focus -> RSpc_Lengths )
 
 module.exports = RSpace_Lengths;
