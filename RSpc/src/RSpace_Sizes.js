@@ -28,8 +28,8 @@ let RSpace_Lengths = curry(
 const RSpace_Sizes = curry(
     cspc_len => RSpace_Lengths(R.__, cspc_len)
 );
-const RSpaceSize_Obj = R.pipe(R.length, RSpace_Sizes); // Arr -> (CSpc_LengthN -> RSpc_LengthsOBJ )
+const RSpace_SizeObj = R.pipe(R.length, RSpace_Sizes); // CSpc_Arr -> (CSpc_FocusN -> RSpc_LengthsOBJ )
 
-module.exports.RSpace_Lengths = RSpace_Lengths;// CSpc_FocusN -> CSpc_LengthN -> RSpc_LengthsOBJ
-module.exports.RSpace_Sizes = RSpace_Sizes;// CSpc_FocusN -> ( CSpc_LengthN -> RSpc_LengthsOBJ)
-module.exports.RSpaceSize_Obj = RSpaceSize_Obj;// Arr -> ( CSpc_LengthN -> RSpc_LengthsOBJ)
+module.exports.RSpace_Lengths = RSpace_Lengths; // CSpc_FocusN  -> ( CSpc_LengthN   -> RSpc_LengthsOBJ )
+module.exports.RSpace_Sizes = RSpace_Sizes;     // CSpc_FocusN  -> ( CSpc_LengthN   -> RSpc_LengthsOBJ )
+module.exports.RSpace_SizeObj = RSpace_SizeObj; // CSpc_Arr     -> ( CSpc_FocusN    -> RSpc_LengthsOBJ)
