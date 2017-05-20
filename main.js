@@ -59,7 +59,7 @@ let UPDATE_anElem = R.pipe(EVOLVE_CSD, UPDATE_ElemStyle)(CSD_trnsfrms)
 
 const UPDATE_allElems =
     R.addIndex(R.map)(
-        (el, ndx, lst) => {
+        el => {
             UPDATE_anElem(el)
         })
     (_CVList(document))
@@ -71,7 +71,7 @@ let init_keyActions = require('./CV/src/main_keyActions').init_keyActions;
 let f = n => _inConsole(' >>>> ' + n); //TODO   expand this to change the elem
 
 let x = document.addEventListener("keydown", init_keyActions(f), false);
-x;
+
 
 _inConsole(' n is now: ' + x);
 _inConsole(' OUT> ' + TRK);

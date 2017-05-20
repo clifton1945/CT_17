@@ -2,15 +2,11 @@
  *RSpace_Indices
  */
 "use strict";
-
-
 let R = require('ramda')
     , curry = R.curry
-    , pipe = R.pipe
+    // , pipe = R.pipe
     // , always = R.always
 ;
-let RSpace_SizeObj = require('../src/RSpace_Sizes').RSpace_SizeObj; // CSpc_Arr -> ( CSpc_FocusN -> RSpc_LengthsOBJ)
-
 const RSpcNdx = curry(
     /**
      *  NOTE: this is a special case because the current ReadSpace Size is always just 1.
