@@ -18,15 +18,12 @@ module.exports = function (wallaby) {
             {pattern: 'CV/src/*.js', load: false},
             {pattern: 'RSpc/src/*.js', load: false},
             {pattern: 'STYLE/src/*.js', load: false},
-            {pattern: 'h/*.js', load: false},
-            {pattern: 'main.js', load: false},
             {pattern: 'index.html', load: false}
         ],
 
         tests: [
             {pattern: 'CV/spec/*_spec.js', load: false},
-            {pattern: 'RSpc/test/*_test.js', load: false},
-            {pattern: 'STYLE/test/*spec.js', load: false}
+            {pattern: 'RSpc/test/*_test.js', load: false}
         ],
 
 
