@@ -6,7 +6,7 @@ let R = require('ramda')
 ;
 let context = describe
 ;
-const IS = require('./IS_xxxRC');
+const IS = require('../../depr/RC/src/IS_xxxRC');
 
 let cvTOrc = R.curry(
     (ndx_CurBeg, ndx) => {
