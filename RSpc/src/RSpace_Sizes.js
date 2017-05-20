@@ -10,11 +10,11 @@ let R = require('ramda')
 let RSpace_Lengths = curry(
     /**
      *  ...... RSpace_Lengths::
-     * @param cspc_len
      * @param cspc_focus
+     * @param cspc_len
      * @return RSpc_Lengths Obj/Dict{*}
      */
-    (cspc_len, cspc_focus) => {
+    (cspc_focus, cspc_len) => {
         let dflt = {pst: 0, cur: 0, fut: 0};
         let trnsfrms = {
             pst: (cspc_focus < 0 || cspc_focus >= cspc_len) ? 0 : always(cspc_focus),
@@ -23,6 +23,13 @@ let RSpace_Lengths = curry(
         }
         return R.evolve(trnsfrms, dflt);
     }
-); // CSpc_Length -> ( CSpc_Focus -> RSpc_Lengths )
+); // CSpc_FocusN -> ( CSpc_LengthN -> RSpc_LengthsOBJ )
 
-module.exports = RSpace_Lengths;
+const RSpace_Sizes = curry(
+    cspc_len => RSpace_Lengths(R.__, cspc_len)
+);
+const RSpaceSize_Obj = R.pipe(R.length, RSpace_Sizes); // Arr -> (CSpc_LengthN -> RSpc_LengthsOBJ )
+
+module.exports.RSpace_Lengths = RSpace_Lengths;// CSpc_FocusN -> CSpc_LengthN -> RSpc_LengthsOBJ
+module.exports.RSpace_Sizes = RSpace_Sizes;// CSpc_FocusN -> ( CSpc_LengthN -> RSpc_LengthsOBJ)
+module.exports.RSpaceSize_Obj = RSpaceSize_Obj;// Arr -> ( CSpc_LengthN -> RSpc_LengthsOBJ)

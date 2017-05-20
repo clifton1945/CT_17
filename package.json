@@ -31,5 +31,9 @@
     "ramda": "^0.22.1",
     "wallabify": "0.0.14",
     "watchify": "^3.8.0"
+  },
+  "dependencies": {
+    "chai": "^2.3.0",
+    "sinon": "^2.2.0"
   }
 }
