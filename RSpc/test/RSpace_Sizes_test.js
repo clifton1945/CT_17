@@ -33,6 +33,7 @@ context(`RSpcRSpace_Sizes: An Element has three RSpcs Classes, each will have a 
             expect(RSpace_Lengths(1, 5)).to.deep.equal({pst: 1, cur: 1, fut: 3});
             expect(_Sizes(1)).to.deep.equal(RSpace_Lengths(1, 5));
             expect(RSpace_Lengths(2, 5)).to.deep.equal({pst: 2, cur: 1, fut: 2});
+            expect(_Sizes(2)).to.deep.equal({pst: 2, cur: 1, fut: 2});
             expect(RSpace_Lengths(3, 5)).to.deep.equal({pst: 3, cur: 1, fut: 1});
         });
         it(`should have 2 lengths { pst:n, cur:1, fut:0 } IF focusNdx > 1 && focusNdx == CSpcSize`, () => {
