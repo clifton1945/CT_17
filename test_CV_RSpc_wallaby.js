@@ -16,18 +16,16 @@ module.exports = function (wallaby) {
             {pattern: 'node_modules/jquery/dist/jquery.js', instrument: false},
             {pattern: 'node_modules/jasmine-jquery/lib/jasmine-jquery.js', instrument: false},
             {pattern: 'CV/src/*.js', load: false},
-            {pattern: 'RC/src/*.js', load: false},
+            {pattern: 'RSpc/src/*.js', load: false},
             {pattern: 'STYLE/src/*.js', load: false},
-            {pattern: 'src/*.js', load: false},
             {pattern: 'h/*.js', load: false},
             {pattern: 'main.js', load: false},
             {pattern: 'index.html', load: false}
         ],
 
         tests: [
-            {pattern: 'CV/spec/*.js', load: false},
-            {pattern: 'CV/test/*.js', load: false},
-            {pattern: 'RC/test/*.js', load: false},
+            {pattern: 'CV/spec/*_spec.js', load: false},
+            {pattern: 'RSpc/test/*_test.js', load: false},
             {pattern: 'STYLE/test/*spec.js', load: false}
         ],
 
