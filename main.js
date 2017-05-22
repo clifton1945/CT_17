@@ -47,7 +47,7 @@ let CSD_trnsfrms = {
  * @param elem
  * @return Fn:  ELEM.style.propertyCS
  */
-let UPDATE_ElemStyle = require('./CV/src/main_UPDATE_anElement').UPDATE_ElemStyle
+let UPDATE_ElemStyle = require('./CV/src/main_updateElementStyle').updateStyle
 ; //  OBJ.CSD_trnsfrms -> ( ELEM.elem -> ELEM.style.propertyCSD )
 /**
  * ..... UPDATE_anElem::  ( ELEM.elem -> ELEM.elem w/ elem.style.propertyCSD )
@@ -59,7 +59,7 @@ let UPDATE_anElem = R.pipe(EVOLVE_CSD, UPDATE_ElemStyle)(CSD_trnsfrms)
 
 const UPDATE_allElems =
     R.addIndex(R.map)(
-        (el, ndx, lst) => {
+        el => {
             UPDATE_anElem(el)
         })
     (_CVList(document))
@@ -71,7 +71,7 @@ let init_keyActions = require('./CV/src/main_keyActions').init_keyActions;
 let f = n => _inConsole(' >>>> ' + n); //TODO   expand this to change the elem
 
 let x = document.addEventListener("keydown", init_keyActions(f), false);
-x;
+
 
 _inConsole(' n is now: ' + x);
 _inConsole(' OUT> ' + TRK);
