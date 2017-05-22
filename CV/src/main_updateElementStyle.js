@@ -1,5 +1,5 @@
 /**
- CV/src/main_updateElementStyle
+ CV/src/main_updateElementStyle_test
  */
 "use strict";
 
@@ -13,13 +13,16 @@ let R = require('ramda')
 let updateStyle = curry(
     /**
      * ..... updateStyle:: OBJ.propertyCSD -> ( ELEM.el -> ELEM.el w/ new style.propertyCSD )
-     * @param propertyCSD
-     * @param elem
+     * @param propertyCSD:   IS AN OBJECT of form {"op":"0.5", "bgColor":"green"}
+     * @param elem: IS an Obj WITH a style Attribute.
      * @return Fn:  ELEM.style.propertyCS
+     *
+     * BIG NOTE the updateStyle Fn REQUIRES I USE 'var' NOT 'let' TO WORK
      */
     (propertyCSD, elem) => {
-        for (let property in propertyCSD)
+        for (var property in propertyCSD)
             elem.style[property] = propertyCSD[property];
+        return elem
     }
 );// OBJ.propertyCSD -> ( ELEM.el -> ELEM.el  w/ new style.propertyCSD )
 
@@ -33,5 +36,5 @@ let updateElementStyle = curry(
 );//  ELEM.elem -> ELEM.style
 
 
-module.exports.UPDATE_ElemStyle = updateStyle;
-module.exports.UPDATE_ElemStyle = updateElementStyle;
+module.exports.updateStyle = updateStyle;
+module.exports.updateElemStyle = updateElementStyle;
