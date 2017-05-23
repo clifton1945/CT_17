@@ -25,16 +25,18 @@ let updateStyle = curry(
         return elem
     }
 );// OBJ.propertyCSD -> ( ELEM.el -> ELEM.el  w/ new style.propertyCSD )
+module.exports.updateStyle = updateStyle;
+//
 
-let updateElementStyle = curry(
-    /**
+/*let updateElementStyle = curry(
+    /!**
      * ..... updateElementStyle:: ( ELEM.elem -> ELEM.style.propertyCSD )
      * @param elem
      * @return ELEM
-     */
+     *!/
     elem => updateStyle(elem)
 );//  ELEM.elem -> ELEM.style
-
-
-module.exports.updateStyle = updateStyle;
 module.exports.updateElemStyle = updateElementStyle;
+*/
+
+

@@ -1,5 +1,5 @@
 /**
- CV/test/main_updateElementStyle_test
+ // CV/test/main_updateElementStyle_test
  */
 "use strict";
 //
@@ -11,7 +11,7 @@ let R = require('ramda')
 ;
 
 let chai = require('chai')
-    // , should = chai.should()
+    , should = chai.should()
     , expect = chai.expect
 ;
 
@@ -21,9 +21,11 @@ let cut = require('../src/main_updateElementStyle');
 
 
 context(`Fn: updateElementStyle does that, typically on an iterable's Chapter Verses.
-    it is already partialed with a CSSStyleDeclaration. 
+    it is typically = updateStyle(thisCSD). A partialed CSD for this.verse.
+    Thus  
     USAGE: map(updateElementStyle, NodeListVerses)
-    `, function () {
+    // WAIT!!  the CSD has to be a f(the element: indexNum, siblingList and RSpcStyles) 
+    // `, function () {
 
     describe(`CUT Fn: updateElementStyle( ELEM.CSpc -> ELEM.CSpc )
         `, function () {
