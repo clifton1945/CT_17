@@ -22,10 +22,10 @@ let cut = require('../src/main_updateElementStyle');
 
 context(`Fn: updateElementStyle does that, typically on an iterable's Chapter Verses.
     it is typically = updateStyle(thisCSD). A partialed CSD for this.verse.
-    Thus  
+      
     USAGE: map(updateElementStyle, NodeListVerses)
-    // WAIT!!  the CSD has to be a f(the element: indexNum, siblingList and RSpcStyles) 
-    // `, function () {
+    WAIT!!  the CSD has to be a f(the element: indexNum, siblingList and RSpcStyles) 
+     `, function () {
 
     describe(`CUT Fn: updateElementStyle( ELEM.CSpc -> ELEM.CSpc )
         `, function () {

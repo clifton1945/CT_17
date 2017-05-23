@@ -10,11 +10,11 @@ let R = require('ramda')
 let RSpace_Lengths = curry(
     /**
      *  ...... RSpace_Lengths::
-     * @param cspc_focus
+     * @param cspc_focus OR REVERSED
      * @param cspc_len
      * @return RSpc_Lengths Obj/Dict{*}
      */
-    (cspc_focus, cspc_len) => {
+    (cspc_focus, cspc_len) => { //TODO determine order of the Parameters: MAYBE partial the CSpc Len and return (focusNdx -> SizeObj)
         let dflt = {pst: 0, cur: 0, fut: 0};
         let trnsfrms = {
             pst: (cspc_focus < 0 || cspc_focus >= cspc_len) ? 0 : always(cspc_focus),
