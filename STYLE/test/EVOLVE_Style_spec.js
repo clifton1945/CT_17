@@ -3,7 +3,7 @@
  * ...
  */
 
-// note to me 170520 re mocha this. get a better set of tests
+//TODO  note to me 170520 re mocha this. get a better set of tests
 "use strict";
 
 let R = require('ramda')

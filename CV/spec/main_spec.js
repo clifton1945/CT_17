@@ -1,6 +1,5 @@
 /**
  .CV//spec/main_spec.js
- THIS IS A wallaby TEST!!
  */
 "use strict";
 
@@ -15,14 +14,6 @@ let chai = require('chai')
     // , should = chai.should()
     , expect = chai.expect
 ;
-
-//THESE FUNCTIONS ARE AVAILABLE
-// ...................... get the CVList of Chapter Verses
-/**
- *  _CVList:: Fn(DOC -> LIST)
- */
-// let _CVList = require('../src/SELECT_ChptVerses')._CVList
-// ; //  Fn(DOC -> LIST)
 
 // ..................... BUILD a new Verse Property CSD
 /**
@@ -63,26 +54,48 @@ let UPDATE_anElem = R.pipe(EVOLVE_CSD, UPDATE_ElemStyle)(CSD_trnsfrms)
 ; // Fn( ELEM.elem -> ELEM.style.propertyCSD )
 
 
-// CODE UNDER TEST   TODO  RE WRITE THIS TEST FOR JUST THE ReadSpace and StylSpace
-const main = require('../../main');
+// CODE UNDER TEST
 
-describe(`Fn: main UPDATE .
-    USAGE: main INVOKES Fn: EVOLVE_Verse that UPDATES each Verse's Style Attributes.
-        This includes a CVSpace_VerseList, a RCSpace_Weight, a StyleSpace_CSD
-            a keyEvent UPDATES the RCSpace;
-            a {NOT YET memoized} querySelect RETREIVES CVSpace_VerseList
-            the Fn is  ITERATED onto each Verse of CVSpace_VerseList || Index_List
-               which TRANSFORMS its CVNdx into -> RCNdex
-               which TRANSFORMS into -> RCWeight
-               which TRANSFORMS into -> StyleSpace_CSD
-               which EVOLVES a verse_Style
+context(`Fn: main 
+    The ChptSpace modules are only responsible for mutating the DOM: the div.chptr in this case.
+        I am not testing ChptSpace functions
+    In ReadSpace each span.Verse continually get a new contexts [indexes an place in family], as the Reader changes focus, changes Verses.
+    In StylSpace those context reassignments are reflected onto each element's style attributes. 
+
     `, function () {
-    beforeEach(function () {
-        // loadFixtures('index.html'); THIS BREAKS a mocha test
-        // this.doc = document;
+    describe(`ReadSpace.resizeRSpcFn(arity:2) -> RSpcSizeObj
+    it is PARTIALED with the FocusNnd in the main_keyEventFn, thus RETURNING a Fn
+    it will be FULFILLED with the CSpcListLength [at the final invoking]
+    it will RETURN a dictObj of three RClss object: keyName: keySize
+    `, function () {
     });
-    it(`should have a take a CVList and return a CVList.`, function () {
-        // expect(this.doc.body.tagName).to.be.equal('BODY');
+    describe(`ReadSpace.transformIndexFn(arity:2) -> RSpcIndex
+    it is PARTIALED with the CSpcIndex
+    it will be FULFILLED with the RSpcSizeObj [at the final invoking]
+    it will RETURN the appropriate RSpcIndex associated w/ the CSpcIndex argument.
+    `, function () {
     });
+    //TODO CONFIRM THIS DESIGN NEXT see the EVOLVE_Style Fns above
+    describe(`StylSpace.transformStyl_bgColorFn(arity:2) -> {bgColor:{Fn -> bgColor:value}}
+    it is PARTIALED with the RSpcIndex
+    it will be FULFILLED with the SSpc.evolveFn [at the final invoking]
+    it will RETURN a new bgColorCSD.
+    `, function () {
+    });
+    describe(`StylSpace.transformStyl_opacity(arity:2) -> {opacity:{Fn -> {opacity:value}}
+    it is PARTIALED with the RSpcIndex
+    it will be FULFILLED with the SSpc.evolveFn [at the final invoking]
+    it will RETURN a new bgColorCSD.
+    `, function () {
+    });
+    describe(`StylSpace.transformStyl_fontSize(arity:2) -> {fontSize: (Fn -> {fontSize:value}}
+    it is PARTIALED with the RSpcIndex
+    it will be FULFILLED with the SSpc.evolveFn [at the final invoking]
+    it will RETURN a new fontSizeCSD.
+    `, function () {
+    })
+    describe(`StylSpace.EVOLVE_Style??????? TODO COMPLETE THIS. iT COMES AFTER THE ABOVE TRANSFORMS.
+    `, function () {
+    })
 });
 

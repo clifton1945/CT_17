@@ -7,7 +7,7 @@ let R = require('ramda')
 // , pipe = R.pipe
 //     , compose = R.compose
 //     , map = R.map
-    , always = R.always
+//     , always = R.always
     , curry = R.curry
 ;
 
@@ -29,5 +29,5 @@ let DfltCSD = require('../Dflt_Style').DfltCSD;// -> {backgroundColor: '', opaci
  // */
 let EVOLVE_CSD = EVOLVE(DfltCSD);
 
-// module.exports.EVOLVE = EVOLVE;
+module.exports.EVOLVE = EVOLVE;
 module.exports.EVOLVE_CSD = EVOLVE_CSD;

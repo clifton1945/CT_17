@@ -10,7 +10,7 @@ let R = require('ramda')
 let RSpace_Lengths = curry(
     /**
      *  ...... RSpace_Lengths::
-     * @param cspc_focus OR REVERSED
+     * @param cspc_focus
      * @param cspc_len
      * @return RSpc_Lengths Obj/Dict{*}
      */
