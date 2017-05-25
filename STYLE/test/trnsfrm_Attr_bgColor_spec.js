@@ -19,15 +19,18 @@ let chai = require('chai')
 ;
 
 // CODE UNDER TEST
-let trnsfrm_Attr_bgColor;
-
-trnsfrm_Attr_bgColor = (clr) => {
-    return clr
-};
-
 let concatColor = R.curry(
     (valu, str) => str.concat(valu)
 );
+
+let trnsfrm_Attr_bgColor;
+
+trnsfrm_Attr_bgColor = (valu) => {
+    let concatColor = R.curry(
+        (valu, str) => str.concat(valu)
+    );
+    return {backgroundColor: concatColor(valu)}
+};
 
 
 describe(`Fn: trnsfrm_Attr_bgColor[arity:1]: (STR.color -> Fn) 
@@ -40,11 +43,11 @@ describe(`Fn: trnsfrm_Attr_bgColor[arity:1]: (STR.color -> Fn)
     it(`expects Fn to return a Function of arity:1`, function () {
         expect(trnsfrm_Attr_bgColor).is.a('function').and.to.have.length(1);
     });
-    it(`expects Fn(N) to return a String.`, function () {
-        expect(trnsfrm_Attr_bgColor('red')).is.a('string').and.is.equal('red');
+    it(`expects Fn(N) to return a Object.`, function () {
+        expect(trnsfrm_Attr_bgColor('red')).is.a('Object');
     });
     it(`expects evolve(Fn, baseAttr) to return a different backgroundColor:value.`, function () {
-        // expect(evolve(trnsfrm_Attr_bgColor('red'), baseAttr)).is.equal({backgroundColor:'red'});
-        expect(R.evolve({backgroundColor: concatColor('red')}, baseAttr)).is.deep.equal({backgroundColor: 'red'});
+        // expect(R.evolve({backgroundColor: concatColor('red')}, baseAttr)).is.deep.equal({backgroundColor: 'red'});
+        expect(R.evolve(trnsfrm_Attr_bgColor('red'), baseAttr)).is.deep.equal({backgroundColor: 'red'});
     });
 });
