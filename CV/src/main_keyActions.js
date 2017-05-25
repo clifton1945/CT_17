@@ -13,13 +13,13 @@ let init_keyActions = R.curry(
         // let n = n === undefined ? 0: ndx;
         let n = ndx;
         let Fn = f;
-        let VALID_ndx = n => (n >= 0) ? n : 0;// FIX NEED <= SOMETHING
+        let VALID_ndx = n => (n >= 0) ? n : 0;
         return function keyActions(e) {
             /*Left Arrow: read Last Chapter*/
             if (e.keyCode === 37) {
                 e.preventDefault();
                 e.stopPropagation();
-                n += -5; // FIX
+                n += -5;
                 n = VALID_ndx(n);
                 C._inBoth("Left Arrow: read Last Chapter." + n);
                 return Fn(n);
@@ -38,7 +38,7 @@ let init_keyActions = R.curry(
             if (e.keyCode === 39 || e.keyCode === 96) { // rt arrow || num pad 0
                 e.preventDefault();
                 e.stopPropagation();
-                n += 5; // TODO limit this
+                n += 5;
                 C._inBoth("Right Arrow: read Next Chptr." + n);
                 return Fn(n)
             }
@@ -46,7 +46,7 @@ let init_keyActions = R.curry(
             if (e.keyCode === 32 || e.keyCode === 40) {
                 e.preventDefault();
                 e.stopPropagation();
-                n += +1;// TODO limit this
+                n += +1;
                 C._inBoth("DWN Arrow: read Next verse." + n);
                 return Fn(n);
             }

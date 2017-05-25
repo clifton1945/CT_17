@@ -78,7 +78,7 @@ const UPDATE_allElems =
 
 let init_keyActions = require('./CV/src/main_keyActions').init_keyActions;
 
-let f = n => _inConsole(' >>>> ' + n); //TODO   expand this to change the elem
+let f = n => _inConsole(' >>>> ' + n);
 
 let x = document.addEventListener("keydown", init_keyActions(f), false);
 

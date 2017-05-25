@@ -4,8 +4,8 @@
 "use strict";
 
 let R = require('ramda')
-    , pipe = R.pipe
-    , curry = R.curry
+    // , pipe = R.pipe
+    // , curry = R.curry
 //     , compose = R.compose
 //     , map = R.map
 ;
@@ -75,7 +75,7 @@ context(`Fn: main
     it will RETURN the appropriate RSpcIndex associated w/ the CSpcIndex argument.
     `, function () {
     });
-    //TODO CONFIRM THIS DESIGN NEXT see the EVOLVE_Style Fns above
+
     describe(`StylSpace.transformStyl_bgColorFn(arity:2) -> {bgColor:{Fn -> bgColor:value}}
     it is PARTIALED with the RSpcIndex
     it will be FULFILLED with the SSpc.evolveFn [at the final invoking]
@@ -93,7 +93,7 @@ context(`Fn: main
     it will be FULFILLED with the SSpc.evolveFn [at the final invoking]
     it will RETURN a new fontSizeCSD.
     `, function () {
-    })
+    });
     describe(`StylSpace.EVOLVE_Style??????? TODO COMPLETE THIS. iT COMES AFTER THE ABOVE TRANSFORMS.
     `, function () {
     })

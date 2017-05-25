@@ -28,6 +28,8 @@ trnsfrm_Attr_bgColor = (clr) => {
 let concatColor = R.curry(
     (valu, str) => str.concat(valu)
 );
+
+
 describe(`Fn: trnsfrm_Attr_bgColor[arity:1]: (STR.color -> Fn) 
     USAGE: evolve(Fn, ) 
     `, function () {
