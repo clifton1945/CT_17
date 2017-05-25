@@ -6,41 +6,43 @@
 "use strict";
 
 let R = require('ramda')
-    , curry = R.curry
-// , pipe = R.pipe
-//     , compose = R.compose
-//     , always = R.always
+    // , curry = R.curry
+    // , always = R.always
+    // , evolve = R.evolve
 ;
 
 // let context = describe;
 
 let chai = require('chai')
-    , should = chai.should()
+    // , should = chai.should()
     , expect = chai.expect
 ;
 
 // CODE UNDER TEST
 let trnsfrm_Attr_bgColor;
-trnsfrm_Attr_bgColor = curry(
-    (wt, ndx_rspc) => {
-        return {}
-    }
-);
 
-describe(`Fn: trnsfrm_Attr_bgColor[arity:2]: wt -> (ndx -> fnObj) 
-    (wt, ndx) -> attrTrnsfrmObj
-    will be one of the transform Fns used in EVOLVE_Style.js  
-    USAGE: Fn1 = Fn0(wt)
+trnsfrm_Attr_bgColor = (clr) => {
+    return clr
+};
+
+let concatColor = R.curry(
+    (valu, str) => str.concat(valu)
+);
+describe(`Fn: trnsfrm_Attr_bgColor[arity:1]: (STR.color -> Fn) 
+    USAGE: evolve(Fn, ) 
     `, function () {
-    // // beforeEach(function () {
-    // // });
-    it(`expects Fn to return a Function of arity:2`, function () {
-        expect(trnsfrm_Attr_bgColor).is.a('function').and.to.have.length(2);
+    let baseAttr;
+    beforeEach(function () {
+        baseAttr = {backgroundColor: ""};
     });
-    it(`expects Fn(N) to return a Function of arity:1`, function () {
-        expect(trnsfrm_Attr_bgColor(1)).is.a('function').and.to.have.length(1);
+    it(`expects Fn to return a Function of arity:1`, function () {
+        expect(trnsfrm_Attr_bgColor).is.a('function').and.to.have.length(1);
     });
-    it(`expects Fn to return an Obj`, function () {
-        expect(trnsfrm_Attr_bgColor(1, 2)).is.a('object');
+    it(`expects Fn(N) to return a String.`, function () {
+        expect(trnsfrm_Attr_bgColor('red')).is.a('string').and.is.equal('red');
+    });
+    it(`expects evolve(Fn, baseAttr) to return a different backgroundColor:value.`, function () {
+        // expect(evolve(trnsfrm_Attr_bgColor('red'), baseAttr)).is.equal({backgroundColor:'red'});
+        expect(R.evolve({backgroundColor: concatColor('red')}, baseAttr)).is.deep.equal({backgroundColor: 'red'});
     });
 });
