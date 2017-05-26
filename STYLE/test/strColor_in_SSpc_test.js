@@ -1,5 +1,7 @@
 /**
  *_StrColor_in_RSpc
+ * HOLD UNTIL DEVELOP a clsName_in_RSpc
+ *
  */
 "use strict";
 
@@ -19,7 +21,7 @@ let chai = require('chai')
 let RSpace_SizeObj = require('../../RSpc/src/RSpace_Sizes').RSpace_SizeObj; // CSpc_Arr -> ( CSpc_FocusN -> RSpc_LengthsOBJ)
 let _StrColor = require('../src/strColor_in_SSpc'); //
 
-context(`Fn:: _StrColor 
+context.skip(`Fn:: _StrColor 
     RETURNS a color STR for use in evolve style attributes: backgroundColor
     GIVEN a dfltStrColorObj 
     GIVEN the Elem index in RSpc.

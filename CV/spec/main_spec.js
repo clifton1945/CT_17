@@ -1,5 +1,6 @@
 /**
- .CV//spec/main_spec.js
+ .CV//spec/main_spec.js HOLD 26 May. hold on strColor_in_SSpc development and testing
+ UNTIL DEVELOP a clsName_in_RSpc. Then I will use the name to do all the triage of STYLE stuff
  */
 "use strict";
 
