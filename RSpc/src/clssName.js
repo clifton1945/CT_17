@@ -1,5 +1,6 @@
 /**
- *clsName_in_RSpc.js
+ *clsName.js
+ * TODO PLAN NEXT is convert this over to returning a name then use it in a pipe BEFORE all the STYLE transforms
  */
 "use strict";
 let R = require('ramda')
@@ -7,11 +8,11 @@ let R = require('ramda')
     // , pipe = R.pipe
     // , always = R.always
 ;
-const RSpcNdx = curry(
+const clssName = curry(
     /**
      *  Fn: strName  RETURNS -> strName, <- FROM ndxInCSpc
      *
-     * @param obj:  RSpc Name Object: e.g.{pst: 2, cur: 1, fut: 2}
+     * @param obj:  sizesObj: e.g.{pst: 2, cur: 1, fut: 2}
      * @param ndx:  Element Index in CSpc
      * @return {number} : this Element Index in RSpc
      *
@@ -25,4 +26,4 @@ const RSpcNdx = curry(
                         9999
     }); // OBJ.rSpcSizes -> (N.ndxRSpc -> N.rSpcNdx)
 
-module.exports = RSpcNdx;
+module.exports = clssName;

@@ -1,5 +1,5 @@
 /**
- *clsName_in_RSpc
+ *clsName
  */
 "use strict";
 
@@ -16,7 +16,7 @@ let chai = require('chai')
 ;
 
 let Dflt_clsNames = require('../Dflt_clsNames'); // -> {pst: 'pst', cur: 'cur', fut: 'fut'}
-let clsName = require('../src/clsName_in_RSpc'); // OBJ.clsNames -> ( N.ndxRSpc -> STR.clsName )
+let clsName = require('../src/clssName'); // OBJ.clsNames -> ( N.ndxRSpc -> STR.clsName )
 
 context(`An Element's clsName_in_RSpc::
     RETURNS its name in RSpc 

@@ -27,7 +27,7 @@ context(`The corresponding RC_Ndx = ( a given minuend:CV_Ndx) => CV_Ndx - {one o
     minuend - subtrahend  = difference
     augend + addend (strict sense)`, () => {
     describe(`pstLen `, () => {
-        beforeEach(function () { // TODO MAKE these OBJECTS {k,v}
+        beforeEach(function () { 
             this.cvLen = 5;
             this.curBeg = 1;
             this.curLen = 3;
