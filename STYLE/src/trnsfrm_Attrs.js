@@ -21,4 +21,7 @@ let bgColor = (valu) => {
     return {backgroundColor: concatColor(valu)}
 };
 
-module.exports.bgColor = bgColor; // ( STR.color -> Fn.transformerForEvolve)
+let bgColorFrmStr = bgColor;
+
+module.exports.bgColor = bgColor; // ( STR.color -> Fn.transformerToEvolveBackgroundColor )
+module.exports.bgColorFrmStr = bgColorFrmStr; // ( STR.color -> Fn.transformerToEvolveBackgroundColor )

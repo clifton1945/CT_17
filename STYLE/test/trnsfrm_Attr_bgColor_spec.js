@@ -9,17 +9,22 @@ let R = require('ramda')
     // , always = R.always
     // , evolve = R.evolve
 ;
-
-// let context = describe;
+let context = describe;
 let chai = require('chai')
     , expect = chai.expect
 ;
 
 // CODE UNDER TEST
-let trnsfrm_Attr_bgColor = require('../src/trnsfrm_Attrs').bgColor;
+context(`NOW move back up the pipe chain to progressively include earlier functions.
+    in this case I want a f RETURN Str.color INPUT ndxRSpc`, () => {
+
+});
+
+
+let trnsfrm_Attr_bgColor = require('../src/trnsfrm_Attrs').bgColorFrmStr;
 
 describe(`Fn: trnsfrm_Attr_bgColor[arity:1]: (STR.color -> Fn) 
-    USAGE: evolve(Fn, ) 
+    USAGE: evolve(Fn,dfltCSD) 
     `, function () {
     let baseAttr;
     beforeEach(function () {
@@ -35,3 +40,4 @@ describe(`Fn: trnsfrm_Attr_bgColor[arity:1]: (STR.color -> Fn)
         expect(R.evolve(trnsfrm_Attr_bgColor('red'), baseAttr).backgroundColor).is.equal('red');
     });
 });
+
