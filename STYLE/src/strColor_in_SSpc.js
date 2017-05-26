@@ -1,5 +1,5 @@
 /**
- *RSpace_Indices
+ *strColor_in_RSpc
  */
 "use strict";
 let R = require('ramda')
@@ -9,7 +9,7 @@ let R = require('ramda')
 ;
 const strColor = curry(
     /**
-     *  Fn: strColor  RETURNS -> strInRSpc, <- FROM ndxInRSpc
+     *  Fn: strColor  RETURNS -> strColorInStyleSpc, <- FROM ndxInRSpc
      *
      * @param str:  RSpc Size Object: e.g.{pst: 2, cur: 1, fut: 2}
      * @param ndx:  Element Index in CSpc

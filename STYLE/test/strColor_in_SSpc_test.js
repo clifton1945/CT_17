@@ -1,5 +1,5 @@
 /**
- *RSpace_Indices
+ *_StrColor_in_RSpc
  */
 "use strict";
 
@@ -16,26 +16,28 @@ let chai = require('chai')
     // , should = chai.should()
 ;
 
-let RSpace_SizeObj = require('../src/RSpace_Sizes').RSpace_SizeObj; // CSpc_Arr -> ( CSpc_FocusN -> RSpc_LengthsOBJ)
-let RSpcNdx = require('../src/RSpace_Indices'); // OBJ.rSpcSizes -> ( N.cSpcNdx -> N.RSpcNdx )
+let RSpace_SizeObj = require('../../RSpc/src/RSpace_Sizes').RSpace_SizeObj; // CSpc_Arr -> ( CSpc_FocusN -> RSpc_LengthsOBJ)
+let _StrColor = require('../src/strColor_in_SSpc'); //
 
-context(`An Element's RSpace_Indices::
-    RETURNS its RSpc_Index 
-    GIVEN its CSpc_Index.
+context(`Fn:: _StrColor 
+    RETURNS a color STR for use in evolve style attributes: backgroundColor
+    GIVEN a dfltStrColorObj 
+    GIVEN the Elem index in RSpc.
+    USAGE:: the Fn will be piped to trnsfrm_Attr . _bgColor Fn 
     `, function () {
 
-    describe(`RSpcNdx:: rSpcObj -> ( cSpcNdx -> RSpcNdx )
+    describe(`_StrColor_in_RSpcj -> ( objColors -> ndxRSpc -> strColor )
         `, function () {
-        let _Focus, _Obj, _CUT;
+        let _Obj, _CUT;
         beforeEach(function () {
             _Obj = RSpace_SizeObj([0, 1, 2, 3, 4]);
-            _Focus = 2;
-            _CUT = RSpcNdx(_Obj(_Focus)); //  {pst: 2, cur: 1, fut: 2}
+            _CUT = _StrColor
         });
-        it(`expects a well formed RSpcSize_Obj as an Argument `, () => {
-            expect(_Obj(1)).is.deep.equal({pst: 1, cur: 1, fut: 3});
+        it.only(`expects Fn to return a Function of varity:1`, function () {
+            expect(_CUT).is.a('function').and.is.length(1);
         });
-        it(`expects TO RETURN a Num`, () => {
+
+        it(`expects _CUT(N) TO RETURN a String`, () => {
             expect(_CUT(555)).is.a('number');
         });
         it(`expects a CSpcNdx argument <  CSpcFocus TO RETURN CSpcNdx`, () => {
