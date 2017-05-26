@@ -70,6 +70,7 @@ context(`Fn: main
     it will RETURN a dictObj of three RClss object: keyName: keySize
     `, function () {
     });
+
     describe(`ReadSpace.transformIndexFn(arity:2) -> RSpcIndex
     it is PARTIALED with the CSpcIndex
     it will be FULFILLED with the RSpcSizeObj [at the final invoking]

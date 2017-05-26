@@ -16,7 +16,7 @@ let chai = require('chai')
     // , should = chai.should()
 ;
 
-let RSpace_SizeObj = require('../src/RSpace_Sizes').RSpace_SizeObj; // CSpc_Arr -> ( CSpc_FocusN -> RSpc_LengthsOBJ)
+let RSpace_SizeObj = require('../src/sizesObj').RSpace_SizeObj; // CSpc_Arr -> ( CSpc_FocusN -> RSpc_LengthsOBJ)
 let RSpcNdx = require('../src/RSpace_Indices'); // OBJ.rSpcSizes -> ( N.cSpcNdx -> N.RSpcNdx )
 
 context(`An Element's RSpace_Indices::

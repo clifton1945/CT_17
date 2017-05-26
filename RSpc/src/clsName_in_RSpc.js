@@ -23,6 +23,6 @@ const RSpcNdx = curry(
                 (ndx === pst) ? "cur" :
                     (ndx < (pst + 1 + obj.fut)) ? "fut" :
                         9999
-    }); // OBJ.rSpcSizes -> (N.cSpcNdx -> N.rSpcNdx)
+    }); // OBJ.rSpcSizes -> (N.ndxRSpc -> N.rSpcNdx)
 
 module.exports = RSpcNdx;

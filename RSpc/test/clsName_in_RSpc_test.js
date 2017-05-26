@@ -16,11 +16,12 @@ let chai = require('chai')
 ;
 
 let Dflt_clsNames = require('../Dflt_clsNames'); // -> {pst: 'pst', cur: 'cur', fut: 'fut'}
-let clsName = require('../src/clsName_in_RSpc'); // OBJ.rSpcSizes -> ( N.cSpcNdx -> N.clsName )
+let clsName = require('../src/clsName_in_RSpc'); // OBJ.clsNames -> ( N.ndxRSpc -> STR.clsName )
 
 context(`An Element's clsName_in_RSpc::
-    RETURNS its RSpc_Index 
-    GIVEN its CSpc_Index.
+    RETURNS its name in RSpc 
+    PARTIALED with a default clsName Obj
+    GIVEN its ndx_in_RSpc
     `, function () {
 
     describe(`_CUT:: clsName:: rSpcObj -> ( cSpcNdx -> clsName )
@@ -30,10 +31,10 @@ context(`An Element's clsName_in_RSpc::
             _Obj = Dflt_clsNames;
             _CUT = clsName(Dflt_clsNames); //  {pst: 2, cur: 1, fut: 2}
         });
-        it(`expects a well formed Dflt_clsNames as an Argument `, () => {
+        it(`expects a well formed Dflt_clsNames as a partial Argument `, () => {
             expect(Dflt_clsNames).is.deep.equal({pst: 'pst', cur: 'cur', fut: 'fut'});
         });
-        it(`expects _CUT to return a Function of arity:1`, function () {
+        it(`expects _CUT after partial to return a Function of arity:1`, function () {
             expect(_CUT).is.a('function').and.is.length(1);
         });
         it.skip(`expects a CSpcNdx argument  <  CSpcFocus TO RETURN CSpcNdx`, () => {

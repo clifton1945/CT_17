@@ -7,23 +7,23 @@ let R = require('ramda')
     // , pipe = R.pipe
     // , always = R.always
 ;
-const RSpcNdx = curry(// TODO name change to ndxInRSpc_From_ndxInCSpc
+const ndxInRSpc = curry(
     /**
-     *  Fn: RSpcNdx  RETURNS -> NdxInRSpc, <- FROM NdxInCSpc
+     *  Fn: ndxInRSpc  RETURNS -> ndxInRSpc, <- FROM ndxInCSpc
      *
-     * @param obj:  RSpc Size Object: e.g.{pst: 2, cur: 1, fut: 2}
-     * @param ndx:  Element Index in CSpc
-     * @return {number} : this Element Index in RSpc
+     * @param obj:  sizesObj in RSpc: e.g.{pst: 2, cur: 1, fut: 2}
+     * @param ndx:  this Elements Index in CSpc
+     * @return {number} : this Elements Index in RSpc
      *
      *  NOTE: this is a special case because the current ReadSpace Size is always just 1.
      */
-    function (obj, ndx) {
+    function (obj, ndx) {//  OBJ.sizesObj -> (N.ndxInRSpc -> N.ndxInCSpc
         let pst = obj.pst;
         return (ndx < 0) ? -9999 :
             (ndx < pst) ? ndx :
                 (ndx === pst) ? 0 :
                     (ndx < (pst + 1 + obj.fut)) ? ndx - pst - 1 :
                         9999
-    }); // OBJ.rSpcSizes -> (N.cSpcNdx -> N.rSpcNdx
+    }); // OBJ.sizesObj -> (N.ndxInRSpc -> N.ndxInCSpc
 
-module.exports = RSpcNdx;
+module.exports = ndxInRSpc;
