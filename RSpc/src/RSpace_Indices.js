@@ -9,6 +9,7 @@ let R = require('ramda')
 ;
 const RSpcNdx = curry(
     /**
+     *  Fn: RSpcNdx RETURN -> NdxInRSpc, <- FROM NdxInCSpc
      *  NOTE: this is a special case because the current ReadSpace Size is always just 1.
      * @param obj:  RSpc Size Object: e.g.{pst: 2, cur: 1, fut: 2}
      * @param ndx:  Element Index in CSpc

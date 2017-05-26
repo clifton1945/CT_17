@@ -13,7 +13,7 @@ let R = require('ramda')
 
 let bgColor = (valu) => {
     /**
-     * USAGE: evolve( trnsfrm_Attr.bgColor('green'),
+     * USAGE: evolve( trnsfrm_Attr.bgColor('green'))({{backgroundColor:""}, {opacity:"1"}, {}})
      */
     let concatColor = R.curry(
         (valu, str) => str.concat(valu)
