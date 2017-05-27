@@ -9,7 +9,7 @@ let R = require('ramda')
 ;
 const ndxInRSpc = curry(
     /**
-     *  Fn: ndxInRSpc  RETURNS -> ndxInRSpc, <- FROM ndxInCSpc
+     *  Fn .... ndxInRSpc  RETURNS -> ndxInRSpc, <- FROM ndxInCSpc
      *
      * @param obj:  sizesObj in RSpc: e.g.{pst: 2, cur: 1, fut: 2}
      * @param ndx:  this Elements Index in CSpc

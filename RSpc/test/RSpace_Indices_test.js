@@ -16,7 +16,7 @@ let chai = require('chai')
     // , should = chai.should()
 ;
 
-let RSpace_SizeObj = require('../src/sizesObj').RSpace_SizeObj; // CSpc_Arr -> ( CSpc_FocusN -> RSpc_LengthsOBJ)
+let RSpace_SizeDict = require('../src/evolve_SizesDict').fromArray;
 let RSpcNdx = require('../src/RSpace_Indices'); // OBJ.rSpcSizes -> ( N.cSpcNdx -> N.RSpcNdx )
 
 context(`An Element's RSpace_Indices::
@@ -28,7 +28,7 @@ context(`An Element's RSpace_Indices::
         `, function () {
         let _Focus, _Obj, _CUT;
         beforeEach(function () {
-            _Obj = RSpace_SizeObj([0, 1, 2, 3, 4]);
+            _Obj = RSpace_SizeDict([0, 1, 2, 3, 4]);
             _Focus = 2;
             _CUT = RSpcNdx(_Obj(_Focus)); //  {pst: 2, cur: 1, fut: 2}
         });

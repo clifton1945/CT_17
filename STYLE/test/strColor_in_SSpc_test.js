@@ -18,7 +18,7 @@ let chai = require('chai')
     // , should = chai.should()
 ;
 
-let RSpace_SizeObj = require('../../RSpc/src/sizesObj').RSpace_SizeObj; // CSpc_Arr -> ( CSpc_FocusN -> RSpc_LengthsOBJ)
+let RSpace_SizeObj = require('../../RSpc/src/evolve_SizesDict').RSpace_SizeObj; // CSpc_Arr -> ( CSpc_FocusN -> RSpc_LengthsOBJ)
 let _StrColor = require('../src/strColor_in_SSpc'); //
 
 context.skip(`Fn:: _StrColor 
