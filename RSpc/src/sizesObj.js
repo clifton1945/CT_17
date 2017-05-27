@@ -42,8 +42,8 @@ const sizesObj_in_RSpc = curry(
      * @return {*}: sizesObj_in_RSpc
      */
     (size_chpr, ndx_focus) => {
-        let dflt = {pst: 0, cur: 0, fut: 0};
-        let trnsfrms = {
+        let dflt = {pst: 0, cur: 0, fut: 0}; // NOTE: I am embedding this constant. Shouldn't I retrieveIt ???
+        let trnsfrms = { // NOTE here I embedding these transforms correctly; they are, in fact, the heart of the function.
             pst: (ndx_focus < 0 || ndx_focus >= size_chpr) ? 0 : always(ndx_focus),
             cur: (ndx_focus < 0 ) ? 0 : always(1),
             fut: (ndx_focus > (size_chpr - 1)) ? 0 : always(size_chpr - ndx_focus - 1)
