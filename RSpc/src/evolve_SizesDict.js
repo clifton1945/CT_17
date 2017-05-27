@@ -10,6 +10,7 @@ let R = require('ramda')
 const evolve_SizesDict = curry(
     /**
      *  Fn...... evolve_SizesDict:: N|ARR -> ( N -> DICT )
+     *
      *  this function RETURNS a DICT of RClass sizes
      *      GIVEN a ChptSpc ndxFocus
      *  it can be configured to accept
@@ -20,11 +21,11 @@ const evolve_SizesDict = curry(
      * @return {*}: an evolved SizesObj : DICT.
      *
      * USAGE:
-     * let evolve_SizesDict = require('path/evolve_SizesDict').fromSize(5);
+     * let evolve_SizesDict = require('...path/evolve_SizesDict').fromSize(5);
      * // OR
-     * let evolve_SizesDict = require('path/evolve_SizesDict').fromArray([0,1,2,3,4]);
-     * // THEN
-     * evolvedSizesDict = evolve_SizesDict(3): //-> {pst: 3, cur: 1, fut: 1}
+     * let evolve_SizesDict = require('...path/evolve_SizesDict').fromArray([0,1,2,3,4]);
+     * // THEN if needed,
+     * let EVOLVED_SizesDict = evolve_SizesDict(3): //-> {pst: 3, cur: 1, fut: 1}
      */
     (size_chpr, ndx_focus) => { // N|ARR -> N -> DICT
         let dflt = {pst: 0, cur: 0, fut: 0}; // NOTE: I am embedding this constant. Shouldn't I retrieveIt ???

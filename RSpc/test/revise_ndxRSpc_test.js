@@ -17,7 +17,7 @@ let chai = require('chai')
 ;
 
 let RSpace_SizeDict = require('../src/evolve_SizesDict').fromArray;
-let RSpcNdx = require('../src/RSpace_Indices'); // OBJ.rSpcSizes -> ( N.cSpcNdx -> N.RSpcNdx )
+let RSpcNdx = require('../src/revise_ndxRSpc'); // OBJ.rSpcSizes -> ( N.cSpcNdx -> N.RSpcNdx )
 
 context(`An Element's RSpace_Indices::
     RETURNS its RSpc_Index 
