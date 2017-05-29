@@ -27,7 +27,7 @@ let EVOLVE = curry(
     (dfltCSD, csdTrnsfrms) => R.evolve(csdTrnsfrms, dfltCSD)
 );
 
-let DfltCSD = require('../Dflt_CSDe').DfltCSD;// -> {backgroundColor: '', opacity: '1.0', fontSize: '100%'}
+let DfltCSD = require('../Dflt_CSD').DfltCSD;// -> {backgroundColor: '', opacity: '1.0', fontSize: '100%'}
 /**
  *  ..... EVOLVE_CSD_from_Dflt:: ( csdTrnsfrms -> newCSD )
  * @param csdTrnsfrms

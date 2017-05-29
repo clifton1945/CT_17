@@ -29,7 +29,7 @@ describe(`Fn: EVOLVE_Style( transformFn, Dflt_CSD) -> an evolved copy of the Dfl
     let objSize = obj => Object.keys(obj).length;// WHAT AND WHY
 
     beforeEach(function () {
-        this.DfltCSD = require('../Dflt_CSDe').DfltCSD;
+        this.DfltCSD = require('../Dflt_CSD').DfltCSD;
         let transformFn = {backgroundColor: R.always('yellow'), opacity: R.always('0.5')};
         this.EVOLVED = EVOLVE(transformFn, transformFn)
     });

@@ -19,23 +19,26 @@ let bgColor = R.curry(
      */
     (valu) => {
         let concatColor = R.curry(
-        (valu, str) => str.concat(valu)
-    );
+            (valu, str) => str.concat(valu)
+        );
         return {['background' + 'Color']: concatColor(valu)}
     });
 
-let backgroundColor = R.curry(
+let Attr = R.curry(
     /**
-     *  ..... bgColor: ( STR -> DICT)
+     *  ..... trnsfrmAttr: ( STR.key -> STR.val -> DICT.csd)
+     * a transformer Fn to evolve an element.style.
      * USAGE:
-     * a transformerFn applied to the Dflt_StyleDict results in an evolved backgroundColor
-     *
-     *
-     * evolve( bgColor('green'))({{backgroundColor:""}, {opacity:"1"}, {}})
+     *  let Transforms = require('../src/Attributes_Transforms')
+     *  let trnsfrm = Transforms.Attr; // STR.key -> STR.val -> DCT.CSD
+     *  let trnsfrm_backgroundColor = trnsfrmAttr('backgroundColor');
+     *  let _backgroundColor = trnsfrm_backgroundColor;
+     *  // now use the Fn by
+     *  evolve(trnsfrm_backgroundColor('green'), Dflt_CSD
      */
     (key, val) => {
         return {[key]: R.always(val)}
     });
 
 module.exports.bgColor = bgColor; // ( STR.color -> Fn.transformerToEvolveBackgroundColor )
-module.exports.backgroundColor = backgroundColor; // ( STR.color -> Fn.transformerToEvolveBackgroundColor )
+module.exports.Attr = Attr; // ( STR.color -> Fn.transformerToEvolveBackgroundColor )
