@@ -3,7 +3,6 @@
  * ...
  */
 "use strict";
-
 let R = require('ramda')
     // , curry = R.curry
     // , always = R.always

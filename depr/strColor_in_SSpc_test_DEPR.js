@@ -18,8 +18,8 @@ let chai = require('chai')
     // , should = chai.should()
 ;
 
-let RSpace_SizeObj = require('../../RSpc/src/evolve_SizesDict').RSpace_SizeObj; // CSpc_Arr -> ( CSpc_FocusN -> RSpc_LengthsOBJ)
-let _StrColor = require('../src/strColor_in_SSpc'); //
+let RSpace_SizeObj = require('../RSpc/src/evolve_SizesDict').RSpace_SizeObj; // CSpc_Arr -> ( CSpc_FocusN -> RSpc_LengthsOBJ)
+let _StrColor = require('../SSpc/src/strColor_in_SSpc'); //
 
 context(`Fn:: _StrColor 
     RETURNS a color STR for use in evolve style attributes: backgroundColor

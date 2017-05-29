@@ -16,7 +16,7 @@ _inConsole("< IN  " + TRK);
 /**
  *  _CVList:: Fn(DOC -> LIST)
  */
-let _CVList = require('./CV/src/SELECT_ChptVerses')._CVList
+let _CVList = require('./CSpc/src/SELECT_ChptVerses')._CVList
 ; //  Fn(DOC -> LIST)
 
 // ..................... BUILD a new Verse Property CSD
@@ -36,7 +36,7 @@ let _CVList = require('./CV/src/SELECT_ChptVerses')._CVList
     , fontSize: R.always('70%')
     },
  */
-let EVOLVE_CSD = require('./STYLE/src/EVOLVE_Style').EVOLVE_CSD
+let EVOLVE_CSD = require('./SSpc/src/EVOLVE_Style').EVOLVE_CSD
 ; //  Fn( OBJ_trnsfrms -> CSD_new ) IS EVOLVE() w/ already partialed DfltCSD
 
 /**
@@ -57,7 +57,7 @@ let CSD_Trnsfrms = {
  * @param elem
  * @return Fn:  ELEM.style.propertyCS
  */
-let UPDATE_ElemStyle = require('./CV/src/main_updateElementStyle').updateStyle
+let UPDATE_ElemStyle = require('./CSpc/src/main_updateElementStyle').updateStyle
 ; //  OBJ.CSD_Trnsfrms -> ( ELEM.elem -> ELEM.style.propertyCSD )
 /**
  * ..... UPDATE_anElem::  ( ELEM.elem -> ELEM.elem w/ elem.style.propertyCSD )
@@ -76,7 +76,7 @@ const UPDATE_allElems =
 ;// Functor f => (a -> b ) -> f a -> f b
 
 
-let init_keyActions = require('./CV/src/main_keyActions').init_keyActions;
+let init_keyActions = require('./CSpc/src/main_keyActions').init_keyActions;
 
 let f = n => _inConsole(' >>>> ' + n);
 

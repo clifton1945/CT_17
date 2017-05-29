@@ -23,7 +23,7 @@ let chai = require('chai')
  * @param OBJ_trnsfrms
  * @return CSD_new
  */
-let EVOLVE_CSD = require('../../STYLE/src/EVOLVE_Style').EVOLVE_CSD
+let EVOLVE_CSD = require('../../SSpc/src/EVOLVE_Style').EVOLVE_CSD
 ; //  Fn( OBJ_trnsfrms -> CSD_new )
 
 // ..................... now the CSD_trnsfrms
