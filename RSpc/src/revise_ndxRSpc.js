@@ -11,14 +11,14 @@ let R = require('ramda')
 const revise_ndxRSpc = curry(
     /**
      * Fn .... revise_ndxRSpc::  DCT -> ( N -> N )
-     *
-     * this function TRANSFORMS a CSpc index INO a RScp index.
-     *  it REQUIRES, in addition to CSpc index, the current RSpc SizesDCT
-     *      which typically is partialled.
-     *
      * @param dct:  sizesDct in RSpc: e.g.{pst: 2, cur: 1, fut: 2}
      * @param ndx:  an Element's Index in CSpc: e.g. 3
      * @return {number} : this Elements Index in RSpc: e.g. 0
+     *
+     * this function TRANSFORMS a CSpc index INTO a RScp index.
+     *  it REQUIRES, in addition to CSpc index, the current RSpc SizesDCT
+     *      which typically is partialled.
+     *
      *
      * // USAGE:
      * let revise = require('...path/revise_ndxRSpc');//  DCT -> ( N -> N )
