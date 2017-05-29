@@ -17,9 +17,7 @@ let chai = require('chai')
 // CODE UNDER TEST
 context(`NOW move back up the pipe chain to progressively include earlier functions.
     in this case I want a f RETURN Str.color INPUT ndxRSpc`, () => {
-
 });
-
 
 let trnsfrm_Attr_bgColor = require('../src/trnsfrm_Attrs').bgColorFrmStr;
 

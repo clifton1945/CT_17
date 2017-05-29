@@ -14,6 +14,9 @@ let R = require('ramda')
 let bgColor = (valu) => {
     /**
      * USAGE:
+     * this RETURNS a transfrm function for a specific Attribute; in his case backgroundColor???
+     * hey how is this used??? look at its use in evolve
+     *
      * evolve( trnsfrm_Attr.bgColor('green'))({{backgroundColor:""}, {opacity:"1"}, {}})
      */
     let concatColor = R.curry(

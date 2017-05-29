@@ -13,19 +13,19 @@ let R = require('ramda')
 
 let EVOLVE = curry(
     /**
-     *  ..... EVOLVE:: CSD_dflt -> ( CSD_trnsfrms -> CSD_new )
-     * @param CSD_dflt
-     * @param CSD_trnsfrms
-     * @return CSD_new
+     *  ..... EVOLVE:: dfltCSD -> ( _trnsfrm_CSD -> newCSD )
+     * @param dfltCSD
+     * @param _trnsfrm_CSD
+     * @return newCSD
      */
-    (CSD_dflt, CSD_trnsfrms) => R.evolve(CSD_trnsfrms, CSD_dflt)
+    (dfltCSD, _trnsfrm_CSD) => R.evolve(_trnsfrm_CSD, dfltCSD)
 );
 
 let DfltCSD = require('../Dflt_Style').DfltCSD;// -> {backgroundColor: '', opacity: '1.0', fontSize: '100%'}
 /**
- *  ..... EVOLVE_CSD:: ( CSD_trnsfrms -> CSD_new )
- * @param CSD_trnsfrms
- * @return CSD_new
+ *  ..... EVOLVE_CSD:: ( _trnsfrm_CSD -> newCSD )
+ * @param _trnsfrm_CSD
+ * @return newCSD
  // */
 let EVOLVE_CSD = EVOLVE(DfltCSD);
 

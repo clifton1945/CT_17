@@ -21,21 +21,21 @@ let chai = require('chai')
 let RSpace_SizeObj = require('../../RSpc/src/evolve_SizesDict').RSpace_SizeObj; // CSpc_Arr -> ( CSpc_FocusN -> RSpc_LengthsOBJ)
 let _StrColor = require('../src/strColor_in_SSpc'); //
 
-context.skip(`Fn:: _StrColor 
+context(`Fn:: _StrColor 
     RETURNS a color STR for use in evolve style attributes: backgroundColor
     GIVEN a dfltStrColorObj 
     GIVEN the Elem index in RSpc.
     USAGE:: the Fn will be piped to trnsfrm_Attr . _bgColor Fn 
     `, function () {
 
-    describe(`_StrColor_in_RSpcj -> ( objColors -> ndxRSpc -> strColor )
+    describe.skip(`_StrColor_in_RSpcj -> ( objColors -> ndxRSpc -> strColor )
         `, function () {
         let _Obj, _CUT;
         beforeEach(function () {
             _Obj = RSpace_SizeObj([0, 1, 2, 3, 4]);
-            _CUT = _StrColor
+            // _CUT = _StrColor
         });
-        it.only(`expects Fn to return a Function of varity:1`, function () {
+        it(`expects Fn to return a Function of varity:1`, function () {
             expect(_CUT).is.a('function').and.is.length(1);
         });
 
