@@ -13,22 +13,23 @@ const revise_ndxRSpc = curry(
      * Fn .... revise_ndxRSpc::  DCT -> ( N -> N )
      *
      * this function TRANSFORMS a CSpc index INO a RScp index.
-     *  it REQUIRES, in addition, the current RSpc SizeDCT
+     *  it REQUIRES, in addition to CSpc index, the current RSpc SizesDCT
      *      which typically is partialled.
      *
      * @param dct:  sizesDct in RSpc: e.g.{pst: 2, cur: 1, fut: 2}
-     * @param ndx:  an Element's Index in CSpc
-     * @return {number} : this Elements Index in RSpc
+     * @param ndx:  an Element's Index in CSpc: e.g. 3
+     * @return {number} : this Elements Index in RSpc: e.g. 0
      *
      * // USAGE:
-     * let revise_ndxRSpc = require('...path/revise_ndxRSpc')( sizeDCT );
+     * let revise = require('...path/revise_ndxRSpc');//  DCT -> ( N -> N )
+     * let revise_ndxRSpc = revise( sizeDCT );//  DCT -> ( N -> N )
      *
      * // IF NEEDED THEN
-     * let REVISED_ndxRSpc = revise_ndxRSpc( ndxCSpc );
+     * let REVISED_ndxRSpc = revise_ndxRSpc( ndxCSpc ); // ( N -> N )
      *
-     * NOTE: this Fn is a special case where the current ReadSpace Size is always just 1.
      */
-    function (dct, ndx) {//  DICT -> ( N -> N)
+    function (dct, ndx) {//  DICT -> ( N -> N )
+        //NOTE: this Fn is a special case where the current ReadSpace Size is always just 1.
         let pst = dct.pst;
         return (ndx < 0) ? -9999 :
             (ndx < pst) ? ndx :
