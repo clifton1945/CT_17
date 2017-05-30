@@ -1,5 +1,5 @@
 /**
- * Attributes_Transforms.js
+ * Attr_Trnsfrms.js
  */
 "use strict";
 
@@ -22,14 +22,14 @@ let bgColor = R.curry(
             (valu, str) => str.concat(valu)
         );
         return {['background' + 'Color']: concatColor(valu)}
-    });
-
+    }
+);
 let Attr = R.curry(
     /**
      *  ..... trnsfrmAttr: ( STR.key -> STR.val -> DICT.csd)
      * a transformer Fn to evolve an element.style.
      * USAGE:
-     *  let Transforms = require('../src/Attributes_Transforms')
+     *  let Transforms = require('../src/Attr_Trnsfrms')
      *  let trnsfrm = Transforms.Attr; // STR.key -> STR.val -> DCT.CSD
      *  let trnsfrm_backgroundColor = trnsfrmAttr('backgroundColor');
      *  let _backgroundColor = trnsfrm_backgroundColor;
@@ -39,5 +39,5 @@ let Attr = R.curry(
     (key, val) => {
         return {[key]: R.always(val)}
     });
-module.exports.bgColor = bgColor; // ( STR.color -> Fn.trnsfrm_backgoundColor )
-module.exports.Attr = Attr; // ( STR.color -> Fn.ttrnsfrm_backgoundColor )
+module.exports.bgColor = Attr('backgroundColor'); // ( STR.Valu -> Fn.trnsfrm_backgroundColor )
+module.exports.Attr = Attr; // ( STR.color -> Fn.trnsfrm_backgroundColor )

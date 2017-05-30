@@ -36,7 +36,7 @@ let _CVList = require('./CSpc/src/SELECT_ChptVerses')._CVList
     , fontSize: R.always('70%')
     },
  */
-let EVOLVE_CSD = require('./SSpc/src/EVOLVE_Style').EVOLVE_CSD
+let EVOLVE_CSD = require('./SSpc/src/EVOLVE_CSD').EVOLVE_CSD
 ; //  Fn( OBJ_trnsfrms -> CSD_new ) IS EVOLVE() w/ already partialed DfltCSD
 
 /**
