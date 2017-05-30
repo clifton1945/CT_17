@@ -34,11 +34,10 @@ let Attr = R.curry(
      *  let trnsfrm_backgroundColor = trnsfrmAttr('backgroundColor');
      *  let _backgroundColor = trnsfrm_backgroundColor;
      *  // now use the Fn by
-     *  evolve(trnsfrm_backgroundColor('green'), Dflt_CSD
+     *  evolve(trnsfrm_backgroundColor('green'), Dflt_CSD; // ->  {backgroundColor: "green", opacity: '1', fontSize: '100%'}
      */
     (key, val) => {
         return {[key]: R.always(val)}
     });
-
-module.exports.bgColor = bgColor; // ( STR.color -> Fn.transformerToEvolveBackgroundColor )
-module.exports.Attr = Attr; // ( STR.color -> Fn.transformerToEvolveBackgroundColor )
+module.exports.bgColor = bgColor; // ( STR.color -> Fn.trnsfrm_backgoundColor )
+module.exports.Attr = Attr; // ( STR.color -> Fn.ttrnsfrm_backgoundColor )
