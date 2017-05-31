@@ -62,7 +62,7 @@ describe(`CUT-> EVOLVE_Dflt:: is the partial form Fn: EVOLVE_Dflt(  DCT.FN -> DC
         ;
     });
     it(`expects a different trnsfrmFn to return a different Value`, function () {
-        let trnsfrm_bgColor = require('../src/Attr_Trnsfrms').bgColor;
+        let trnsfrm_bgColor = require('../src/TRNSFRM_Attr').bgColor;
         let EVOLVE_DfltD_bgColor;
         EVOLVE_DfltD_bgColor = EVOLVE_Dflt(trnsfrm_bgColor('blue'));
         expect(EVOLVE_DfltD_bgColor.backgroundColor).is.equal('blue');

@@ -7,10 +7,13 @@ let R = require('ramda')
 ;
 let EVOLVE = curry(
     /**
-     *  ..... EVOLVE_CSD:: DCT -> ( DCT -> DCT )
-     *      DCT.dfltCSD -> ( DCT.csdTrnsfrm -> DCT.newCSD )
-     *  CONTEXT: the fully evolved form of this arity:2 Function RETURNS a new CSD.
-     *  BUT EVOLVE_Dflt form is a partialed, arity:1, form; is the more useful form:
+     *  ..... EVOLVE_CSD::  DCT.dfltCSD -> ( DCT.csdTrnsfrm -> DCT.newCSD ) RETURNS a CSD,
+     *      CSS Style Declaration, for USE to update an Element.style.
+     *
+     *  CONTEXT:
+     *  EVOLVE_CSD is the fully evolved form of this Fn arity:2 RETURNS a new CSD.
+     *  BUT
+     *  EVOLVE_Dflt is the partialed form of this Fn arity:1 is the more useful form:
      *      It seeks a different csdTrnsfrm each invoking.
      *
      * @param dfltCSD
@@ -30,8 +33,8 @@ let EVOLVE = curry(
     (dfltCSD, csdTrnsfrm) => R.evolve(csdTrnsfrm, dfltCSD)
 );
 /**
- *  ..... EVOLVE_Dflt: ( DCT -> DCT )
- *      ( DCT.csdTrnsfrm -> DCT.newCSD )
+ *  ..... EVOLVE_Dflt: RETURNS a CSD. ( DCT.csdTrnsfrm -> DCT.newCSD )
+ *
  *  CONTEXT: the partialed form of this arity:1 Fn:EVOLVE returns a Fn -> CSD.
  *  the dflt_CSD is coded in.
  *  It is the more useful form:
