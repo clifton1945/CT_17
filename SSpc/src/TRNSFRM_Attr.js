@@ -11,9 +11,10 @@ let R = require('ramda')
 let Attr = R.curry(
     /**
      *  ..... TRNSFRM_Attr[arity:2] STR.key -> ( STR.val -> DICT.csd )
-     * arity:2 RETURNS a transformer Fn to evolve an element.style.
+     * RETURNS a transformer Fn to evolve an element.style.
+     *
      * USAGE:
-     *  let Trnsfrms = require('../src/TRNSFRM_Attr')
+     *  let TRNSFRM = require('../src/TRNSFRM_Attr')
      *  let TRNSFRM_Attr = Trnsfrms.Attr; // STR.key -> ( STR.val -> DCT.CSD )
      *  let TRNSFRM_backgroundColor = TRNSFRM_Attr('backgroundColor');
      *  // now use the Fn

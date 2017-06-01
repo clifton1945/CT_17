@@ -16,8 +16,8 @@ let chai = require('chai')
     // , should = chai.should()
 ;
 
-let RSpace_SizeDict = require('../src/evolve_SizesDict').fromArray;
-let RSpcNdx = require('../src/revise_ndxRSpc'); // OBJ.rSpcSizes -> ( N.cSpcNdx -> N.RSpcNdx )
+let RSpace_SizeDict = require('../RSpc/src/RESIZE_Rspc').fromArray;
+let RSpcNdx = require('./DEPR_revise_ndxRSpc'); // OBJ.rSpcSizes -> ( N.cSpcNdx -> N.RSpcNdx )
 
 context(`An Element's RSpace_Indices::
     RETURNS its RSpc_Index 
