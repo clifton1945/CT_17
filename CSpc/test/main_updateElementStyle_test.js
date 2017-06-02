@@ -11,7 +11,7 @@ let R = require('ramda')
 ;
 
 let chai = require('chai')
-    , should = chai.should()
+    // , should = chai.should()
     , expect = chai.expect
 ;
 
