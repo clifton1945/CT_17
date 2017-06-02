@@ -8,10 +8,10 @@ let R = require('ramda')
     , curry = R.curry
 ;
 
-const _CVList = curry(
+const _spansNL = curry(
     /**
-     *  _CVList:: Fn(DOC -> LIST)
+     *  _spansNL:: Fn(DOC -> LIST)
      */
     doc => doc.querySelectorAll('.chptr span')
 );
-module.exports._CVList = _CVList;
+module.exports._spansNL = _spansNL;
