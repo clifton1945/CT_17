@@ -13,10 +13,11 @@ let context = describe
 let chai = require('chai')
     , expect = chai.expect
 ;
-let iSuite = context(`RESIZE_: Using different arrangements of arity:2 params fromChptSpace, returns Functions: RESIZE_fromSize, RESIZE_fromArray, RESIZE_fromFocus
+chai.should();
+context(`RESIZE_ returns Functions to RESIZE - rebuild - the Rspc DICT of Read Class sizes - lengths.
         `, function () {
 
-    describe(`RESIZE_fromSize  returns Fn (  ndx_focus -> RESIZE_fromSize )     given partial: size_chpr. `, function () {
+    describe(`RESIZE_fromSize  returns Fn (  ndx_focus -> RESIZE_fromSize ) given partial: size_chpr. `, function () {
 
         let RESIZE_fromSize = require('../src/RESIZE_Rspc').fromSize; // size_chpr -> (  ndx_focus -> RESIZE_in_RSpc )
 
@@ -25,7 +26,7 @@ let iSuite = context(`RESIZE_: Using different arrangements of arity:2 params fr
             _CUT = RESIZE_fromSize(5);
         });
         it(`should RESIZE RspcSizes given a fixed CspcSize: 5`, () => {
-            expect(_CUT(0)).is.deep.equal({pst: 0, cur: 1, fut: 4});
+            _CUT(0).should.deep.equal({pst: 0, cur: 1, fut: 4});
             expect(_CUT(1)).is.deep.equal({pst: 1, cur: 1, fut: 3});
             expect(_CUT(2)).is.deep.equal({pst: 2, cur: 1, fut: 2});
             expect(_CUT(3)).is.deep.equal({pst: 3, cur: 1, fut: 1});

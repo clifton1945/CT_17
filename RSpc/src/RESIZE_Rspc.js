@@ -23,7 +23,7 @@ const RESIZE_ = curry(
      * let RESIZE_fromfromFocus = require('...path/RESIZE_').fromFocus(2);
      */
     (size_chpr, ndx_focus) => { // N|ARR -> N -> DICT
-        let dflt = {pst: 0, cur: 0, fut: 0}; // NOTE: I am embedding this constant. Shouldn't I retrieve It ? ??
+        let dflt = {pst: 0, cur: 1, fut: 0}; // NOTE: I am embedding this constant. Shouldn't I retrieve It ? ??
         let trnsfrms = { // NOTE here I embedding these transforms correctly; they are, in fact, the heart of the function.
             pst: (ndx_focus < 0 || ndx_focus >= size_chpr) ? 0 : always(ndx_focus),
             cur: (ndx_focus < 0 ) ? 0 : always(1),
