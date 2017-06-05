@@ -13,60 +13,69 @@ let chai = require('chai')
     , expect = chai.expect
 ;
 
-describe(`CUT-> EVOLVE:: is the full form Fn: EVOLVE_CSD( DCT.CSD -> ( DCT.FN -> DCT.CSD )
-    which RETURNS-> an evolved copy of a CSD.
-     USAGE: the resultant EVOLVED CSD typically is applied to some verse.
+describe(`CUT-> EVOLVE:: is the full form arity:2 form Fn: DCT.CSD -> ( DCT.TRNSFRMS -> DCT.CSD )
+    which RETURNS-> an evolved copy of the param:DCT.CSD.
+    
+     USAGE: typical use it in a partialed arity:1 form: 
+        EVOL_aStyle partialed w/ DCT.TRNSFRMS
+        EVOL_aCSD   partialed w/ DCT.CSD
     `, function () {
 
-    let EVOLVE = require('../src/EVOLVE_CSD.js').EVOLVE_CSD; //Fn( DCT.trnsfrmr -> DCT.styleCSD -> )
+    let EVOLVE = require('../src/EVOLVE_CSD.js').EVOLVE; //Fn(DCT.CSD ->  DCT.TRNSFRM -> DCT.CSD -> )
 
     beforeEach(function () {
-        this.DfltCSD = require('../Dflt_CSD').DfltCSD;
-        this.transformFn = {backgroundColor: R.always('yellow'), opacity: R.always('0.5')};
-        this.Attr_Trnsfrm = require('../Dflt_CSD');
-        this.EVOLVE = EVOLVE;
-        this.CSD = EVOLVE(this.DfltCSD, this.transformFn);
+        this.STUB_CSD = require('../Dflt_CSD');
+        this.STUB_TRNSFRMR = {backgroundColor: R.always('yellow'), opacity: R.always('0.5')};
+        this.CUT = EVOLVE;
+        this.CSD = R.evolve(this.STUB_TRNSFRMR, this.STUB_CSD);
     });
-
     it(`expects basic Fn to return a Function of arity:2`, function () {
-        expect(this.EVOLVE).is.a('Function').and.is.length(2);
+        expect(this.CUT).is.a('Function').and.is.length(2);
     });
-    it(`expects Fn(DCT) to return a Function of arity:1.`, function () {
-        expect(EVOLVE(this.DfltCSD)).is.a('Function').and.is.length(1);
+    it(`expects Fn(DCT, DCT) to return a CUT Object.`, function () {
+        this.CSD.should.be.a('Object')
+            .and.have.property('backgroundColor')
+            .and.equal('yellow')
+        // ;
     });
-    it(`expects Fn(DCT, DCT) to return a CSD Object.`, function () {
+});
+describe(`CUT-> EVOL_aStyle:: is a arity:1 form w/ a DCT.TRNSFRMS partialed:  CSD.in -> CSD.our.
+    `, function () {
+
+    let EVOL_aStyle = require('../src/EVOLVE_CSD').EVOL_aStyle; //Fn(DCT.trnsfrmr -> DCT.styleCSD )
+    beforeEach(function () {
+        this.STUB_CSD = require('../Dflt_CSD');
+        this.STUB_TRNSFRMR = {backgroundColor: R.always('yellow'), opacity: R.always('0.5')};
+        this.CUT = EVOL_aStyle(this.STUB_TRNSFRMR);
+        this.CSD = this.CUT(this.STUB_CSD);
+    });
+    it(`expects EVOL_aStyle to return a Function of arity:1`, function () {
+        expect(this.CUT).is.a('Function').and.is.length(1);
+    });
+    it(`expects EVOL_aStyle( DCT.CSD in ) to return CSD out.`, function () {
         this.CSD.should.be.a('Object')
             .and.have.property('backgroundColor')
             .and.equal('yellow')
         ;
     });
 });
-describe(`CUT-> EVOLVE_Dflt:: is the partial form Fn: EVOLVE_Dflt(  DCT.FN -> DCT.CSD ) which RETURNS an evolved copy of a CSD.
-     USAGE: the resultant Fn EXPECTS .
+describe(`CUT-> EVOL_aCSD:: is a arity:1 form w/ a DCT.TRNSFRMS partialed:  CSD.in -> CSD.our.
     `, function () {
-    let EVOLVE_Dflt = require('../src/EVOLVE_CSD').EVOLVE_Dflt; //Fn(DCT.trnsfrmr -> DCT.styleCSD )
-    beforeEach(function () {
-        // this.DfltCSD = require('../Dflt_CSD').DfltCSD;
-        this.transformFn = {backgroundColor: R.always('yellow'), opacity: R.always('0.5')};
-        this.EVOLVE_Dflt = EVOLVE_Dflt;
-        this.CSD = EVOLVE_Dflt(this.transformFn);
-    });
 
-    it(`expects basic Fn to return a Function of arity:1`, function () {
-        expect(EVOLVE_Dflt).is.a('Function').and.is.length(1);
+    let EVOL_aCSD = require('../src/EVOLVE_CSD').EVOL_aCSD; //Fn(DCT.trnsfrmr -> DCT.styleCSD )
+    beforeEach(function () {
+        this.STUB_CSD = require('../Dflt_CSD');
+        this.STUB_TRNSFRMR = {backgroundColor: R.always('yellow'), opacity: R.always('0.5')};
+        this.CUT = EVOL_aCSD(this.STUB_CSD);
+        this.CSD = this.CUT(this.STUB_TRNSFRMR);
     });
-    it(`expects Fn( DCT.trnsfrm ) to return a CSD Object.`, function () {
+    it(`expects EVOL_aCSD to return a Function of arity:1`, function () {
+        expect(this.CUT).is.a('Function').and.is.length(1);
+    });
+    it(`expects EVOL_aCSD( DCT.CSD in ) to return CSD out.`, function () {
         this.CSD.should.be.a('Object')
-            .and.have.property('backgroundColor')
-            .and.equal('yellow')
+            .and.have.property('opacity')
+            .and.equal('0.5')
         ;
-    });
-    it(`expects a different trnsfrmFn to return a different Value`, function () {
-        let trnsfrm_bgColor = require('../src/TRNSFRM_Attr').bgColor;
-        let EVOLVE_DfltD_bgColor;
-        EVOLVE_DfltD_bgColor = EVOLVE_Dflt(trnsfrm_bgColor('blue'));
-        expect(EVOLVE_DfltD_bgColor.backgroundColor).is.equal('blue');
-        EVOLVE_DfltD_bgColor = EVOLVE_Dflt(trnsfrm_bgColor('red'));
-        expect(EVOLVE_DfltD_bgColor.backgroundColor).is.equal('red');
     });
 });
