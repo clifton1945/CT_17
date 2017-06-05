@@ -21,7 +21,7 @@ describe(`CUT-> EVOLVE:: is the full form arity:2 form Fn: DCT.CSD -> ( DCT.TRNS
         EVOL_aCSD   partialed w/ DCT.CSD
     `, function () {
 
-    let EVOLVE = require('../src/EVOLVE_CSD.js').EVOLVE; //Fn(DCT.CSD ->  DCT.TRNSFRM -> DCT.CSD -> )
+    let EVOLVE = require('../src/EVOLVE_Style.js').EVOLVE; //Fn(DCT.CSD ->  DCT.TRNSFRM -> DCT.CSD -> )
 
     beforeEach(function () {
         this.STUB_CSD = require('../Dflt_CSD');
@@ -42,7 +42,7 @@ describe(`CUT-> EVOLVE:: is the full form arity:2 form Fn: DCT.CSD -> ( DCT.TRNS
 describe(`CUT-> EVOL_aStyle:: is a arity:1 form w/ a DCT.TRNSFRMS partialed:  CSD.in -> CSD.our.
     `, function () {
 
-    let EVOL_aStyle = require('../src/EVOLVE_CSD').EVOL_aStyle; //Fn(DCT.trnsfrmr -> DCT.styleCSD )
+    let EVOL_aStyle = require('../src/EVOLVE_Style').EVOL_aStyle; //Fn(DCT.trnsfrmr -> DCT.styleCSD )
     beforeEach(function () {
         this.STUB_CSD = require('../Dflt_CSD');
         this.STUB_TRNSFRMR = {backgroundColor: R.always('yellow'), opacity: R.always('0.5')};
@@ -62,7 +62,7 @@ describe(`CUT-> EVOL_aStyle:: is a arity:1 form w/ a DCT.TRNSFRMS partialed:  CS
 describe(`CUT-> EVOL_aCSD:: is a arity:1 form w/ a DCT.TRNSFRMS partialed:  CSD.in -> CSD.our.
     `, function () {
 
-    let EVOL_aCSD = require('../src/EVOLVE_CSD').EVOL_aCSD; //Fn(DCT.trnsfrmr -> DCT.styleCSD )
+    let EVOL_aCSD = require('../src/EVOLVE_Style').EVOL_aCSD; //Fn(DCT.trnsfrmr -> DCT.styleCSD )
     beforeEach(function () {
         this.STUB_CSD = require('../Dflt_CSD');
         this.STUB_TRNSFRMR = {backgroundColor: R.always('yellow'), opacity: R.always('0.5')};

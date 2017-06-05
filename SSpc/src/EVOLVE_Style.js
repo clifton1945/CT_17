@@ -1,6 +1,6 @@
 
 /**
- * EVOLVE_CSD.js
+ * EVOLVE_Style.js
  */
 "use strict";
 let R = require('ramda')
