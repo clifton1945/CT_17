@@ -71,11 +71,28 @@ let _chptVersesNL = require('./CSpc/src/SELECT_ChptVerses')._spansNL
 //
 // // let x = document.addEventListener("keydown", init_keyActions(()=>{}), false);//BREAKS
 
+// Get all descendants that match selector
+// Note: NodeList is array-like so you can run ramda list functions on it.
+//  cssQuery :: String -> Node -> NodeList
+// let cssQuery = R.invoker(1, 'querySelectorAll');
+//
+// // Mutate style properties on an element
+// //  setStyle :: String -> String -> Element -> Element
+// let setStyle = R.assoc('style');
+//
+// // Make all paragraphs and anchors red
+// R.pipe(
+//     cssQuery('p'),
+//     R.map(setStyle('color', 'red'))
+// )(document);
+// //
+
+
 // CODE UNDER TEST
 // invokeSelectorAll does get a NL
 let invokeSelectorAll = R.invoker(1, 'querySelectorAll');
 let verseNL = invokeSelectorAll('.chptr span')(document);
-// mocha.describe(`:: `, () => {
+// describe(`:: `, () => {
 //     it(`should.BREAK.`, () => {
 //         (1).should.equal(0);
 //     });
