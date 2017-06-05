@@ -15,31 +15,55 @@ context(` Fn: UPDATE_Elem.js
         UPDATE(aVerse) // -> an updated Verse
      `, function () {
     //CODE UNDER TEST
-    let UPDATE_ = require('../src/UPDATE_Elem');
-    let UPDATE_anElem = UPDATE_.anElem;
-    let CUT;
-    beforeEach(function () {
-        this.STUB_CSD = {"opacity": "0.5", "bgColor": "green"};
-        CUT = UPDATE_anElem(this.STUB_CSD);
-    });
+    // let UPDATE_ = require('../src/UPDATE_Elem');
+    // let UPDATE_anElem = UPDATE_.anElem;
+    // let CUT;
 
-    describe(`FnCUT: UPDATE_anElem = DICT:CSD -> ( ELEM.CSpc -> ELEM.CSpc )
+    describe(`{UPDATE_} Fn:(DICT.CSD)(ELEM) {UPDATE_} -> ELEM
         `, function () {
-        // CODE UNDER TEST
-        let UPDATE_anElem = require('../src/UPDATE_Elem').anElem;
-        it(`should.be a Fn of arity:1 and Expect an Element.`, () => {
-            CUT.should.be.a('Function').and.is.length(1);
+        beforeEach(function () {
+            this.STUB_CSD = {"opacity": "0.5", "bgColor": "green"};
+            this.STUB_Elem = {style: {opacity: 1, bgColor: ''}};
+        });
+
+        let UPDATE_ = require('../src/UPDATE_Elem');
+        it(`should.be a Fn of arity:2 and Expect an Element.`, () => {
+            UPDATE_.should.be.a('Function').and.is.length(2);
         });
     });
-    describe(`FnCUT: UPDATE_anElem( ELEM.CSpc )  -> ELEM.CSpc)
+    describe(`{UPDATE_anElem} Fn:( ELEM) {UPDATE_anElem(DICT.CSD)} ->  ELEM 
         `, function () {
-        // CODE UNDER TEST
         beforeEach(function () {
+            this.STUB_CSD = {"opacity": "0.5", "bgColor": "green"};
             this.STUB_Elem = {style: {opacity: 1, bgColor: ''}};
-            this.Elem = CUT(this.STUB_Elem);
         });
-        it(`should.be a Elem w/ a new style dictionary: .`, function () {
-            this.Elem.should.be.a('Object')
+
+        let UPDATE_anElem = require('../src/UPDATE_Elem').anElem({"opacity": "0.5", "bgColor": "green"});
+
+        it(`should.be a Fn of arity:1 and Expect an Element.`, () => {
+            UPDATE_anElem.should.be.a('Function').and.is.length(1);
+        });
+        it(`should.produce a new Elem given an Element: .`, function () {
+            UPDATE_anElem(this.STUB_Elem).should.be.a('Object')
+                .and.have.property('style')
+                .and.deep.equal({"opacity": "0.5", "bgColor": "green"});
+        });
+
+    });
+    describe(`{UPDATE_byCSD} Fn:( DICT.CSD) {UPDATE_anElem( ELEM)}  -> ELEM
+        `, function () {
+        beforeEach(function () {
+            this.STUB_CSD = {"opacity": "0.5", "bgColor": "green"};
+            this.STUB_Elem = {style: {opacity: 1, bgColor: ''}};
+        });
+
+        let UPDATE_byCSD = require('../src/UPDATE_Elem').byCSD(this.STUB_Elem);
+        it(`should.be a Fn of arity:1 and Expect a CSD.`, () => {
+            UPDATE_byCSD.should.be.a('Function').and.is.length(1);
+        });
+        it(`should produce a new Elem given a CSD`, function () {
+            let RET = UPDATE_byCSD(this.STUB_CSD);
+            RET.should.be.a('Object')
                 .and.have.property('style')
                 .and.deep.equal({"opacity": "0.5", "bgColor": "green"});
         });

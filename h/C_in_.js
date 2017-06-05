@@ -8,7 +8,6 @@ const Both = (txt) => {
     Console(txt);
     Doc(txt);
 };
-ule.exports.Doc = Doc;
+module.exports.Doc = Doc;
 module.exports.Console = Console;
 module.exports.Both = Both;
-

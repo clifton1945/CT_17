@@ -26,5 +26,11 @@ let UPDATE_ = curry(
         //* now DEPRECATED -   BIG NOTE the UPDATE_ Fn REQUIRES I USE 'var' NOT 'let' TO WORK
     }
 );
-module.exports = UPDATE_; //@sig: DICT.CSD -> ELEM -> ELEM
-module.exports.anElem = curry(csd => UPDATE_(csd, R.__)); // DICT.CSD -> Fn( ELEM -> ELEM )
+
+module.exports = UPDATE_;       //`{UPDATE_} Fn:(DICT.CSD)(ELEM) {UPDATE_} -> ELEM
+module.exports.anElem = curry(
+    csd => UPDATE_(csd)
+); //{UPDATE_anElem} Fn:( ELEM) {UPDATE_anElem(DICT.CSD)} ->  ELEM
+module.exports.byCSD = curry(
+    el => UPDATE_(R.__, el)
+); // {UPDATE_byCSD} Fn:( DICT.CSD) {UPDATE_anElem( ELEM)}  -> ELEM
