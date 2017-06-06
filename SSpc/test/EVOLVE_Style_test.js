@@ -21,7 +21,7 @@ describe(`CUT-> EVOLVE:: is the full form arity:2 form Fn: DCT.CSD -> ( DCT.TRNS
         EVOL_aCSD   partialed w/ DCT.CSD
     `, function () {
 
-    let EVOLVE = require('../src/EVOLVE_Style.js').EVOLVE; //Fn(DCT.CSD ->  DCT.TRNSFRM -> DCT.CSD -> )
+    let EVOLVE = require('../src/EVOLVE_Style.js').EVOLVE; //Fn(DCT.CSD ->  DCT.TRNSFRM -> {} -> DCT.CSD -> )
 
     beforeEach(function () {
         this.STUB_CSD = require('../Dflt_CSD');
