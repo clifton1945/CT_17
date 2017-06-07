@@ -79,3 +79,24 @@ describe(`CUT-> EVOL_aCSD:: is a arity:1 form w/ a DCT.TRNSFRMS partialed:  CSD.
         ;
     });
 });
+
+describe.only(`CUT-> CSD_byTrnsfrm:: is a arity:1 form w/ a DCT.TRNSFRMS partialed:  CSD.in -> CSD.our.
+    `, function () {
+
+    let CSD_byTrnsfrm = require('../src/EVOLVE_Style').CSD_byTrnsfrm; //Fn(DCT.trnsfrmr -> DCT.styleCSD )
+    beforeEach(function () {
+        this.STUB_CSD = require('../Dflt_CSD');
+        this.STUB_TRNSFRMR = {backgroundColor: R.always('yellow'), opacity: R.always('0.5')};
+        this.CUT = CSD_byTrnsfrm(this.STUB_TRNSFRMR);
+        this.CSD = this.CUT(this.STUB_CSD);
+    });
+    it(`expects CSD_byTrnsfrm to return a Function of arity:1`, function () {
+        expect(this.CUT).is.a('Function').and.is.length(1);
+    });
+    it(`expects CSD_byTrnsfrm( DCT.CSD in ) to return CSD out.`, function () {
+        this.CSD.should.be.a('Object')
+            .and.have.property('backgroundColor')
+            .and.equal('yellow')
+        ;
+    });
+});

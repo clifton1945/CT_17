@@ -6,11 +6,9 @@
 
 let R = require('ramda')
     , curry = R.curry
+    , pipe = R.pipe
 ;
 
-/**
- *
- */
 let UPDATE_ = curry(
     /**
      * ..... UPDATE_():; DICT -> ELEM -> ELEM is the base Fn that updates EACH  Element's style.
@@ -37,4 +35,15 @@ module.exports.anElem = curry(
 );                          //(CSD) {Fn:UPDATE_((ELEM))} -> ELEM
 module.exports.byCSD = curry(
     el => UPDATE_(R.__, el)
-);                          // (CSD) {Fn:UPDATE_((ELEM))} -> ELEM
+);                          // (ELEM) {Fn:UPDATE_((CSD))} -> ELEM
+// NEW as of 170607
+let _ELEM = UPDATE_;
+let CSD_byTrnsfrm = require('../../SSpc/src/EVOLVE_Style');
+module.exports._ELEM = _ELEM;   // (CSD) (ELEM) {Fn:_ELEM} -> ELEM
+
+module.exports._byCSD = curry(
+    el => _ELEM(R.__, el)
+);                          // (ELEM) {Fn:_ELEM((CSD))} -> ELEM
+module.exports._byTrnsfrm = curry(
+    el => _ELEM(R.__, el)
+);                          // (ELEM) {Fn:_ELEM((CSD))} -> ELEM
