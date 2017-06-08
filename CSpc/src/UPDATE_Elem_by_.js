@@ -1,5 +1,5 @@
 /**
- * UPDATE_Element_test
+ * UPDATE_Elem_by_.js
  * DO NOT DELETE - the function form is good; do not loose it! 170605
  */
 "use strict";
@@ -12,7 +12,7 @@ let R = require('ramda')
 let UPDATE_ = curry(
     /**
      * ..... UPDATE_():; DICT -> ELEM -> ELEM is the base Fn that updates EACH  Element's style.
-     * SYMB: {UPDATE_anElem} Fn:( ELEM) {UPDATE_anElem(DICT.CSD)} ->  ELEM
+     * SYMB: {UPDATE_byCsd} Fn:( ELEM) {UPDATE_byCsd(DICT.CSD)} ->  ELEM
      *
      * @param a_csd  : a DICT of the new style.CSD
      * @param elem  : a HTML Elem WITH a Style attribute
@@ -30,20 +30,19 @@ let UPDATE_ = curry(
  */
 module.exports = UPDATE_;   // (CSD) (ELEM) {Fn:UPDATE_} -> ELEM
 
-module.exports.anElem = curry(
+module.exports.byCsd = curry(
     csd => UPDATE_(csd)
 );                          //(CSD) {Fn:UPDATE_((ELEM))} -> ELEM
-module.exports.byCSD = curry(
+module.exports.byElem = curry(
     el => UPDATE_(R.__, el)
 );                          // (ELEM) {Fn:UPDATE_((CSD))} -> ELEM
 // NEW as of 170607
-let _ELEM = UPDATE_;
-let CSD_byTrnsfrm = require('../../SSpc/src/EVOLVE_Style');
-module.exports._ELEM = _ELEM;   // (CSD) (ELEM) {Fn:_ELEM} -> ELEM
+module.exports._ELEM = UPDATE_;
 
-module.exports._byCSD = curry(
-    el => _ELEM(R.__, el)
-);                          // (ELEM) {Fn:_ELEM((CSD))} -> ELEM
+let STUB_CSD = {"opacity": "0.5", "backgroundColor": "blue"};
+// let CSD_byTrnsfrm = require('../../SSpc/src/EVOLVE_Style').CSD_byTrnsfrm;
+
 module.exports._byTrnsfrm = curry(
-    el => _ELEM(R.__, el)
-);                          // (ELEM) {Fn:_ELEM((CSD))} -> ELEM
+    UPDATE_(STUB_CSD, R.__)
+); //ACTUAL  (ELEM) {Fn:_ELEM_byTrnsfrm( aCSD ))} -> ELEM
+// ); //DESIRED  (ELEM) {Fn:_ELEM_byTrnsfrm(Fn:(Trnsfrm))} -> ELEM

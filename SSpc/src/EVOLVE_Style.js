@@ -18,4 +18,4 @@ module.exports.EVOL_aStyle = curry(
 
 // TODO maybe RENAME  CSD_byTrnsfrm
 module.exports.CSD_byTrnsfrm = curry(
-    csd_trnsfrm => evolve(csd_trnsfrm));        // ( csdD )=>{EVOL_aTrnsfrm}(trnsfrmD)} -> csdD
+    csd_trnsfrm => evolve(csd_trnsfrm));      // ( csdD )=>{EVOL_aTrnsfrm}(trnsfrmD)} -> csdD
