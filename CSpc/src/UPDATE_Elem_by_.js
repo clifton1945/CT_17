@@ -1,5 +1,5 @@
 /**
- * UPDATE_Element_test
+ * UPDATE_Elem_by_.js
  * DO NOT DELETE - the function form is good; do not loose it! 170605
  */
 "use strict";
@@ -12,7 +12,7 @@ let R = require('ramda')
 let UPDATE_ = curry(
     /**
      * ..... UPDATE_():; DICT -> ELEM -> ELEM is the base Fn that updates EACH  Element's style.
-     * SYMB: {UPDATE_byElem} Fn:( ELEM) {UPDATE_byElem(DICT.CSD)} ->  ELEM
+     * SYMB: {UPDATE_byCsd} Fn:( ELEM) {UPDATE_byCsd(DICT.CSD)} ->  ELEM
      *
      * @param a_csd  : a DICT of the new style.CSD
      * @param elem  : a HTML Elem WITH a Style attribute
@@ -30,10 +30,10 @@ let UPDATE_ = curry(
  */
 module.exports = UPDATE_;   // (CSD) (ELEM) {Fn:UPDATE_} -> ELEM
 
-module.exports.byElem = curry(
+module.exports.byCsd = curry(
     csd => UPDATE_(csd)
 );                          //(CSD) {Fn:UPDATE_((ELEM))} -> ELEM
-module.exports.byCSD = curry(
+module.exports.byElem = curry(
     el => UPDATE_(R.__, el)
 );                          // (ELEM) {Fn:UPDATE_((CSD))} -> ELEM
 // NEW as of 170607
