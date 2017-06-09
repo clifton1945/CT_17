@@ -8,14 +8,13 @@ let R = require('ramda')
     , curry = R.curry
 ;
 
-module.exports.EVOLVE = evolve;             // (csdTrnsfrmD)(csdD){ EVOLVE_} -> csdD
+module.exports.EVOLVE_Style = evolve;       // (D.csdTrnsfrmD)(D.D.Csd){ EVOLVE_} -> D.D.Csd
 
-module.exports.EVOL_aCSD = curry(
-    csd => evolve(R.__, csd));              // ( trnsfrmD )=>{ EVOL_aCSD }(aCSD) -> csdD
+module.exports._frmCsd = curry(
+    csd_trnsfrm => evolve(csd_trnsfrm));    // ( D.Csd )=>{EVOL_aStyle}(D.Trnsfrm)} -> D.Csd
 
-module.exports.EVOL_aStyle = curry(
-    csd_trnsfrm => evolve(csd_trnsfrm));    // ( csdD )=>{EVOL_aStyle}(trnsfrmD)} -> csdD
+module.exports._frmTrnsfrm = curry(
+    csd => evolve(R.__, csd));              // ( D.Trnsfrm )=>{ {_frmCsd} (aCSD) } -> D.Csd
 
-// TODO maybe RENAME  CSD_byTrnsfrm
-module.exports.CSD_byTrnsfrm = curry(
-    csd_trnsfrm => evolve(csd_trnsfrm));      // ( csdD )=>{EVOL_aTrnsfrm}(trnsfrmD)} -> csdD
+module.exports._frmEvolTrnsfrm = curry(
+    evol_trnsfrm => evolve(evol_trnsfrm));  // ( D.Csd )=>{??????} -> D.Csd

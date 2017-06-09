@@ -8,22 +8,16 @@ let R = require('ramda')
     // , always = R.always
     // , evolve = R.evolve
 ;
-let Attr = R.curry(
+let TRNSFRM_ = R.curry(
     /**
      *  ..... TRNSFRM_Attr[arity:2] STR.key -> ( STR.val -> DICT.csd )
-     * RETURNS a transformer Fn to evolve an element.style.
+     * IS a transformer Fn artity:2  to RETURN a D.Trnsfrm for use in evolving a D.Csd
      *
-     * USAGE:
-     *  let TRNSFRM = require('../src/TRNSFRM_Attr')
-     *  let TRNSFRM_Attr = Trnsfrms.Attr; // STR.key -> ( STR.val -> DCT.CSD )
-     *  let TRNSFRM_backgroundColor = TRNSFRM_Attr('backgroundColor');
-     *  // now use the Fn
-     *  evolve(TRNSFRM_backgroundColor('green'), Dflt_CSD; // ->  {backgroundColor: "green", opacity: '1', fontSize: '100%'}
      */
     (key, val) => {
         return {[key]: R.always(val)}
     }
 );
-module.exports.Attr = Attr; // ( STR.key -> STR.valu -> Fn.TRNSFRM_Key )
-module.exports.bgColor = Attr('backgroundColor'); // ( STR.color -> Fn.TRNSFRM_backgroundColor )
-module.exports.opacity = Attr('opacity'); // ( STR.valu -> Fn.TRNSFRM_backgroundColor )
+module.exports.TRNSFRM_ = TRNSFRM_; // ( STR.key ) (STR.valu ) { TRNSFRM_ } -> Fn.TRNSFRM_Key )
+module.exports.by_backgroundColor = TRNSFRM_('backgroundColor'); // ( STR.color -> Fn.TRNSFRM_backgroundColor )
+module.exports.by_opacity = TRNSFRM_('opacity'); // ( STR.valu -> Fn.TRNSFRM_backgroundColor )
