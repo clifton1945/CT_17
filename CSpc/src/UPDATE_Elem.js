@@ -28,21 +28,18 @@ let UPDATE_ = curry(
 /**
  * //`UPDATE_ = (CSD)(ELEM) {Fn:UPDATE_} -> ELEM
  */
-module.exports = UPDATE_;   // (CSD) (ELEM) {Fn:UPDATE_} -> ELEM
+module.exports.UPDATE_ = UPDATE_;  // (CSD) (ELEM) {Fn:UPDATE_} -> ELEM
+module.exports.UPDATE_Elem = UPDATE_;   // (CSD) (ELEM) {Fn:UPDATE_} -> ELEM
 
-module.exports.byCsd = curry(
+module.exports._byCsd = curry(
     csd => UPDATE_(csd)
 );                          //(CSD) {Fn:UPDATE_((ELEM))} -> ELEM
-module.exports.byElem = curry(
+module.exports._byElem = curry(
     el => UPDATE_(R.__, el)
 );                          // (ELEM) {Fn:UPDATE_((CSD))} -> ELEM
-// NEW as of 170607
-module.exports._ELEM = UPDATE_;
 
 let STUB_CSD = {"opacity": "0.5", "backgroundColor": "blue"};
-// let CSD_byTrnsfrm = require('../../SSpc/src/EVOLVE_Style').CSD_byTrnsfrm;
 
 module.exports._byTrnsfrm = curry(
     UPDATE_(STUB_CSD, R.__)
 ); //ACTUAL  (ELEM) {Fn:_ELEM_byTrnsfrm( aCSD ))} -> ELEM
-// ); //DESIRED  (ELEM) {Fn:_ELEM_byTrnsfrm(Fn:(Trnsfrm))} -> ELEM

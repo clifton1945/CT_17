@@ -14,7 +14,7 @@ let chai = require('chai')
     , expect = chai.expect
 ;
 chai.should();
-context(`RESIZE_ returns Functions to RESIZE - rebuild - the Rspc DICT of Read Class sizes - lengths.
+context(`RESIZE_inRSpc returns Functions to RESIZE - rebuild - the Rspc DICT of Read Class sizes - lengths.
         `, function () {
 
     describe(`RESIZE_fromSize  returns Fn (  ndx_focus -> RESIZE_fromSize ) given partial: size_chpr. `, function () {

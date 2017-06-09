@@ -1,10 +1,5 @@
 /**
- * main.js
- */
-
-
-/**
- *
+ *  main.js
  * TODO  I am ready to implement a pipe of(EVOLVE_Csd, UPDATE_Elem) (TRNSFRM_Attr) -> new Elem.style.
  * NEXT: implement a EVOLVE_frmTrnsfrm FN with a partialed default CSD to always be acted upon by the Trnsfrm
  */
@@ -24,7 +19,7 @@ let R = require('ramda')
 
 // ************** MAIN ********
 let TRK = "wbSample/main.js";
-C_in_Both("< IN  " + TRK);
+// C_in_console("< IN  " + TRK);
 
 // ...................... get the CVList of Chapter Verses
 // let _chptVersesNL = require('./CSpc/src/SELECT_ChptVerses')._spansNL;
@@ -33,7 +28,7 @@ let invokeSelectorAll = R.invoker(1, 'querySelectorAll');
 let verseNL = invokeSelectorAll('.chptr span')(document);
 // CODE UNDER TEST
 let STUB_CSD = {"opacity": "0.5", "color": "blue"};
-let UPDATE_anElem = require('./CSpc/src/UPDATE_Elem_by_').byCsd;
+let UPDATE_anElem = require('./CSpc/src/UPDATE_Elem').UPDATE_;
 
 let CUT = pipe(UPDATE_anElem)(STUB_CSD);
 let retElem = CUT(verseNL[2]);

@@ -45,7 +45,7 @@ let CSD_trnsfrms = {
  * @param elem
  * @return Fn:  ELEM.style.propertyCS
  */
-let UPDATE_ElemStyle = require('../../CSpc/src/UPDATE_Elem_by_').updateStyle
+let UPDATE_ElemStyle = require('../../CSpc/src/UPDATE_Elem').updateStyle
 ; //  OBJ.CSD_trnsfrms -> ( ELEM.elem -> ELEM.style.propertyCSD )
 /**
  * ..... UPDATE_anElem::  ( ELEM.elem -> ELEM.elem w/ elem.style.propertyCSD )
