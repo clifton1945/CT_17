@@ -19,14 +19,14 @@ let R = require('ramda')
 
 // ************** MAIN ********
 let TRK = "wbSample/main.js";
-// C_in_console("< IN  " + TRK);
-
-// ...................... get the CVList of Chapter Verses
-let verseNL;
-verseNL = require('./CSpc/src/SELECT_ChptVerses')._spansNL(document);
+C_in_Console('  IN> ' + TRK);
 
 let invokeSelectorAll = R.invoker(1, 'querySelectorAll');
-// verseNL = invokeSelectorAll('.chptr span')(document);
+let verseNL;
+verseNL = invokeSelectorAll('.chptr span')(document);
+//verseNL = require('./CSpc/src/SELECT_ChptVerses')._spansNL(document);
+// ...................... get the CVList of Chapter Verses
+
 // CODE UNDER TEST
 let STUB_CSD = {"opacity": "0.5", "color": "blue"};
 
