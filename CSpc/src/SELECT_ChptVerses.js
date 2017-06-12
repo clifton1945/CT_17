@@ -8,10 +8,16 @@ let R = require('ramda')
     , curry = R.curry
 ;
 
-const _spansNL = curry(
+let _spansNL = curry(
     /**
-     *  _spansNL:: Fn(DOC -> LIST)
+     *  selectChptVerses_byQueryDocFN: Fn(DOC -> LIST)
+     *  select_DfltDivSpans: Fn(DOC -> LIST)
      */
-    doc => doc.querySelectorAll('.chptr span')
-);
+    function () {
+        let DfltSelector = require('./Dflt_CV_Selector');
+        let invokeSelectorAll = R.invoker(1, 'querySelectorAll');
+
+        return doc => doc.querySelectorAll('.chptr span')
+    });
+
 module.exports._spansNL = _spansNL;
