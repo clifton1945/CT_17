@@ -10,10 +10,7 @@ let chai = require('chai')
     , should = chai.should()
     , expect = chai.expect
 ;
-
-describe(`EVOLVE_Style.. are functions to return an evolved style.Csd OR functins that return one.`, () => {
-
-
+context(`EVOLVE_Style.. are functions to return an evolved style.Csd OR functins that return one.`, () => {
     before(function () {
         this.STUB_Csd = require('../../SSpc/Dflt_Csd');
         this.STUB_TRNSFRMR = {backgroundColor: R.always('yellow'), opacity: R.always('0.5')};
