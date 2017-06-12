@@ -22,14 +22,15 @@ let TRK = "wbSample/main.js";
 C_in_Console('  IN> ' + TRK);
 
 let verseNL;
+let CV_Selector_Dflt = require('./CSpc/src/Dflt_CV_Selector');
 let invokeSelectorAll = R.invoker(1, 'querySelectorAll');
-// verseNL = invokeSelectorAll('.chptr span')(document);
+verseNL = invokeSelectorAll(CV_Selector_Dflt)(document);
 let select_ChptVerses = require('./CSpc/src/SELECT_ChptVerses').SELECT_DivSpans;
-verseNL = select_ChptVerses(document);
+// verseNL = select_ChptVerses(document);
 // ...................... get the CVList of Chapter Verses
 
 // CODE UNDER TEST
-let STUB_CSD = {"opacity": "0.5", "color": "blue"};
+let STUB_CSD = {"opacity": "0.5", "color": "red"};
 
 let UPDATE_anElem = require('./CSpc/src/UPDATE_Elem').UPDATE_;
 
