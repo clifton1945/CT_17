@@ -3,4 +3,4 @@
  */
 "use strict";
 
-module.exports = ".chpt span";
+module.exports = ".chpt span"; // NOTE this is NOT the same a ".chpt, span" !!! ???

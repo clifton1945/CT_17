@@ -8,10 +8,14 @@ let R = require('ramda')
     , curry = R.curry
 ;
 
-const _spansNL = curry(
+let SELECT_DivSpans_useDflt = curry(
     /**
-     *  _spansNL:: Fn(DOC -> LIST)
+     *  selectChptVerses_byQueryDocFN: Fn(DOC -> LIST)
+     *  select_DfltDivSpans: Fn(DOC -> LIST)
      */
-    doc => doc.querySelectorAll('.chptr span')
-);
-module.exports._spansNL = _spansNL;
+    function (doc) {
+        let DfltSelector = require('./Dflt_CV_Selector');
+        return doc.querySelectorAll('.chpt, span'); // this should be a Fn arity:1
+    });
+
+module.exports.SELECT_DivSpans = SELECT_DivSpans_useDflt;
