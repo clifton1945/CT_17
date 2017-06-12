@@ -21,10 +21,11 @@ let R = require('ramda')
 let TRK = "wbSample/main.js";
 C_in_Console('  IN> ' + TRK);
 
-let invokeSelectorAll = R.invoker(1, 'querySelectorAll');
 let verseNL;
-verseNL = invokeSelectorAll('.chptr span')(document);
-//verseNL = require('./CSpc/src/SELECT_ChptVerses')._spansNL(document);
+let invokeSelectorAll = R.invoker(1, 'querySelectorAll');
+// verseNL = invokeSelectorAll('.chptr span')(document);
+let select_ChptVerses = require('./CSpc/src/SELECT_ChptVerses').SELECT_DivSpans;
+verseNL = select_ChptVerses(document);
 // ...................... get the CVList of Chapter Verses
 
 // CODE UNDER TEST
@@ -33,7 +34,7 @@ let STUB_CSD = {"opacity": "0.5", "color": "blue"};
 let UPDATE_anElem = require('./CSpc/src/UPDATE_Elem').UPDATE_;
 
 let CUT = pipe(UPDATE_anElem)(STUB_CSD);
-let retElem = CUT(verseNL[2]);
+let retElem = CUT(verseNL[1]);
 C_in_Both(`elem.style.color: ${retElem.style.color}`);
 
 C_in_Console(' OUT> ' + TRK);
