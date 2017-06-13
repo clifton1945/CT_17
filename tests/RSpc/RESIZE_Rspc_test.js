@@ -17,9 +17,10 @@ chai.should();
 context(`RESIZE_inRSpc returns Functions to RESIZE - rebuild - the Rspc DICT of Read Class sizes - lengths.
         `, function () {
 
+    //SOMEDAY  chnage names FROM fromNNNN TO usingNNNN or better
     describe(`RESIZE_fromSize  returns Fn (  ndx_focus -> RESIZE_fromSize ) given partial: size_chpr. `, function () {
 
-        let RESIZE_fromSize = require('../src/RESIZE_Rspc').fromSize; // size_chpr -> (  ndx_focus -> RESIZE_in_RSpc )
+        let RESIZE_fromSize = require('../../RSpc/src/RESIZE_Rspc').fromSize; // size_chpr -> (  ndx_focus -> RESIZE_in_RSpc )
 
         let _CUT;
         beforeEach(function () {
@@ -42,7 +43,7 @@ context(`RESIZE_inRSpc returns Functions to RESIZE - rebuild - the Rspc DICT of 
     });
     describe(`RESIZE_fromArray:: returns Fn (  ndx_focus -> RESIZE_fromArray )  given partial: array_chpr. `, function () {
 
-        let RESIZE_fromArray = require('../src/RESIZE_Rspc').fromArray; // chptArray -> (  ndx_focus -> RESIZE_in_RSpc )
+        let RESIZE_fromArray = require('../../RSpc/src/RESIZE_Rspc').fromArray; // chptArray -> (  ndx_focus -> RESIZE_in_RSpc )
 
         let _CUT;
         beforeEach(function () {
@@ -59,7 +60,7 @@ context(`RESIZE_inRSpc returns Functions to RESIZE - rebuild - the Rspc DICT of 
     });
     describe(`RESIZE_fromFocus: 3  returns Fn (  size_chpr -> RESIZE_fromFocus )  given partial: ndx_focus. `, function () {
 
-        let RESIZE_fromFocus = require('../src/RESIZE_Rspc').fromFocus; // ndx_focus -> ( chptArray -> RESIZE_in_RSpc )
+        let RESIZE_fromFocus = require('../../RSpc/src/RESIZE_Rspc').fromFocus; // ndx_focus -> ( chptArray -> RESIZE_in_RSpc )
         let _CUT;
         beforeEach(function () {
             let focusNdx = 3;
@@ -74,7 +75,7 @@ context(`RESIZE_inRSpc returns Functions to RESIZE - rebuild - the Rspc DICT of 
     });
     describe(`RESIZE_fromFocus: 1  returns Fn (  size_chpr -> RESIZE_fromFocus )  given partial: ndx_focus. `, function () {
 
-        let RESIZE_fromFocus = require('../src/RESIZE_Rspc').fromFocus; // ndx_focus -> ( chptArray -> RESIZE_in_RSpc )
+        let RESIZE_fromFocus = require('../../RSpc/src/RESIZE_Rspc').fromFocus; // ndx_focus -> ( chptArray -> RESIZE_in_RSpc )
         let _CUT;
         beforeEach(function () {
             let focusNdx = 1;

@@ -58,13 +58,8 @@ context(`    UPDATE_Elem progressively pipes in transformation code to apply to 
     describe(`{UPDATE_Elem:_byStylTrnfrm } Fn::( DCT.Trnfrm) -> {UPDATE_Elem_byStyleTrnfrm( DCT.ELEM)}  -> DCT.ELEM
         pipes a StyleTrnfrm  into UPDATE_Elem   
         `, function () {
-        // THESE ARE hard coded Fns from the basic update_ && evolve
-        let Dflt_CSD = require('../../SSpc/Dflt_CSD');
-        let EVOLVE_DfltCsd_tobe_aCsd_using_StyleTrnfrm = curry(evolve(R.__, Dflt_CSD)); // Fn(trnfrmDCT -> csdDCT)
+        let UPDATE_Elem = require('../../CSpc/src/UPDATE_Elem')._byStyleTrnfrm;
 
-        let UPDATE_ = require('../../CSpc/src/UPDATE_Elem').UPDATE_; // basic (csd, elem ) -> elem
-        let UPDATE_Elem_tobeElem_wCSD = curry(csd => UPDATE_(csd, R.__)); // csd -> (spam -> span)
-        let UPDATE_Elem = curry(span => pipe(EVOLVE_DfltCsd_tobe_aCsd_using_StyleTrnfrm, UPDATE_Elem_tobeElem_wCSD)(span)); // (trnfrmDCT -> csdDCT)
         it(`should.be a Fn of arity:1 EXPECTING a TrnfrmDCT and RETURNING a Fn arity:1.`, () => {
             UPDATE_Elem.should.be.a('Function').and.is.length(1);
         });

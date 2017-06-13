@@ -8,7 +8,6 @@ let R = require('ramda')
     , curry = R.curry
     , pipe = R.pipe
 ;
-
 let UPDATE_ = curry(
     /**
      * ..... UPDATE_():; DICT -> ELEM -> ELEM is the base Fn that updates EACH  Element's style.
