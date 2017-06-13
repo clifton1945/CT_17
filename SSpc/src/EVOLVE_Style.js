@@ -20,5 +20,3 @@ const DfltCsd = require('../Dflt_CSD');
 let EVOLVE_Style_wStyleTrnfrm_on_CsdDflt = EVOLVE_Style_wStyleTrnfrm_on_aCsd(DfltCsd);
 module.exports._frmDfltCSD = EVOLVE_Style_wStyleTrnfrm_on_CsdDflt;    // ( D.Csd )=>{EVOL_aStyle}(D.Trnsfrm)} -> D.Csd
 
-// let EVOLVE_Style_frmDfltCsd_using_StyleTrnfrm = curry(evolve(R.__, DfltCsd)); // trnfrmDCT -> newCsdDCT
-// // module.exports._frmTrnfrm = EVOLVE_Style_frmDfltCsd_using_StyleTrnfrm

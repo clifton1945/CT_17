@@ -12,7 +12,7 @@ let chai = require('chai')
     , should = chai.should()
     // , expect = chai.expect
 ;
-context(` Fn: UPDATE_Elem_ byElem applies each style CSD property to Elem's style object. 
+context(`    UPDATE_Elem progressively pipes in transformation code to apply to it parm: a SPN element 
     @ symb: ( {ELEM} ) {UPDATE_Elem_byElem(DICT.CSD)} ->  {ELEM}       
      `, function () {
     let RET;
