@@ -32,11 +32,14 @@ verseNL = select_ChptVerses(document);
 
 // CODE UNDER TEST
 let STUB_CSD = {"opacity": "0.5", "color": "pink"};
+let Dflt_CSD = require('./SSpc/Dflt_CSD');
+let STUB_TRNSFRMR = {backgroundColor: R.always('yellow'), opacity: R.always('0.5')};
+let EVOLVE_aStyle = require('./SSpc/src/EVOLVE_Style').EVOLVE_Style(Dflt_CSD);
+let UPDATE_aVerse = require('./CSpc/src/UPDATE_Elem').UPDATE_;
 
-let UPDATE_anElem = require('./CSpc/src/UPDATE_Elem').UPDATE_;
-
-let CUT = pipe(UPDATE_anElem)(STUB_CSD);
+let CUT = pipe(EVOLVE_aStyle, UPDATE_aVerse)(STUB_TRNSFRMR);
 let retElem = CUT(verseNL[1]);
+
 C_in_Both(`elem.style.color: ${retElem.style.color}`);
 
 C_in_Console(' OUT> ' + TRK);
