@@ -1,6 +1,5 @@
 /**
  *  main.js
- * TODO  I am ready to implement a pipe of(EVOLVE_Csd, UPDATE_Elem) (TRNSFRM_Attr) -> new Elem.style.
  * NEXT: implement a EVOLVE_frmTrnsfrm FN with a partialed default CSD to always be acted upon by the Trnsfrm
  */
 "use strict";
@@ -30,6 +29,8 @@ let select_ChptVerses = require('./CSpc/src/SELECT_ChptVerses').SELECT_DivSpans;
 verseNL = select_ChptVerses(document);
 
 // CODE UNDER TEST
+
+
 let STUB_TRNSFRMR = {color: R.always('blue'), opacity: R.always('0.5')};
 let CUT = require('./CSpc/src/UPDATE_Elem')._byStyleTrnfrm(STUB_TRNSFRMR);
 let retElem = CUT(verseNL[1]);
