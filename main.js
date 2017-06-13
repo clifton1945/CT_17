@@ -28,16 +28,10 @@ verseNL = invokeSelectorAll(CV_Selector_Dflt)(document);
 
 let select_ChptVerses = require('./CSpc/src/SELECT_ChptVerses').SELECT_DivSpans;
 verseNL = select_ChptVerses(document);
-// ...................... get the CVList of Chapter Verses
 
 // CODE UNDER TEST
-let STUB_CSD = {"opacity": "0.5", "color": "pink"};
-let Dflt_CSD = require('./SSpc/Dflt_CSD');
-let STUB_TRNSFRMR = {backgroundColor: R.always('yellow'), opacity: R.always('0.5')};
-let EVOLVE_aStyle = require('./SSpc/src/EVOLVE_Style').EVOLVE_Style(Dflt_CSD);
-let UPDATE_aVerse = require('./CSpc/src/UPDATE_Elem').UPDATE_;
-
-let CUT = pipe(EVOLVE_aStyle, UPDATE_aVerse)(STUB_TRNSFRMR);
+let STUB_TRNSFRMR = {color: R.always('blue'), opacity: R.always('0.5')};
+let CUT = require('./CSpc/src/UPDATE_Elem')._byStyleTrnfrm(STUB_TRNSFRMR);
 let retElem = CUT(verseNL[1]);
 
 C_in_Both(`elem.style.color: ${retElem.style.color}`);

@@ -30,16 +30,14 @@ let UPDATE_ = curry(
  */
 module.exports.UPDATE_ = UPDATE_;  // (CSD) (ELEM) {Fn:UPDATE_} -> ELEM
 module.exports.UPDATE_Elem = UPDATE_;   // (CSD) (ELEM) {Fn:UPDATE_} -> ELEM
-
-module.exports._byCsd = curry(
-    csd => UPDATE_(csd)
-);                          //(CSD) {Fn:UPDATE_((ELEM))} -> ELEM
-module.exports._byElem = curry(
-    el => UPDATE_(R.__, el)
-);                          // (ELEM) {Fn:UPDATE_((CSD))} -> ELEM
+module.exports._byCsd = curry(csd => UPDATE_(csd));                          //(CSD) {Fn:UPDATE_((ELEM))} -> ELEM
+module.exports._byElem = curry(el => UPDATE_(R.__, el));                          // (ELEM) {Fn:UPDATE_((CSD))} -> ELEM
 
 let STUB_CSD = {"opacity": "0.5", "backgroundColor": "blue"};
 
-module.exports._byTrnsfrm = curry(
-    UPDATE_(STUB_CSD, R.__)
-); //ACTUAL  (ELEM) {Fn:_ELEM_byTrnsfrm( aCSD ))} -> ELEM
+let _byTrnfrm = curry(UPDATE_(STUB_CSD, R.__));
+module.exports._byTrnfrm = _byTrnfrm;
+
+let EVOLVE_aStyle = require('../../SSpc/src/EVOLVE_Style')._frmDfltCSD;
+let _byStyleTrnfrm = pipe(EVOLVE_aStyle, UPDATE_);
+module.exports._byStyleTrnfrm = _byStyleTrnfrm;
