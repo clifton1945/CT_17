@@ -16,8 +16,11 @@ module.exports = function (wallaby) {
             {pattern: 'node_modules/jquery/dist/jquery.js', instrument: false},
             {pattern: 'node_modules/jasmine-jquery/lib/jasmine-jquery.js', instrument: false},
             {pattern: 'h/*.js', load: false},
+            {pattern: 'CSpc/*.js', load: false},
             {pattern: 'CSpc/src/*.js', load: false},
+            {pattern: 'RSpc/*.js', load: false},
             {pattern: 'RSpc/src/*.js', load: false},
+            {pattern: 'SSpc/*.js', load: false},
             {pattern: 'SSpc/src/*.js', load: false},
             {pattern: 'main.js', load: false},
             {pattern: 'index.html', load: false}
