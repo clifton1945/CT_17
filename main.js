@@ -9,7 +9,7 @@ let C_in = require('./h/C_in_')
     , C_in_Both = C_in.Both
 ;
 let R = require('ramda')
-    , pipe = R.pipe
+    // , pipe = R.pipe
     // , evolve = R.evolve
 ;
 // let mocha = require('mocha');
@@ -20,20 +20,17 @@ let R = require('ramda')
 let TRK = "wbSample/main.js";
 C_in_Console('  IN> ' + TRK);
 
-let verseNL;
-let CV_Selector_Dflt = require('./CSpc/src/Dflt_CV_Selector');
-let invokeSelectorAll = R.invoker(1, 'querySelectorAll');
-verseNL = invokeSelectorAll(CV_Selector_Dflt)(document);
 
+// GET SOME DATA
 let select_ChptVerses = require('./CSpc/src/SELECT_ChptVerses').SELECT_DivSpans;
-verseNL = select_ChptVerses(document);
+let verseNL = select_ChptVerses(document);
 
-// CODE UNDER TEST
+// CODE UNDER TEST:CUT   MODIFY a Verse USING a STUB Style Transformer DCT
+let STUB_TRNSFRMR = {color: R.always('green'), opacity: R.always('0.75')};
 
-
-let STUB_TRNSFRMR = {color: R.always('blue'), opacity: R.always('0.5')};
-let CUT = require('./CSpc/src/UPDATE_Elem')._byStyleTrnfrm(STUB_TRNSFRMR);
-let retElem = CUT(verseNL[1]);
+let CUT = require('./CSpc/src/UPDATE_Elem')._byStyleTrnfrm;
+let RET = CUT(STUB_TRNSFRMR);
+let retElem = RET(verseNL[3]);
 
 C_in_Both(`elem.style.color: ${retElem.style.color}`);
 

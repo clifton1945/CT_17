@@ -16,6 +16,7 @@ let chai = require('chai')
 ;
 
 // CODE UNDER TEST
+// let main = require('../main');
 
 describe(`Fn: main 
     The ChptSpace modules are only responsible for mutating the DOM: the div.chptr in this case.
@@ -31,33 +32,33 @@ describe(`Fn: main
     `, function () {
     });
 
-    describe(`ReadSpace.transformIndexFn(arity:2) -> RSpcIndex
-    it is PARTIALED with the CSpcIndex
-    it will be FULFILLED with the RSpcSizeObj [at the final invoking]
-    it will RETURN the appropriate RSpcIndex associated w/ the CSpcIndex argument.
-    `, function () {
-    });
-
-    describe(`StylSpace.transformStyl_bgColorFn(arity:2) -> {bgColor:{Fn -> bgColor:value}}
-    it is PARTIALED with the RSpcIndex
-    it will be FULFILLED with the SSpc.evolveFn [at the final invoking]
-    it will RETURN a new bgColorCSD.
-    `, function () {
-    });
-    describe(`StylSpace.transformStyl_opacity(arity:2) -> {opacity:{Fn -> {opacity:value}}
-    it is PARTIALED with the RSpcIndex
-    it will be FULFILLED with the SSpc.evolveFn [at the final invoking]
-    it will RETURN a new bgColorCSD.
-    `, function () {
-    });
-    describe(`StylSpace.transformStyl_fontSize(arity:2) -> {fontSize: (Fn -> {fontSize:value}}
-    it is PARTIALED with the RSpcIndex
-    it will be FULFILLED with the SSpc.evolveFn [at the final invoking]
-    it will RETURN a new fontSizeCSD.
-    `, function () {
-    });
-    describe(`StylSpace.EVOLVE_CSD??????? TODO COMPLETE THIS. iT COMES AFTER THE ABOVE TRANSFORMS.
-    `, function () {
-    })
+    // describe(`ReadSpace.transformIndexFn(arity:2) -> RSpcIndex
+    // it is PARTIALED with the CSpcIndex
+    // it will be FULFILLED with the RSpcSizeObj [at the final invoking]
+    // it will RETURN the appropriate RSpcIndex associated w/ the CSpcIndex argument.
+    // `, function () {
+    // });
+    //
+    // describe(`StylSpace.transformStyl_bgColorFn(arity:2) -> {bgColor:{Fn -> bgColor:value}}
+    // it is PARTIALED with the RSpcIndex
+    // it will be FULFILLED with the SSpc.evolveFn [at the final invoking]
+    // it will RETURN a new bgColorCSD.
+    // `, function () {
+    // });
+    // describe(`StylSpace.transformStyl_opacity(arity:2) -> {opacity:{Fn -> {opacity:value}}
+    // it is PARTIALED with the RSpcIndex
+    // it will be FULFILLED with the SSpc.evolveFn [at the final invoking]
+    // it will RETURN a new bgColorCSD.
+    // `, function () {
+    // });
+    // describe(`StylSpace.transformStyl_fontSize(arity:2) -> {fontSize: (Fn -> {fontSize:value}}
+    // it is PARTIALED with the RSpcIndex
+    // it will be FULFILLED with the SSpc.evolveFn [at the final invoking]
+    // it will RETURN a new fontSizeCSD.
+    // `, function () {
+    // });
+    // describe(`StylSpace.EVOLVE_CSD??????? TODO COMPLETE THIS. iT COMES AFTER THE ABOVE TRANSFORMS.
+    // `, function () {
+    // })
 });
 

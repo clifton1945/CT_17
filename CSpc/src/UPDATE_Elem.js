@@ -19,7 +19,9 @@ let UPDATE_ = curry(
      */
     (a_csd, elem) => {
         for (let property in a_csd)
-            elem.style[property] = a_csd[property];
+            if (a_csd.hasOwnProperty(property)) {
+                elem.style[property] = a_csd[property];
+            }
         return elem
     }
 );
@@ -32,10 +34,10 @@ module.exports.UPDATE_Elem = UPDATE_;   // (CSD) (ELEM) {Fn:UPDATE_} -> ELEM
 module.exports._byCsd = curry(csd => UPDATE_(csd));                          //(CSD) {Fn:UPDATE_((ELEM))} -> ELEM
 module.exports._byElem = curry(el => UPDATE_(R.__, el));                          // (ELEM) {Fn:UPDATE_((CSD))} -> ELEM
 
-let STUB_CSD = {"opacity": "0.5", "backgroundColor": "blue"};
-
-let _byTrnfrm = curry(UPDATE_(STUB_CSD, R.__));
-module.exports._byTrnfrm = _byTrnfrm;
+// let STUB_CSD = {"opacity": "0.5", "backgroundColor": "blue"};
+//
+// let _byTrnfrm = curry(UPDATE_(STUB_CSD, R.__));
+// module.exports._byTrnfrm = _byTrnfrm;
 
 let EVOLVE_aStyle = require('../../SSpc/src/EVOLVE_Style')._frmDfltCSD;
 let _byStyleTrnfrm = pipe(EVOLVE_aStyle, UPDATE_);

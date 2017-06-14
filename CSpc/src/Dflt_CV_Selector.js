@@ -3,4 +3,4 @@
  */
 "use strict";
 let dflt = require('../Dflt_ChptVerses');
-module.exports = ".chpt span";
+module.exports = require('../Dflt_ChptVerses');
