@@ -20,7 +20,9 @@ let UPDATE_ = curry(
     (a_csd, elem) => {
         for (let property in a_csd)
             if (a_csd.hasOwnProperty(property)) {
-                elem.style[property] = a_csd[property];
+                if (a_csd[property] != "") {
+                    elem.style[property] = a_csd[property];
+                }
             }
         return elem
     }
