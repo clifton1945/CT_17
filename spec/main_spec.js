@@ -1,7 +1,5 @@
 /**
- * todo DO I NEED a triageToNameInRSpc ???????
- .CV//spec/main_spec.js HOLD 26 May. hold on strColor_in_SSpc development and testing
- UNTIL DEVELOP a clsName_in_RSpc. Then I will use the name to do all the triage of STYLE stuff
+ spec/main_spec.js
  */
 "use strict";
 
@@ -17,48 +15,9 @@ let chai = require('chai')
     , expect = chai.expect
 ;
 
-// ..................... BUILD a new Verse Property CSD
-/**
- *  ..... EVOLVE_CSD:: ( OBJ_trnsfrms -> CSD_new )
- * @param OBJ_trnsfrms
- * @return CSD_new
- */
-let EVOLVE_CSD = require('../../SSpc/src/EVOLVE_Style').EVOLVE_CSD
-; //  Fn( OBJ_trnsfrms -> CSD_new )
-
-// ..................... now the CSD_trnsfrms
-/**
- *  ..... CSD_trnsfrms
- * @type {{backgroundColor: *, opacity: *, fontSize: *}}
- */
-let CSD_trnsfrms = {
-        backgroundColor: R.always('lavender')
-        , opacity: R.always('0.50')
-        , fontSize: R.always('70%')
-    }
-; // -> DICT.styleTransforms
-
-// ..................... UPDATE Elements
-/**
- * ..... UPDATE_ElemStyle:: OBJ.propertyCSD -> ( ELEM.elem -> ELEM.style.propertyCSD )
- * @param propertyCSD
- * @param elem
- * @return Fn:  ELEM.style.propertyCS
- */
-let UPDATE_ElemStyle = require('../../CSpc/src/UPDATE_Elem').updateStyle
-; //  OBJ.CSD_trnsfrms -> ( ELEM.elem -> ELEM.style.propertyCSD )
-/**
- * ..... UPDATE_anElem::  ( ELEM.elem -> ELEM.elem w/ elem.style.propertyCSD )
- * @param elem
- * @return Elem w/new propertyObject
- */
-let UPDATE_anElem = R.pipe(EVOLVE_CSD, UPDATE_ElemStyle)(CSD_trnsfrms)
-; // Fn( ELEM.elem -> ELEM.style.propertyCSD )
-
-
 // CODE UNDER TEST
 
-context(`Fn: main 
+describe(`Fn: main 
     The ChptSpace modules are only responsible for mutating the DOM: the div.chptr in this case.
         I am not testing ChptSpace functions
     In ReadSpace each span.Verse continually get a new contexts [indexes an place in family], as the Reader changes focus, changes Verses.
