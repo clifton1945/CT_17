@@ -8,8 +8,8 @@ let R = require('ramda')
     , curry = R.curry
     , pipe = R.pipe
 ;
-let M = require('mocha')
-;
+// let M = require('mocha')
+// ;
 let chai = require('chai')
     , should = chai.should()
     // , expect = chai.expect
