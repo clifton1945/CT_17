@@ -14,8 +14,8 @@ let SELECT_DivSpans_useDflt = curry(
      *  select_DfltDivSpans: Fn(DOC -> LIST)
      */
     function (doc) {
-        let DfltSelector = require('./Dflt_CV_Selector');
-        return doc.querySelectorAll('.chpt span'); // this should be a Fn arity:1
+        let DfltSelector = require('../Dflt_ChptVerses');
+        return doc.querySelectorAll(DfltSelector); // this should be a Fn arity:1
     });
 
 module.exports.SELECT_DivSpans = SELECT_DivSpans_useDflt;

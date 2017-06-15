@@ -2,5 +2,5 @@
  * Dflt_CV_Selector.js
  */
 "use strict";
-
-module.exports = ".chpt span"; // NOTE this is NOT the same a ".chpt span" !!! ???
+let dflt = require('../Dflt_ChptVerses');
+module.exports = require('../Dflt_ChptVerses');
