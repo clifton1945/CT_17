@@ -5,8 +5,8 @@
 //
 let R = require('ramda')
 // , pipe = R.pipe
-//     , compose = R.compose
-//     , map = R.map
+// , compose = R.compose
+//  , map = R.map
     , curry = R.curry
 ;
 
@@ -20,7 +20,7 @@ describe(`the Fn: _spansNL(document) returns a NodeList of DIV.chptr SPAN.verses
     USAGE: the returned NL  will be mapped over w/ a MUTATE_this FN to change each ELEM.style
     `, function () {
 
-    let _spansNL = require('../src/SELECT_ChptVerses').SELECT_DivSpans;
+    let _spansNL = require('../CSpc/src/SELECT_ChptVerses').SELECT_DivSpans;
 
     beforeEach(function () {
         loadFixtures('index.html'); //REMEMBER this BREAKS a mocha test !!
