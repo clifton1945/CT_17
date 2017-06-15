@@ -28,7 +28,7 @@ let UPDATE_Elem = require('./CSpc/src/UPDATE_Elem')._byStyleTrnfrm;
 // GET SOME DATA
 let verseNL = select_ChptVerses(document);
 let SelectedVerse = verseNL[1];
-let STUB_TRNSFRMR = {color: R.always('red'), opacity: R.always('0.5')};
+let STUB_TRNSFRMR = {color: R.always('purple'), opacity: R.always('0.5')};
 let UPDATE_Verse = UPDATE_Elem(STUB_TRNSFRMR);
 let newVerse = UPDATE_Verse(SelectedVerse);
 
