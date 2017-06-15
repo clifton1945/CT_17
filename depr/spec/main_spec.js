@@ -14,22 +14,27 @@ let chai = require('chai')
     // , should = chai.should()
     , expect = chai.expect
 ;
-
-// CODE UNDER TEST
-// let main = require('../main');
+let mocha = require('mocha')
+;
 
 describe(`Fn: main 
-    The ChptSpace modules are only responsible for mutating the DOM: the div.chptr in this case.
-        I am not testing ChptSpace functions
-    In ReadSpace each span.Verse continually get a new contexts [indexes an place in family], as the Reader changes focus, changes Verses.
-    In StylSpace those context reassignments are reflected onto each element's style attributes. 
+    The Chpter Space module[CSpc] is the ONLY code mutating the DOM: 
+        The Dflt_ChptVerses.js selects all of the spans directly descendant from the div.chpt.
+        They, the spans, ARE MUTATED by UPDATE_Elem.js. 
 
     `, function () {
-    describe(`ReadSpace.resizeRSpcFn(arity:2) -> RSpcSizeObj
-    it is PARTIALED with the FocusNnd in the main_keyEventFn, thus RETURNING a Fn
-    it will be FULFILLED with the CSpcListLength [at the final invoking]
-    it will RETURN a dictObj of three RClss object: keyName: keySize
+    describe(` ??????????????
+    
     `, function () {
+        // CODE UNDER TEST
+        let main = require('../../main');
+
+        beforeEach(function () {
+            loadFixtures('index.html'); //REMEMBER this BREAKS a mocha test !!
+        });
+        it(`should ?????????? `, function () {
+            main.verseNL.length.should.equal(52);
+        });
     });
 
     // describe(`ReadSpace.transformIndexFn(arity:2) -> RSpcIndex
