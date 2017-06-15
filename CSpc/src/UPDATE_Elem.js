@@ -20,9 +20,7 @@ let UPDATE_ = curry(
     (a_csd, elem) => {
         for (let property in a_csd)
             if (a_csd.hasOwnProperty(property)) {
-                if (a_csd[property] != "") {
                     elem.style[property] = a_csd[property];
-                }
             }
         return elem
     }
@@ -41,6 +39,6 @@ module.exports._byElem = curry(el => UPDATE_(R.__, el));                        
 // let _byTrnfrm = curry(UPDATE_(STUB_CSD, R.__));
 // module.exports._byTrnfrm = _byTrnfrm;
 
-let EVOLVE_aStyle = require('../../SSpc/src/EVOLVE_Style')._frmDfltCSD;
+let EVOLVE_aStyle = require('../../SSpc/src/EVOLVE_Style')._use_TrnfrmD_on_DfltCsd;
 let _byStyleTrnfrm = pipe(EVOLVE_aStyle, UPDATE_);
 module.exports._byStyleTrnfrm = _byStyleTrnfrm;

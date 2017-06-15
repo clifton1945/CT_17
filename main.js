@@ -23,12 +23,12 @@ C_in_Console('  IN> ' + TRK);
 
 let select_ChptVerses = require('./CSpc/src/SELECT_ChptVerses').SELECT_DivSpans;
 let UPDATE_Elem = require('./CSpc/src/UPDATE_Elem')._byStyleTrnfrm;
-// CODE UNDER TEST:CUT   MODIFY a Verse USING a Style Transformer STUB DCT
 
 // GET SOME DATA
 let verseNL = select_ChptVerses(document);
 let SelectedVerse = verseNL[1];
-let STUB_TRNSFRMR = {color: R.always('red'), opacity: R.always('0.5')};
+let STUB_TRNSFRMR = {color: R.always('red'), opacity: R.always('0.4')};
+// CODE UNDER TEST:  MODIFY a Verse USING a Style Transformer
 let UPDATE_Verse = UPDATE_Elem(STUB_TRNSFRMR);
 let newVerse = UPDATE_Verse(SelectedVerse);
 
