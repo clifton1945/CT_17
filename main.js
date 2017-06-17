@@ -21,17 +21,12 @@ let R = require('ramda')
 let TRK = "wbSample/main.js";
 C_in_Console('  IN> ' + TRK);
 
-// let select_ChptVerses = require('./CSpc/src/SELECT_ChptVerses').SELECT_DivSpans;
-// let UPDATE_Elem = require('./CSpc/src/UPDATE_Elem')._byStyleTrnfrm;
-//
-// // GET SOME DATA
-// let verseNL = select_ChptVerses(document);
-// let SelectedVerse = verseNL[1];
-// let STUB_TRNSFRMR = {color: R.always('blue'), opacity: R.always('0.4')};
-// // CODE UNDER TEST:  MODIFY a Verse USING a Style Transformer
-// let UPDATE_Verse = UPDATE_Elem(STUB_TRNSFRMR);
-// let newVerse = UPDATE_Verse(SelectedVerse);
-//
-// C_in_Both(`   elem.style.color: ${newVerse.style.color}`);
+let aCsd = {opacity: '0.5', color: 'blue'};
+
+let MUTATE_allElts = require('./CSpc/src/UPDATE_Elem').MUTATE_allElts;
+let MUTATE_allElts_byCsd = R.curry(MUTATE_allElts(aCsd));
+let ret = MUTATE_allElts_byCsd(document);
+
+C_in_Both(`   color:${ret[1].style.color}, opacity:${ret[1].style.opacity}`);
 
 C_in_Console(' OUT> ' + TRK);

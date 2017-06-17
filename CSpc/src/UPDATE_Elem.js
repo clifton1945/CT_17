@@ -8,59 +8,54 @@ let R = require('ramda')
     , curry = R.curry
     , pipe = R.pipe
 ;
-let UPDATE_ = curry(
+
+let MUTATE_ = curry(
     /**
-     * ..... UPDATE_():; DICT -> ELEM -> ELEM is the base Fn that updates EACH  Element's style.
+     * ..... MUTATE_():; DICT -> ( ELEM -> ELEM ) is the base Fn that updates EACH  Element's style.
      * SYMB: {UPDATE_byCsd} Fn:( ELEM) {UPDATE_byCsd(DICT.CSD)} ->  ELEM
      *
-     * @param a_csd  : a DICT of the new style.CSD
+     * @param csd  : a DICT of the new style.CSD
      * @param elem  : a HTML Elem WITH a Style attribute
      * @return {*} : updated_elem
      */
-    (a_csd, elem) => {
-        let mutElt = prop => elem.style[prop] = a_csd[prop];
-        for (let property in a_csd)
-            if (a_csd.hasOwnProperty(property)) {
-                mutElt(property)
+    (csd, elem) => {
+        let _mutElt = prop => elem.style[prop] = csd[prop];
+
+        for (let property in csd)
+            if (csd.hasOwnProperty(property)) {
+                _mutElt(property)
             }
         return elem
     }
 );
 
-const mutateElt = curry( // this is a TEST STUB
-    doc => {
-// Get all descendants that match selector
-// Note: NodeList is array-like so you can run ramda list functions on it.
-//  cssQuery :: String -> Node -> NodeList
-        let cssQuery = R.invoker(1, 'querySelectorAll');
+const MUTATE_allElts = curry(
+    /**
+     *     MUTATE_allElts :: String -> ( Elt -> Elt )
+     */
 
-// Mutate style properties on an element
-//  setStyle :: String -> String -> Element -> Element
-        let setStyle = R.assoc('style');
+    (csd, elem) => {
+        let cssQueryAll = R.invoker(1, 'querySelectorAll');
+        let cssQueryOne = R.invoker(1, 'querySelector');
 
-// Make all paragraphs red
-        R.pipe(
-            cssQuery('.chpt > span'),
-            R.map(setStyle(
-                {color: 'red'}))
-        )(doc)
+        // Make all elts
+        return R.pipe(
+            cssQueryAll('.chpt > span'),
+            R.map(MUTATE_(csd))
+        )(elem);
     }
 );
-module.exports.mutateElt = mutateElt;
+module.exports.MUTATE_allElts = MUTATE_allElts;
 
 /**
- * //`UPDATE_ = (CSD)(ELEM) {Fn:UPDATE_} -> ELEM
+ * //`MUTATE_ = (CSD)(ELEM) {Fn:MUTATE_} -> ELEM
  */
-module.exports.UPDATE_ = UPDATE_;  // (CSD) (ELEM) {Fn:UPDATE_} -> ELEM
-module.exports.UPDATE_Elem = UPDATE_;   // (CSD) (ELEM) {Fn:UPDATE_} -> ELEM
-module.exports._byCsd = curry(csd => UPDATE_(csd));                          //(CSD) {Fn:UPDATE_((ELEM))} -> ELEM
-module.exports._byElem = curry(el => UPDATE_(R.__, el));                          // (ELEM) {Fn:UPDATE_((CSD))} -> ELEM
+module.exports.UPDATE_ = MUTATE_;  // (CSD) (ELEM) {Fn:MUTATE_} -> ELEM
+module.exports.UPDATE_Elem = MUTATE_;   // (CSD) (ELEM) {Fn:MUTATE_} -> ELEM
+module.exports._byCsd = curry(csd => MUTATE_(csd));                          //(CSD) {Fn:MUTATE_((ELEM))} -> ELEM
+module.exports._byElem = curry(el => MUTATE_(R.__, el));                          // (ELEM) {Fn:MUTATE_((CSD))} -> ELEM
 
-// let STUB_CSD = {"opacity": "0.5", "backgroundColor": "blue"};
-//
-// let _byTrnfrm = curry(UPDATE_(STUB_CSD, R.__));
-// module.exports._byTrnfrm = _byTrnfrm;
 
 let EVOLVE_aStyle = require('../../SSpc/src/EVOLVE_Style')._use_TrnfrmD_on_DfltCsd;
-let _byStyleTrnfrm = pipe(EVOLVE_aStyle, UPDATE_);
+let _byStyleTrnfrm = pipe(EVOLVE_aStyle, MUTATE_);
 module.exports._byStyleTrnfrm = _byStyleTrnfrm;
