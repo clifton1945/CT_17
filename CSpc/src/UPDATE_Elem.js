@@ -18,13 +18,35 @@ let UPDATE_ = curry(
      * @return {*} : updated_elem
      */
     (a_csd, elem) => {
+        let mutElt = prop => elem.style[prop] = a_csd[prop];
         for (let property in a_csd)
             if (a_csd.hasOwnProperty(property)) {
-                    elem.style[property] = a_csd[property];
+                mutElt(property)
             }
         return elem
     }
 );
+
+const mutateElt = curry( // this is a TEST STUB
+    doc => {
+// Get all descendants that match selector
+// Note: NodeList is array-like so you can run ramda list functions on it.
+//  cssQuery :: String -> Node -> NodeList
+        let cssQuery = R.invoker(1, 'querySelectorAll');
+
+// Mutate style properties on an element
+//  setStyle :: String -> String -> Element -> Element
+        let setStyle = R.assoc('style');
+
+// Make all paragraphs red
+        R.pipe(
+            cssQuery('.chpt > span'),
+            R.map(setStyle(
+                {color: 'red'}))
+        )(doc)
+    }
+);
+module.exports.mutateElt = mutateElt;
 
 /**
  * //`UPDATE_ = (CSD)(ELEM) {Fn:UPDATE_} -> ELEM

@@ -54,7 +54,6 @@ context(`    UPDATE_Elem progressively pipes in transformation code to apply to 
                 .and.deep.equal({"opacity": "0.5", "bgColor": "green"});
         });
     });
-
     describe(`{UPDATE_Elem:_byStylTrnfrm } Fn::( DCT.Trnfrm) -> {UPDATE_Elem_byStyleTrnfrm( DCT.ELEM)}  -> DCT.ELEM
         pipes a StyleTrnfrm  into UPDATE_Elem   
         `, function () {
