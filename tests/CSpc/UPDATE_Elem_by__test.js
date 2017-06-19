@@ -12,67 +12,36 @@ let chai = require('chai')
     , should = chai.should()
     // , expect = chai.expect
 ;
-context(`    UPDATE_Elem progressively pipes in transformation code to apply to it parm: a SPN element 
-    @ symb: ( {ELEM} ) {UPDATE_Elem_byElem(DICT.CSD)} ->  {ELEM}       
-     `, function () {
-    let RET;
-    beforeEach(function () {
-        this.STUB_CSD = {"opacity": "0.5", "bgColor": "green"};
-        this.STUB_Elem = {style: {opacity: 1, bgColor: ''}};
-        this.STUB_TRNSFRMR = {backgroundColor: R.always('yellow'), opacity: R.always('0.5')};
-    });
-    describe(`{UPDATE_Elem                      } Fn::(DICT.CSD)(ELEM) {UPDATE_Elem} -> ELEM
+//////////////// WIP ///////////////////////////////////
+describe(`MUTATE_:: mutates, i.e. sets and returns, a given Element.style.
+     * SYMB  eltDCT -> (csdDCT -> eltDCT)   
         `, function () {
-        let UPDATE_Elem = require('../../CSpc/src/UPDATE_Elem').UPDATE_Elem;
-        it(`should.be a Fn of arity:2; expecting a CSD and an Element.`, () => {
-            UPDATE_Elem.should.is.a('Function');
-            // UPDATE_Elem.should.is.a('Function').and.is.length(2);
-        });
-    });
-    describe(`{UPDATE_Elem_byCsd          } Fn::( ELEM) {UPDATE_Elem_byElem(DICT.CSD)} ->  ELEM 
-        `, function () {
+    let MUTATE_ = require('../../CSpc/src/UPDATE_Elem').MUTATE_;
 
-        let UPDATE_Elem_byElem = require('../../CSpc/src/UPDATE_Elem')._byCsd({"opacity": "0.5", "bgColor": "green"});
-        it(`should.be a Fn of arity:1 and Expect an Element.`, () => {
-            UPDATE_Elem_byElem.should.is.a('Function').and.is.length(1);
-        });
-        it(`should.produce a new Elem given an Element: .`, function () {
-            UPDATE_Elem_byElem(this.STUB_Elem).should.is.a('Object')
-                .and.have.property('style')
-                .and.is.deep.equal({"opacity": "0.5", "bgColor": "green"});
-        });
-    });
-    describe(`{UPDATE_Elem_byElem        } Fn::( DICT.CSD) {UPDATE_Elem_byElem( ELEM)}  -> ELEM
+    describe(`{MUTATE_:: changes with arguments
+        * SYMB  eltDCT -> (csdDCT -> eltDCT)   
         `, function () {
+        MUTATE_ = require('../../CSpc/src/UPDATE_Elem').MUTATE_;
 
-        let UPDATE_Elem_byCsd = require('../../CSpc/src/UPDATE_Elem')._byElem({style: {opacity: 1, bgColor: ''}});
-            UPDATE_Elem_byCsd.should.be.a('Function').and.is.length(1);
-        it(`should produce a new Elem given a CSD`, function () {
-            RET = UPDATE_Elem_byCsd(this.STUB_CSD);
-            RET.should.be.a('Object')
-                .and.have.property('style')
-                .and.deep.equal({"opacity": "0.5", "bgColor": "green"});
-        });
-    });
-    describe(`{UPDATE_Elem:_byStylTrnfrm } Fn::( DCT.Trnfrm) -> {UPDATE_Elem_byStyleTrnfrm( DCT.ELEM)}  -> DCT.ELEM
-        pipes a StyleTrnfrm  into UPDATE_Elem   
-        `, function () {
-        let UPDATE_Elem = require('../../CSpc/src/UPDATE_Elem')._byStyleTrnfrm;
+        let STUB_CSD, STUB_Elem;
+        let MUT_anElt_byCsd, MUTATED_Elt;
+        beforeEach(function () {
+            STUB_CSD = {opacity: "0.5", color: "green"};
+            STUB_Elem = {style: {opacity: 1, color: 'red'}};
 
-        it(`should.be a Fn of arity:1 EXPECTING a TrnfrmDCT and RETURNING a Fn arity:1.`, () => {
-            UPDATE_Elem.should.be.a('Function').and.is.length(1);
+            MUT_anElt_byCsd = MUTATE_(STUB_Elem);
+            MUTATED_Elt = MUTATE_(STUB_Elem, STUB_CSD);
         });
-        it(`invoked w/ (aStyleTrnfrmDCT) should.be a Fn of arity:1  EXPECTING a span.`, () => {
-            RET = UPDATE_Elem(this, this.STUB_TRNSFRMR);
-            RET.should.be.a('Function').and.is.length(1);
+
+
+        it(`Fn:MUTATE_  should be a function of artity:2.`, () => {
+            MUTATE_.should.be.a('Function').and.is.length(2);
         });
-        it(`invoked w/ a trnfrmDCT and a spanDCT should RETURN a new Elem.`, function () {
-            RET = UPDATE_Elem(this.STUB_TRNSFRMR)(this.STUB_Elem);
-            RET.should.be.a('Object')
-                .and.is.property('style')
-                .and.is.property("backgroundColor", "yellow")
-            ;
-            RET.should.be.a('Object')
+        it(`Fn:MUT_anElt_byCsd  should be a function of artity:2.`, () => {
+            MUT_anElt_byCsd.should.be.a('Function').and.is.length(1);
+        });
+        it(`DCT: MUTATED_Elt    should be a DCT object with a style and properties.`, () => {
+            MUTATED_Elt.should.is.a('Object')
                 .and.is.property('style')
                 .and.is.property("opacity", "0.5")
             ;
