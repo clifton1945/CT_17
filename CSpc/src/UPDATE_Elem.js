@@ -29,22 +29,22 @@ let MUTATE_ = curry(
     }
 );
 
-// const MUT_Elt_byCsd = curry(/**
-//      *     MUT_Elt_byCsd :: String -> ( Elt -> Elt )
-//      */
-//     (csd, elem) => {
-//         // let cssQueryAll = R.invoker(1, 'querySelectorAll');
-//         let cssQueryOne = R.invoker(1, 'querySelector');
-//         let MUT_Elt_byCsd = require('');
-//
-//         // Make all elts
-//         return R.pipe(
-//             cssQueryOne('.chpt > span'),
-//             R.map(MUTATE_(csd))
-//         )(elem);
-//     }
-// );
-// module.exports.MUTATE_allElts = MUT_Elt_byCsd;
+const SpanStyl_MUTATOR = curry(/**
+     *     SpanStyl_MUTATOR :: String -> ( Elt -> Elt )
+     */
+    (csd, elem) => {
+        // let cssQueryAll = R.invoker(1, 'querySelectorAll');
+        let cssQueryOne = R.invoker(1, 'querySelector');
+        let SpanStyl_MUTATOR = require('');
+
+        // Make all elts
+        return R.pipe(
+            cssQueryOne('.chpt > span'),
+            R.map(MUTATE_(csd))
+        )(elem);
+    }
+);
+module.exports.MUTATE_allElts = SpanStyl_MUTATOR;
 
 /**
  * //`MUTATE_ = (CSD)(ELEM) {Fn:MUTATE_} -> ELEM
