@@ -51,6 +51,7 @@ module.exports.SpanStyl_MUTATOR = curry(
     // )(R.__) // WORKS
     compose(
         _MUTATOR,
+        // the next two work to DELIVER a Csd TO _MONITOR
         R.tap(x => console.log('x.color is ' + x.color)),
         always(newCsd)
     )(R.__) // WIP

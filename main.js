@@ -24,6 +24,7 @@ C_in_Console('  IN> ' + TRK);
 
 let MUTATE_Elt = require('./CSpc/src/UPDATE_Elem').MUTATE_;
 let MUT_Elt_gvnCsd = curry(doc => MUTATE_Elt(R.__, doc));
+
 let aCsd = {opacity: '0.5', color: 'blue'};
 let ret = MUT_Elt_gvnCsd(document)(aCsd);
 
