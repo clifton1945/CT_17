@@ -16,12 +16,12 @@ let chai = require('chai')
 describe(`MUTATE_:: mutates, i.e. sets and returns, a given Element.style.
      * SYMB  eltDCT -> (csdDCT -> eltDCT)   
         `, function () {
-    let MUTATE_ = require('../CSpc/src/UPDATE_Elem').MUTATE_;
+    let MUTATE_ = require('./UPDATE_Elem').MUTATE_;
 
     describe(`{MUTATE_:: changes with arguments
         * SYMB  eltDCT -> (csdDCT -> eltDCT)   
         `, function () {
-        MUTATE_ = require('../CSpc/src/UPDATE_Elem').MUTATE_;
+        MUTATE_ = require('./UPDATE_Elem').MUTATE_;
 
         let STUB_CSD, STUB_Elem;
         let MUT_anElt_byCsd, MUTATED_Elt;

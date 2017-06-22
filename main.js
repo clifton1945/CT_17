@@ -8,23 +8,25 @@ let C_in = require('./h/C_in_')
     , C_in_Console = C_in.Console
     , C_in_Both = C_in.Both
 ;
-// let R = require('ramda')
+let R = require('ramda')
     // , curry = R.curry
-    // , pipe = R.pipe
+    , pipe = R.pipe
     // , evolve = R.evolve
-// ;
+;
 // ************** MAIN ********
 let TRK = "wbSample/main.js";
 C_in_Console('  IN> ' + TRK);
 
-// Data:
+// Data: ChapterSpace
 let DivSpans_SELECTOR = require('./CSpc/src/SELECT_ChptVerses')
     .DivSpans_SELECTOR;// Fn: ( docDCT -> dicSpanLST )
-let aVersSELECTED = DivSpans_SELECTOR(document)[1];
+let aVersSELECTED = pipe(DivSpans_SELECTOR)(document)[1];
+// Data: StyleSpace
 let STUB_CSD = require('./SSpc/StyleCSDs').Test;
 // Fn:
 let MUTATE_Elem = require('./CSpc/src/MUTATE_Elem')
     .anElem;// eltDCT -> ( csdDCT -> eltDCT )
+
 
 let ret = MUTATE_Elem(aVersSELECTED)(STUB_CSD);
 
