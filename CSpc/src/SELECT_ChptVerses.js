@@ -8,14 +8,20 @@ let R = require('ramda')
     , curry = R.curry
 ;
 
-let SELECT_DivSpans_useDflt = curry(
+let SELECT_DivSpans = curry(
     /**
-     *  selectChptVerses_byQueryDocFN: Fn(DOC -> LIST)
-     *  select_DfltDivSpans: Fn(DOC -> LIST)
+     *  SELECT_DivSpans: Fn( DOC -> dfltChptVersesNL )
      */
     function (doc) {
         let DfltSelector = require('../Dflt_ChptVerses');
-        return doc.querySelectorAll(DfltSelector); // this should be a Fn arity:1
+        return doc.querySelectorAll(DfltSelector); // (invoked) -> div.span NodeList
     });
+module.exports.SELECT_DivSpans = SELECT_DivSpans; //
 
-module.exports.SELECT_DivSpans = SELECT_DivSpans_useDflt;
+let DivSpans_SELECTOR = curry(
+    doc => {
+        let qSA = R.invoker(1, 'querySelectorAll');
+        return qSA(require('../Dflt_ChptVerses'))(doc)
+        // this should be a Fn arity:1  docDCT -> nodeLST
+    });
+module.exports.DivSpans_SELECTOR = DivSpans_SELECTOR;// Fn: ( docDCT -> divSpanLST )

@@ -12,7 +12,7 @@ let R = require('ramda')
 let MUTATE_ = curry(
     /**
      * ..... MUTATE_():: mutates, i.e. sets and returns, a given Element.style.
-     * SYMB  eltDCT -> (csdDCT -> eltDCT)
+     * SYMB  eltDCT -> ( csdDCT -> eltDCT )
      *
      * @param csd  : a DICT of the new style.CSD
      * @return {*} : updated_elem
@@ -28,5 +28,5 @@ let MUTATE_ = curry(
         return elt
     }
 );
-module.exports.MUTATE_ = MUTATE_;  // (CSD) (ELEM) {Fn:MUTATE_} -> ELEM
-module.exports.anElem = MUTATE_;   // (CSD) (ELEM) {Fn:MUTATE_} -> ELEM
+module.exports.MUTATE_ = MUTATE_;   // (ELEM)-> ( CSD ->  ELEM )
+module.exports.anElem = MUTATE_;    // (ELEM)-> ( CSD ->  ELEM )

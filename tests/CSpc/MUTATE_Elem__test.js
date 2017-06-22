@@ -17,28 +17,25 @@ describe(`MUTATE_Elem:: mutates, i.e. sets and returns, a given Element.style.
      * SYMB  eltDCT -> (csdDCT -> eltDCT)   
         `, function () {
 
-    let MUTATE_Elem = require('../../CSpc/src/MUTATE_Elem').anElem;
+    let MUTATE_Elem = require('../../CSpc/src/MUTATE_Elem')
+        .anElem; // (ELEM)-> ( CSD ->  ELEM )
 
-    describe(`{MUTATE_:: changes with arguments
-        * SYMB  eltDCT -> (csdDCT -> eltDCT)   
+    describe(`{MUTATE_Elem:: changes with arguments
+        * SYMB  eltDCT -> ( csdDCT -> eltDCT )   
         `, function () {
-        let STUB_CSD, STUB_Elem;
-        let MUT_anElt_byCsd, MUTATED_Elt;
+        let STUB_Elem = {style: {opacity: 1, color: 'red'}}
+            , STUB_CSD = require('../../SSpc/StyleCSDs').Test;
+        ;
         beforeEach(function () {
-            STUB_CSD = {opacity: "0.5", color: "green"};
-            STUB_Elem = {style: {opacity: 1, color: 'red'}};
-
-            MUT_anElt_byCsd = MUTATE_Elem(STUB_Elem);
-            MUTATED_Elt = MUTATE_Elem(STUB_Elem, STUB_CSD);
         });
-        it(`Fn:MUTATE_  should be a function of artity:2.`, () => {
+        it(`Fn: MUTATE_Elem  should be a function of artity:2.`, () => {
             MUTATE_Elem.should.be.a('Function').and.is.length(2);
         });
-        it(`Fn:MUT_anElt_byCsd  should be a function of artity:1.`, () => {
-            MUT_anElt_byCsd.should.be.a('Function').and.is.length(1);
+        it(`Fn: MUTATE_Elem ( eltDCT )   should be a function of artity:1.`, () => {
+            MUTATE_Elem(STUB_Elem).should.be.a('Function').and.is.length(1);
         });
-        it(`DCT: MUTATED_Elt    should be a DCT object with a style and properties.`, () => {
-            MUTATED_Elt.should.is.a('Object')
+        it(`DCT: MUTATE_Elem( eltDCT )( csdDCT )    should be a DCT object with a style and properties.`, () => {
+            MUTATE_Elem(STUB_Elem)(STUB_CSD).should.is.a('Object')
                 .and.is.property('style')
                 .and.is.property("opacity", "0.5")
             ;
