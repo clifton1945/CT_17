@@ -22,8 +22,8 @@ let R = require('ramda')
 let TRK = "wbSample/main.js";
 C_in_Console('  IN> ' + TRK);
 
-let MUTATE_Elt = require('./CSpc/src/UPDATE_Elem').MUTATE_;
-let MUT_Elt_gvnCsd = curry(doc => MUTATE_Elt(R.__, doc));
+let MUTATE_Elem = require('./CSpc/src/MUTATE_Elem').anElem;
+let MUT_Elt_gvnCsd = curry(doc => MUTATE_Elem(R.__, doc));
 
 let aCsd = {opacity: '0.5', color: 'blue'};
 let ret = MUT_Elt_gvnCsd(document)(aCsd);
