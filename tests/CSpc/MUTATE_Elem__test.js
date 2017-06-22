@@ -17,7 +17,7 @@ describe(`MUTATE_Elem:: mutates, i.e. sets and returns, a given Element.style.
      * SYMB  eltDCT -> (csdDCT -> eltDCT)   
         `, function () {
 
-    let MUTATE_ = require('../../CSpc/src/MUTATE_Elem').anElem;
+    let MUTATE_Elem = require('../../CSpc/src/MUTATE_Elem').anElem;
 
     describe(`{MUTATE_:: changes with arguments
         * SYMB  eltDCT -> (csdDCT -> eltDCT)   
@@ -28,13 +28,11 @@ describe(`MUTATE_Elem:: mutates, i.e. sets and returns, a given Element.style.
             STUB_CSD = {opacity: "0.5", color: "green"};
             STUB_Elem = {style: {opacity: 1, color: 'red'}};
 
-            MUT_anElt_byCsd = MUTATE_(STUB_Elem);
-            MUTATED_Elt = MUTATE_(STUB_Elem, STUB_CSD);
+            MUT_anElt_byCsd = MUTATE_Elem(STUB_Elem);
+            MUTATED_Elt = MUTATE_Elem(STUB_Elem, STUB_CSD);
         });
-
-
         it(`Fn:MUTATE_  should be a function of artity:2.`, () => {
-            MUTATE_.should.be.a('Function').and.is.length(2);
+            MUTATE_Elem.should.be.a('Function').and.is.length(2);
         });
         it(`Fn:MUT_anElt_byCsd  should be a function of artity:1.`, () => {
             MUT_anElt_byCsd.should.be.a('Function').and.is.length(1);
