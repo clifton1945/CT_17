@@ -1,11 +1,10 @@
 /**
- * Dflt_Style
- * Created by CLIF on 5/5/2017.
+ * StyleCSDs.js
  */
 "use strict";
 
 // let Dflt
 module.exports.Dflt = {color: "", backgroundColor: '', opacity: '1.0', fontSize: '100%'};
 // let Test
-module.exports.Dflt = {color: "", backgroundColor: '', opacity: '1.0', fontSize: '100%'};
+module.exports.Test = {color: "green", backgroundColor: 'pink', opacity: '0.5', fontSize: '70%'};
 
