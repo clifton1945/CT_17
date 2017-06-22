@@ -4,5 +4,5 @@
  */
 "use strict";
 
-// let DfltCSD
+// let DfltCSD = {backgroundColor: '', opacity: '1.0', fontSize: '100%'};
 module.exports = {backgroundColor: '', opacity: '1.0', fontSize: '100%', color: ""};

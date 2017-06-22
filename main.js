@@ -10,6 +10,7 @@ let C_in = require('./h/C_in_')
     , C_in_Both = C_in.Both
 ;
 let R = require('ramda')
+    , curry = R.curry
     // , pipe = R.pipe
     // , evolve = R.evolve
 ;
@@ -21,17 +22,12 @@ let R = require('ramda')
 let TRK = "wbSample/main.js";
 C_in_Console('  IN> ' + TRK);
 
-let select_ChptVerses = require('./CSpc/src/SELECT_ChptVerses').SELECT_DivSpans;
-let UPDATE_Elem = require('./CSpc/src/UPDATE_Elem')._byStyleTrnfrm;
-// CODE UNDER TEST:CUT   MODIFY a Verse USING a Style Transformer STUB DCT
+let MUTATE_Elem = require('./CSpc/src/MUTATE_Elem').anElem;
+let MUT_Elt_gvnCsd = curry(doc => MUTATE_Elem(R.__, doc));
 
-// GET SOME DATA
-let verseNL = select_ChptVerses(document);
-let SelectedVerse = verseNL[1];
-let STUB_TRNSFRMR = {color: R.always('purple'), opacity: R.always('0.5')};
-let UPDATE_Verse = UPDATE_Elem(STUB_TRNSFRMR);
-let newVerse = UPDATE_Verse(SelectedVerse);
+let aCsd = {opacity: '0.5', color: 'blue'};
+let ret = MUT_Elt_gvnCsd(document)(aCsd);
 
-C_in_Both(`   elem.style.color: ${newVerse.style.color}`);
+C_in_Both(`   color:${ret.style.color}, opacity:${ret.style.opacity}`);
 
 C_in_Console(' OUT> ' + TRK);
