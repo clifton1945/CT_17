@@ -23,7 +23,7 @@ let DivSpans_SELECTOR = require('./CSpc/src/SELECT_ChptVerses')
 let aVersSELECTED = pipe(DivSpans_SELECTOR)(document)[1];
 // Data: StyleSpace
 let STUB_CSD = require('./SSpc/StyleCSDs').Test;
-// Fn:
+// Fn: ChapterSpace
 let MUTATE_Elem = require('./CSpc/src/MUTATE_Elem')
     .anElem;// eltDCT -> ( csdDCT -> eltDCT )
 
