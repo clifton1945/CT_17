@@ -28,5 +28,5 @@ let MUTATE_ = curry(
         return elt
     }
 );
-module.exports.MUTATE_ = MUTATE_;   // (ELEM)-> ( CSD ->  ELEM )
+module.exports.MUTATE_ = R.flip(MUTATE_);   // CSD -> ( ELEM -> ELEM )
 module.exports.anElem = MUTATE_;    // (ELEM)-> ( CSD ->  ELEM )
