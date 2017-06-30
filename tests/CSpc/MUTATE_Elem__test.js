@@ -17,8 +17,7 @@ describe(`MUTATE_Elem:: mutates, i.e. sets and returns, a given Element.style.
      * SYMB  eltDCT -> (csdDCT -> eltDCT)   
         `, function () {
 
-    describe(`{MUTATE_Elem:: changes with arguments
-        * SYMB  eltDCT -> ( csdDCT -> eltDCT )   
+    describe(`{MUTATE_Elem::      SYMB  eltDCT -> ( csdDCT -> eltDCT )   
         `, function () {
 
         let MUTATE_Elem = require('../../CSpc/src/MUTATE_Elem')
@@ -43,7 +42,7 @@ describe(`MUTATE_Elem:: mutates, i.e. sets and returns, a given Element.style.
         });
     });
 
-    describe(`{MUTATE_: SYMB   csdDCT -> (eltDCT -> eltDCT )   
+    describe(`{MUTATE_:       SYMB: csdDCT -> (eltDCT -> eltDCT )   
         `, function () {
         let MUTATE_ = require('../../CSpc/src/MUTATE_Elem')
             .MUTATE_; // Fn(ELEM) -> ELEM //  CSD ->  ( ELEM -> ELEM )

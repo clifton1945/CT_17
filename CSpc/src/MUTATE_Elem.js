@@ -29,4 +29,4 @@ let MUTATE_ = curry(
     }
 );
 module.exports.MUTATE_ = R.flip(MUTATE_);   // CSD -> ( ELEM -> ELEM )
-module.exports.anElem = MUTATE_;    // (ELEM)-> ( CSD ->  ELEM )
+module.exports.anElem = pipe(MUTATE_);    // (ELEM)-> ( CSD ->  ELEM )
