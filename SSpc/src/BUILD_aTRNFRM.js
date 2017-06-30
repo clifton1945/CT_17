@@ -7,17 +7,13 @@ let R = require('ramda')
 ;
 let BUILD_aTRNFRM = R.curry(
     /**
-     *  ..... BUILD_aTRNFRM IS aFn.arity:2 of @Sign Fn strAtt -> ( strValu -> objTable )
-     *  USAGE: with a partialed strAttr it RETURNS a transformer Fn( strValu ->  objTable )
-     *
+     *  ..... BUILD_aTRNFRM IS a Fn of arity:2. @Sign = Fn( strAtt ) -> Fn( strValu ->  { k: Fn::R.always(valu)}
+     *  USAGE: Fn( strAttrName ) RETURNS a transformer Object:
+     *      of form { attributeKey: R.always(attrValu) }
+     *      for use in Fn: evolve a CSD
      */
     (key, val) => {
         return {[key]: R.always(val)} //
     }
 );
 module.exports.BUILD_aTRNFRM = BUILD_aTRNFRM; // BUILD_aTRNFRM( STR.key ) -> Fn( STR.valu  -> newTRNFRM )
-
-
-// DEPRECATED
-// module.exports.by_backgroundColor = BUILD_aTRNFRM('backgroundColor'); // ( STR.color -> Fn.TRNFRM_backgroundColor )
-// module.exports.by_opacity = BUILD_aTRNFRM('opacity'); // ( STR.valu -> Fn.TRNFRM_backgroundColor )
