@@ -38,6 +38,7 @@ SO suppose there is a function `Fn1`:arity:2 _MUTATOR [in active] = ( csd, span)
     AND, a mutatedSpanStyle = `FinalFn`(StyleCsd) IS STILL VALID: MUTATE_SpanVers is ready to be applied to each spanVerse.
     
     NOW if there was a `Fn2` of signature: Fn2(someValu)  -> updatedStyleCsd
+    It could be named stylCsd_TRANSFORMOR w/ @SIGN: Fn2( csd  -> csd || newCsd = Fn2:(csd)
     THEN `FinalFn` could now be compose(`Fn1`, Fn2`) AND mutatedSpanStyle still = `FinalFn`(span)
     
     

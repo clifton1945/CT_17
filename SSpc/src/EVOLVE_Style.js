@@ -7,8 +7,11 @@ let R = require('ramda')
     , evolve = R.evolve
     , curry = R.curry
 ;
-module.exports.EVOLVE_Style = evolve;       // (D.csdTrnsfrmD)(D.D.Csd){ EVOLVE_} -> D.D.Csd
+module.exports.EVOLVE_ = evolve;            // EVOLVE_( stylCsd ) -> EVOL_Style
+module.exports.EVOL_Style = evolve;          // EVOL_Styl (csdTrnsfrm
 
+
+module.exports.EVOLVE_Style = evolve;       // (D.csdTrnsfrmD)(DfltCsd){ EVOLVE_} -> stylCsd
 module.exports._frmCsd = curry(
     csd_trnsfrm => evolve(csd_trnsfrm));    // ( D.Csd )=>{EVOL_aStyle}(D.Trnsfrm)} -> D.Csd
 
