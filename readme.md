@@ -1,10 +1,11 @@
 /**
  *  me OUTLINING Proj
-  170703: 1040
+  170703:
     PAUSED AT RET_new_NoonSpan
-        A. USE existing keyAction
+        A. USE existing keyAction || mouseEvent
+            @1446 reading  https://www.kirupa.com/html5/handling_events_for_many_elements.htm
         B. see if querySelect and a RET_newNoonSpanIndex function
-        C. look at 
+        C. look at R.indexOf as the answer if convert either NodeList OR Collection into array **** looks like best.
  */
 Go Down and ORGANIZE a world that  
     has a documentDiv, chapterDiv, verseSpans 

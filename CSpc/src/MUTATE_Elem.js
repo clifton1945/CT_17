@@ -30,7 +30,7 @@ let MUTATE_ = curry(
         return elt
     }
 );
-module.exports.byElem = R.flip(MUTATE_);   // (ELEM)-> ( CSD ->  ELEM )
-module.exports.byCsd = pipe(R.identity, MUTATE_);    // CSD -> ( ELEM -> ELEM )
+module.exports.byElem = R.flip(MUTATE_);            // (ELEM)-> ( CSD ->  ELEM )
+module.exports.byCsd = pipe(R.identity, MUTATE_);   // CSD -> ( ELEM -> ELEM )
 
-//module.exports.MUTATE_ = pipe(MUTATE_);     // CSD -> ( ELEM -> ELEM )
+module.exports.MUTATE_ = pipe(MUTATE_);             // CSD -> ( ELEM -> ELEM )

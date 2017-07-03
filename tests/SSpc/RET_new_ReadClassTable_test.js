@@ -43,7 +43,7 @@ describe(`Fn: RET_new_ReadClassTable       WILL
     });
 
     it(`expects RET_new_ReadClassTable is a Function 
-    RETURNING an Table
+    RETURNING a Table
      WITH its sizKey : valu a NUMBER `, function () {
         expect(RET_new_ReadClassTable).is.a('Function');
         expect(RET_new_ReadClassTable({})).is.a('Number');
