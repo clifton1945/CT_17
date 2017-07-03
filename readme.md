@@ -1,5 +1,10 @@
 /**
- * 170703  me OUTLINING Proj
+ *  me OUTLINING Proj
+  170703: 1040
+    PAUSED AT RET_new_NoonSpan
+        A. USE existing keyAction
+        B. see if querySelect and a RET_newNoonSpanIndex function
+        C. look at 
  */
 Go Down and ORGANIZE a world that  
     has a documentDiv, chapterDiv, verseSpans 
@@ -21,13 +26,20 @@ Go Down and[ in NounSpeak ]
 // now in [ in VerbSpeak ], you will need these Fns
     
      Fn: 
-        SERVE_aNoonSpan
-        SERVE_theReadClassTable
-        SERVE_aVerseSpan
-        SERVE_aReadClassNdx
-        SERVE_aReadClassCsd
+        RET_new_NoonSpan
+            RET_new_NoonSpan(keyPress)   
+            RET_new_NoonSpanIndex
+            
+        RET_new_ReadClassTable
+            RET_new_ReadClassTable_SIZES( NoonSpanIndex )
+
+        RET_new_VerseSpan
+            RET_new_VerseSpan_INDEX
+            RET_new_ReadClassTable_KEY( INDEX )
+            RET_new_VerseSpan_WEIGHT( INDEX ) 
+            RET_new_ReadClassTable_CSD( WEIGHT )
         MUTATE_Verse: 
             sig:    Fn(verseSpan) = verseSpan
             usage:  iterator(Fn)(aSpan_Provider)
-            design: pipe(serve_aCsd)
+            design: pipe(RET_new_Csd)
             test:   
