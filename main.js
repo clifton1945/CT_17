@@ -45,8 +45,8 @@ main = function (item) {
     let MUTATE_Elem = require('./CSpc/src/MUTATE_Elem').MUTATE_;// csdDCT -> Fn(  eltDCT -> eltDCT )
 
     let ret = MUTATE_Elem(STUB_CSD)(aVersSELECTED);
+
     C_in_Both(`  OUTSIDE: Verse begins with [${ R.take(5, item.innerText)}]`);
     // C_in_Both(`   color:${ret.style.color}, opacity:${ret.style.opacity}`);
-
     C_in_Console(' OUT> ' + TRK);
 };
