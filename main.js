@@ -36,10 +36,12 @@ main = function (item) {
 
 
 // Data: ChapterSpace: allVerses, noonVerse
-    let SELECT_All = require('./CSpc/src/SELECT_ChptVerses').SELECT_All; // Fn(documentDCT) -> Fn:( querySTR -> divSpanLST )
-    let ChptVersesSERVER = SELECT_All(document);
-    let indexSERVER = pipe(ChptVersesSERVER, R.flip(R.indexOf))('chpt, span');
-    // now select the noonVerse
+    let SELECT_All = require('./CSpc/src/SELECT_ChptVerses')
+        .SELECT_All; //                     SELECT_All(documentDCT) -> Fn:( querySTR -> divSpanLST )
+    let querySERVER = SELECT_All(document);     // querySERVER( querySTR ) -> divSpanLST
+    let ChptVerses = querySERVER('chpt, span'); // ChptVerses isA divSpanLST
+    let indexSERVER = R.flip(R.indexOf)(ChptVerses);   // indexSERVER( span )  -> ndx
+    // now select the noonVerse span
     let noonVerse = item;
     let n = indexSERVER(noonVerse);
 

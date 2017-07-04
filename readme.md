@@ -28,8 +28,12 @@ Go Down and[ in NounSpeak ]
     
      Fn: 
         RET_new_NoonSpan
-            RET_new_NoonSpan(keyPress)   
-            RET_new_NoonSpanIndex
+            SELECT_All
+            querySERVER = SELECT_All(document) 
+            ChptVersesSERVER = querySERVER('.chpt, span')
+            indexSERVER 
+            noonVerseSERVER
+            readClassTableSERVER
             
         RET_new_ReadClassTable
             RET_new_ReadClassTable_SIZES( NoonSpanIndex )
@@ -39,6 +43,7 @@ Go Down and[ in NounSpeak ]
             RET_new_ReadClassTable_KEY( INDEX )
             RET_new_VerseSpan_WEIGHT( INDEX ) 
             RET_new_ReadClassTable_CSD( WEIGHT )
+            
         MUTATE_Verse: 
             sig:    Fn(verseSpan) = verseSpan
             usage:  iterator(Fn)(aSpan_Provider)
