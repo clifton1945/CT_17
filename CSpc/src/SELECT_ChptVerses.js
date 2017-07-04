@@ -25,3 +25,7 @@ let DivSpans_SELECTOR = curry(
         // this should be a Fn arity:1  docDCT -> nodeLST
     });
 module.exports.DivSpans_SELECTOR = DivSpans_SELECTOR;// Fn: ( docDCT -> divSpanLST )
+
+
+module.exports.SELECT_All = R.flip(R.invoker(1, 'querySelectorAll'));// Fn(documentDCT) Fn:( querySTR -> divSpanLST )
+
