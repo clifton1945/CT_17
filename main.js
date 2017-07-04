@@ -49,7 +49,6 @@ main = function (item) {
     let MUTATE_Elem = require('./CSpc/src/MUTATE_Elem').MUTATE_;// csdDCT -> Fn(  eltDCT -> eltDCT )
 
     let ret = MUTATE_Elem(STUB_CSD)(noonVerse);
-
     C_in_Both(`  The selected Verse is Verse.Index[${ n}]`);
     // C_in_Both(`   color:${ret.style.color}, opacity:${ret.style.opacity}`);
     C_in_Console(' OUT> ' + TRK);
