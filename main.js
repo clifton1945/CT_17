@@ -39,6 +39,9 @@ main = function (item) {
 
 // Data: ChapterSpace
     let aVersSELECTED = item;
+    let allVerses = require('./CSpc/src/SELECT_ChptVerses').SELECT_DivSpans('.chpt >  span');
+    let n = R.indexOf(item, allVerses);
+
 // Data: StyleSpace
     let STUB_CSD = require('./SSpc/StyleCSDs').Test;
 // Fn: ChapterSpace
@@ -46,7 +49,7 @@ main = function (item) {
 
     let ret = MUTATE_Elem(STUB_CSD)(aVersSELECTED);
 
-    C_in_Both(`  OUTSIDE: Verse begins with [${ R.take(5, item.innerText)}]`);
+    C_in_Both(`  OUTSIDE: this is Verse.Index[${ n}]`);
     // C_in_Both(`   color:${ret.style.color}, opacity:${ret.style.opacity}`);
     C_in_Console(' OUT> ' + TRK);
 };
