@@ -7,18 +7,20 @@
 let R = require('ramda')
     , curry = R.curry
     , pipe = R.pipe
+    // , always = R.always
 ;
 
 let MUTATE_ = curry(
-    /**
-     * ..... MUTATE_():: mutates, i.e. sets and returns, a given Element.style.
-     * SYMB  eltDCT -> ( csdDCT -> eltDCT )
-     *
-     * @param csd  : a DICT of the new style.CSD
-     * @return {*} : updated_elem
-     * @param elt
-     */
-    (elt, csd) => {
+    (csd, elt) => {
+        /**
+         * ..... MUTATE_():: mutates, i.e. sets and returns, a mutated span.style.
+         * @sig  SPAN -> ( csdDCT -> SPAN )
+         * @param csd  : a new style.CSD
+         * @param elt  : a html.span
+         * @return {*} : updated_elem
+         * @usage Fn(csd) -> Fn:(elt -> elt )
+         *
+         */
         let _mutElt = prop => elt.style[prop] = csd[prop];
 
         for (let property in csd)
@@ -28,5 +30,7 @@ let MUTATE_ = curry(
         return elt
     }
 );
-module.exports.MUTATE_ = MUTATE_;   // (ELEM)-> ( CSD ->  ELEM )
-module.exports.anElem = MUTATE_;    // (ELEM)-> ( CSD ->  ELEM )
+module.exports.byElem = R.flip(MUTATE_);            // (ELEM)-> ( CSD ->  ELEM )
+module.exports.byCsd = pipe(R.identity, MUTATE_);   // CSD -> ( ELEM -> ELEM )
+
+module.exports.MUTATE_ = pipe(MUTATE_);             // CSD -> ( ELEM -> ELEM )

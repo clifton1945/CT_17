@@ -16,7 +16,7 @@ let chai = require('chai')
 ;
 describe(`    MUTATE_Elt   test wip from Cookbook    
      `, function () {
-    let mutateElt = require('../CSpc/src/UPDATE_Elem').mutateElt;
+    let mutateElt = require('../depr/UPDATE_Elem').mutateElt;
     beforeEach(function () {
         loadFixtures('index.html'); //REMEMBER this BREAKS a mocha test !!
         // this.STUB_CSD = {"opacity": "0.5", "color": "green"};

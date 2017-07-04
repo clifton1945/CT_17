@@ -4,9 +4,9 @@
 "use strict";
 //
 let R = require('ramda')
-    , evolve = R.evolve
-    , curry = R.curry
-    , pipe = R.pipe
+    // , evolve = R.evolve
+    // , curry = R.curry
+    // , pipe = R.pipe
 ;
 // let M = require('mocha')
 // ;
@@ -26,7 +26,7 @@ describe(`    UPDATE_Elem progressively pipes in transformation code to apply to
     });
     describe(`{UPDATE_Elem                      } Fn::(DICT.CSD)(ELEM) {UPDATE_Elem} -> ELEM
         `, function () {
-        let UPDATE_Elem = require('../CSpc/src/UPDATE_Elem').UPDATE_Elem;
+        let UPDATE_Elem = require('./UPDATE_Elem').UPDATE_Elem;
         it(`should.be a Fn of arity:2; expecting a CSD and an Element.`, () => {
             UPDATE_Elem.should.is.a('Function');
             UPDATE_Elem.should.is.a('Function').and.is.length(2);
@@ -35,7 +35,7 @@ describe(`    UPDATE_Elem progressively pipes in transformation code to apply to
     describe(`{UPDATE_Elem_byCsd          } Fn::( ELEM) {UPDATE_Elem_byElem(DICT.CSD)} ->  ELEM 
         `, function () {
 
-        let UPDATE_Elem_byElem = require('../CSpc/src/UPDATE_Elem')._byCsd({"opacity": "0.5", "color": "green"});
+        let UPDATE_Elem_byElem = require('./UPDATE_Elem')._byCsd({"opacity": "0.5", "color": "green"});
         it(`should.be a Fn of arity:1 and Expect an Element.`, () => {
             UPDATE_Elem_byElem.should.is.a('Function').and.is.length(1);
         });
@@ -48,7 +48,7 @@ describe(`    UPDATE_Elem progressively pipes in transformation code to apply to
     describe(`{UPDATE_Elem_byElem        } Fn::( DICT.CSD) {UPDATE_Elem_byElem( ELEM)}  -> ELEM
         `, function () {
 
-        let UPDATE_Elem_byCsd = require('../CSpc/src/UPDATE_Elem')._byElem({style: {opacity: 1, color: ''}});
+        let UPDATE_Elem_byCsd = require('./UPDATE_Elem')._byElem({style: {opacity: 1, color: ''}});
         UPDATE_Elem_byCsd.should.be.a('Function').and.is.length(1);
         it(`should produce a new Elem given a CSD`, function () {
             RET = UPDATE_Elem_byCsd(this.STUB_CSD);
@@ -61,7 +61,7 @@ describe(`    UPDATE_Elem progressively pipes in transformation code to apply to
     describe(`{UPDATE_Elem:_byStylTrnfrm } Fn::( DCT.Trnfrm) -> {UPDATE_Elem_byStyleTrnfrm( DCT.ELEM)}  -> DCT.ELEM
         pipes a StyleTrnfrm  into UPDATE_Elem   
         `, function () {
-        let UPDATE_Elem = require('../CSpc/src/UPDATE_Elem')._byStyleTrnfrm;
+        let UPDATE_Elem = require('./UPDATE_Elem')._byStyleTrnfrm;
 
         it(`should.be a Fn of arity:1 EXPECTING a TrnfrmDCT and RETURNING a Fn arity:1.`, () => {
             UPDATE_Elem.should.be.a('Function').and.is.length(1);
