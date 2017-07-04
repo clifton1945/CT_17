@@ -39,7 +39,7 @@ main = function (item) {
 
 // Data: ChapterSpace
     let aVersSELECTED = item;
-    let allVerses = require('./CSpc/src/SELECT_ChptVerses').SELECT_DivSpans('.chpt >  span');
+    let allVerses = require('./CSpc/src/SELECT_ChptVerses').SELECT_All(document)('.chpt, span');
     let n = R.indexOf(item, allVerses);
 
 // Data: StyleSpace
@@ -49,7 +49,7 @@ main = function (item) {
 
     let ret = MUTATE_Elem(STUB_CSD)(aVersSELECTED);
 
-    C_in_Both(`  OUTSIDE: this is Verse.Index[${ n}]`);
+    C_in_Both(`  The selected Verse is Verse.Index[${ n}]`);
     // C_in_Both(`   color:${ret.style.color}, opacity:${ret.style.opacity}`);
     C_in_Console(' OUT> ' + TRK);
 };
