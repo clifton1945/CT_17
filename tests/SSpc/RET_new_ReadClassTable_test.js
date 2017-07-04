@@ -35,7 +35,7 @@ describe(`Fn: RET_new_ReadClassTable       WILL
     `, function () {
 
     let RET_new_ReadClassTable = (noon_span) => {
-        return 12345
+        return " FIX This. Expect a new Table."
     };
 
     beforeEach(function () {
@@ -46,9 +46,8 @@ describe(`Fn: RET_new_ReadClassTable       WILL
     RETURNING a Table
      WITH its sizKey : valu a NUMBER `, function () {
         expect(RET_new_ReadClassTable).is.a('Function');
-        expect(RET_new_ReadClassTable({})).is.a('Number');
     });
-    it.skip(`expects RET_new_ReadClassTable.`, function () {
+    it(`expects RET_new_ReadClassTable.`, function () {
         expect(RET_new_ReadClassTable(this.STUB_TRNFRMOR).should.be.a('Object')
             // .and.have.property('siz')
             // .and.equal('yellow')

@@ -14,7 +14,6 @@ let R = require('ramda')
     // , evolve = R.evolve
 ;
 
-
 let main;
 
 // EventHandler
@@ -29,25 +28,27 @@ function doSomething(e) {
     }
     e.stopPropagation();
 }
-
-
 main = function (item) {
     // ************** MAIN ********
 
     let TRK = "wbSample/main.js";
     C_in_Console('  IN> ' + TRK);
 
-// Data: ChapterSpace
-    let aVersSELECTED = item;
-    let allVerses = require('./CSpc/src/SELECT_ChptVerses').SELECT_All(document)('.chpt, span');
-    let n = R.indexOf(item, allVerses);
+
+// Data: ChapterSpace: allVerses, noonVerse
+    let SELECT_All = require('./CSpc/src/SELECT_ChptVerses').SELECT_All; // Fn(documentDCT) -> Fn:( querySTR -> divSpanLST )
+    let ChptVersesSERVER = SELECT_All(document);
+    let indexSERVER = pipe(ChptVersesSERVER, R.flip(R.indexOf))('chpt, span');
+    // now select the noonVerse
+    let noonVerse = item;
+    let n = indexSERVER(noonVerse);
 
 // Data: StyleSpace
     let STUB_CSD = require('./SSpc/StyleCSDs').Test;
 // Fn: ChapterSpace
     let MUTATE_Elem = require('./CSpc/src/MUTATE_Elem').MUTATE_;// csdDCT -> Fn(  eltDCT -> eltDCT )
 
-    let ret = MUTATE_Elem(STUB_CSD)(aVersSELECTED);
+    let ret = MUTATE_Elem(STUB_CSD)(noonVerse);
 
     C_in_Both(`  The selected Verse is Verse.Index[${ n}]`);
     // C_in_Both(`   color:${ret.style.color}, opacity:${ret.style.opacity}`);
