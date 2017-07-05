@@ -28,8 +28,8 @@ Go Down and[ in NounSpeak ]
     
      Fn: 
         RET_new_NoonSpan
-            SELECT_All
-            querySERVER =f to return a specific 
+            SELECT_All  = f:a2 RETURNS a htmlNode GIVEN a querySTR && a Document
+            querySERVER = f:a1 RETURNS a htmlNode BY apply GIVEN a querySTR TO the EMBEDDED document
             ChptVersesSERVER = querySERVER('.chpt, span')
             indexSERVER 
             noonVerseSERVER
