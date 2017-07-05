@@ -5,7 +5,7 @@
         A. USE existing keyAction || mouseEvent
             @1446 reading  https://www.kirupa.com/html5/handling_events_for_many_elements.htm
         B. see if querySelect and a RET_newNoonSpanIndex function
-        C. look at R.indexOf as the answer if convert either NodeList OR Collection into array **** looks like best.
+        C. look at R.indexOf as the answer if convert either ELEMList OR Collection into array **** looks like best.
  */
 Go Down and ORGANIZE a world that  
     has a documentDiv, chapterDiv, verseSpans 
@@ -28,11 +28,15 @@ Go Down and[ in NounSpeak ]
     
      Fn: 
         RET_new_NoonSpan
-            SELECT_All
-            querySERVER =f to return a specific 
-            ChptVersesSERVER = querySERVER('.chpt, span')
-            indexSERVER 
-            noonVerseSERVER
+            SELECT_All  -> f:a2 RETURNS a htmlELEM GIVEN a querySTR AND a Document
+            querySERVER -> f:a1 RETURNS a htmlELEM GIVEN a querySTR TO an EMBEDDED Document
+                = SELECT_All(Document)
+            ChptVersesNL -> RETURNS a ELEMLIST 
+                = querySERVER( chptVersSTR )
+            noonVerseSERVER -> f: RETURNS a Span GIVEN a MouseClick
+                this is the callback func of and EventHandler applies to the div.chpt Element
+                it is currently named: doSomething
+            indexSERVER -> f:a1 RETURNS a ndxNum GIVEN a verseSPAN TO an EMBEDDED verseELEMLIST
             readClassTableSERVER
             
         RET_new_ReadClassTable
