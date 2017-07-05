@@ -28,15 +28,18 @@ Go Down and[ in NounSpeak ]
     
      Fn: 
         RET_new_NoonSpan
-            SELECT_All  -> f:a2 RETURNS a htmlELEM GIVEN a querySTR AND a Document
-            querySERVER -> f:a1 RETURNS a htmlELEM GIVEN a querySTR TO an EMBEDDED Document
+            SELECT_All  -> f:a2 RETURNS a NODELIST GIVEN a querySTR AND a Document
+            querySERVER -> f:a1 RETURNS a NODELIST GIVEN a querySTR TO an EMBEDDED Document
                 = SELECT_All(Document)
-            ChptVersesNL -> RETURNS a ELEMLIST 
+            ChptVersesNODELIST -> RETURNS a ELEMLIST
+            Hey what about USING R.always(NODELIST) and add it to a pipe??
                 = querySERVER( chptVersSTR )
             noonVerseSERVER -> f: RETURNS a Span GIVEN a MouseClick
                 this is the callback func of and EventHandler applies to the div.chpt Element
                 it is currently named: doSomething
-            indexSERVER -> f:a1 RETURNS a ndxNum GIVEN a verseSPAN TO an EMBEDDED verseELEMLIST
+            TODO  add itermediate f like always(NODELIST0 to partial this indexSERVER
+            indexSERVER -> f:a1 RETURNS a ndxNum GIVEN a verseSPAN TO an EMBEDDED ChptVersesNODELIST
+            
             readClassTableSERVER
             
         RET_new_ReadClassTable
