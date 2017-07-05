@@ -29,7 +29,7 @@ Go Down and[ in NounSpeak ]
      Fn: 
         RET_new_NoonSpan
             SELECT_All
-            querySERVER = SELECT_All(document) 
+            querySERVER =f to return a specific 
             ChptVersesSERVER = querySERVER('.chpt, span')
             indexSERVER 
             noonVerseSERVER
