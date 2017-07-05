@@ -42,7 +42,7 @@ main = function (item) {
     let ChptVerses = querySERVER('chpt, span'); // ChptVerses isA divSpanLST
     let indexSERVER = R.flip(R.indexOf)(ChptVerses);   // indexSERVER( span )  -> ndx
     // now select the noonVerse span
-    let noonVerse = item;
+    // let noonVerse = item;
     let n = indexSERVER(noonVerse);
 
 // Data: StyleSpace
