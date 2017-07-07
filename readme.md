@@ -24,6 +24,10 @@ Go Down and[ in NounSpeak ]
         apply this csd to MUTATE the verseSpan.style.
         supply a verse 
             e.g. map(MUTATE_Verse)(verseSpanCollection)
+            
+            
+            
+// TODO  FIX TESTING: MUTATE_Elem  flip the CUT  to  CSD -> E -> E  style!!
         
 // now in [ in VerbSpeak ], you will need these Fns
     

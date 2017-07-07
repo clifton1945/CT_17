@@ -13,6 +13,9 @@ let chai = require('chai')
     , expect = chai.expect
 ;
 //////////////// WIP ///////////////////////////////////
+
+
+// TODO  FIX TESTING flip the CUT  to  CSD -> E -> E  style!!
 describe(`Fn: MUTATE_Elem::     sets and returns - mutates - an Element.style.
     This final Fn RENDERS the visual Effects of a new CSD.
         `, function () {
