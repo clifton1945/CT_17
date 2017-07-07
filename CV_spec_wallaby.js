@@ -16,7 +16,6 @@ module.exports = function (wallaby) {
             {pattern: 'node_modules/jquery/dist/jquery.js', instrument: false},
             {pattern: 'node_modules/jasmine-jquery/lib/jasmine-jquery.js', instrument: false},
             {pattern: 'CSpc/src/*.js', load: false},
-            {pattern: 'RC/src/*.js', load: false},
             {pattern: 'SSpc/src/*.js', load: false},
             {pattern: 'src/*.js', load: false},
             {pattern: 'h/*.js', load: false},
@@ -25,9 +24,8 @@ module.exports = function (wallaby) {
         ],
 
         tests: [
-            {pattern: 'CSpc/spec/*_spec.js', load: false}
+            {pattern: 'CSpc/spec/MUTATE_Elems__wallaby.js', load: false},
         ],
-
 
         compilers: {
             '**/*.js': wallaby.compilers.babel({
