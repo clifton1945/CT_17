@@ -1,7 +1,4 @@
-/**
- * UPDATE_Elem_by_.js
- * DO NOT DELETE - the function form is good; do not loose it! 170605
- */
+
 "use strict";
 
 let R = require('ramda')
@@ -11,16 +8,15 @@ let R = require('ramda')
 ;
 
 let MUTATE_ = curry(
+    /**
+     * ..... MUTATE_():: mutates, i.e. sets and returns, a span which has a new .style.
+     * @sig  csdDCT -> ( SPAN -> SPAN )
+     * @param csd
+     * @param elt
+     * @return {*}
+     */
     (csd, elt) => {
-        /**
-         * ..... MUTATE_():: mutates, i.e. sets and returns, a mutated span.style.
-         * @sig  SPAN -> ( csdDCT -> SPAN )
-         * @param csd  : a new style.CSD
-         * @param elt  : a html.span
-         * @return {*} : updated_elem
-         * @usage Fn(csd) -> Fn:(elt -> elt )
-         *
-         */
+
         let _mutElt = prop => elt.style[prop] = csd[prop];
 
         for (let property in csd)
@@ -30,7 +26,6 @@ let MUTATE_ = curry(
         return elt
     }
 );
-module.exports.byElem = R.flip(MUTATE_);            // (ELEM)-> ( CSD ->  ELEM )
-module.exports.byCsd = pipe(R.identity, MUTATE_);   // CSD -> ( ELEM -> ELEM )
-
 module.exports.MUTATE_ = pipe(MUTATE_);             // CSD -> ( ELEM -> ELEM )
+
+module.exports.byElem = R.flip(MUTATE_);            // (ELEM)-> ( CSD ->  ELEM )

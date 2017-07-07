@@ -16,30 +16,6 @@ let chai = require('chai')
 describe(`Fn: MUTATE_Elem::     sets and returns - mutates - an Element.style.
     This final Fn RENDERS the visual Effects of a new CSD.
         `, function () {
-
-    describe(`Fn MUTATE_Elem_byCsd ( Csd )         -> RETURNS a Fn( Elt -> Elt )
-    
-        NOTE: this is the Preferred signature: it waits till end to apply REAL HTML data: spans
-        `, function () {
-
-        let MUTATE_Elem_byCsd = require('../../CSpc/src/MUTATE_Elem').byCsd;
-
-        let STUB_Elem = {style: {opacity: 1, color: 'red'}};
-        let TEST_Csd = require('../../SSpc/StyleCSDs').Test;
-        let DFLT_Csd = require('../../SSpc/StyleCSDs').Dflt;
-        ;
-        beforeEach(function () {
-        });
-        it(`expects MUTATE_Elem_byCsd (invoked w/ TEST_Csd )   to be a Function of artity:1.`, () => {
-            expect(MUTATE_Elem_byCsd(TEST_Csd)).is.a('Function').and.length(1);
-        });
-        it(`expects MUTATE_Elem_byCsd(TEST_Csd)(STUB_Elem)    to be an Object with a style and properties.`, () => {
-            expect(MUTATE_Elem_byCsd(TEST_Csd)(STUB_Elem)).is.a('Object')
-                .has.property('style')
-                .has.property("opacity", "0.5")
-            ;
-        });
-    });
     describe(`Fn: MUTATE_Elem_byElem( Elt )         -> RETURNS ( csdDCT -> Elt )   
         `, function () {
 

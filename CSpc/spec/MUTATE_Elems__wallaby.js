@@ -12,7 +12,7 @@ let chai = require('chai')
     // , expect = chai.expect
 ;
 describe(`    MUTATE_:: mutates one span with its updated.style property.
-        
+        Signature: 
         This is function that returns a Fn: MUTATE_thisElement
         It is the result of already supplying an updated style Property CSD to the       
      `, function () {

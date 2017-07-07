@@ -1,12 +1,13 @@
 /**
- *  me OUTLINING Proj
-  170703:
-    PAUSED AT RET_new_NoonSpan
-        A. USE existing keyAction || mouseEvent
-            @1446 reading  https://www.kirupa.com/html5/handling_events_for_many_elements.htm
-        B. see if querySelect and a RET_newNoonSpanIndex function
-        C. look at R.indexOf as the answer if convert either ELEMList OR Collection into array **** looks like best.
+ *  me OUTLINING Proj  170707
+ * NOW TEST in Wallaby  - MUTATE_Elt__wallaby
+    try and put it top down.
+    try and do it with English and mocha first.
+ * I even think I can shorten the code by having almost all of it a FUNCTIONS: minimize the nouns.   
+ 
  */
+ 
+ 
 Go Down and ORGANIZE a world that  
     has a documentDiv, chapterDiv, verseSpans 
     has a readClassTable 
