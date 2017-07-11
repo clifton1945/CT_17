@@ -53,5 +53,6 @@ main = function (item) {
     let ret = MUTATE_Elem(STUB_CSD)(noonVerse);
     C_in_Both(`  The selected Verse is Verse.Index[${ n}]`);
     // C_in_Both(`   color:${ret.style.color}, opacity:${ret.style.opacity}`);
+
     C_in_Console(' OUT> ' + TRK);
 };

@@ -6,14 +6,17 @@ let R = require('ramda')
     , pipe = R.pipe
     // , always = R.always
 ;
-
 let MUTATE_ = curry(
     /**
-     * ..... MUTATE_():: mutates, i.e. sets and returns, a span which has a new .style.
+     * ..... MUTATE_:: mutates [sets and returns], a span, typically because its style CSD is new.
+     * This is an arity:2 version.
      * @sig  csdDCT -> ( SPAN -> SPAN )
+     *
      * @param csd
      * @param elt
      * @return {*}
+     *
+     * The MUTATE_frmCsdDCT arity:1 form is MUTATE_(a_csd) useful in iterating all verse spans.
      */
     (csd, elt) => {
 
