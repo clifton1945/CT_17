@@ -35,5 +35,5 @@ describe(`Fn: EVOLVE_Style_byTrnfrm          IS aFn.arity:1
             .and.equal('yellow')
         ;
     });
-})
+});
 
