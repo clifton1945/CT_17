@@ -35,7 +35,7 @@ let _MUTATOR = curry(
 
 module.exports._MUTATOR = _MUTATOR;// csdDCT -> ( eltDCT -> eltDCT )
 
-const DfltCsd = require('../../SSpc/readClassTable');// {backgroundColor: '', opacity: '1.0', fontSize: '100%', color: ""};
+const DfltCsd = require('../readClassTable');// {backgroundColor: '', opacity: '1.0', fontSize: '100%', color: ""};
 let newCsd = {color: "green", opacity: "0.5"};
 
 module.exports.SpanStyl_MUTATOR = curry(

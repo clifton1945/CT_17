@@ -17,12 +17,12 @@ describe(`SpanStyl_MUTATOR::always returns  Fn( SPN -> SPN )
      * SYMB:  a -> ( eltDCT -> ( eltDCT)   
      NOTE: for this test SS_Mutator  ===  SpanStyl_MUTATOR;
         `, function () {
-    let SS_MUTATOR = require('../../CSpc/src/SpanStyl_MUTATOR').SpanStyl_MUTATOR;
+    let SS_MUTATOR = require('../../SSpc/src/SpanStyl_MUTATOR').SpanStyl_MUTATOR;
 
     describe(`{SpanStyl_MUTATOR:: SIGNATURE changes
         * SYMB  csdDCT ->  eltDCT -> eltDCT)  
         * SYMB  a -> ( eltDCT ->  eltDCT)   
-        `, function () {
+        // `, function () {
 
         let STUB_CSD, STUB_Elem;
         beforeEach(function () {
