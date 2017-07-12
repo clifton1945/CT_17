@@ -12,10 +12,6 @@ let chai = require('chai')
     , should = chai.should()
     , expect = chai.expect
 ;
-//////////////// WIP ///////////////////////////////////
-
-
-// TODO  FIX TESTING flip the CUT  to  CSD -> E -> E  style!!
 describe(`Fn: MUTATE_Elem::     sets and returns - mutates - an Element.style.
     This final Fn RENDERS the visual Effects of a new CSD.
         `, function () {
@@ -27,8 +23,9 @@ describe(`Fn: MUTATE_Elem::     sets and returns - mutates - an Element.style.
 
         let STUB_Elem = {style: {opacity: 1, color: 'red'}}
             , TEST_Csd = require('../../SSpc/StyleCSDs').Test;
-        ;
+
         beforeEach(function () {
+
         });
         it(`Fn: MUTATE_Elem_byElem  should be a function of artity:2.`, () => {
             MUTATE_Elem_byElem.should.be.a('Function').and.is.length(2);

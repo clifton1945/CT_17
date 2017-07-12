@@ -22,7 +22,6 @@ theParent.addEventListener("click", SELECT_noonVerse, false);
 
 function SELECT_noonVerse(e) {
     if (e.target !== e.currentTarget) {
-        // let clickedItem = e.target;
         e.stopPropagation();
         main(e.target)
     }
@@ -31,19 +30,18 @@ function SELECT_noonVerse(e) {
 
 main = function (item) {
     // ************** MAIN ********
-
     let TRK = "wbSample/main.js";
     C_in_Console('  IN> ' + TRK);
 
 
-// Data: ChapterSpace: allVerses, noonVerse
+// select the noonVerse span
+    let noonVerse = item;
+//
     let SELECT_All = require('./CSpc/src/SELECT_ChptVerses')
         .SELECT_All; //                     SELECT_All(documentDCT) -> Fn:( querySTR -> divSpanLST )
     let querySERVER = SELECT_All(document);     // querySERVER( querySTR ) -> divSpanLST
     let ChptVerses = querySERVER('chpt, span'); // ChptVerses isA divSpanLST
     let indexSERVER = R.flip(R.indexOf)(ChptVerses);   // indexSERVER( span )  -> ndx
-    // now select the noonVerse span
-    let noonVerse = item;
     let n = indexSERVER(noonVerse);
 
 // Data: StyleSpace
@@ -52,9 +50,9 @@ main = function (item) {
     let MUTATE_Elem = require('./CSpc/src/MUTATE_Elem').MUTATE_;// csdDCT -> Fn(  eltDCT -> eltDCT )
 
     let ret = MUTATE_Elem(STUB_CSD)(noonVerse);
-    C_in_Both(`  The selected Verse is Verse.Index[${ n}]
-        color:${ret.style.color}, opacity:${ret.style.opacity}
-        `);
 
+
+    C_in_Both(`     The selected Verse is Verse.Index[${ n}]
+        color:${ret.style.color}, opacity:${ret.style.opacity} `);
     C_in_Console(' OUT> ' + TRK);
 };

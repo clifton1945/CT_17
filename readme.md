@@ -1,5 +1,14 @@
 /**
  *  me OUTLINING Proj  170712
+ for 170713 _ REFACT the names and form of main.js preparatory to
+ 
+     SELECT the noonClssVerse
+             either by mouseEvent, or keyEvent, or initialValue 
+         EVOLVE its styleCsd Properties to be the noonStyle
+             each styleCsd has a default noonStyle Attributes
+             FOR-EACH AttrKey UPDATE its AttrValu as a f( 
+                 its distance from noon) 
+         MUTATE the verse with the noonStyleCsd. 
  */
  
  

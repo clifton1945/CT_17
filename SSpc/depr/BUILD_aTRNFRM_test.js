@@ -13,7 +13,7 @@ context(`Fn: BUILD_aTRNFRM( keyStr ) RET-> Fn( wanting a trnsfomer Function )
         RETURNS a Function, arity:1, that RETURNS R.always Function
     `, function () {
         //CODE UNDER TEST
-        let TRNFRM_ = require('../../SSpc/src/BUILD_aTRNFRM').BUILD_aTRNFRM;
+        let TRNFRM_ = require('./BUILD_aTRNFRM').BUILD_aTRNFRM;
         beforeEach(function () {
             this.table = TRNFRM_('backgroundColor', 'yellow');
         });
