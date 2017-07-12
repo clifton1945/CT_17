@@ -28,8 +28,17 @@ describe(`    MUTATE_:: mutates a span UPDATING its.style property.
     beforeEach(function () {
         loadFixtures('index.html'); //REMEMBER this BREAKS a Mocha debug !!
     });
+<<<<<<<
+    HEAD
     describe(`{MUTATE_: arity:2                         } Fn:(CsdDCT) ->Fn(ELEM -> ELEM)
-        `, function () {
+=======
+    describe(`
+    {
+        MUTATE_
+    }
+    Fn:(CsdDCT) ->Fn(ELEM -> ELEM)
+        >>> >>> > origin / WIP
+            `, function () {
         it(`expects a Fn of arity:2; expecting a Span.`, () => {
             expect(MUTATE_).is.a('Function').and.is.length(2);
         });
@@ -46,7 +55,11 @@ describe(`    MUTATE_:: mutates a span UPDATING its.style property.
             ;
         });
     });
-    describe(`SERV_mutatedElem_frmCsdDCT():arity:1      form is the same as MUTATE_frmCsdDCT() form of function.   } 
+<<<<<<< HEAD
+    describe(`SERV_mutatedElem_frmCsdDCT():arity:1      form is the same as MUTATE_frmCsdDCT() form of function.   }
+=== === =
+    describe(`SERV_mutatedElem_frmCsdDCT():arity:1 form is the same as MUTATE_frmCsdDCT() form of function.   } 
+>>>>>>> origin/WIP
         `, function () {
         it(`expects an Element Obj `, () => {
             expect(SERV_mutatedElem_frmCsdDCT(STUB_ELEM)).is.a('Object')

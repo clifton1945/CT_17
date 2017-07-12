@@ -18,9 +18,9 @@ let main;
 
 // EventHandler
 let theParent = document.querySelector('.chpt');
-theParent.addEventListener("click", doSomething, false);
+theParent.addEventListener("click", SELECT_noonVerse, false);
 
-function doSomething(e) {
+function SELECT_noonVerse(e) {
     if (e.target !== e.currentTarget) {
         // let clickedItem = e.target;
         e.stopPropagation();
