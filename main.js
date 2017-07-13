@@ -36,23 +36,19 @@ main = function (item) {
 
 // select the noonVerse span
     let noonVerse = item;
-//
-    let SELECT_All = require('./CSpc/src/SELECT_ChptVerses')
-        .SELECT_All; //                     SELECT_All(documentDCT) -> Fn:( querySTR -> divSpanLST )
-    let querySERVER = SELECT_All(document);     // querySERVER( querySTR ) -> divSpanLST
-    let ChptVerses = querySERVER('chpt, span'); // ChptVerses isA divSpanLST
-    let indexSERVER = R.flip(R.indexOf)(ChptVerses);   // indexSERVER( span )  -> ndx
-    let n = indexSERVER(noonVerse);
-
-// Data: StyleSpace
+// Test Data: StyleSpace
     let STUB_CSD = require('./SSpc/StyleCSDs').Test;
-// Fn: ChapterSpace
+// Fn: MUTATE_Elem
     let MUTATE_Elem = require('./CSpc/src/MUTATE_Elem').MUTATE_;// csdDCT -> Fn(  eltDCT -> eltDCT )
-
+// CODE UNDER TEST
     let ret = MUTATE_Elem(STUB_CSD)(noonVerse);
 
-
+// all that follows is just to return a span mdx, it is in a span list, AND see it in the HTML output
+    let SRV_DfltChptVerses = require('./CSpc/src/SELECT_ChptVerses').SRV_DfltChptVerses;
+    let SRV_spanIndex = pipe(SRV_DfltChptVerses, R.flip(R.indexOf))(document);
+    let n = SRV_spanIndex(noonVerse);
     C_in_Both(`     The selected Verse is Verse.Index[${ n}]
         color:${ret.style.color}, opacity:${ret.style.opacity} `);
+
     C_in_Console(' OUT> ' + TRK);
 };
