@@ -18,7 +18,7 @@ describe(`Fn: MUTATE_Elem::     sets and returns - mutates - an Element.style.
     describe(`Fn: MUTATE_Elem_byElem( Elt )         -> RETURNS ( csdDCT -> Elt )   
         `, function () {
 
-        let MUTATE_Elem_byElem = require('../../CSpc/src/MUTATE_Elem')
+        let MUTATE_Elem_byElem = require('../src/MUTATE_Elem')
             .byElem; // Fn(CSD) -> ELEM // ELEM -> ( CSD ->  ELEM )
 
         let STUB_Elem = {style: {opacity: 1, color: 'red'}}

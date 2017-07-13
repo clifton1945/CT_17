@@ -3,8 +3,8 @@
  */
 "use strict";
 let R = require('ramda')
-    , evolve = R.evolve
-    , curry = R.curry
+    // , evolve = R.evolve
+    // , curry = R.curry
 // , pipe = R.pipe
 //     , compose = R.compose
 ;
