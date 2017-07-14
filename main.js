@@ -36,18 +36,19 @@ main = function (item) {
 // select the noonVerse span
     let noonVerse = item;
 // Test Data: StyleSpace
-    let STUB_CSD = require('./SSpc/StyleCSDs').Test.noon;
+    let testCSD = require('./SSpc/src/SRV_StyleCSD').byReadClassKey('pm');//noon:pink. pm:green
+    // let testCSD = require('./SSpc/StyleCSDs').Dflt['noon'];
 // Fn: MUTATE_Elem
     let MUTATE_Elem = require('./CSpc/src/MUTATE_Elem').MUTATE_;// csdDCT -> Fn(  eltDCT -> eltDCT )
 // CODE UNDER TEST
-    let ret = MUTATE_Elem(STUB_CSD)(noonVerse);
+    let ret = MUTATE_Elem(testCSD)(noonVerse);
 
 // all that follows is just to return a span mdx, it is in a span list, AND see it in the HTML output
     let SRV_ChptVerses_Dflt = require('./CSpc/src/SRV_ChptVerses').SRV_ChptVerses_Dflt;
     let SRV_spanIndex = pipe(SRV_ChptVerses_Dflt, R.flip(R.indexOf))(document);
     let n = SRV_spanIndex(noonVerse);
-    C_in_Both(`     The selected Verse is Verse.Index[${ n}]
-        color:${ret.style.color}, opacity:${ret.style.opacity} `);
+    C_in_Both(`     The selected Verse.Index[${ n}]
+         backgroundColor:${ret.style.backgroundColor}, color:${ret.style.color}, opacity:${ret.style.opacity}`);
 
     C_in_Console(' OUT> ' + TRK);
 };
