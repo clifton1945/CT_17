@@ -12,5 +12,5 @@ module.exports.Dflt = {
 // let Test
 let t = {noon: {color: "green", backgroundColor: 'pink', opacity: '0.5', fontSize: '70%'}};
 module.exports.Test = t;
-module.exports.test = t
+module.exports.test = t;
 

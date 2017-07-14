@@ -13,7 +13,7 @@ let chai = require('chai')
     , expect = chai.expect
 ;
 
-describe(`Fn: SRV_StyleCsd SERVES a styleCsd given      
+describe(`Fn: SRV_StyleCsd             SERVES a styleCsd given      
     (1) a StyleCsd_Dflt
     (2) a StyleCsd_byReadClassKey given byReadClassKey
     `, () => {

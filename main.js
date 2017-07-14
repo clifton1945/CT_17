@@ -43,8 +43,8 @@ main = function (item) {
     let ret = MUTATE_Elem(STUB_CSD)(noonVerse);
 
 // all that follows is just to return a span mdx, it is in a span list, AND see it in the HTML output
-    let SRV_DfltChptVerses = require('./CSpc/src/SELECT_ChptVerses').SRV_DfltChptVerses;
-    let SRV_spanIndex = pipe(SRV_DfltChptVerses, R.flip(R.indexOf))(document);
+    let SRV_ChptVerses_Dflt = require('./CSpc/src/SRV_ChptVerses').SRV_ChptVerses_Dflt;
+    let SRV_spanIndex = pipe(SRV_ChptVerses_Dflt, R.flip(R.indexOf))(document);
     let n = SRV_spanIndex(noonVerse);
     C_in_Both(`     The selected Verse is Verse.Index[${ n}]
         color:${ret.style.color}, opacity:${ret.style.opacity} `);
