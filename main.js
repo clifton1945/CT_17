@@ -33,11 +33,10 @@ main = function (item) {
     let TRK = "wbSample/main.js";
     C_in_Console('  IN> ' + TRK);
 
-
 // select the noonVerse span
     let noonVerse = item;
 // Test Data: StyleSpace
-    let STUB_CSD = require('./SSpc/StyleCSDs').Test;
+    let STUB_CSD = require('./SSpc/StyleCSDs').Test.noon;
 // Fn: MUTATE_Elem
     let MUTATE_Elem = require('./CSpc/src/MUTATE_Elem').MUTATE_;// csdDCT -> Fn(  eltDCT -> eltDCT )
 // CODE UNDER TEST

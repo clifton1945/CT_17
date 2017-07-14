@@ -1,11 +1,9 @@
 /**
- *  me OUTLINING Proj  170712
- for 170713 _ REFACT the names and form of main.js preparatory to
+ *  me OUTLINING Proj  170713
  
      SELECT the noonClssVerse
              either by mouseEvent, or keyEvent, or initialValue 
-         EVOLVE its styleCsd Properties to be the noonStyle
-             each styleCsd has a default noonStyle Attributes
+  >>>>>       EVOLVE its styleCsd Properties to be the default noonStyle
              FOR-EACH AttrKey UPDATE its AttrValu as a f( 
                  its distance from noon) 
          MUTATE the verse with the noonStyleCsd. 
@@ -21,7 +19,7 @@ Go Down and ORGANIZE a world that
 Go Down and[ in NounSpeak ]
     SELECT the noonClssVerse
             either by mouseEvent, or keyEvent, or initialValue 
-        EVOLVE its styleCsd Properties to be the noonStyle
+        EVOLVE its styleCsd Properties to be the noonStyle default
             each styleCsd has a default noonStyle Attributes
             FOR-EACH AttrKey UPDATE its AttrValu as a f( 
                 its distance from noon) 
