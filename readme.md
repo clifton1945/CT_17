@@ -22,14 +22,14 @@ Go Down and[ in VerbSpeak ]
 
     
     Then 
-    FOR-EACH verseSpan after the noonVerse
+    FOR-EACH verseSpan AFTER the noonVerse
         EVOLVE its styleCsd Properties to be a pm ReadClassStyle
             each styleCsd has default style Attributes
             FOR-EACH AttrKey UPDATE its AttrValu as a f(
                 its distance from noon) 
         MUTATE the verse with this pmStylCsd.
     Then 
-    FOR-EACH verseSpan before the noonVerse
+    FOR-EACH verseSpan BEFORE the noonVerse
         EVOLVE its styleCsd Properties to be a am ReadClassStyle
             each styleCsd has default style Attributes
             FOR-EACH AttrKey UPDATE its AttrValu as a f(

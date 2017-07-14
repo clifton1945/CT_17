@@ -22,7 +22,7 @@ describe(`Fn: MUTATE_Elem::     sets and returns - mutates - an Element.style.
             .byElem; // Fn(CSD) -> ELEM // ELEM -> ( CSD ->  ELEM )
 
         let STUB_Elem = {style: {opacity: 1, color: 'red'}}
-            , TEST_Csd = require('../../SSpc/StyleCSDs').Test.noon;
+            , TEST_Csd = require('../../SSpc/StyleCSDS').Test.noon;
 
         beforeEach(function () {
             // loadFixtures('index.html'); //REMEMBER this BREAKS a mocha test !!

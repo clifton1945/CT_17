@@ -26,7 +26,7 @@ describe(`Fn: SERVE_new_ReadClassTable       RETURNS new {siz: valu} in each of 
     };
 
     beforeEach(function () {
-        this.TEST_Tabl = require('../readClassTable');
+        this.TEST_Tabl = require('./readClassTable');
     });
 
     it(`expects SERVE_new_ReadClassTable is a Function 

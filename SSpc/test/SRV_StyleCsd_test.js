@@ -29,10 +29,8 @@ describe(`Fn: SRV_StyleCsd             SERVES a styleCsd given
 
     it(`expects SRV_StyleCsd_frmKey( key )  -> a style Csd.
     `, function () {
-        expect(SRV_StyleCsd_byReadClassKey('pm'),
-            "PROBABLY the backgounrColor WILL CHANGE in future tests " +
-            "AND BREAK this TEST").is.a('Object').has.property('backgroundColor')
-            .and.equal('green')
+        expect(SRV_StyleCsd_byReadClassKey('pm')).is.a('Object').has.property('opacity')
+            .and.equal('0.9')
         ;
     });
 });

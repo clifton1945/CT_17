@@ -6,8 +6,8 @@ let R = require('ramda')
  *  that WHEN provided its @param: readClass Key
  * RETURNS a readClass Csd valu
  */
-module.exports.Dflt = require('../StyleCSDs').Dflt;
-module.exports.Test = require('../StyleCSDs').Test;
+module.exports.Dflt = require('../StyleCSDS').Dflt;
+module.exports.Test = require('../StyleCSDS').Test;
 
-module.exports.byReadClassKey = key => require('../StyleCSDs').Dflt[key];
+module.exports.byReadClassKey = key => require('../StyleCSDS').Dflt[key];
 
