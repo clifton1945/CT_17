@@ -14,7 +14,7 @@ let SELECT_DivSpans = curry(
      *  SRV_DfltChptVerses: Fn( DOC -> dfltChptVersesNL )
      */
     function (doc) {
-        let DfltSelector = require('../Dflt_ChptVerses');
+        let DfltSelector = require('../DfltSelector_ChptVerses');
         return doc.querySelectorAll(DfltSelector); // Fn(invoked w/ document) -> div.span NodeList
     });
 module.exports.SELECT_DivSpans = SELECT_DivSpans;
