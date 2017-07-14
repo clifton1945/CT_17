@@ -5,9 +5,9 @@
 
 // let Dflt
 module.exports.Dflt = {
-    am: {color: "", backgroundColor: '', opacity: '1.0', fontSize: '100%'}
-    , noon: {color: "", backgroundColor: '', opacity: '1.0', fontSize: '100%'}
-    , pm: {color: "", backgroundColor: '', opacity: '1.0', fontSize: '100%'}
+    am: {color: "", backgroundColor: 'red', opacity: '1.0', fontSize: '100%'}
+    , noon: {color: "", backgroundColor: 'blue', opacity: '1.0', fontSize: '100%'}
+    , pm: {color: "", backgroundColor: 'green', opacity: '1.0', fontSize: '100%'}
 };
 // let Test
 let t = {noon: {color: "green", backgroundColor: 'pink', opacity: '0.5', fontSize: '70%'}};
