@@ -37,7 +37,6 @@ main = function (item) {
     let noonVerse = item;
 // Test Data: StyleSpace
     let testCSD = require('./SSpc/src/SRV_StyleCSD').byReadClassKey('pm');//noon:pink. pm:green
-    // let testCSD = require('./SSpc/StyleCSDs').Dflt['noon'];
 // Fn: MUTATE_Elem
     let MUTATE_Elem = require('./CSpc/src/MUTATE_Elem').MUTATE_;// csdDCT -> Fn(  eltDCT -> eltDCT )
 // CODE UNDER TEST
