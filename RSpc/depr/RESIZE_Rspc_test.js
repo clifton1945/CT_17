@@ -17,7 +17,6 @@ chai.should();
 context(`RESIZE_inRSpc returns Functions to RESIZE - rebuild - the Rspc DICT of Read Class sizes - lengths.
         `, function () {
 
-    //SOMEDAY  chnage names FROM fromNNNN TO usingNNNN or better
     describe(`RESIZE_fromSize  returns Fn (  ndx_focus -> RESIZE_fromSize ) given partial: size_chpr. `, function () {
 
         let RESIZE_fromSize = require('../../depr/RESIZE_Rspc').fromSize; // size_chpr -> (  ndx_focus -> RESIZE_in_RSpc )
