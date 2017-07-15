@@ -21,9 +21,8 @@ describe(`Fn: EVOLVE_Style_byTrnfrm          IS aFn.arity:1
       
      It is also available by the name of .SRV_evolvedStyle_byTrnsfrm
     `, () => {
-    // TEST DATA
 
-    let TEST_CSD;
+    let TEST_CSD; // TEST DATA
     TEST_CSD = require('../src/SRV_StyleCsd').Dflt;
     let STUB_TRNFRM = {am: {backgroundColor: R.always('yellow'), opacity: R.always('0.5')}};
     // CODE UNDER TEST

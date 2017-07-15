@@ -12,8 +12,7 @@ let chai = require('chai')
     , should = chai.should()
     , expect = chai.expect
 ;
-describe(`Fn: MUTATE_Elem::     sets and returns - mutates - an Element.style.
-    This final Fn RENDERS the visual Effects of a new CSD.
+describe(`Fn: MUTATE_Elem::         mutates - sets and returns - an Element.style.
         `, function () {
     describe(`Fn: MUTATE_Elem_byElem( Elt )         -> RETURNS ( csdDCT -> Elt )   
         `, function () {

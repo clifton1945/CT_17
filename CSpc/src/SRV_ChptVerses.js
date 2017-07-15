@@ -1,6 +1,5 @@
 /**
  ./src/SRV_ChptVerses
- TODO  0600   FIGURE OUT a way to test this and change it to SRV_ChptVerses_Dflt
  */
 "use strict";
 
