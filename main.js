@@ -35,11 +35,14 @@ main = function (item) {
 
 // select the noonVerse span
     let noonVerse = item;
+// use it to create three readClass Lists
+
     let testCSD;  // Test Data: StyleSpace
     testCSD = require('./SSpc/src/SRV_StyleCSD').byReadClassKey('pm');
-    //am: paleRed , noon: paleYellow , pm: paleGreen
+    //      am: paleRed , noon: paleYellow , pm: paleGreen
 // Fn: MUTATE_Elem
-    let MUTATE_Elem = require('./CSpc/src/MUTATE_Elem').MUTATE_;// csdDCT -> Fn(  eltDCT -> eltDCT )
+    let MUTATE_Elem = require('./CSpc/src/MUTATE_Elem').MUTATE_;
+    //       csdDCT -> Fn(  eltDCT -> eltDCT )
 // CODE UNDER TEST
     let ret = MUTATE_Elem(testCSD)(noonVerse);
 
