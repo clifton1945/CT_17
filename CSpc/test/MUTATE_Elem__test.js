@@ -8,7 +8,7 @@
 // , curry = R.curry
 // , pipe = R.pipe
 // ;
-let mocha = require('mocha')
+// let mocha = require('mocha')
 ;
 // noinspection Annotator
 let chai = require('chai')

@@ -13,7 +13,7 @@ describe(`Fn: UPDATE_RSpcVerses     span -> List OR Obj w/ 4 lists? `, () => {
     // CODE UNDER TEST
     let SRV_aStyle = require('../src/UPDATE_RSpcVerses').SRV_aStyle;
     // TEST DATA
-    let firstSpan = {}, aNodeList = [], parent = {}, noonSpan = {}, parentChildren = [], anotherSpan = {};
+    let firstSpan = {}, aNodeList = [], parent = {}, noonSpan = {}, parentChildren = [], anotherSpan = {}
     ;
     beforeEach(function () {
         loadFixtures('index.html');
