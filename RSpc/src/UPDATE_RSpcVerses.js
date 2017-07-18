@@ -9,6 +9,13 @@ let chai = require('chai')
 ;
 // CODE UNDER TEST
 let SRV_aStyle = curry(
+    /**
+     * Fn.
+     * @param parent
+     * @param noon
+     * @param spn
+     * @return {{color: string}}
+     */
     (parent, noon, spn) => {
         let _f = indexOf(R.__, parent)
             , n = _f(noon)
@@ -19,4 +26,4 @@ let SRV_aStyle = curry(
                 {color: 'green'}
     });
 
-module.exports.SRV_aStyle = SRV_aStyle;            //
+module.exports.SRV_aReadClssStyle = SRV_aStyle;            //
