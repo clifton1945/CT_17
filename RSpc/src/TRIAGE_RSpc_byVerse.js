@@ -8,7 +8,7 @@ let chai = require('chai')
     , expect = chai.expect
 ;
 // CODE UNDER TEST
-let SRV_aStyle = curry(
+let TRIAGE_ = curry(
     /**
      * Fn.
      * @param parent
@@ -26,4 +26,4 @@ let SRV_aStyle = curry(
                 {color: 'green'}
     });
 
-module.exports.SRV_aReadClssStyle = SRV_aStyle;            //
+module.exports.SRV_aReadClssStyle = TRIAGE_;            //

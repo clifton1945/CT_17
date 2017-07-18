@@ -9,7 +9,7 @@
 // , pipe = R.pipe
 // ;
 // let mocha = require('mocha')
-;
+// ;
 // noinspection Annotator
 let chai = require('chai')
     , expect = chai.expect

@@ -11,7 +11,7 @@ let chai = require('chai')
 ;
 describe(`Fn: UPDATE_RSpcVerses     span -> List OR Obj w/ 4 lists? `, () => {
     // CODE UNDER TEST
-    let SRV_aStyle = require('../src/UPDATE_RSpcVerses').SRV_aReadClssStyle;
+    let SRV_aStyle = require('../src/TRIAGE_RSpc_byVerse').SRV_aReadClssStyle;
     // TEST DATA
     let firstSpan = {}, aNodeList = [], parent = {}, noonSpan = {}, parentChildren = [], anotherSpan = {}
     ;

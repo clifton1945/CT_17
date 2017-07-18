@@ -8,7 +8,7 @@ let chai = require('chai')
 ;
 describe(`Fn: UPDATE_RSpcVerses     span -> csd `, () => {
     // CODE UNDER TEST
-    let SRV_aStyle = require('../src/UPDATE_RSpcVerses').SRV_aReadClssStyle;
+    let SRV_aStyle = require('../src/TRIAGE_RSpc_byVerse').SRV_aReadClssStyle;
     // TEST DATA
     let noonSpan = [2], aNodeList = [[0], [1], [2], [3]]
     ;
