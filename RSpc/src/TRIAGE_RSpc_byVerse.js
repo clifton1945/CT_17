@@ -10,7 +10,7 @@ let chai = require('chai')
 // CODE UNDER TEST
 let TRIAGE_ = curry(
     /**
-     * Fn.
+     * Fn: TRIAGE_
      * @param parent
      * @param noon
      * @param spn
@@ -26,4 +26,5 @@ let TRIAGE_ = curry(
                 {color: 'green'}
     });
 
+module.exports.TRIAGE_ = TRIAGE_;            //
 module.exports.SRV_aReadClssStyle = TRIAGE_;            //

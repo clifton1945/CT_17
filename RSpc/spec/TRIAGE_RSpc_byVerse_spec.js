@@ -9,9 +9,9 @@ let mocha = require('mocha');
 let chai = require('chai')
     , expect = chai.expect
 ;
-describe(`Fn: UPDATE_RSpcVerses     span -> List OR Obj w/ 4 lists? `, () => {
+describe(`Fn: TRIAGE_     span -> List OR Obj w/ 4 lists? `, () => {
     // CODE UNDER TEST
-    let SRV_aStyle = require('../src/TRIAGE_RSpc_byVerse').SRV_aReadClssStyle;
+    let SRV_aStyle = require('../src/TRIAGE_RSpc_byVerse').TRIAGE_;
     // TEST DATA
     let firstSpan = {}, aNodeList = [], parent = {}, noonSpan = {}, parentChildren = [], anotherSpan = {}
     ;
@@ -30,12 +30,11 @@ describe(`Fn: UPDATE_RSpcVerses     span -> List OR Obj w/ 4 lists? `, () => {
         expect(parentChildren.length).is.equal(52);
         expect(parent.childElementCount).is.equal(52);
     });
-    it(`GET the noonSpan's sibling index: it does not come from the event handler with an index.`, () => {
+    it(`GET the noonSpan's sibling index: noon does not come from the event handler with an index.`, () => {
         expect(R.indexOf(noonSpan, parentChildren)).is.equal(4);
         expect(R.flip(R.indexOf)(parentChildren, noonSpan)).is.equal(4);
     });
-    it(`
-    Fn: SRV_aStyle( parentChildren, noonSpan, aNodeList.span.`, () => {
+    it(` Fn: SRV_aStyle( parentChildren, noonSpan, aNodeList.span.`, () => {
         expect(SRV_aStyle(parentChildren, noonSpan, anotherSpan)).is.deep.equal({color: 'red'});
     });
 

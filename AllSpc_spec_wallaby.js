@@ -15,18 +15,21 @@ module.exports = function (wallaby) {
         files: [
             {pattern: 'node_modules/jquery/dist/jquery.js', instrument: false},
             {pattern: 'node_modules/jasmine-jquery/lib/jasmine-jquery.js', instrument: false},
-            {pattern: 'h/*.js', load: false},
-            {pattern: 'CSpc/*.js', load: false},
             {pattern: 'CSpc/src/*.js', load: false},
-            {pattern: 'RSpc/*.js', load: false},
             {pattern: 'RSpc/src/*.js', load: false},
-            {pattern: 'SSpc/*.js', load: false},
             {pattern: 'SSpc/src/*.js', load: false},
+            {pattern: 'src/*.js', load: false},
+            {pattern: 'h/*.js', load: false},
             {pattern: 'main.js', load: false},
             {pattern: 'index.html', load: false}
         ],
+
         tests: [
-            {pattern: 'CSpc/spec/*.js', load: false},],
+            {pattern: 'CSpc/spec/*_spec.js', load: false},
+            {pattern: 'RSpc/spec/*_spec.js', load: false},
+            {pattern: 'SSpc/spec/*_spec.js', load: false}
+        ],
+
         compilers: {
             '**/*.js': wallaby.compilers.babel({
                 presets: ['es2015']
