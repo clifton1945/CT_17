@@ -5,4 +5,4 @@
 "use strict";
 
 let Dflt_clsNames = {pst: 'pst', cur: 'cur', fut: 'fut'};
-module.exports = Dflt_clsNames; // -> {pst: 'pst', cur: 'cur', fut: 'fut'}
+module.exports.Dflt = Dflt_clsNames; // -> {pst: 'pst', cur: 'cur', fut: 'fut'}

@@ -5,20 +5,37 @@ let R = require('ramda')
     // , pipe = R.pipe
     // , evolve = R.evolve
 ;
-let mocha = require('mocha');
+let mocha = require('mocha')
+;
 let chai = require('chai')
     , expect = chai.expect
 ;
-describe(`Fn: TRIAGE_     span -> List OR Obj w/ 4 lists? `, () => {
-    // CODE UNDER TEST
-    let SRV_aStyle = require('../src/TRIAGE_RSpc_byVerse').TRIAGE_;
+describe(`Fn: SRVa_Csd__GVNa_spanNdx    csd -> noonNdx -> ( spanNdx -> rspcCsd )`, () => {
+    /**
+     * Fn: SRVa_Csd__GVNa_spanNdx
+     * Fn: TRIAGE_1
+     * @param rspcCsdDict
+     * @param noonNdx
+     * @param spanNdx
+     * @return a CSD
+     */
+    let SRVa_rspcCsd = require('../src/SRVa_rspcCsd').__GVNa_spanNdx;
+
     // TEST DATA
-    let firstSpan = {}, aNodeList = [], parent = {}, noonSpan = {}, parentChildren = [], anotherSpan = {}
+    let aSpanColl = {}
+        , aNodeList = []
+        , parent = {}
+        , noonSpan = {}
+        , parentChildren = []
+        , anotherSpan = {}
+        , dfltStyle = {}
     ;
     beforeEach(function () {
         loadFixtures('index.html');
-        //      REMEMBER this BREAKS a Mocha debug !!
-        firstSpan = document.querySelector('.chpt span');
+        //      REMEMBER loadFixtures BREAKS a Mocha debug !!
+        dfltStyle = require('C:\\Users\\CLIF\\WSProjects\\wbSample\\RSpc\\Dflt_RSpcStyles.js').Dflt;
+        console.log(`csd-> ${JSON.stringify(dfltStyle)}`);
+        aSpanColl = document.querySelector('.chpt span').children;
         aNodeList = document.querySelectorAll('.chpt span');
         noonSpan = aNodeList[4];
         anotherSpan = aNodeList[1];
@@ -26,17 +43,32 @@ describe(`Fn: TRIAGE_     span -> List OR Obj w/ 4 lists? `, () => {
         parentChildren = parent.children;
     });
 
-    it(`a span parent to have span children. i.e. a child's siblings.`, () => {
+    it(`expect a div parent to have span children. i.e. a child's siblings.`, () => {
         expect(parentChildren.length).is.equal(52);
         expect(parent.childElementCount).is.equal(52);
     });
-    it(`GET the noonSpan's sibling index: noon does not come from the event handler with an index.`, () => {
+    it(`expect a Fn to GET the noonSpan's sibling index. 
+        Note: noon does not come WITH an index FROM the event handler.`, () => {
         expect(R.indexOf(noonSpan, parentChildren)).is.equal(4);
         expect(R.flip(R.indexOf)(parentChildren, noonSpan)).is.equal(4);
     });
-    it(` Fn: SRV_aStyle( parentChildren, noonSpan, aNodeList.span.`, () => {
-        expect(SRV_aStyle(parentChildren, noonSpan, anotherSpan)).is.deep.equal({color: 'red'});
+    it(` expect dfltStyle -> aCsdDict.`, () => {
+        expect(dfltStyle).is.a('Object').has.key('am', 'noon', 'pm')
+        expect(dfltStyle.am).is.a('Object').to.deep.include({opacity: '0.8'});
     });
-
-
+    it(` expect SRV_aStyle(csd, 4, 1 ) -> the 'am' readStyle.`, () => {
+        expect(SRVa_rspcCsd(dfltStyle, 4, 1)).is.a('Object')
+            .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
+            .to.deep.include({opacity: '0.8'});
+    });
+    it(` expect SRV_aStyle(csd, 4, 4 ) -> the 'noon' readStyle.`, () => {
+        expect(SRVa_rspcCsd(dfltStyle, 4, 4)).is.a('Object')
+            .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
+            .to.deep.include({opacity: '1.0'});
+    });
+    it(` expect SRV_aStyle(csd, 4, 6 ) -> the 'pm' readStyle.`, () => {
+        expect(SRVa_rspcCsd(dfltStyle, 4, 6)).is.a('Object')
+            .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
+            .to.deep.include({opacity: '0.9'});
+    });
 });
