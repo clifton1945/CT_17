@@ -35,16 +35,17 @@ main = function (item) {
 
 // select the noonVerse span
     let noonVerse = item;
-// use it to create three readClass Lists
 
+// use it to create three readClass Lists
     let testCSD;  // Test Data: StyleSpace
-    testCSD = require('./SSpc/src/SRV_StyleCSD').byReadClassKey('pm');
+    testCSD = require('./SSpc/src/SRV_StyleCSD').byReadClassKey('am');
     //      am: paleRed , noon: paleYellow , pm: paleGreen
-// Fn: MUTATE_Elem
-    let MUTATE_Elem = require('./CSpc/src/MUTATE_Elem').MUTATE_;
+
+// Fn: SRV_mutatedElem
+    let SRV_mutatedElem = require('./CSpc/src/MUTATE_Elem').MUTATE_((testCSD));
     //       csdDCT -> Fn(  eltDCT -> eltDCT )
 // CODE UNDER TEST
-    let ret = MUTATE_Elem(testCSD)(noonVerse);
+    let ret = SRV_mutatedElem(noonVerse);
 
 // all that follows is just to return a span mdx, it is in a span list, AND see it in the HTML output
     let SRV_ChptVerses_Dflt = require('./CSpc/src/SRV_ChptVerses').SRV_ChptVerses_Dflt;
