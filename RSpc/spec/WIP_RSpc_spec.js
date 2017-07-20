@@ -5,34 +5,28 @@ let R = require('ramda')
     // , pipe = R.pipe
     // , evolve = R.evolve
 ;
-let mocha = require('mocha');
+let mocha = require('mocha')
+    , context = mocha.describe;
+// noinspection Annotator
 let chai = require('chai')
     , expect = chai.expect
 ;
-describe(` The Fn: SRVa_Csd_WTHa_CsdTrnfrmFn_GVNa_Csd is the actual core function in CeeingThought. This verbose name explicitly says
-        SRV means it is a Function returning a new Csd
-        WTH means it aleady has aCsdTrnfrmFner Fn. 
-            This transformer function is inturn the key Fn.
-                It  evolves a Csd as f(
-                anElem, itsNdx, itsSiblings - use ENS abbrev -
-                AND 
-                itsReadClass identity). 
-        GVN means it requires a Csd to be transformed.
-        
-        A corresponding USAGE then is Csd = SRVa_Csd_WTHa_CsdTrnfrmFn_GVN_( aCsd)
-    Given these steps what would be a verbose compose??
-    
-    Csd = compose( 
-        SRVa_Csd_WTHa_CsdTrnfrmFn_GVNa_Csd
-        , SRVa_CsdTrnfrmFn_WTHa_SRV_ENS_GVNa_CsdTrnfrmFn
-        , SRVa_CsdTrnfrmFn_WTHa_SRV_ReadClass_GVNa_CsdTrnfrmFn
-        )(Dflt_Style Csd)
-            
-    The last step of CThought is map(MUTATE_Elem)(allVerseList),
-   OR map( 'SRV_Elem_wthCsd_gvnElem':
-        long but before refactoring maybe useful.
+context(`Fn: SRVa_Csd__WTHa_CsdTtrnmogFn__GVNa_Csd is CeeingThought's CORE function.
+    This verbose name explicitly says
+        SRVa_ means it is a Function returning a new something: Csd
+        WTHa_ means it already has a needed something:  CsdTrnmogFn Fn. 
+        GVNa_ means it requires a something: Csd to be transformed.        
+    How can I compose 
+    SRVa_Csd = compose( 
+        SRVa_Csd__WTHa_CsdTtrnmogFn__GVNa_Csd
+            , SRVa_StyleCsd__WTHa_SRVa_FnX__GVNa_StyleCsd
+            , SRVa_StyleCsd__WTHa_SRVa_FnY__GVNa_Dflt_StyleCsd
+        )(Dflt_StyleCsd)
+    Where FnY would needs be a TRIAGE_: 
+        GVNa verse  -> verseNdx
+        WTHa partialled noonSpan-> noonNdx -> trnmogFn(Csd -> Csd)
+        SRVa trnmog
 `, () => {
-
 });
 describe(`Fn: WIP( anySpan )  -> Fn( elem, ndx, list )
 `, () => {
@@ -46,13 +40,17 @@ describe(`Fn: WIP( anySpan )  -> Fn( elem, ndx, list )
         // TEST DATA
         // NOTE: I had to hard code this Dflt... . wallaby did not find its path in SSpc.
         let dfltRSpcStyleCsd = {
-            am: {color: "", backgroundColor: 'rgba(255, 7, 109, 0.17', opacity: '0.8', fontSize: '90%'}
+            am: {color: "", backgroundColor: 'rgba(255, 7, 109, 0.17', opacity: '0.8', fontSize: '80%'}
             , noon: {color: "", backgroundColor: 'rgba(247, 241, 6, 0.09)', opacity: '1.0', fontSize: '100%'}
             , pm: {color: "", backgroundColor: 'rgba(57, 255, 6, 0.1)', opacity: '0.9', fontSize: '95%'}
         };
-
-
-        let firstSpan = {}, aNodeList = [], parent = {}, noonSpan = {}, parentChildren = [], aSpan = {}
+        let noonNdx = 0
+            // , firstSpan = {}
+            , aNodeList = []
+            // , parent = {}
+            , noonSpan = {}
+            // , parentChildren = []
+            , aSpan = {}
         ;
         beforeEach(function () {
             loadFixtures('index.html');
@@ -67,18 +65,23 @@ describe(`Fn: WIP( anySpan )  -> Fn( elem, ndx, list )
                     (ndx > noon_ndx) ? csd.pm :
                         csd.noon
             });
-        let WIP1 = WIP(dfltRSpcStyleCsd);
-        let WIP2 = WIP(dfltRSpcStyleCsd, noonSpan);
-        let WIP3 = WIP(dfltRSpcStyleCsd, noonSpan)(aSpan, 1, aNodeList);
+        describe(`WIP3(...) delivers a Csd Object w/ attributes changing with noonNdx AND/OR spanNdx`, () => {
+            it(`expects noonNdx:3 and spanNdx:1 to be readClass: am`, () => {
+                let WIP3 = WIP(dfltRSpcStyleCsd, 3)(aSpan, 1, aNodeList);
+                // noinspection Annotator
+                expect(WIP3).is.a('Object')
+                    .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
+                    .has.deep.include({fontSize: '80%'});
+            });
+            it(`expects noonNdx:3 and spanNdx:4 to be a readClass: pm`, () => {
+                let WIP3 = WIP(dfltRSpcStyleCsd, 3)(aSpan, 4, aNodeList);
+                // noinspection Annotator
+                expect(WIP3).is.a('Object')
+                    .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
+                    .to.deep.include({opacity: '0.9'});
+            })
+        });
 
-        it(`WIP1 expects an Object `, () => {
-            expect(WIP1).is.a('Function');
-            expect(WIP2).is.a('Function');
-        });
-        it(`WIP3 expects an Object `, () => {
-            expect(WIP3).is.a('Object');
-            expect(WIP3).is.a('Object').has.key('color', 'backgroundColor', 'opacity', 'fontSize');
-        });
     });
     describe(` I want to use the SSpc/Dflt_ReadClass_StyleDict BUT wallaby cannot find it. `, () => {
         // TEST DATA
