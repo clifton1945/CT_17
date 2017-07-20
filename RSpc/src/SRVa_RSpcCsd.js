@@ -32,9 +32,9 @@ module.exports.SRV_aReadClssStyle = TRIAGE_;
 
 // new TRIAGE_
 
-const SRVa_rspCsd__GVNa_spanNdx = curry(
+let SRVa_ = curry(
     /**
-     * Fn: SRVa_rspCsd__GVNa_spanNdx
+     * Fn: SRVa_rspcCsd__GVNa_spanNdx
      * Fn: TRIAGE_1
      *
      * @param rspcCsdDict
@@ -48,5 +48,6 @@ const SRVa_rspCsd__GVNa_spanNdx = curry(
                 prop('noon', rspcCsdDict)
     }
 );
-module.exports.__GVNa_spanNdx = SRVa_rspCsd__GVNa_spanNdx;
+module.exports.SRVa_ = SRVa_;
+// module.exports.__GVNa_spanNdx = SRVa_rspcCsd__GVNa_spanNdx;
 

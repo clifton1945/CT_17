@@ -10,17 +10,19 @@ let mocha = require('mocha')
 let chai = require('chai')
     , expect = chai.expect
 ;
-describe(`Fn: SRVa_Csd__GVNa_spanNdx    csd -> noonNdx -> ( spanNdx -> rspcCsd )`, () => {
+describe(`Fn: SRVa_Csd__GVNa_spanNdx    csd -> noonNdx -> ( spanNdx -> RSpcCsd )`, () => {
+    // CODE UNDER TEST
     /**
      * Fn: SRVa_Csd__GVNa_spanNdx
      * Fn: TRIAGE_1
-     * @param rspcCsdDict
+     * @param RSpcCsdDict
      * @param noonNdx
      * @param spanNdx
      * @return a CSD
      * @type {SRVa_rspCsd__GVNa_spanNdx | Function}
      */
-    let SRVa_rspcCsd = require('../src/SRVa_rspcCsd').__GVNa_spanNdx;
+    let SRVa_RSpcCsd = require('../src/SRVa_RSpcCsd').SRVa_;
+
 
     // TEST DATA
     let aSpanColl = {}
@@ -54,21 +56,27 @@ describe(`Fn: SRVa_Csd__GVNa_spanNdx    csd -> noonNdx -> ( spanNdx -> rspcCsd )
         expect(R.flip(R.indexOf)(parentChildren, noonSpan)).is.equal(4);
     });
     it(` expect dfltStyle -> aCsdDict.`, () => {
-        expect(dfltStyle).is.a('Object').has.key('am', 'noon', 'pm')
+        expect(dfltStyle).is.a('Object').has.key('am', 'noon', 'pm');
         expect(dfltStyle.am).is.a('Object').to.deep.include({opacity: '0.8'});
     });
     it(` expect SRV_aStyle(csd, 4, 1 ) -> the 'am' readStyle.`, () => {
-        expect(SRVa_rspcCsd(dfltStyle, 4, 1)).is.a('Object')
+        expect(SRVa_RSpcCsd(dfltStyle, 4, 1)).is.a('Object')
             .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
             .to.deep.include({opacity: '0.8'});
     });
     it(` expect SRV_aStyle(csd, 4, 4 ) -> the 'noon' readStyle.`, () => {
-        expect(SRVa_rspcCsd(dfltStyle, 4, 4)).is.a('Object')
+        expect(SRVa_RSpcCsd(dfltStyle, 4, 4)).is.a('Object')
             .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
             .to.deep.include({opacity: '1.0'});
     });
     it(` expect SRV_aStyle(csd, 4, 6 ) -> the 'pm' readStyle.`, () => {
-        expect(SRVa_rspcCsd(dfltStyle, 4, 6)).is.a('Object')
+        expect(SRVa_RSpcCsd(dfltStyle, 4, 6)).is.a('Object')
+            .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
+            .to.deep.include({opacity: '0.9'});
+    });
+    it(` expect SRVa_rspCsd__GVNa_spanNdx( 4, 6 ) -> the 'pm' readStyle.`, () => {
+        let SRVa_RSpcCsd__GVNa_spanNdx = R.pipe(SRVa_RSpcCsd)(dfltStyle);
+        expect(SRVa_RSpcCsd__GVNa_spanNdx(4, 6)).is.a('Object')
             .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
             .to.deep.include({opacity: '0.9'});
     });
