@@ -21,8 +21,8 @@ describe(`Fn: SRVa_Csd__GVNa_spanNdx    csd -> noonNdx -> ( spanNdx -> RSpcCsd )
      * @return a CSD
      * @type {SRVa_rspCsd__GVNa_spanNdx | Function}
      */
-    let serve = require('../src/SRVa_RSpcCsd');
-    let SRVa_RSpcCsd = serve.RSpcCsd;   // === SRVa_
+    let SRVa = require('../src/SRVa_RSpcCsd');
+    let SRVa_RSpcCsd = SRVa.RSpcCsd;   // === SRVa_
 
 
     // TEST DATA
