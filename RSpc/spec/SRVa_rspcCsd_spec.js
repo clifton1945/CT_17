@@ -18,6 +18,7 @@ describe(`Fn: SRVa_Csd__GVNa_spanNdx    csd -> noonNdx -> ( spanNdx -> rspcCsd )
      * @param noonNdx
      * @param spanNdx
      * @return a CSD
+     * @type {SRVa_rspCsd__GVNa_spanNdx | Function}
      */
     let SRVa_rspcCsd = require('../src/SRVa_rspcCsd').__GVNa_spanNdx;
 
