@@ -21,7 +21,8 @@ describe(`Fn: SRVa_Csd__GVNa_spanNdx    csd -> noonNdx -> ( spanNdx -> RSpcCsd )
      * @return a CSD
      * @type {SRVa_rspCsd__GVNa_spanNdx | Function}
      */
-    let SRVa_RSpcCsd = require('../src/SRVa_RSpcCsd').SRVa_;
+    let SRVa = require('../src/SRVa_RSpcCsd');
+    let SRVa_RSpcCsd = SRVa.RSpcCsd;   // === SRVa_
 
 
     // TEST DATA
@@ -33,11 +34,13 @@ describe(`Fn: SRVa_Csd__GVNa_spanNdx    csd -> noonNdx -> ( spanNdx -> RSpcCsd )
         , anotherSpan = {}
         , dfltStyle = {}
     ;
+    dfltStyle = require('C:\\Users\\CLIF\\WSProjects\\wbSample\\RSpc\\Dflt_RSpcStyles.js').Dflt;
+    console.log(`csd-> ${JSON.stringify(dfltStyle)}`);
+
     beforeEach(function () {
         loadFixtures('index.html');
         //      REMEMBER loadFixtures BREAKS a Mocha debug !!
-        dfltStyle = require('C:\\Users\\CLIF\\WSProjects\\wbSample\\RSpc\\Dflt_RSpcStyles.js').Dflt;
-        console.log(`csd-> ${JSON.stringify(dfltStyle)}`);
+
         aSpanColl = document.querySelector('.chpt span').children;
         aNodeList = document.querySelectorAll('.chpt span');
         noonSpan = aNodeList[4];
