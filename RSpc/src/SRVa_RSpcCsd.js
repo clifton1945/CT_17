@@ -3,35 +3,11 @@
 let R = require('ramda')
     , curry = R.curry
     , prop = R.prop
-    , indexOf = R.indexOf()
+    // , indexOf = R.indexOf()
 ;
-let chai = require('chai')
-    , expect = chai.expect
-;
-// CODE UNDER TEST
-// let TRIAGE_ = curry(
-//     /**
-//      * Fn: TRIAGE_
-//      * @param parent
-//      * @param noon
-//      * @param spn
-//      * @return {{color: string}}
-//      */
-//     (parent, noon, spn) => {
-//         let _f = indexOf(R.__, parent)
-//             , n = _f(noon)
-//             , s = _f(spn)
-//         ;
-//         return (s < n ) ? {color: 'red'} :
-//             (s > n) ? {color: 'blue'} :
-//                 {color: 'green'}
-//     }
-// );
-// module.exports.TRIAGE_ = TRIAGE_;
-// module.exports.SRV_aReadClssStyle = TRIAGE_;
-//
-// // new TRIAGE_
-
+// let chai = require('chai')
+//     , expect = chai.expect
+// ;
 let SRVa_ = curry(
     /**
      * Fn: SRVa_RSpcCsd__GVNa_spanNdx
@@ -49,4 +25,6 @@ let SRVa_ = curry(
     }
 );
 module.exports.RSpcCsd = SRVa_;
+module.exports.SRVa = SRVa_;
+module.exports.b = SRVa_;
 
