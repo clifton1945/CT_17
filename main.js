@@ -54,5 +54,34 @@ main = function (item) {
     C_in_Both(`     The selected Verse.Index[${ n}]
          backgroundColor:${ret.style.backgroundColor}, color:${ret.style.color}, opacity:${ret.style.opacity}`);
 
+
+    let aNodeList = document.querySelectorAll('.chpt span')
+        , aNodeArray = Array.apply(null, aNodeList)
+        , noonSpan = aNodeArray[14]
+    ;
+    // let parent = document.querySelector('.chpt span');
+    //
+    // let i = Array.prototype.indexOf.call(parent.children, noonSpan);
+    // C_in_Both(`_i = ${i}`); // -> 4
+    function getElementIndex(node) {
+        let index = 0;
+        while ((node = node.previousElementSibling)) {
+            index++;
+        }
+        return index;
+    }
+
+    noonSpan = item;
+    C_in_Console(`noonSpan = ${noonSpan.innerHTML}`); // -> 4
+    n = getElementIndex(noonSpan);
+    C_in_Console(`big N = ${n}`);
+
     C_in_Console(' OUT> ' + TRK);
+
+
+    //
+    //
+    //
+
+
 };
