@@ -36,7 +36,7 @@ main = function (item) {
 // select the noonVerse span
     let noonVerse = item;
 
-// use it to create three readClass Lists
+// use it to create a Test Stub Csd to apply to the selected noonVerse spam item.
     let testCSD;  // Test Data: StyleSpace
     testCSD = require('./SSpc/src/SRV_StyleCSD').byReadClassKey('am');
     //      am: paleRed , noon: paleYellow , pm: paleGreen
@@ -44,10 +44,11 @@ main = function (item) {
 // Fn: SRV_mutatedElem
     let SRV_mutatedElem = require('./CSpc/src/MUTATE_Elem').MUTATE_((testCSD));
     //       csdDCT -> Fn(  eltDCT -> eltDCT )
+
 // CODE UNDER TEST
     let ret = SRV_mutatedElem(noonVerse);
 
-// all that follows is just to return a span mdx, it is in a span list, AND see it in the HTML output
+// ******************  all that follows is JUST TO RETURN the Index of the selected span.
     let SRV_ChptVerses_Dflt = require('./CSpc/src/SRV_ChptVerses').SRV_ChptVerses_Dflt;
     let SRV_spanIndex = pipe(SRV_ChptVerses_Dflt, R.flip(R.indexOf))(document);
     let n = SRV_spanIndex(noonVerse);
