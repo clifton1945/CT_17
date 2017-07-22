@@ -57,18 +57,9 @@ main = function (item) {
 // This is finding out that wallaby document is not the real document, this the tests did not work
     let aNodeList = document.querySelectorAll('.chpt span')
         , aNodeArray = Array.apply(null, aNodeList)
-        , noonSpan = aNodeArray[14]
     ;
-    function getElementIndex(node) {
-        let index = 0;
-        while ((node = node.previousElementSibling)) {
-            index++;
-        }
-        return index;
-    }
+    let getElementIndex = require('./h/getElementIndex'); // USING new h/getElementIndex function.
 
-    noonSpan = item;
-    // C_in_Console(`noonSpan = ${noonSpan.innerHTML}`); // -> 4
     let n1 = getElementIndex(item);
     let n2 = R.indexOf(item, aNodeArray);
     C_in_Both(`js N = ${n1} ramda N = ${n2}`);
