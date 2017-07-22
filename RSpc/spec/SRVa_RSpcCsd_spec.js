@@ -45,7 +45,6 @@ describe(`Fn: SRVa_Csd__GVNa_spanNdx    csd -> noonNdx -> ( spanNdx -> RSpcCsd )
     });
     dfltStyle = require('C:\\Users\\CLIF\\WSProjects\\wbSample\\RSpc\\Dflt_RSpcStyles.js').Dflt;
 
-
     let SRVa_RSpcCsd = SRVa.RSpcCsd;   // === SRVa_
     SRVa_Style = R.pipe(SRVa_RSpcCsd(dfltStyle));
 
