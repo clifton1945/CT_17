@@ -13,7 +13,6 @@ let chai = require('chai')
 let myTap = require('../../h/myTap');
 let C_inConsole = require('../../h/C_in_').Console;
 
-
 describe(`Fn: SRVa_Csd__GVNa_spanNdx    csd -> noonNdx -> ( spanNdx -> RSpcCsd )`, () => {
     // CODE UNDER TEST
     /**
@@ -63,36 +62,6 @@ describe(`Fn: SRVa_Csd__GVNa_spanNdx    csd -> noonNdx -> ( spanNdx -> RSpcCsd )
         expect(noonSpan.tagName).is.equal('SPAN');
     });
 
-    function getNodeIndex(node) {
-        var index = 0;
-        while ((node = node.previousSibling)) {
-            if (node.nodeType != 3 || !/^\s*$/.test(node.data)) {
-                index++;
-            }
-        }
-        return index;
-    }
-
-    function getElementIndex(node) {
-        let index = 0;
-        while ((node = node.previousElementSibling)) {
-            index++;
-        }
-        return index;
-    }
-
-    // let n = getElementIndex(noonSpan) ;
-    // C_inConsole(`_N = ${n}`); // -> 4
-    let parent = document.querySelector('.chpt span');
-    let i = Array.prototype.indexOf.call(parent.children, noonSpan);
-    C_inConsole(`_N = ${i}`); // -> 4
-
-    it(`ge.....Index(noonSpan)  should -> 4 .`, () => {
-        expect(n).is.equal(4);
-    });
-    // STOP HERE IT IS BROKEN [].indexOf() does not work on Objects
-
-
     it(` expect SRV_aStyle(csd, 4, 1 ) -> the 'am' readStyle.`, () => {
         expect(SRVa_Style(4, 1))
             .is.a('Object')
@@ -111,23 +80,4 @@ describe(`Fn: SRVa_Csd__GVNa_spanNdx    csd -> noonNdx -> ( spanNdx -> RSpcCsd )
             .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
             .to.deep.include({opacity: '0.9'});
     });
-    // console.log(`csd-> ${JSON.stringify(dfltStyle)}`);
-    it(` expect dfltStyle -> aCsdDict.`, () => {
-        expect(dfltStyle).is.a('Object').has.key('am', 'noon', 'pm');
-        expect(dfltStyle.am).is.a('Object').to.deep.include({opacity: '0.8'});
-    });
-    let SRVa_noonNdx = R.indexOf;
-    let SRVa_Style__WTHa_noonVers__GVNa_VersNdx = curry(
-        R.pipe(
-            SRVa_noonNdx(aNodeArray)
-            , SRVa.RSpcCsd(dfltStyle)
-        ))(noonSpan);
-
-    // it(` expect SRVa_Style__WTHa_noonVers:4 __GVNa_VersNdx( 0 -> 3 ) -> the 'am' readStyle.opacity:'0.8'.`, () => {
-    //     expect(SRVa_Style__WTHa_noonVers__GVNa_VersNdx(2))
-    //         .is.a('Object')
-    //         .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
-    //         .to.deep.include({opacity: '0.8'});
-    // });
-
 });
