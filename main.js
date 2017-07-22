@@ -76,18 +76,18 @@ main = function (item) {
     );
 
 // ***************** take the first split as a list of AM spans
-//      apply a weighting Fn
+//      apply a normalized weighting Fn: (ndx / lst.length) ** shapeCnst
     let chptList = document.querySelectorAll('.chpt span');
     let aAmList = R.splitAt(8, chptList)[0]; // -> [[],...]
     let mapIndexed = R.addIndex(R.map);
     let modFn0 = (el, ndx, lst) => Math.pow(ndx / lst.length, 0);
-    // -> [1,1,1,...
+    //  1,1,1,... always 1
     let modFn25 = (el, ndx, lst) => Math.pow(ndx / lst.length, 0.25);
     //   0,0.5946035575013605,0.7071067811865476,
     let modFn80 = (el, ndx, lst) => Math.pow(ndx / lst.length, 0.80);
     // 0,0.18946457081379975,0.3298769776932235
-    let modFn100 = (el, ndx, lst) => Math.pow(ndx / lst.length, 1); // ->
-    // [0,0.125,0.25, 0.375.
+    let modFn100 = (el, ndx, lst) => Math.pow(ndx / lst.length, 1);
+    // [0,0.125,0.25, 0.375. always linear: wt === ndx
     let ret2 = fn => mapIndexed(
         fn, aAmList);
     C_in_Console(`     -> ${ret2(modFn80)}`);
