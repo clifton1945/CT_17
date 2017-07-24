@@ -6,7 +6,7 @@
 let R = require('ramda');
 let compose = R.compose;
 
-let roundToTwoPlaces = compose(
+module.exports = compose(
     R.divide(R.__, 100), Math.round, R.multiply(100)
 );// N -> N
-module.exports = roundToTwoPlaces;
+// module.exports = roundToTwoPlaces;
