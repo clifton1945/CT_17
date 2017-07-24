@@ -29,10 +29,10 @@ describe(`Fn: SRVa_Csd__GVNa_spanNdx    csd -> noonNdx -> ( spanNdx -> RSpcCsd )
     let aSpanColl = []
         , aNodeList = []
         , aNodeArray = []
-        , parent = {}
+        // , parent = {}
         , noonSpan = {}
-        , parentChildren = []
-        , anotherSpan = {}
+        // , parentChildren = []
+        // , anotherSpan = {}
         , dfltStyle = {}
         , SRVa_Style = {}
     ;
@@ -43,7 +43,8 @@ describe(`Fn: SRVa_Csd__GVNa_spanNdx    csd -> noonNdx -> ( spanNdx -> RSpcCsd )
         aNodeArray = Array.apply(null, aNodeList);
         noonSpan = aNodeArray[4];
     });
-    dfltStyle = require('C:\\Users\\CLIF\\WSProjects\\wbSample\\RSpc\\Dflt_RSpcStyles.js').Dflt;
+    let d = require('C:\\Users\\CLIF\\WSProjects\\wbSample\\RSpc\\Dflt_RSpcStyles.js');//RSpc/Dflt_RSpcStyles.js
+    dfltStyle = d.Dflt;//RSpc/Dflt_RSpcStyles.js
 
     let SRVa_RSpcCsd = SRVa.RSpcCsd;   // === SRVa_
     SRVa_Style = R.pipe(SRVa_RSpcCsd(dfltStyle));

@@ -19,13 +19,13 @@ describe(`Fn: SRV_StyleCsd             SERVES a styleCsd given
     `, () => {
     // TEST DATA
     // CODE UNDER TEST
-    let SRV_StyleCsd_Dflt = require('../src/SRV_StyleCsd').Dflt; // -> {{},{},{}}
+    let SRV_StyleCsd_Dflt = require('../src/SRVa_StyleCsd').Dflt; // -> {{},{},{}}
     it(`expects SRV_StyleCsd_Dflt             -> an CSD Object with keys.
     `, function () {
         expect(SRV_StyleCsd_Dflt).is.a('Object').is.keys('am', 'noon', 'pm');
     });
     // CODE UNDER TEST
-    let SRV_StyleCsd_byReadClassKey = require('../src/SRV_StyleCsd').byReadClassKey; // -> {{},{},{}}
+    let SRV_StyleCsd_byReadClassKey = require('../src/SRVa_StyleCsd').byReadClassKey; // -> {{},{},{}}
 
     it(`expects SRV_StyleCsd_frmKey( key )  -> a style Csd.
     `, function () {

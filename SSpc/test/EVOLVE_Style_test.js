@@ -24,7 +24,7 @@ describe(`Fn: EVOLVE_Style_byTrnfrm          IS aFn.arity:1
     `, () => {
 
     let TEST_CSD; // TEST DATA
-    TEST_CSD = require('../src/SRV_StyleCsd').Dflt;
+    TEST_CSD = require('../src/SRVa_StyleCsd').Dflt;
     let STUB_TRNFRM = {am: {backgroundColor: R.always('yellow'), opacity: R.always('0.5')}};
     // CODE UNDER TEST
     let EVOLVE_Style_byTrnfrm = require('../src/EVOLVE_Style').byTrnsfrm(TEST_CSD);

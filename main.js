@@ -29,8 +29,10 @@ let R = require('ramda')
     , pipe = R.pipe
     // , evolve = R.evolve
 ;
-
 let roundToTwoPlaces = require('./h/roundToTwoPlaces');
+let SRV_WtFn__GVNa_Cnst = require('./RSpc/src/SRVa_WtFn').SRV_WtFn__GVNa_Cnst;
+let DfltRSpcStyles = require('./RSpc/Dflt_RSpcStyles').Dflt;
+let SRVa_Span = require('./CSpc/src/MUTATE_Elem').SRVa_Span__WTHa_Csd__GVNa_Span;
 
 // always runs
 // ***************** take the first split as a list of AM spans
@@ -38,14 +40,12 @@ let roundToTwoPlaces = require('./h/roundToTwoPlaces');
 let chptList = document.querySelectorAll('.chpt span');
 let aAmList = R.splitAt(8, chptList)[0]; // -> [[],...]
 let mapIndexed = R.addIndex(R.map);
-// ------------ apply a weighter to each VerseSpan
-let SRV_WtFn__GVNa_Cnst = require('./RSpc/src/SRVa_WtFn').SRV_WtFn__GVNa_Cnst;
-let modFn25 = SRV_WtFn__GVNa_Cnst(0.25);
-C_in_Console(`    SRV_Wt__GVN_Cnst -> ${ mapIndexed(modFn25)(aAmList) }`
-//      evolve some style attributes for these AM spans
-//      apply these styles to each span
-);
+// ------------ evolve some style attributes for each AM span
+// CODE UNDER TEST
 
+// ------------ apply a weighter to each VerseSpan
+let modFn25 = SRV_WtFn__GVNa_Cnst(0.5);
+// C_in_Console(`    SRV_Wt__GVN_Cnst -> ${ mapIndexed(modFn25)(aAmList) }`);
 // -------- main starts here -------------
 let main;
 // EventHandler
@@ -70,8 +70,12 @@ main = function (item) {
 
 // use a Test StubCsd to apply to the selected noonVerse spam item.
     let testCSD;  // Test Data: StyleSpace
-    testCSD = require('./SSpc/src/SRV_StyleCSD').byReadClassKey('am');
-    //      am: paleRed , noon: paleYellow , pm: paleGreen
+    testCSD = DfltRSpcStyles.am;
+    C_in_Console(`backgroundColor:[${
+        testCSD.backgroundColor
+        }]`);
+
+    // am: ~paleRed , noon: ~paleYellow , pm: ~paleGreen
 
 // Fn: SRV_mutatedElem
     let SRV_mutatedElem = require('./CSpc/src/MUTATE_Elem').MUTATE_((testCSD));
