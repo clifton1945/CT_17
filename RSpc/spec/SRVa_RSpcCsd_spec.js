@@ -29,10 +29,7 @@ describe(`Fn: SRVa_Csd__GVNa_spanNdx    csd -> noonNdx -> ( spanNdx -> RSpcCsd )
     let aSpanColl = []
         , aNodeList = []
         , aNodeArray = []
-        // , parent = {}
         , noonSpan = {}
-        // , parentChildren = []
-        // , anotherSpan = {}
         , dfltStyle = {}
         , SRVa_Style = {}
     ;
@@ -50,18 +47,6 @@ describe(`Fn: SRVa_Csd__GVNa_spanNdx    csd -> noonNdx -> ( spanNdx -> RSpcCsd )
     SRVa_Style = R.pipe(SRVa_RSpcCsd(dfltStyle));
 
     // CODE UNDER TEST
-    it(`aNodeList has 52 spans`, () => {
-        expect(aNodeList).is.a('NodeList').of.length(52);
-        expect(aNodeList).is.not.a('Array');
-    });
-    it(`aNodeArray has 52 spans`, () => {
-        expect(aNodeArray).is.a('Array').of.length(52);
-    });
-    it(`noonSpan is a spans`, () => {
-        expect(aNodeArray[4].tagName).is.equal('SPAN');
-        expect(noonSpan.tagName).is.equal('SPAN');
-    });
-
     it(` expect SRV_aStyle(csd, 4, 1 ) -> the 'am' readStyle.`, () => {
         expect(SRVa_Style(4, 1))
             .is.a('Object')
