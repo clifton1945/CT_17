@@ -23,7 +23,7 @@ describe(`Fn: SRVa_Csd__GVNa_spanNdx    csd -> noonNdx -> ( spanNdx -> RSpcCsd )
      * @param spanNdx
      * @return a CSD
      */
-    let SRVa = require('../src/SRVa_RSpcCsd');
+    let SRVa = require('../src/SRVa_RSpcStyle');
 
     // TEST DATA
     let aSpanColl = []

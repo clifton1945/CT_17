@@ -71,11 +71,11 @@ main = function (item) {
 // use a Test StubCsd to apply to the selected noonVerse spam item.
     let testCSD;  // Test Data: StyleSpace
     testCSD = DfltRSpcStyles.am;
+    // am: ~paleRed , noon: ~paleYellow , pm: ~paleGreen
     C_in_Console(`backgroundColor:[${
         testCSD.backgroundColor
         }]`);
-
-    // am: ~paleRed , noon: ~paleYellow , pm: ~paleGreen
+    // now evolve the default
 
 // Fn: SRV_mutatedElem
     let SRV_mutatedElem = require('./CSpc/src/MUTATE_Elem').MUTATE_((testCSD));
