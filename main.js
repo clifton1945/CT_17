@@ -25,13 +25,29 @@ let C_in = require('./h/C_in_')
     , C_in_Both = C_in.Both
 ;
 let R = require('ramda')
-    // , curry = R.curry
+    , curry = R.curry
     , pipe = R.pipe
     // , evolve = R.evolve
 ;
 
-let main;
+let roundToTwoPlaces = require('./h/roundToTwoPlaces');
 
+// always runs
+// ***************** take the first split as a list of AM spans
+//      apply a normalized weighting Fn: (ndx / lst.length) ** shapeCnst
+let chptList = document.querySelectorAll('.chpt span');
+let aAmList = R.splitAt(8, chptList)[0]; // -> [[],...]
+let mapIndexed = R.addIndex(R.map);
+// ------------ apply a weighter to each VerseSpan
+let SRV_WtFn__GVNa_Cnst = require('./RSpc/src/SRVa_WtFn').SRV_WtFn__GVNa_Cnst;
+let modFn25 = SRV_WtFn__GVNa_Cnst(0.25);
+C_in_Console(`    SRV_Wt__GVN_Cnst -> ${ mapIndexed(modFn25)(aAmList) }`
+//      evolve some style attributes for these AM spans
+//      apply these styles to each span
+);
+
+// -------- main starts here -------------
+let main;
 // EventHandler
 let theParent = document.querySelector('.chpt');
 theParent.addEventListener("click", SELECT_noonVerse, false);
@@ -52,7 +68,7 @@ main = function (item) {
 // select the noonVerse span
     let noonVerse = item;
 
-// use it to create a Test Stub Csd to apply to the selected noonVerse spam item.
+// use a Test StubCsd to apply to the selected noonVerse spam item.
     let testCSD;  // Test Data: StyleSpace
     testCSD = require('./SSpc/src/SRV_StyleCSD').byReadClassKey('am');
     //      am: paleRed , noon: paleYellow , pm: paleGreen
@@ -64,7 +80,7 @@ main = function (item) {
 // CODE UNDER TEST
     let ret = SRV_mutatedElem(noonVerse);
 
-// ******************  all that follows is JUST TO RETURN the Index of the selected span.
+// ******************  all that follows is JUST TO RETURN and SEE the Index and attributes of the selected span.
     let SRV_ChptVerses_Dflt = require('./CSpc/src/SRV_ChptVerses').SRV_ChptVerses_Dflt;
     let SRV_spanIndex = pipe(SRV_ChptVerses_Dflt, R.flip(R.indexOf))(document);
     let n = SRV_spanIndex(noonVerse);
@@ -74,21 +90,4 @@ main = function (item) {
          , color:${ret.style.color}
          , opacity:${ret.style.opacity}`
     );
-
-// ***************** take the first split as a list of AM spans
-//      apply a normalized weighting Fn: (ndx / lst.length) ** shapeCnst
-    let chptList = document.querySelectorAll('.chpt span');
-    let aAmList = R.splitAt(8, chptList)[0]; // -> [[],...]
-    let mapIndexed = R.addIndex(R.map);
-    let modFn0 = (el, ndx, lst) => Math.pow(ndx / lst.length, 0);
-    //  1,1,1,... always 1
-    let modFn25 = (el, ndx, lst) => Math.pow(ndx / lst.length, 0.25);
-    //   0,0.5946035575013605,0.7071067811865476,
-    let modFn80 = (el, ndx, lst) => Math.pow(ndx / lst.length, 0.80);
-    // 0,0.18946457081379975,0.3298769776932235
-    let modFn100 = (el, ndx, lst) => Math.pow(ndx / lst.length, 1);
-    // [0,0.125,0.25, 0.375. always linear: wt === ndx
-    let ret2 = fn => mapIndexed(
-        fn, aAmList);
-    C_in_Console(`     -> ${ret2(modFn80)}`);
 };
