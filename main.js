@@ -29,28 +29,27 @@ let R = require('ramda')
     , pipe = R.pipe
     // , evolve = R.evolve
 ;
+
+// ------- requires ------------
 let roundToTwoPlaces = require('./h/roundToTwoPlaces');
-let SRV_WtFn__GVNa_Cnst = require('./RSpc/src/SRVa_WtFn').SRV_WtFn__GVNa_Cnst;
-let DfltRSpcStyles = require('./RSpc/Dflt_RSpcStyles').Dflt;
+let SRVa_WtFn__GVNa_Cnst = require('./RSpc/src/SRVa_WtFn').SRV_WtFn__GVNa_Cnst;
+let EVOL_aCsd = require('./SSpc/src/EVOLVEa_Csd');
+let DfltCsd = require('./RSpc/Dflt_RSpcStyles').Dflt;
 let SRVa_Span = require('./CSpc/src/MUTATE_Elem').SRVa_Span__WTHa_Csd__GVNa_Span;
 
-// always runs
 // ***************** take the first split as a list of AM spans
 //      apply a normalized weighting Fn: (ndx / lst.length) ** shapeCnst
 let chptList = document.querySelectorAll('.chpt span');
 let aAmList = R.splitAt(8, chptList)[0]; // -> [[],...]
 let mapIndexed = R.addIndex(R.map);
-// ------------ evolve some style attributes for each AM span
-// CODE UNDER TEST
 
 // ------------ apply a weighter to each VerseSpan
-let modFn25 = SRV_WtFn__GVNa_Cnst(0.5);
+let modFn25 = SRVa_WtFn__GVNa_Cnst(0.5);
 // C_in_Console(`    SRV_Wt__GVN_Cnst -> ${ mapIndexed(modFn25)(aAmList) }`);
+
+
 // -------- main starts here -------------
 let main;
-// EventHandler
-let theParent = document.querySelector('.chpt');
-theParent.addEventListener("click", SELECT_noonVerse, false);
 
 function SELECT_noonVerse(e) {
     if (e.target !== e.currentTarget) {
@@ -60,6 +59,9 @@ function SELECT_noonVerse(e) {
     e.stopPropagation();
 }
 
+let theChapterDiv = document.querySelector('.chpt');
+theChapterDiv.addEventListener("click", SELECT_noonVerse, false);
+
 main = function (item) {
     // ************** MAIN ********
     let TRK = "wbSample/main.js";
@@ -68,24 +70,27 @@ main = function (item) {
 // select the noonVerse span
     let noonVerse = item;
 
-// use a Test StubCsd to apply to the selected noonVerse spam item.
-    let testCSD;  // Test Data: StyleSpace
-    testCSD = DfltRSpcStyles.am;
+    // Test Data: StyleSpace
+    // use a Test StubCsd to apply to the selected noonVerse span item.
+    let testCsd;
     // am: ~paleRed , noon: ~paleYellow , pm: ~paleGreen
-    C_in_Console(`backgroundColor:[${
-        testCSD.backgroundColor
-        }]`);
-    // now evolve the default
+// Fn: EVOL_aCsd
+    let EVOL_aCsd__GVNa_ = EVOL_aCsd.SRVa_Csd__WTHa_Csd__GVNa_Trnsfrm;
+    let STUB_Trnsfrm = {color: R.always('blue')};
+    testCsd = EVOL_aCsd__GVNa_(DfltCsd.am, STUB_Trnsfrm);
+//TODO FIGURE AND FIX pipe????
+    // testCsd = R.pipe(EVOL_aCsd__GVNa_, STUB_Trnsfrm)(DfltCsd.am);
+
 
 // Fn: SRV_mutatedElem
-    let SRV_mutatedElem = require('./CSpc/src/MUTATE_Elem').MUTATE_((testCSD));
+    let SRV_mutatedElem = require('./CSpc/src/MUTATE_Elem').MUTATE_((testCsd));
     //       csdDCT -> Fn(  eltDCT -> eltDCT )
 
 // CODE UNDER TEST
     let ret = SRV_mutatedElem(noonVerse);
 
 // ******************  all that follows is JUST TO RETURN and SEE the Index and attributes of the selected span.
-    let SRV_ChptVerses_Dflt = require('./CSpc/src/SRV_ChptVerses').SRV_ChptVerses_Dflt;
+    let SRV_ChptVerses_Dflt = require('./CSpc/src/SRVa_ChptVerseList').SRV_ChptVerses_Dflt;
     let SRV_spanIndex = pipe(SRV_ChptVerses_Dflt, R.flip(R.indexOf))(document);
     let n = SRV_spanIndex(noonVerse);
 

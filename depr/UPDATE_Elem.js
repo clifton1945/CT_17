@@ -57,6 +57,6 @@ module.exports._byCsd = curry(csd => MUTATE_(csd));                          //(
 module.exports._byElem = curry(el => MUTATE_(R.__, el));                          // (ELEM) {Fn:MUTATE_((CSD))} -> ELEM
 
 
-let EVOLVE_aStyle = require('../SSpc/src/EVOLVE_Style')._use_TrnfrmD_on_DfltCsd;
+let EVOLVE_aStyle = require('../SSpc/src/EVOLVEa_Csd')._use_TrnfrmD_on_DfltCsd;
 let _byStyleTrnfrm = pipe(EVOLVE_aStyle, MUTATE_);
 module.exports._byStyleTrnfrm = _byStyleTrnfrm;
