@@ -3,8 +3,9 @@
 let R = require('ramda')
     , curry = R.curry
 ;
-let roundTo_2 = require('../../h/roundToTwoPlaces').roundTo_2;
-let roundTo_3 = require('../../h/roundToTwoPlaces').roundTo_3;
+// let roundTo_2 = require('../../h/roundTo_').roundTo_2;
+let roundTo_2 = require('../../h/roundTo_');
+let roundTo_3 = require('../../h/roundTo_').roundTo_3;
 
 let weighterFn = curry( // note use ElemNdxLst -> elem, ndx, lst
     /**

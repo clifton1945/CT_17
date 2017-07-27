@@ -20,33 +20,24 @@
 "use strict";
 
 let C_in = require('./h/C_in_')
-    , C_in_Doc = C_in.Doc
+    // , C_in_Doc = C_in.Doc
     , C_in_Console = C_in.Console
     , C_in_Both = C_in.Both
 ;
 let R = require('ramda')
-    , curry = R.curry
+    // , curry = R.curry
     , pipe = R.pipe
     // , evolve = R.evolve
 ;
 
 // ------- requires ------------
-let roundToTwoPlaces = require('./h/roundToTwoPlaces');
+let roundToTwoPlaces = require('./h/roundTo_');
 let SRVa_WtFn__GVNa_Cnst = require('./RSpc/src/SRVa_WtFn').SRV_WtFn__GVNa_Cnst;
 let EVOL_aCsd = require('./SSpc/src/EVOLVEa_Csd');
 let DfltCsd = require('./RSpc/Dflt_RSpcStyles').Dflt;
+let SRV_ChptVerses_Dflt = require('./CSpc/src/SRVa_ChptVerseList').SRV_ChptVerses_Dflt;
+let SRVa_TRNFRM = require('./SSpc/src/SRVa_TRNFRM').by_always; // key -> valu -> Fn:TRNFRM
 let SRVa_Span = require('./CSpc/src/MUTATE_Elem').SRVa_Span__WTHa_Csd__GVNa_Span;
-
-// ***************** take the first split as a list of AM spans
-//      apply a normalized weighting Fn: (ndx / lst.length) ** shapeCnst
-let chptList = document.querySelectorAll('.chpt span');
-let aAmList = R.splitAt(8, chptList)[0]; // -> [[],...]
-let mapIndexed = R.addIndex(R.map);
-
-// ------------ apply a weighter to each VerseSpan
-let modFn25 = SRVa_WtFn__GVNa_Cnst(0.5);
-// C_in_Console(`    SRV_Wt__GVN_Cnst -> ${ mapIndexed(modFn25)(aAmList) }`);
-
 
 // -------- main starts here -------------
 let main;
@@ -70,33 +61,53 @@ main = function (item) {
 // select the noonVerse span
     let noonVerse = item;
 
-    // Test Data: StyleSpace
-    // use a Test StubCsd to apply to the selected noonVerse span item.
-    let testCsd;
-    // am: ~paleRed , noon: ~paleYellow , pm: ~paleGreen
-// Fn: EVOL_aCsd
-    let EVOL_aCsd__GVNa_ = EVOL_aCsd.SRVa_Csd__WTHa_Csd__GVNa_Trnsfrm;
-    let STUB_Trnsfrm = {color: R.always('blue')};
-    testCsd = EVOL_aCsd__GVNa_(DfltCsd.am, STUB_Trnsfrm);
-//TODO FIGURE AND FIX pipe????
-    // testCsd = R.pipe(EVOL_aCsd__GVNa_, STUB_Trnsfrm)(DfltCsd.am);
+// SPLIT into three ReadLists
+    let SRV_spanIndex = pipe(SRV_ChptVerses_Dflt, R.flip(R.indexOf))(document);
+    let n = SRV_spanIndex(noonVerse);
+    let chptList = document.querySelectorAll('.chpt span');
+    // This is the AM verseList
+    let lst = R.splitAt(n, chptList); // -> [[],...]
+    let AmList = lst[0]; // -> [[],...]
+    // This is the Noon verseList
+    lst = R.splitAt(1)(lst[1]);
+    let NoonL1st = lst[0];
+    // this is the PM verseList
+    let PmList = lst[1];
 
+// ------------ apply normalized weighting Fn: (ndx / lst.length) ** shapeCnst to each VerseSpan
+
+    let modFn25 = SRVa_WtFn__GVNa_Cnst(0.25); // Fn( el, ndx, lst ) -> TrnsfrmObj
+    let x = 'red', y = 'yellow', z = '0.7';
+    let STUB_Trnsfrm = R.mergeAll(
+        [SRVa_TRNFRM('opacity')(z)
+            , SRVa_TRNFRM('color')(x)
+            , SRVa_TRNFRM('backgroundColor')(y)
+        ]
+    );
+
+    let Fn = R.curry(
+        (el, ndx, lst) => {
+            (modFn25(R.__, ndx, lst), R.toString, SRVa_TRNFRM('opacity'))
+        }
+    ); // -> Fn:(-> n
+    let EVOL_aCsd__GVNa_ = EVOL_aCsd.SRVa_Csd__WTHa_Csd__GVNa_Trnsfrm;
+    let testCsd = EVOL_aCsd__GVNa_(DfltCsd.a)(STUB_Trnsfrm);
+    //THIS IS NOT CHANGING THE DfltCsd
 
 // Fn: SRV_mutatedElem
-    let SRV_mutatedElem = require('./CSpc/src/MUTATE_Elem').MUTATE_((testCsd));
+    let SRV_mutatedElem = require('./CSpc/src/MUTATE_Elem').SRVa_(testCsd.am);
     //       csdDCT -> Fn(  eltDCT -> eltDCT )
 
 // CODE UNDER TEST
     let ret = SRV_mutatedElem(noonVerse);
-
-// ******************  all that follows is JUST TO RETURN and SEE the Index and attributes of the selected span.
-    let SRV_ChptVerses_Dflt = require('./CSpc/src/SRVa_ChptVerseList').SRV_ChptVerses_Dflt;
-    let SRV_spanIndex = pipe(SRV_ChptVerses_Dflt, R.flip(R.indexOf))(document);
-    let n = SRV_spanIndex(noonVerse);
-
+    // NOW see the selected noonVerse info
     C_in_Both(`     The selected Verse is Index[${ n}]
          , backgroundColor:${ret.style.backgroundColor}
          , color:${ret.style.color}
          , opacity:${ret.style.opacity}`
     );
+//  apply WEIGHTING TO EACH Verse
+    let mapIndexed = R.addIndex(R.map);
+    C_in_Console(`    SRV_Wts -> [${ mapIndexed(SRV_mutatedElem)(AmList) }]`);
+
 };
