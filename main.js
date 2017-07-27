@@ -75,8 +75,7 @@ main = function (item) {
     let PmList = lst[1];
 
 // ------------ apply normalized weighting Fn: (ndx / lst.length) ** shapeCnst to each VerseSpan
-
-    let modFn25 = SRVa_WtFn__GVNa_Cnst(0.25); // Fn( el, ndx, lst ) -> TrnsfrmObj
+    // FIX modFn25 IS NOT USED YET; USusing STUB_Trnsfrm below
     let x = 'red', y = 'yellow', z = '0.7';
     let STUB_Trnsfrm = R.mergeAll(
         [SRVa_TRNFRM('opacity')(z)
@@ -85,17 +84,21 @@ main = function (item) {
         ]
     );
 
+    let EVOL_aCsd__GVNa_ = EVOL_aCsd.SRVa_Csd__WTHa_Csd__GVNa_Trnsfrm;
+    let testCsd = EVOL_aCsd__GVNa_(DfltCsd.am)(STUB_Trnsfrm);// THIS IS A TEST
+
+
+    let modFn25 = SRVa_WtFn__GVNa_Cnst(0.25); // Fn( el, ndx, lst ) -> TrnsfrmObj
+    // FIX modFn25 IS NOT USED YET; using STUB_Trnsfrm below
     let Fn = R.curry(
         (el, ndx, lst) => {
             (modFn25(R.__, ndx, lst), R.toString, SRVa_TRNFRM('opacity'))
         }
     ); // -> Fn:(-> n
-    let EVOL_aCsd__GVNa_ = EVOL_aCsd.SRVa_Csd__WTHa_Csd__GVNa_Trnsfrm;
-    let testCsd = EVOL_aCsd__GVNa_(DfltCsd.a)(STUB_Trnsfrm);
-    //THIS IS NOT CHANGING THE DfltCsd
 
-// Fn: SRV_mutatedElem
-    let SRV_mutatedElem = require('./CSpc/src/MUTATE_Elem').SRVa_(testCsd.am);
+
+// Fn: SRV_mutatedElem  USING testCsd!!
+    let SRV_mutatedElem = require('./CSpc/src/MUTATE_Elem').SRVa_(testCsd);
     //       csdDCT -> Fn(  eltDCT -> eltDCT )
 
 // CODE UNDER TEST

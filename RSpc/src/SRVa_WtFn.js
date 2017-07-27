@@ -21,9 +21,7 @@ let weighterFn = curry( // note use ElemNdxLst -> elem, ndx, lst
     )
 );
 
-let SRV_WtFn__GVNa_Cnst = curry( // actually this is SRV_WtFn__WTHa_Cnst__GVN_Ndx
-    cnst => weighterFn(cnst)
-);
+let SRV_WtFn__GVNa_Cnst = cnst => weighterFn(cnst);
 
 module.exports.SRV_WtFn__GVNa_Cnst = SRV_WtFn__GVNa_Cnst;
 
