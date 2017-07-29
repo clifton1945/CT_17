@@ -13,12 +13,7 @@ module.exports.Test = require('../StyleCSDS').Test;
 
 module.exports.byReadClassKey = key => require('../StyleCSDS').Dflt[key];
 
-//  170724  new verbose style named Fn
-let dfltStyleCsd = require('../StyleCSDS').Dflt;
+module.exports.SRVa_DfltRSpcStyle__GVNa_RSpcKey = R.flip(R.prop)(require('../StyleCSDS').Dflt); //WORKS  expects: RSpcKey
 
-// module.exports.SRVa_DfltRSpcCsd__GVNa_RSpcKey = key => {
-//     // let dflt = require('../StyleCSDS').Dflt;
-//     return R.prop(R.__,  require('../StyleCSDS').Dflt)(key)
-// }; // works
-module.exports.SRVa_DfltRSpcCsd__GVNa_RSpcKey = R.prop(R.__, require('../StyleCSDS').Dflt); //WORKS  R.__ IS RSpcKey
+module.exports.SRVa_DfltSpanAttr_s__GVNa_RSpcKey = R.flip(R.prop)(require('../StyleCSDS').Dflt); //WORKS  expects: RSpcKey
 

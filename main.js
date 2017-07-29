@@ -1,14 +1,6 @@
 /**
- *  170722 - concentrate of applying a NEW Weighted csd to a selected verse.
- *  Weighted being a Fn(elem, ndx, sibLst) of the element Index and its relative position in the parent.list of siblings.
-
- *      apply a Fn:(elem, ndx, lst) to each elem in the amList.
- *          where Fn returns a shapeValue
- *              where W = n^^b
- *                   n = normalizedIndex: ndx/lst.length
- *                   b = some shape constant
- *                      such that W( b:0, n: 0->1 ) = 1. It is a constant:1
- *                      such that W( b:1, n: 0->1 ) = n. It is linear
+ *  170729 - Peace is progress towards a known destination.
+ *  Today the destination is main reflects the backgroundColor of each Verse GVNa noonSpan
  *
  */
 "use strict";
@@ -69,26 +61,48 @@ main = function (item) {
     // this is the PM verseList
     let PmList = lst[1];
 
-// ------------ apply normalized weighting Fn: (ndx / lst.length) ** shapeCnst to each VerseSpan
-    // FIX modFn25 IS NOT USED YET; USusing STUB_Trnsfrm below
+
+    /**
+     *     ------------ apply normalized weighting Fn: -------------
+     *     (ndx / lst.length) ** shapeCnst to each VerseSpan
+     *     I will need
+     *      a dictionary of span Attributes associated with the spans's ReadSpc: am||noon||pm
+     *
+     *      So begin w/
+     *      SRV all the defaultRSpc Styles GIVEN nothing:
+     *          e.g.  {am:{color:....}, noon:{}, pm:{}}
+     *
+     *      SELECT the defaultRSpc Style GIVEN a (span, ndx, list)
+     *          ~ SRVa_defaultRSpc Style__GIVENa (span, ndx, list)
+     *          it can now be called
+     *          ~ SRVa_dfltSpanAttrsObj__GVNa (span, ndx, lst)
+     *          e.g. {am: {color:'red', fontSize:'75%',...}}
+     *
+     *      BUILD some trnfrmObjS to weight SpanAttributeS GVNa( span, ndx, lst)
+     *          e.g. trnfrmObj = {fontSize: R.always('0.67%')
+ *
+ *      EVOLVE a SpanAttr_sObj__GVNa_trnfrmObjS
+ *
+ *          e.g. R.evolve( trnfrmObjS )(spanObj)
+ */
+        // TODO   below is a STUB_Trnfrm; GENERATE IT!!
     let x = 'red', y = 'yellow', z = '0.7';
-    let STUB_Trnsfrm = R.mergeAll(
+    let STUB_Trnfrm = R.mergeAll(
         [SRVa_TRNFRM('opacity')(z)
             , SRVa_TRNFRM('color')(x)
             , SRVa_TRNFRM('backgroundColor')(y)
         ]
     );
-
     let EVOL_aCsd__GVNa_ = EVOL_aCsd.SRVa_Csd__WTHa_Csd__GVNa_Trnsfrm;
-    let testCsd = EVOL_aCsd__GVNa_(DfltCsd.am)(STUB_Trnsfrm);// THIS IS A TEST
 
+    let testCsd = EVOL_aCsd__GVNa_(DfltCsd.am)(STUB_Trnfrm);// THIS IS A TEST
 
-    let modFn25 = SRVa_WtFn__GVNa_Cnst(0.25); // Fn( el, ndx, lst ) -> TrnsfrmObj
+    let modFn25 = SRVa_WtFn__GVNa_Cnst(0.25); // Fn( el, ndx, lst ) -> TrnfrmObj
 
-    // FIX modFn25 IS NOT USED YET; using STUB_Trnsfrm above
+    // FIX modFn25 IS NOT USED YET; using STUB_Trnfrm above
     let X = modFn25({}, 0, [0, 1, 2, 3]);
 
-
+// --------- OK BACK TO STANDARD CODE ---------------------------------
 // Fn: SRV_mutatedElem  USING testCsd!!
     let SRV_mutatedElem = require('./CSpc/src/MUTATE_Elem').SRVa_(testCsd);
     //       csdDCT -> Fn(  eltDCT -> eltDCT )

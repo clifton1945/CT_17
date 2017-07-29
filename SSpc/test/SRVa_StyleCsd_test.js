@@ -13,29 +13,22 @@ let chai = require('chai')
     , expect = chai.expect
 ;
 
-describe(`Fn: SRVa_StyleCsd             SERVES a styleCsd given      
+describe(`Fn: SRVa_DfltRSpcCsd__GVNa_RSpcKey             SERVES a default styleCsd given      
     (1) a StyleCsd_Dflt
     (2) a StyleCsd_byReadClassKey given byReadClassKey
     `, () => {
     // TEST DATA
-    // CODE UNDER TEST
     let SRVa_StyleCsd_Dflt = require('../src/SRVa_StyleCsd').Dflt; // -> {{},{},{}}
     it(`expects SRVa_StyleCsd_Dflt             -> an CSD Object with keys.
     `, function () {
         expect(SRVa_StyleCsd_Dflt).is.a('Object').is.keys('am', 'noon', 'pm');
     });
     // CODE UNDER TEST
-    let SRVa_StyleCsd_byReadClassKey = require('../src/SRVa_StyleCsd').byReadClassKey; // -> {{},{},{}}
-    it(`expects SRVa_StyleCsd_frmKey( key )  -> a style Csd.
+    it(`expects Fn: SRVa_DfltRSpcStyle__GVNa_RSpcKey(key)  -> one of three DfltStyleCsds.
+    NOTE:: SRVa_DfltSpanAttr_s__GVNa_RSpcKey IS another Name for the above Fn: SRVa_DfltRSpcStyle__GVNa_RSpcKey
     `, function () {
-        expect(SRVa_StyleCsd_byReadClassKey('pm')).is.a('Object').has.property('opacity')
-            .and.equal('0.9')
-        ;
-    });
-    it(`expects SRVa_DfltRSpcCsd__GVNa_RSpcKey( key)  -> one of three DfltStyleCsds.
-    `, function () {
-        let SRVa_DfltRSpcCsd__GVNa_RSpcKey = require('../src/SRVa_StyleCsd').SRVa_DfltRSpcCsd__GVNa_RSpcKey;
-        expect(SRVa_DfltRSpcCsd__GVNa_RSpcKey('pm')).is.a('Object').has.property('opacity')
+        let SRVa_DfltRSpcStyle__GVNa_RSpcKey = require('../src/SRVa_StyleCsd').SRVa_DfltRSpcStyle__GVNa_RSpcKey;
+        expect(SRVa_DfltRSpcStyle__GVNa_RSpcKey('pm')).is.a('Object').has.property('opacity')
             .and.equal('0.9')
     });
 });
