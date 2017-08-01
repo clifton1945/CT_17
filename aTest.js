@@ -29,8 +29,10 @@ C_in_Console('  IN> ' + TRK);
 let SRV_ChptVerses_Dflt = require('./CSpc/src/SRVa_ChptVerseList').SRV_ChptVerses_Dflt; // FIX 170731
 // first some verseSpans in a list.
 let spans = R.take(18)(SRV_ChptVerses_Dflt(document));
-// Next a stub noonSpan INDEX!! not a span itself!!! FIX
-let STUB_noonNdx = 8; // NOTE:  N MUST BE >= 0 and < spans.length
+
+let STUB_noonNdx = 15; // NOTE:  N MUST BE >= 0 and < spans.length
+
+
 // split into the three ReadClass lists
 let splits = R.splitAt(STUB_noonNdx, spans);
 let amLst = splits[0];
@@ -57,14 +59,14 @@ let SRVa_weight = require('./RSpc/src/SRVa_WtFn').weightedElem; // FIX 170731
 
 let SRVa_weightedElem = {};
 //am
-SRVa_weightedElem = SRVa_weight(0.5); // FIX 170731
+SRVa_weightedElem = SRVa_weight(1.0); // FIX 170731
 amLst = mapIndexed(SRVa_weightedElem)(amLst);
 
 //noon
-SRVa_weightedElem = SRVa_weight(0);// FIX 170731
+SRVa_weightedElem = SRVa_weight(0.0);// FIX 170731
 noonLst = mapIndexed(SRVa_weightedElem)(noonLst);
 //pm
-SRVa_weightedElem = SRVa_weight(0.5);// FIX 170731
+SRVa_weightedElem = SRVa_weight(1.0);// FIX 170731
 pmLst = mapIndexed(SRVa_weightedElem)(R.reverse(pmLst));
 
 //pmWts;
