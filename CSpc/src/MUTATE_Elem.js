@@ -8,7 +8,7 @@ let R = require('ramda')
 ;
 let MUTATE_ = curry(
     /**
-     * ..... MUTATE_:: mutates [sets and returns], a span, typically because its style CSD is new.
+     * ..... MUTATE_:: mutates, [sets and returns], an Element: for each attribute in a GVN style csd object.
      * This is an arity:2 version.
      * @sig  csdDCT -> ( SPAN -> SPAN )
      *
@@ -16,7 +16,7 @@ let MUTATE_ = curry(
      * @param elt
      * @return {*}
      *
-     * The MUTATE_frmCsdDCT arity:1 form is MUTATE_(a_csd) useful in iterating all verse spans.
+     * The MUTATE_frmCsdDCT arity:1 form; MUTATE_(a_csd) useful in iterating all verse spans.
      * The verbose form of arity:1 IS SRVa_Span__WTHa_Csd__GVNa_Span
      */
     (csd, elt) => {
