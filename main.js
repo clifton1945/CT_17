@@ -65,8 +65,21 @@ main = function (item) {
     let NoonList = lst[0];
     let PmList = lst[1];
 
-// CODE UNDER TEST: WIP I have three readClass lists.
-// Cee them All together
+// CODE UNDER TEST:
+    /**
+     * TASK: SET && SEE the backgroundColor of each spanVerse of each of the three RClsses
+     *
+     * ??? HOW INJECT / MUTATE / EVOLVE the base/default StyleAttributeCsd FOR each Class/List ???
+     * ??? HOW map(an Attribute to a list of Attributes for each ReadClassList in a list of ReadClasses ???
+     *
+     * GVNa a baseDict of StyleAttributes by keyReadClass
+     *  e.g. {am:{backgroundColor: 'red', color:'green', ...}. noon:{}, pm:{]}
+     *  map(SRVa_readStyle)()
+     */
+
+
+
+// I can Cee them All together
     let AllList = concat(concat(AmList, NoonList), PmList);
     C_in_Both(`lengths:[
     ${AmList.length}, 

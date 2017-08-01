@@ -4,10 +4,10 @@
  */
 "use strict";
 
-let R = require('ramda'),
-    curry = R.curry,
-    compose = R.compose;
-
+let R = require('ramda')
+    // , curry = R.curry
+    // , compose = R.compose
+;
 let sayX = x => console.log('x is ' + x);
 module.exports = R.tap(sayX);// a => a and 'x is a' in console.log
 
