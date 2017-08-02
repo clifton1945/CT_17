@@ -1,9 +1,15 @@
 /**
  *  Peace is Progress towards a known Destination.
  *  170801 -  the destination is
- *      (1) I will make a SRVa_ListOfReadClassLists
- *          because I begin with a NodeList OR Collection of Chapter spans.
- *      (2) I will then need a way to SRVa_
+ *      (1) I will make a List || /Collection
+ *          of readClass verseLists || Collection
+ *              because I begin with a NodeList OR Collection of Chapter spans.
+ *      It could be Named: SRVa_TRIAGED_ListOf_readClass_verseLists
+ *  then NEXT
+ *      (2) I will THEN want to iterate all three read lists
+ *              ??? HOW iterate ??? map(map
+ *          (1) ALTERING some || all style Attribute Csds for each Verse GVN its ReadClass
+ *          (2) MUTATING each Verse GVN its styleCsd
  *
  *
  */
@@ -17,9 +23,10 @@ let C_in = require('./h/C_in_')
 let myTap = require('./h/myTap')
 ;
 let R = require('ramda')
-    , curry = R.curry
-    , concat = R.concat
-    , pipe = R.pipe
+    , append = R.append
+    // , curry = R.curry
+    // , concat = R.concat
+    // , pipe = R.pipe
     // , evolve = R.evolve
 ;
 
@@ -32,11 +39,17 @@ C_in_Console('  IN> ' + TRK);
 let SRV_ChptVerses_Dflt = require('./CSpc/src/SRVa_ChptVerseList').SRV_ChptVerses_Dflt;
 // first some verseSpans in a list.
 let spans = R.take(18)(SRV_ChptVerses_Dflt(document));
+let STUB_noonNdx = 9; // NOTE:  N MUST BE >= 0 and < spans.length
 
-let STUB_noonNdx = 17; // NOTE:  N MUST BE >= 0 and < spans.length
+// SPLIT_into_ReadLists: spanList -> ( noonNdx -> readLists:[[],[],[]])
+let SPLIT_into_ReadLists = span_lst => noon_ndx => {
+    let splits = R.splitAt(STUB_noonNdx, spans);
+    let lists = [];
+    append(append(lists, splits[0]));
+};
+// let readLists = SPLIT_into_ReadLists(spans)(STUB_noonNdx);
+// -----------------
 
-
-// split into the three ReadClass lists
 let splits = R.splitAt(STUB_noonNdx, spans);
 let amLst = splits[0];
 let noonLst = [spans[STUB_noonNdx]];
