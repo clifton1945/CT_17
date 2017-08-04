@@ -1,18 +1,17 @@
 /**
  *  Peace is Progress towards a known Destination.
+
+ *  170804 -  the destination today is
+ *   Go down and with a List||Collection of Chapter spanVerses
+ *      (1) chptSpanVerses.splitInto three readState Lists || Collections
+ *          @1130 (1) works for NodeList and for Collection
+ *      (2) iterate each of the three readState lists
+ *          (1) ALTERING some || all style Attribute Csds GVN the Csd readState
+ *      (3) MUTATE each Verse now that each spanVerse has an evolved stylCsd
  *
- *  170804 -  the destination is
- *      (1) I will make a List || /Collection
- *          of readState verseLists || Collection
- *              because I begin with a NodeList OR Collection of Chapter STUB_spans.
- *      It could be Named: SRVa_TRIAGED_ListOf_readState_verseLists
- *  then NEXT
- *      (2) I will THEN want to iterate all three read lists
- *              ??? HOW iterate ??? map(map
- *          (1) ALTERING some || all style Attribute Csds for each Verse GVN its readState
- *          (2) MUTATING each Verse GVN its styleCsd
- *
- *
+ *  NOTE: I purposely do not combine steps 2 and 3 to
+ *      separate and isolate document non pure code, 1 & 3, from any other code.
+ *      This may have a tiny bit of double iterating, step 2 and 3, but tough;
  */
 "use strict";
 
@@ -30,7 +29,9 @@ let R = require('ramda')
     // , pipe = R.pipe
     // , evolve = R.evolve
 ;
-let SRV_ChptVerses_Dflt = require('./CSpc/src/SRVa_ChptVerseList').SRV_ChptVerses_Dflt;
+// NOTE: both SRVa_Collection && SRVa_Collection WORK!!
+let SRV_ChptVerses_Dflt = require('./CSpc/src/SRVa_CollectionOf_ChptVerses').SRVa_CollectionOf_ChptVerses;
+// let SRV_ChptVerses_Dflt = require('./CSpc/src/SRVa_NodeListOf_ChptVerses').SRV_ChptVerses_Dflt;
 // CODE UNDER TEST
 let splitInto = require('./h/splitInto');
 //  -------------- a test
@@ -42,9 +43,10 @@ C_in_Console('  IN> ' + TRK);
 
 // ----- TEST_STUBS First use just some of the verseSpans in a list.
 let STUB_spans = R.take(12)(SRV_ChptVerses_Dflt(document));
-let STUB_noonNdx = 3;
+let STUB_noonNdx = 8;
 let STUB_noonSpan = STUB_spans[STUB_noonNdx];
 
+//CODE UNDER TEST
 let splitInto_Lists = splitInto(STUB_spans);
 
 let readLists = splitInto_Lists(STUB_noonSpan);
@@ -74,8 +76,7 @@ noonLst = mapIndexed(SRVa_weightedElem_Opacity)(noonLst);
 SRVa_weightedElem_Opacity = SRVa_weight(0.9);
 pmLst = mapIndexed(SRVa_weightedElem_Opacity)(R.reverse(pmLst));
 
-//pmWts;
-// Re combine the three lists
+// NOW
 // let _newVals = R.pipe(R.concat, R.concat);
 // let NewVals = _newVals(amLst, noonLst)(R.reverse(pmLst));
 // C_in_Console(JSON.stringify(NewVals));
