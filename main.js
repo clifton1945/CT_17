@@ -38,7 +38,7 @@ let SRV_ChptVerses_Dflt = require('./CSpc/src/SRVa_NodeListOf_ChptVerses').SRV_C
 let main;
 const VersesSet = new Set();
 const ChptMap = new Map();
-const focusMap = new Map();
+let focusMap = new Map();
 
 
 // const focusMap = new Map();
@@ -62,10 +62,12 @@ main = function (item) {
 // select the noonVerse span
     let noonVerse = item;
     let sibColl = item.parentElement.children;
-    focusMap.set('sibs', sibColl);
-    // focusMap.set('focus', item);
-
-    // focusMap.set('focusVerse', item);
+    focusMap
+        .set('sibs', sibColl)
+        .set('ndx', R.indexOf(item, sibColl))
+        .set('focus', item)
+    ;
+    C_in_Console(`    focusSpan.Index:  ${focusMap.get('ndx')}`);
 
 
 // SPLIT into three ReadLists
