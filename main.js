@@ -1,7 +1,14 @@
 /**
- *  170729 - Peace is progress towards a known destination.
- *  Today the destination is
- *  main reflects the backgroundColor of each Verse GVNa noonSpan
+ *  170805 - Peace is Progress towards a known Destination.
+ *  Today the Destination is
+ *  GoDownAnd organize a Document into a Set of SPANs as children of a DIV Map.
+ *      call the Map a ChptMap:     M01
+ *      call the Set a VersesSet:   S01
+ *                  and report.
+ *  GoDownAnd code an EventHandler Function to select a SPAN from ChptMap:M01
+ *      call the SPAN the focusVerseMap
+ *      call the Handler select_aVerseFn
+ *
  *
  */
 "use strict";
@@ -19,16 +26,20 @@ let R = require('ramda')
 ;
 // ------- requires ------------
 // let roundToTwoPlaces = require('./h/roundTo_');
-let DfltCsd = require('./RSpc/Dflt_RSpcStyles').Dflt;
+// let DfltCsd = require('./RSpc/Dflt_RSpcStyles').Dflt;
 let SRV_ChptVerses_Dflt = require('./CSpc/src/SRVa_NodeListOf_ChptVerses').SRV_ChptVerses_Dflt;
-let SRVa_WtFn__GVNa_Cnst = require('./RSpc/src/SRVa_WtFn').SRV_WtFn__GVNa_Cnst;
-
-let EVOL_aCsd = require('./SSpc/src/EVOLVEa_Csd');
-let SRVa_TRNFRM = require('./SSpc/src/SRVa_TRNFRM').by_always; // key -> valu -> Fn:TRNFRM
+// let SRVa_WtFn__GVNa_Cnst = require('./RSpc/src/SRVa_WtFn').SRV_WtFn__GVNa_Cnst;
+//
+// let EVOL_aCsd = require('./SSpc/src/EVOLVEa_Csd');
+// let SRVa_TRNFRM = require('./SSpc/src/SRVa_TRNFRM').by_always; // key -> valu -> Fn:TRNFRM
 // let SRVa_Span = require('./CSpc/src/MUTATE_Elem').SRVa_Span__WTHa_Csd__GVNa_Span;
 
 // -------- main starts here -------------
 let main;
+const VersesSet = new Set();
+const ChptMap = new Map();
+
+// const focusMap = new Map();
 
 function SELECT_noonVerse(e) {
     if (e.target !== e.currentTarget) {
@@ -38,8 +49,8 @@ function SELECT_noonVerse(e) {
     e.stopPropagation();
 }
 
-let theChapterDiv = document.querySelector('.chpt');
-theChapterDiv.addEventListener("click", SELECT_noonVerse, false);
+let theChptMap = document.querySelector('.chpt');
+theChptMap.addEventListener("click", SELECT_noonVerse, false);
 
 main = function (item) {
     // ************** MAIN ********
@@ -48,6 +59,10 @@ main = function (item) {
 
 // select the noonVerse span
     let noonVerse = item;
+    const focusMap = new Map(Object.entries(item));
+
+    // focusMap.set('focusVerse', item);
+
 
 // SPLIT into three ReadLists
     // first get a list of all spanVerses
@@ -81,12 +96,7 @@ main = function (item) {
 
 // I can Cee them All together
     let AllList = concat(concat(AmList, NoonList), PmList);
-    C_in_Both(`lengths:[
-    ${AmList.length}, 
-    ${NoonList.length},
-    ${PmList.length},
-    ${AllList.length},
-    ]`);
+    C_in_Both(`lengths:[${AmList.length}/${NoonList.length}/${PmList.length}], AllLists:${AllList.length}`);
 
 //  apply WEIGHTING TO EACH Verse
 //     let mapIndexed = R.addIndex(R.map);

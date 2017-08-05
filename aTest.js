@@ -5,9 +5,13 @@
  *   Go down and with a List||Collection of Chapter spanVerses
  *      (1) chptSpanVerses.splitInto three readState Lists || Collections
  *          @1130 (1) works for NodeList and for Collection
- *      (2) iterate each of the three readState lists
+ *          End up with a List of three lists of spans ]
+ *      (2) iterate over a LIST of three Lists||Dictionaries of styleATrribute
  *          (1) ALTERING some || all style Attribute Csds GVN the Csd readState
+ *          End up with a List
+ *
  *      (3) MUTATE each Verse now that each spanVerse has an evolved stylCsd
+ *      Do this by iterating over the List:[ [||{ span, csd }||] ]
  *
  *  NOTE: I purposely do not combine steps 2 and 3 to
  *      separate and isolate document non pure code, 1 & 3, from any other code.
