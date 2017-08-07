@@ -64,34 +64,40 @@ main = function (item) {
 
 // select the readVerse span
     let readVerse = item;
+    // can DEPR
     let sibColl = item.parentElement.children;
-    rVerseM
-        .set('verse', item)
-        .set('ndx', R.indexOf(item, sibColl))
-        .set('sibs', sibColl)
-    ;
-    C_in_Console(`     readSpan.Index:  ${rVerseM.get('ndx')}`);
+    // rVerseM
+    //     .set('verse', item)
+    //     .set('ndx', R.indexOf(item, sibColl))
+    //     .set('sibs', sibColl)
+    // ;
+    C_in_Console(`     readSpan.Index:  ${R.indexOf(item, sibColl)}`);
 
 // CODE UNDER TEST:
     /**
      * GoDownAnd
-     *  UPDATE the readVerseMap && CALL it rVerseM
-     *  UPDATE the readVerseStyle && CALL it bgColorAttr
-     *
-     * CALL this MUTATE the readVerse Style USING SRVa_AttR
+     *  EVOLVE a readVerseStyle && CALL it bgColorAttr
+     *      for this time evolve(bgColor,
      *
      */
-    let MUTATE_Verse = require('./CSpc/src/MUTATE_Elem').MUTATE_;// FIX WIP may not want this function.
-    let bgColorMap = new Map([
-        ['AR', {backgroundColor: "rgba(255, 7, 109, 0.17)"}],
-        ['RR', {backgroundColor: "rgba(247, 241, 6, 0.09)"}],
-        ['BR', {backgroundColor: "rgba(57, 255, 6, 0.10)"}]
-    ]);
-    let SRVa_bgColor = require('./SSpc/src/SRVa_Attr')(bgColorMap);
-    let bgColorAttr = SRVa_bgColor(5, 5); // NOTE I am forcing this to RR i.e. the verse is the  read Verse
-    // let bgColorAttr = SRVa_bgColor(rVerseM.get('ndx'), rVerseM.get('ndx')); // NOTE I am forcing this to RR i.e. the verse is the  read Verse
+        // let aDct = () => {};
+    let aCsd = {
+            AR: {backgroundColor: "rgba(255, 7, 109, 0.17)"},
+            RR: {backgroundColor: "rgba(247, 241, 6, 0.09)"},
+            BR: {backgroundColor: "rgba(57, 255, 6, 0.10)"}
+        };
+    // let evolve_aCsd = R.evolve(aTrnfrm, R.__);
+    // let aCsd = evolve_aCsd(readVerse.style); // no need for a default Csd use this
+    //
+    // let bgColorMap = new Map([
+    //     ['AR', {backgroundColor: "rgba(255, 7, 109, 0.17)"}],
+    //     ['RR', {backgroundColor: "rgba(247, 241, 6, 0.09)"}],
+    //     ['BR', {backgroundColor: "rgba(57, 255, 6, 0.10)"}]
+    // ]);
+    // let SRVa_bgColor = require('./SSpc/src/SRVa_Attr')(bgColorMap);
+    // let bgColorAttr = SRVa_bgColor(5, 5); // NOTE I am forcing this to RR i.e. the verse is the  read Verse
 
-// NEW CODE here
+    // NEW CODE here
     let Fn_bgColor = curry(
         (csd, elt) => {
             elt.style['backgroundColor'] = csd['backgroundColor'];
@@ -99,7 +105,8 @@ main = function (item) {
         }
     );
 
-    let ret = Fn_bgColor(bgColorAttr, readVerse);
+    let ret = Fn_bgColor(aCsd.RR, item);
+
     C_in_Console(` ret> ${ret.style.backgroundColor}`);
 
     C_in_Console(' OUT> ' + TRK);
