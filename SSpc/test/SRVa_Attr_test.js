@@ -1,36 +1,71 @@
-/**
- * EVOLVE_Csd.js
- */
 "use strict";
 let R = require('ramda')
-    // , evolve = R.evolve
-    // , curry = R.curry
-// , pipe = R.pipe
-//     , compose = R.compose
+    , curry = R.curry
 ;
 let chai = require('chai')
-    // , should = chai.should()
     , expect = chai.expect
 ;
+//CODE UNDER TEST
 
-describe(`Fn: SRVa_DfltRSpcCsd__GVNa_RSpcKey             SERVES a default styleCsd given      
-    (1) a StyleCsd_Dflt
-    (2) a StyleCsd_byReadClassKey given byReadClassKey
+const SRVa_aReadState = curry(
+    /**
+     *
+     * @param read_map : {AR: valu, RR:valu, BR: valu}
+     * @param r_ndx
+     * @param v_ndx
+     * @return {*}
+     */
+    (read_map, r_ndx, v_ndx) => {
+        return (v_ndx < r_ndx) ? read_map.get('AR')
+            : (v_ndx > r_ndx) ? read_map.get('BR')
+                : read_map.get('RR')
+    });
+
+describe(`Fn: SRVa_Attr   SERVES a styleCsd TRIAGED by ReadFocus <-
+    GVN a readSpanMap AND a versesSet Index )     
+    GoDownAnd create a backgroundColor Attribute Map that returns
     `, () => {
-    // TEST DATA
-    let SRVa_StyleCsd_Dflt = require('../src/SRVa_StyleCsd').Dflt; // -> {{},{},{}}
-    it(`expects SRVa_StyleCsd_Dflt             -> an CSD Object with keys.
+    //DATA
+    let bgColorMap = new Map([
+        ['AR', '{ backgroundColor:(255, 7, 109, 0.17)}'],
+        ['RR', '{ backgroundColor:(247, 241, 6, 0.09)}'],
+        ['BR', '{ backgroundColor:(057, 255, 6, 0.10)}]']
+    ]);
+    let testMap = new Map([
+            ['AR', 'red'], ['RR', 'green'], ['BR', 'blue']
+        ]
+    );
+
+    it(`expects SRVa_Attr(testMap)           -> an CSD Object with ReadState Keys:AR, RR, BR.
     `, function () {
-        expect(SRVa_StyleCsd_Dflt).is.a('Object').is.keys('am', 'noon', 'pm');
+        expect(SRVa_aReadState(testMap, 1, 0)).equal('red');
+        expect(SRVa_aReadState(testMap, 1)(1)).equal('green');
+        expect(SRVa_aReadState(testMap)(1)(2)).equal('blue');
     });
-    // CODE UNDER TEST
-    it(`expects Fn: SRVa_DfltRSpcStyle__GVNa_RSpcKey(key)  -> one of three DfltStyleCsds.
-    NOTE:: SRVa_DfltSpanAttr_s__GVNa_RSpcKey IS another Name for the above Fn: SRVa_DfltRSpcStyle__GVNa_RSpcKey
+
+    it(`expects SRVa_Attr(bgColorMap)        -> an CSD Object with keys:backgroundColor.
     `, function () {
-        let SRVa_DfltRSpcStyle__GVNa_RSpcKey = require('../src/SRVa_StyleCsd').SRVa_DfltRSpcStyle__GVNa_RSpcKey;
-        expect(SRVa_DfltRSpcStyle__GVNa_RSpcKey('pm')).is.a('Object').has.property('opacity')
-            .and.equal('0.9')
+        expect(SRVa_aReadState(bgColorMap, 1, 0)).equal('{ backgroundColor:(255, 7, 109, 0.17)}');
     });
-});
+
+})
+;
+// BREAKS for (const [key, value] of TestMap) {
+//     console.log(key, value);    }
+
+// BREAKS for (const [key, value] of TestMap.entries()) {
+//     console.log(key, value);
+// }
+
+// let lst = (map) => {
+//     let ret = [];
+//     for (const entry of map.entries()) {
+//         ret = R.append(([entry[0], entry[1]]), ret);
+//     }
+//     console.log(ret);
+//     return ret
+// };
+// lst(TestMap);
+
 
 
