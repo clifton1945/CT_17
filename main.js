@@ -84,29 +84,15 @@ main = function (item) {
     let AmList = lst[0]; // -> [[],...]
     lst = R.splitAt(1)(lst[1]);
     let readList = lst[0];
-    let PmList = lst[1];
-
-// CODE UNDER TEST:
-    /**
-     * TASK: SET && SEE the backgroundColor of each spanVerse of each of the three RClsses
-     *
-     * ??? HOW INJECT / MUTATE / EVOLVE the base/default StyleAttributeCsd FOR each Class/List ???
-     * ??? HOW map(an Attribute to a list of Attributes for each ReadClassList in a list of ReadClasses ???
-     *
-     * GVNa a baseDict of StyleAttributes by keyReadClass
-     *  e.g. {am:{backgroundColor: 'red', color:'green', ...}. read:{}, pm:{]}
-     *  map(SRVa_readStyle)()
-     */
-
-
-
+    let PmList = lst[1]
 // I can Cee them All together
     let AllList = concat(concat(AmList, readList), PmList);
     C_in_Both(`     lengths:[${AmList.length}/${readList.length}/${PmList.length}], AllLists:${AllList.length}`);
 
-//  apply WEIGHTING TO EACH Verse
-//     let mapIndexed = R.addIndex(R.map);
-//     C_in_Console(`    SRV_Wts -> [${ mapIndexed(SRV_mutatedElem)(AmList) }]`);
-
+// CODE UNDER TEST:
+    /**
+     * GoDownAnd create a backgroundColorBot with different values for AR:afterReading, DR:reading and BR:beforeReading
+     */
+    
     C_in_Console('OUT> ' + TRK);
 };
