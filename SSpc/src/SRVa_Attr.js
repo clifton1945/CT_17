@@ -2,26 +2,18 @@
 
 let R = require('ramda')
     , curry = R.curry
-    // , always = R.always
-    // , evolve = R.evolve
 ;
-// let SRVa_Attr = curry(
-//     (key, fn) => R.assoc(
-//         key, fn, {}
-//     ));
-//
-// module.exports._by_Fn = SRVa_Attr;
-//
-// let by_always = curry(
-//     /**
-//      *  ..... Fn: by_always( keyStr )       RETURNS an R.alwaysFn( wanting a valu)
-//      the valu can be a Noun or a Fn/Verb)
-//      * @param key
-//      * @param val
-//      * @return {{}}
-//      */
-//     (key, val) => {
-//         return {[key]: R.always(val)}
-//     }
-// );
-// module.exports.by_always = by_always; // by_always( STR.key ) -> Fn( STR.valu  -> newTRNFRM )
+module.exports = curry(
+// const SRVa_aReadState = curry(
+    /**
+     *
+     * @param read_map : ['AR': valu1], ['RR': valu2], ['BR': valu3]
+     * @param r_ndx     : readVerseNdx
+     * @param v_ndx     : siblVerseNdx
+     * @return {*}      : 1 of 3 Csd values
+     */
+    (read_map, r_ndx, v_ndx) => {
+        return (v_ndx < r_ndx) ? read_map.get('AR')
+            : (v_ndx > r_ndx) ? read_map.get('BR')
+                : read_map.get('RR')
+    });

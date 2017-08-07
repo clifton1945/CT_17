@@ -1,11 +1,11 @@
 /**
  *  170805 - Peace is Progress towards a known Destination.
  *  Today the Destination is
- *  GoDownAnd organize a Document into a Set of SPANs as children of a DIV Map.
- *      call the Map a ChptMap:     M01
- *      call the Set a VersesSet:   S01
+ *  GoDownAnd ORGANIZE a Document into a Set of SPANs as children of a DIV Map.
+ *      CALL the Map a ChptMap:     M01
+ *      CALL the Set a VersesSet:   S01
  *                  and report.
- *  GoDownAnd code an EventHandler Function to select a SPAN from ChptMap:M01
+ *  GoDownAnd CODE an EventHandler Function to select a SPAN from ChptMap:M01
  *      call the SPAN the focusVerseMap
  *      call the Handler select_aVerseFn
  *
@@ -40,9 +40,14 @@ let SRV_ChptVerses_Dflt = require('./CSpc/src/SRVa_NodeListOf_ChptVerses').SRV_C
 let main;
 const VersesSet = new Set();
 const ChptMap = new Map();
-let focusMap = new Map();
+let readVerseMap = new Map();
 
-
+// TEST  DATA
+let bgColorMap = new Map([
+    ['AR', '{ backgroundColor:(255, 7, 109, 0.17)}'],
+    ['RR', '{ backgroundColor:(247, 241, 6, 0.09)}'],
+    ['BR', '{ backgroundColor:(057, 255, 6, 0.10)}]']
+]);
 function SELECT_readVerse(e) {
     if (e.target !== e.currentTarget) {
         e.stopPropagation();
@@ -62,12 +67,12 @@ main = function (item) {
 // select the readVerse span
     let readVerse = item;
     let sibColl = item.parentElement.children;
-    focusMap
+    readVerseMap
         .set('sibs', sibColl)
         .set('ndx', R.indexOf(item, sibColl))
         .set('focus', item)
     ;
-    C_in_Console(`     readSpan.Index:  ${focusMap.get('ndx')}`);
+    C_in_Console(`     readSpan.Index:  ${readVerseMap.get('ndx')}`);
 
 
 // SPLIT into three ReadLists
@@ -93,6 +98,6 @@ main = function (item) {
     /**
      * GoDownAnd create a backgroundColorBot with different values for AR:afterReading, DR:reading and BR:beforeReading
      */
-    
+
     C_in_Console('OUT> ' + TRK);
 };
