@@ -80,22 +80,16 @@ main = function (item) {
      *      for this time evolve(bgColor,
      *
      */
-        // let aDct = () => {};
-    let aCsd = {
+    let aDct = {
             AR: {backgroundColor: "rgba(255, 7, 109, 0.17)"},
             RR: {backgroundColor: "rgba(247, 241, 6, 0.09)"},
             BR: {backgroundColor: "rgba(57, 255, 6, 0.10)"}
         };
-    // let evolve_aCsd = R.evolve(aTrnfrm, R.__);
-    // let aCsd = evolve_aCsd(readVerse.style); // no need for a default Csd use this
-    //
-    // let bgColorMap = new Map([
-    //     ['AR', {backgroundColor: "rgba(255, 7, 109, 0.17)"}],
-    //     ['RR', {backgroundColor: "rgba(247, 241, 6, 0.09)"}],
-    //     ['BR', {backgroundColor: "rgba(57, 255, 6, 0.10)"}]
-    // ]);
-    // let SRVa_bgColor = require('./SSpc/src/SRVa_Attr')(bgColorMap);
-    // let bgColorAttr = SRVa_bgColor(5, 5); // NOTE I am forcing this to RR i.e. the verse is the  read Verse
+
+    //FIX TODO  get evolve to work !!! the aTrnfrm_... OR evolve_aCsd should be a DCT
+    let aTrnfrm_bgColor = R.always(aDct.AR);
+    let evolve_aCsd = curry(R.evolve(aTrnfrm_bgColor, R.__));
+    let aCsd = evolve_aCsd(item.style); // no need for a default Csd,  use the span.style
 
     // NEW CODE here
     let Fn_bgColor = curry(
@@ -105,9 +99,9 @@ main = function (item) {
         }
     );
 
-    let ret = Fn_bgColor(aCsd.RR, item);
+    let ret = Fn_bgColor(aCsd, item);
 
-    C_in_Console(` ret> ${ret.style.backgroundColor}`);
+    C_in_Console(`....  ret> ${ret.style.backgroundColor}`);
 
     C_in_Console(' OUT> ' + TRK);
 };
