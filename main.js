@@ -35,15 +35,15 @@ let SRV_ChptVerses_Dflt = require('./CSpc/src/SRVa_NodeListOf_ChptVerses').SRV_C
 // let SRVa_Span = require('./CSpc/src/MUTATE_Elem').SRVa_Span__WTHa_Csd__GVNa_Span;
 
 // -------- main starts here -------------
+
+
 let main;
 const VersesSet = new Set();
 const ChptMap = new Map();
 let focusMap = new Map();
 
 
-// const focusMap = new Map();
-
-function SELECT_noonVerse(e) {
+function SELECT_readVerse(e) {
     if (e.target !== e.currentTarget) {
         e.stopPropagation();
         main(e.target)
@@ -52,22 +52,22 @@ function SELECT_noonVerse(e) {
 }
 
 let theChptMap = document.querySelector('.chpt');
-theChptMap.addEventListener("click", SELECT_noonVerse, false);
+theChptMap.addEventListener("click", SELECT_readVerse, false);
 
 main = function (item) {
     // ************** MAIN ********
     let TRK = "wbSample/main.js";
     C_in_Console('  IN> ' + TRK);
 
-// select the noonVerse span
-    let noonVerse = item;
+// select the readVerse span
+    let readVerse = item;
     let sibColl = item.parentElement.children;
     focusMap
         .set('sibs', sibColl)
         .set('ndx', R.indexOf(item, sibColl))
         .set('focus', item)
     ;
-    C_in_Console(`    focusSpan.Index:  ${focusMap.get('ndx')}`);
+    C_in_Console(`     readSpan.Index:  ${focusMap.get('ndx')}`);
 
 
 // SPLIT into three ReadLists
@@ -76,14 +76,14 @@ main = function (item) {
         SRV_ChptVerses_Dflt
         , R.flip(R.indexOf)
     )(document);
-    let n = SRV_spanIndex(noonVerse);
+    let n = SRV_spanIndex(readVerse);
     let chptList = document.querySelectorAll('.chpt span');
-    // now split them into three readClass lists: am, noon. pm
+    // now split them into three readClass lists: am, read. pm
 
     let lst = R.splitAt(n, chptList); // -> [[],...]
     let AmList = lst[0]; // -> [[],...]
     lst = R.splitAt(1)(lst[1]);
-    let NoonList = lst[0];
+    let readList = lst[0];
     let PmList = lst[1];
 
 // CODE UNDER TEST:
@@ -94,15 +94,15 @@ main = function (item) {
      * ??? HOW map(an Attribute to a list of Attributes for each ReadClassList in a list of ReadClasses ???
      *
      * GVNa a baseDict of StyleAttributes by keyReadClass
-     *  e.g. {am:{backgroundColor: 'red', color:'green', ...}. noon:{}, pm:{]}
+     *  e.g. {am:{backgroundColor: 'red', color:'green', ...}. read:{}, pm:{]}
      *  map(SRVa_readStyle)()
      */
 
 
 
 // I can Cee them All together
-    let AllList = concat(concat(AmList, NoonList), PmList);
-    C_in_Both(`lengths:[${AmList.length}/${NoonList.length}/${PmList.length}], AllLists:${AllList.length}`);
+    let AllList = concat(concat(AmList, readList), PmList);
+    C_in_Both(`     lengths:[${AmList.length}/${readList.length}/${PmList.length}], AllLists:${AllList.length}`);
 
 //  apply WEIGHTING TO EACH Verse
 //     let mapIndexed = R.addIndex(R.map);
