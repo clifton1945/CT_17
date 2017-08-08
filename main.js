@@ -81,25 +81,23 @@ main = function (item) {
      *
      */
     let aDct = {
-            AR: {backgroundColor: "rgba(255, 7, 109, 0.17)"},
-            RR: {backgroundColor: "rgba(247, 241, 6, 0.09)"},
-            BR: {backgroundColor: "rgba(57, 255, 6, 0.10)"}
+        AR: "rgba(255, 7, 109, 0.17)",
+        RR: "rgba(247, 241, 6, 0.09)",
+        BR: "rgba(57, 255, 6, 0.10)"
         };
+    let bgColorTrnfrmDCT = {
+        color: R.always('green'),
+        backgroundColor: R.always(aDct.AR)
+    };
 
-    //FIX TODO  get evolve to work !!! the aTrnfrm_... OR evolve_aCsd should be a DCT
-    let aTrnfrm_bgColor = R.always(aDct.AR); // TODO use this to confirm the rest works
-    let evolve_aCsd = curry(R.evolve(aTrnfrm_bgColor, R.__));
+    // let evolve_aCsd = curry(R.evolve(bgColorTrnfrmDCT, R.__));
+    let readDct = {backgroundColor: '', color: ''};
     let aCsd = aDct.BR;
-    // aCsd = evolve_aCsd(item.style); // no need for a default Csd,  use the span.style
+    aCsd = R.evolve(bgColorTrnfrmDCT, readDct); // ???   use the span.style
+    // aCsd = evolve_aCsd(item.style); //  {backgroundColor:'', color:''}
 
     // NEW CODE here
-    let mutate_anElem = curry(
-        (csd, elt) => {
-            elt.style['backgroundColor'] = csd['backgroundColor'];
-            return elt
-        }
-    );
-
+    let mutate_anElem = require('./CSpc/src/MUTATE_Elem').MUTATE_;
     let ret = mutate_anElem(aCsd, item);
 
     C_in_Console(`....  ret> ${ret.style.backgroundColor}`);
