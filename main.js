@@ -87,19 +87,20 @@ main = function (item) {
         };
 
     //FIX TODO  get evolve to work !!! the aTrnfrm_... OR evolve_aCsd should be a DCT
-    let aTrnfrm_bgColor = R.always(aDct.AR);
+    let aTrnfrm_bgColor = R.always(aDct.AR); // TODO use this to confirm the rest works
     let evolve_aCsd = curry(R.evolve(aTrnfrm_bgColor, R.__));
-    let aCsd = evolve_aCsd(item.style); // no need for a default Csd,  use the span.style
+    let aCsd = aDct.BR;
+    // aCsd = evolve_aCsd(item.style); // no need for a default Csd,  use the span.style
 
     // NEW CODE here
-    let Fn_bgColor = curry(
+    let mutate_anElem = curry(
         (csd, elt) => {
             elt.style['backgroundColor'] = csd['backgroundColor'];
             return elt
         }
     );
 
-    let ret = Fn_bgColor(aCsd, item);
+    let ret = mutate_anElem(aCsd, item);
 
     C_in_Console(`....  ret> ${ret.style.backgroundColor}`);
 
