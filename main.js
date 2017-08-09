@@ -1,5 +1,5 @@
 /**
- *  170805 - Peace is Progress towards a known Destination.
+ *  DEPR --- 170805 - Peace is Progress towards a known Destination.
  *  Today the Destination is
  *  GoDownAnd ORGANIZE a Document into a Set of SPANs as children of a DIV Map.
  *      CALL the Map a ChptMap:     M01
@@ -40,13 +40,13 @@ let SRV_ChptVerses_Dflt = require('./CSpc/src/SRVa_NodeListOf_ChptVerses').SRV_C
 
 
 let main;
-const VersesSet = new Set();
-const ChptMap = new Map();
-let rVerseM = new Map();
+// const VersesSet = new Set();
+// const ChptMap = new Map();
+// let rVerseM = new Map();
 
 // TEST  DATA
 
-function SELECT_readVerse(e) {
+function SELECT_VerseToRead(e) {
     if (e.target !== e.currentTarget) {
         e.stopPropagation();
         main(e.target)
@@ -54,53 +54,56 @@ function SELECT_readVerse(e) {
     e.stopPropagation();
 }
 
-let theChptMap = document.querySelector('.chpt');
-theChptMap.addEventListener("click", SELECT_readVerse, false);
+let ChptDCT = document.querySelector('.chpt');
+ChptDCT.addEventListener("click", SELECT_VerseToRead, false);
 
-main = function (item) {
+main = function (vtr) { // vtr:VerseToRead
     // ************** MAIN ********
     let TRK = "wbSample/main.js";
     C_in_Console('  IN> ' + TRK);
 
-// select the readVerse span
-    let readVerse = item;
-    // can DEPR
-    let sibColl = item.parentElement.children;
-    // rVerseM
-    //     .set('verse', item)
-    //     .set('ndx', R.indexOf(item, sibColl))
-    //     .set('sibs', sibColl)
-    // ;
-    C_in_Console(`     readSpan.Index:  ${R.indexOf(item, sibColl)}`);
+// select the VerseToRead: a span
+    let VersesColl = vtr.parentElement.children;
+    let vtrNdx = R.indexOf(vtr, VersesColl);
+    C_in_Console(`     VerseToRead.Index:  ${vtrNdx}`);
 
 // CODE UNDER TEST:
     /**
      * GoDownAnd
-     *  EVOLVE a readVerseStyle && CALL it bgColorAttr
-     *      for this time evolve(bgColor,
+     *  EVOLVE an Element's Style Attributes, its CSD, as a function of it's Index and SiblingList.
+     *      Define an EventListener within the chapter div.chpt
+     *          and call it SELECT_VerseToRead
+     *
+     *      Organize a dictionary of element style Attributes to be MODIFIED||EVOLVED
+     *          and call it StyleAttrsDCT:
+     *          it should look like  {k:v, k:v, ...}
+     *              for example: {color:"", fontSize:"50%", backgroundColor:"", ...}
+     *
+     *      TRIAGE any combination of Index and SiblSize TO one of three States:
+     *          AfterReading, NowReading, BeforeReading
+     *      Somehow pass the readState to all the
+     *          the StyleAttrDCT needs to be Trnfrm ed
+     *
      *
      */
-    let aDct = {
+    let backgroundColor_ReadStatesDct = {
         AR: "rgba(255, 7, 109, 0.17)",
-        RR: "rgba(247, 241, 6, 0.09)",
+        NR: "rgba(247, 241, 6, 0.09)",
         BR: "rgba(57, 255, 6, 0.10)"
         };
-    let bgColorTrnfrmDCT = {
+    let Attr_TrnfrmDCT = {
         color: R.always('green'),
-        backgroundColor: R.always(aDct.AR)
+        backgroundColor: R.always(backgroundColor_ReadStatesDct.AR)
     };
+    let readDCT = {backgroundColor: '', color: ''};
 
-    // let evolve_aCsd = curry(R.evolve(bgColorTrnfrmDCT, R.__));
-    let readDct = {backgroundColor: '', color: ''};
-    let aCsd = aDct.BR;
-    aCsd = R.evolve(bgColorTrnfrmDCT, readDct); // ???   use the span.style
-    // aCsd = evolve_aCsd(item.style); //  {backgroundColor:'', color:''}
+    let evolve_aReadDct = R.evolve(R.__, readDCT);//Fn
+    let aCsd = evolve_aReadDct(Attr_TrnfrmDCT);
 
-    // NEW CODE here
-    let mutate_anElem = require('./CSpc/src/MUTATE_Elem').MUTATE_;
-    let ret = mutate_anElem(aCsd, item);
-
-    C_in_Console(`....  ret> ${ret.style.backgroundColor}`);
+// now have a new style.Csd, mutate an element
+    let mutate_anElem = require('./CSpc/src/MUTATE_Elem').MUTATE_;//Fn
+    let ret = mutate_anElem(aCsd, vtr);
+    C_in_Console(`  .... ret > ${ret.style.backgroundColor}`);
 
     C_in_Console(' OUT> ' + TRK);
 };
