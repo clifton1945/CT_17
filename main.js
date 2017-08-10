@@ -26,6 +26,7 @@ let R = require('ramda')
     , pipe = R.pipe
     // , evolve = R.evolve
 ;
+
 // ------- requires ------------
 // let roundToTwoPlaces = require('./h/roundTo_');
 // let DfltCsd = require('./RSpc/Dflt_RSpcStyles').Dflt;
@@ -53,7 +54,6 @@ function SELECT_VerseToRead(e) {
     }
     e.stopPropagation();
 }
-
 let ChptDCT = document.querySelector('.chpt');
 ChptDCT.addEventListener("click", SELECT_VerseToRead, false);
 
@@ -62,48 +62,48 @@ main = function (vtr) { // vtr:VerseToRead
     let TRK = "wbSample/main.js";
     C_in_Console('  IN> ' + TRK);
 
-// select the VerseToRead: a span
+// use the vtrSpan to derive some data constants
     let VersesColl = vtr.parentElement.children;
     let vtrNdx = R.indexOf(vtr, VersesColl);
-    C_in_Console(`     VerseToRead.Index:  ${vtrNdx}`);
+    C_in_Console(`     >VerseToRead.Index:  ${vtrNdx}`);
 
-// CODE UNDER TEST:
-    /**
-     * GoDownAnd
-     *  EVOLVE an Element's Style Attributes, its CSD, as a function of it's Index and SiblingList.
-     *      Define an EventListener within the chapter div.chpt
-     *          and call it SELECT_VerseToRead
-     *
-     *      Organize a dictionary of element style Attributes to be MODIFIED||EVOLVED
-     *          and call it StyleAttrsDCT:
-     *          it should look like  {k:v, k:v, ...}
-     *              for example: {color:"", fontSize:"50%", backgroundColor:"", ...}
-     *
-     *      TRIAGE any combination of Index and SiblSize TO one of three States:
-     *          AfterReading, NowReading, BeforeReading
-     *      Somehow pass the readState to all the
-     *          the StyleAttrDCT needs to be Trnfrm ed
-     *
-     *
-     */
-    let backgroundColor_ReadStatesDct = {
+    let triageFn = R.curry(
+        /**
+         * returns a TrnfrmDCT an Elem
+         * @param vtr:      the Index of the focus Elem
+         * @param ndx:      the Index of a Elem
+         * @return dct:     a TrnfrmDCT
+         */
+        (vtr, ndx) => (ndx < vtr)
+            ? R.always({txt: `verseNdx:${ndx} was read in the past.`})
+            : (ndx > vtr )
+                ? R.always({txt: `verseNdx:${ndx} is to be read in the future.`})
+                : R.always({txt: `verseNdx:${ndx} is currently being read.].`})
+    );
+
+// NEXT build functions
+    let backgroundColor_ReadStatesDCT = {
         AR: "rgba(255, 7, 109, 0.17)",
         NR: "rgba(247, 241, 6, 0.09)",
         BR: "rgba(57, 255, 6, 0.10)"
-        };
+    };
+
+
     let Attr_TrnfrmDCT = {
         color: R.always('green'),
-        backgroundColor: R.always(backgroundColor_ReadStatesDct.AR)
+        backgroundColor: R.always(backgroundColor_ReadStatesDCT.AR)
     };
+// this is evolve the dummy readDCT using Attr_TrnfrmDCT
     let readDCT = {backgroundColor: '', color: ''};
-
     let evolve_aReadDct = R.evolve(R.__, readDCT);//Fn
+
     let aCsd = evolve_aReadDct(Attr_TrnfrmDCT);
 
-// now have a new style.Csd, mutate an element
+// now have a new style.Csd, mutate the vtr Element
     let mutate_anElem = require('./CSpc/src/MUTATE_Elem').MUTATE_;//Fn
     let ret = mutate_anElem(aCsd, vtr);
-    C_in_Console(`  .... ret > ${ret.style.backgroundColor}`);
+// C_in_Console(`  .... ret > ${ret.style.backgroundColor}`);
 
     C_in_Console(' OUT> ' + TRK);
-};
+}
+;
