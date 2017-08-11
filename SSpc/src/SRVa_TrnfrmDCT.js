@@ -3,10 +3,14 @@
 let R = require('ramda')
     , curry = R.curry
 ;
-let srva_TrnfrmDCT = R.curry(
+let SRVa = R.curry(
     /**
      * NOTE  JUST A STUB TODO exand with parameters
-     * returns a style Trnfrm_DCT typicaly for use in an R.evolve(DCT, CSD)
+     * returns a style Trnfrm_DCT typically for use in an R.evolve(DCT, CSD)
+     *  NOTE: FIX for this testing the Attr: color has these values
+     *      read:           red
+     *      reading:        green
+     *      to read:        blue
      * @param vtr:      the Index of the focus Elem
      * @param ndx:      the Index of a Elem
      * @return dct:     a DCT:
@@ -19,4 +23,4 @@ let srva_TrnfrmDCT = R.curry(
             ? {color: R.always('green')}
             : {color: R.always('blue')}
 );
-module.exports.colorStyleTrnfrmDCT = srva_TrnfrmDCT;
+module.exports.colorStyleTrnfrmDCT = SRVa;
