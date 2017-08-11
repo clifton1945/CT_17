@@ -9,8 +9,8 @@ let SRVa = R.curry(
      * returns a style Trnfrm_DCT typically for use in an R.evolve(DCT, CSD)
      *  NOTE: FIX for this testing the Attr: color has these values
      *      read:           red
-     *      reading:        green
-     *      to read:        blue
+     *      reading:        blue
+     *      to read:        green
      * @param vtr:      the Index of the focus Elem
      * @param ndx:      the Index of a Elem
      * @return dct:     a DCT:
