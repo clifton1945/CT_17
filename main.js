@@ -1,9 +1,12 @@
 /**
- * today: convert Fn: srva_Trnfrm_Dct to evolving a style CSD: the true use of this function
+ * today: use Fn: srva_Trnfrm_Dct to evolving a style CSD for each verse.
+ * () maybe practice some compose/pipe with existing
+ * () start piping in more TrnfrmDCTs before the final R.always.
+ * () add more Attributes to the final CSD
  *  OK (4) iterate over some subset of verseSPANS to demonstrate srva_TrnfrmDCT    can alter a verseSpan styleCSD on the fly.
- *  OK (1) show and prove the returned DCT works with R.evolve
- *  OK (2) demonstrate that an Element.style.color can be evolved GVN focusIndex and elementIndex
  *  OK (3) use Fn:srva_TrnfrmDCT_color(ndx, ndx) to prepare for iterating over all the chptDIV verseSPANS
+ *  OK (2) demonstrate that an Element.style.color can be evolved GVN focusIndex and elementIndex
+ *  OK (1) show and prove the returned DCT works with R.evolve
  */
 "use strict";
 // ------- requires ------------
