@@ -15,11 +15,11 @@ let R = require('ramda');
 // , concat = R.concat
 // , pipe = R.pipe
 // , evolve = R.evolve
-let C_in = require('./h/C_in_'), C_in_Console = C_in.Console;
-let srva_TrnfrmDCT_color =
-    require('./SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT;
-let mutate_anElem = require('./CSpc/src/MUTATE_Elem').MUTATE_;//Fn
-
+let C_in = require('./h/C_in_')
+    , C_in_Console = C_in.Console;
+let srva_TrnfrmDCT_color = require('./SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT;
+let mutate_anElem = require('./CSpc/src/MUTATE_Elem')
+    .MUTATE_;
 // -------- main starts here -------------
 
 // This is the MouseEvent handler to select a readFocus span.
@@ -31,9 +31,10 @@ function CLICK_VerseToRead(e) {
     e.stopPropagation();
 }
 
-let ChptDIV = document.querySelector('.chpt');
+let ChptDIV = document.querySelector('.chpt'); // needed to limit click to just div.chptr
 ChptDIV.addEventListener("click", CLICK_VerseToRead, false);
 
+// ------------ CODE UNDER TEST -----------------
 
 let main = function (aVTR) { // aVTR:VerseToRead
 
