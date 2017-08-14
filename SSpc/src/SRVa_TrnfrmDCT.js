@@ -1,8 +1,13 @@
 "use strict";
 
+//  requires ---------------
 let R = require('ramda')
     , curry = R.curry
 ;
+
+let SRVa_byAlwaysTrnfrm = require('./SRVa_TRNFRM').by_always;
+
+// CODE
 let SRVa = R.curry(
     /**
      * NOTE  JUST A STUB TODO exand with parameters
@@ -11,6 +16,7 @@ let SRVa = R.curry(
      *      read:           red
      *      reading:        blue
      *      to read:        green
+     *
      * @param vtr:      the Index of the focus Elem
      * @param ndx:      the Index of a Elem
      * @return dct:     a DCT:
@@ -18,9 +24,9 @@ let SRVa = R.curry(
      *      val: a Fn returning a style value
      */
     (vtr, ndx) => (ndx < vtr)
-        ? {color: R.always('red')}
+        ? SRVa_byAlwaysTrnfrm('color', 'red')
         : (ndx > vtr )
-            ? {color: R.always('green')}
-            : {color: R.always('blue')}
+            ? SRVa_byAlwaysTrnfrm('color', 'green')
+            : SRVa_byAlwaysTrnfrm('color', 'blue')
 );
 module.exports.colorStyleTrnfrmDCT = SRVa;

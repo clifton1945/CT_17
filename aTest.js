@@ -55,8 +55,10 @@ let main = function (aVTR) { // aVTR:VerseToRead
             let aCSD = R.pipe(
                 R.evolve,
                 R.flip,
-                srva_TrnfrmDCT_color({color: ''}))
-            (vtrNdx, n)
+                srva_TrnfrmDCT_color(
+                    {color: ''})
+            )
+            (vtrNdx, n);
 
             // now with a style.Csd, mutate the aVTR Element
             let ret = mutate_anElem(aCSD, e);
