@@ -45,13 +45,18 @@ let main = function (aVTR) { // aVTR:VerseToRead
 // use the aVTR Span to derive some data constants
     let versesCOLL = aVTR.parentElement.children;
     let vtrNdx = R.indexOf(aVTR, versesCOLL);
+    C_in_Console(`  > VerseToRead.Index: ${vtrNdx}`);
+
 
 // mutate each verseELT by evolving a CSD
     R.addIndex(R.map)(
         (e, n, a) => {
             // evolve a CSD
-            let aCSD = R.evolve(srva_TrnfrmDCT_color(vtrNdx, n), {color: ''});
-            // C_in_Console(`  > VerseToRead.Index: ${vtrNdx}`);
+            let aCSD = R.pipe(
+                R.evolve,
+                R.flip,
+                srva_TrnfrmDCT_color({color: ''}))
+            (vtrNdx, n)
 
             // now with a style.Csd, mutate the aVTR Element
             let ret = mutate_anElem(aCSD, e);
