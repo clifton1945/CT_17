@@ -19,7 +19,7 @@ let MUTATE_ = curry(
      * The MUTATE_frmCsdDCT arity:1 form; MUTATE_(a_csd) useful in iterating all verse spans.
      * The verbose form of arity:1 IS SRVa_Span__WTHa_Csd__GVNa_Span
      */
-    (csd, elt) => {
+    (csd, elt) => {// CSD -> ( ELEM -> ELEM )
 
         let _mutElt = prop => elt.style[prop] = csd[prop];
 

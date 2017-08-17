@@ -18,10 +18,11 @@ let R = require('ramda');
 // , evolve = R.evolve
 let C_in = require('./h/C_in_')
     , C_in_Console = C_in.Console
-    , C_in_Both = C_in.Both;
+    , C_in_Both = C_in.Both
+;
 let srva_TrnfrmDCT_color =
-    require('./SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT;
-let mutate_anElem = require('./CSpc/src/MUTATE_Elem').MUTATE_;//Fn
+    require('./SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT;// Num -> Num -> {k:FN}
+let mutate_anElem = require('./CSpc/src/MUTATE_Elem').MUTATE_;// CSD -> ( ELEM -> ELEM )
 
 // -------- main starts here -------------
 
@@ -38,9 +39,10 @@ let ChptDIV = document.querySelector('.chpt');
 ChptDIV.addEventListener("click", CLICK_VerseToRead, false);
 
 
-let main;
-main = function (aVTR) { // aVTR:VerseToRead
-    let TRK = "aTest/main.js";
+let main = function (aVTR) { // aVTR:VerseToRead
+
+// ************** MAIN ********
+    let TRK = "aTest.js";
     C_in_Console('IN> ' + TRK);
 
 // use the aVTR Span to derive some data constants
@@ -52,7 +54,7 @@ main = function (aVTR) { // aVTR:VerseToRead
         (e, n, a) => {
             // evolve a CSD
             let aCSD = R.evolve(srva_TrnfrmDCT_color(vtrNdx, n), {color: ''});
-            // C_in_Console(`  > VerseToRead.Index: ${vtrNdx}`);
+            C_in_Console(`  > VerseToRead.Index: ${vtrNdx}`);
 
             // now with a style.Csd, mutate the aVTR Element
             let ret = mutate_anElem(aCSD, e);
