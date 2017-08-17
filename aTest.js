@@ -30,7 +30,7 @@ mutate_anElem = require('./CSpc/src/MUTATE_Elem').MUTATE_;
 // -------- main starts here -------------
 
 // This is the MouseEvent handler to select a readFocus span.
-function CLICK_VerseToRead(e) {
+function CLICK_VerseToRead(e) {// ????
     if (e.target !== e.currentTarget) {
         e.stopPropagation();
         main(e.target)
@@ -38,7 +38,8 @@ function CLICK_VerseToRead(e) {
     e.stopPropagation();
 }
 
-let ChptDIV = document.querySelector('.chpt');
+// set the scope of the ClickEvent handler as the div.chpt
+let ChptDIV = document.querySelector('.chpt');//
 ChptDIV.addEventListener("click", CLICK_VerseToRead, false);
 
 
@@ -48,14 +49,13 @@ let main = function (aVTR) { // aVTR:VerseToRead
     let TRK = "aTest.js";
     C_in_Console('IN> ' + TRK);
 
-    let versesCOLL;
-    let vtrNdx;
-
 // use the aVTR Span to derive some data constants
-    versesCOLL = aVTR.parentElement.children;// ELEM -> COLL
-    vtrNdx = R.indexOf(aVTR, versesCOLL);// NUM -> NUM -> {k:FN}
+    let versesCOLL; // ELEM -> COLL
+    let vtrNdx;     // NUM -> NUM -> {k:FN}
+    versesCOLL = aVTR.parentElement.children;
+    vtrNdx = R.indexOf(aVTR, versesCOLL);
 
-// mutate each verseELT by evolving a CSD
+// mutate each verseELT using an evolved CSD: for now just a stubCSD
     R.addIndex(R.map)(// Functor f => (a → b) → f a → f b
         (elem, e_ndx, e_coll) => {
             // evolve a CSD
@@ -66,10 +66,8 @@ let main = function (aVTR) { // aVTR:VerseToRead
             C_in_Console(`  > VerseToRead.Index: ${vtrNdx}`);
 
             // now with a style.Csd, mutate the aVTR Element
-            let ret = mutate_anElem(srva_CSD, elem);
-            // C_in_Console(`  > element.style.color: ${ret.style.color}`);
-        }
-    )(versesCOLL);
+            mutate_anElem(srva_CSD, elem);
+        }, versesCOLL);
 
     C_in_Console('OUT> ' + TRK);
 };
