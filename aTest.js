@@ -20,9 +20,11 @@ let C_in = require('./h/C_in_')
     , C_in_Console = C_in.Console
     , C_in_Both = C_in.Both
 ;
-let srva_TrnfrmDCT_color =
-    require('./SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT;// Num -> Num -> {k:FN}
-let mutate_anElem = require('./CSpc/src/MUTATE_Elem').MUTATE_;// CSD -> ( ELEM -> ELEM )
+let srva_TrnfrmDCT_color;
+let mutate_anElem;
+
+srva_TrnfrmDCT_color = require('./SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT;// Num -> Num -> {k:FN}
+mutate_anElem = require('./CSpc/src/MUTATE_Elem').MUTATE_;// CSD -> ( ELEM -> ELEM )
 
 // -------- main starts here -------------
 
@@ -45,15 +47,19 @@ let main = function (aVTR) { // aVTR:VerseToRead
     let TRK = "aTest.js";
     C_in_Console('IN> ' + TRK);
 
+    let versesCOLL;
+    let vtrNdx;
+
 // use the aVTR Span to derive some data constants
-    let versesCOLL = aVTR.parentElement.children;
-    let vtrNdx = R.indexOf(aVTR, versesCOLL);
+    versesCOLL = aVTR.parentElement.children;
+    vtrNdx = R.indexOf(aVTR, versesCOLL);
 
 // mutate each verseELT by evolving a CSD
-    R.addIndex(R.map)(
+    R.addIndex(R.map)(// Functor f => (a → b) → f a → f b
         (e, n, a) => {
             // evolve a CSD
-            let aCSD = R.evolve(srva_TrnfrmDCT_color(vtrNdx, n), {color: ''});
+            let aCSD = R.evolve(// {k: (v → v)} → {k: v} → {k: v}
+                srva_TrnfrmDCT_color(vtrNdx, n), {color: ''});
             C_in_Console(`  > VerseToRead.Index: ${vtrNdx}`);
 
             // now with a style.Csd, mutate the aVTR Element
