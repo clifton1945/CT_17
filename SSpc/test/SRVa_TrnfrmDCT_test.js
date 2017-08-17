@@ -18,14 +18,14 @@ let srva_colorTrnfrm = require('../src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT;
 describe(` an invoked srva_colorTrnfrm(n1, n2) RETURNS DCT object of key:trnfrm transformations. `, function () {
     it('should return one of three transforms when INVOKED:   past, current, future', function () {
         let cut = R.curry(srva_colorTrnfrm(5));
-        let tst = cut(0).color();
+        let tst = evolvedDCT(0).color();
         assert.equal(
             tst,
             'red',
             'srva_Trnfrm_Dct(5)(0) should be already read: red');
-        tst = cut(5).color();
+        tst = evolvedDCT(5).color();
         assert.equal(tst, 'blue', 'srva_Trnfrm_Dct(5,5) should be currently reading');
-        tst = cut(6).color();
+        tst = evolvedDCT(6).color();
         assert.equal(tst, 'green', 'srva_Trnfrm_Dct(5,60) should be will read');
     });
 });
@@ -35,7 +35,7 @@ describe(`evolve(srva_colorTrnfrm(n1, n2), someObject) RETURNS a new someObject.
             srva_colorTrnfrm(5, 0),
             {color: 'original'} // NOTE: this Attr will be changed!
         );
-        let tst = ( typeof cut === 'object' );
+        let tst = ( typeof evolvedDCT === 'object' );
         assert.ok(tst, `expect an object: key: valu`);
     });
     it(`should return a modified Object.color != 'original `, function () {
@@ -43,7 +43,7 @@ describe(`evolve(srva_colorTrnfrm(n1, n2), someObject) RETURNS a new someObject.
             srva_colorTrnfrm(5, 10),
             {color: 'original'}
         );
-        let tst = cut.color;
+        let tst = evolvedDCT.color;
         assert.notEqual(tst, 'original', `expect returned DCT != 'original'`);
         assert.equal(tst, 'green', `expect returned DCT == 'green'`);
     });

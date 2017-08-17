@@ -1,7 +1,7 @@
 /**
  * today: use Fn: srva_Trnfrm_Dct to evolving a style CSD for each verse.
  * () maybe practice some compose/pipe with existing
- * () start piping in more TrnfrmDCTs before the final R.always.
+ * () start piping in more TrnfrmDCTs before the final R.al
  * () add more Attributes to the final CSD
  *  OK (4) iterate over some subset of verseSPANS to demonstrate srva_TrnfrmDCT    can alter a verseSpan styleCSD on the fly.
  *  OK (3) use Fn:srva_TrnfrmDCT_color(ndx, ndx) to prepare for iterating over all the chptDIV verseSPANS
@@ -15,7 +15,9 @@ let R = require('ramda');
 // , concat = R.concat
 // , pipe = R.pipe
 // , evolve = R.evolve
-let C_in = require('./h/C_in_'), C_in_Console = C_in.Console;
+let C_in = require('./h/C_in_')
+    , C_in_Console = C_in.Console
+    , C_in_Both = C_in.Both;
 let srva_TrnfrmDCT_color =
     require('./SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT;
 let mutate_anElem = require('./CSpc/src/MUTATE_Elem').MUTATE_;//Fn
