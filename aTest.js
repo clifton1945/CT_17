@@ -1,13 +1,6 @@
 /**
  * today: break this up into small pieces AND KEEP IT WORKING
  * then
- * () maybe practice some compose/pipe with existing
- * () start piping in more TrnfrmDCTs before the final R.al
- * () add more Attributes to the final CSD
- *  OK (4) iterate over some subset of verseSPANS to demonstrate srva_TrnfrmDCT    can alter a verseSpan styleCSD on the fly.
- *  OK (3) use Fn:srva_TrnfrmDCT_color(ndx, ndx) to prepare for iterating over all the chptDIV verseSPANS
- *  OK (2) demonstrate that an Element.style.color can be evolved GVN focusIndex and elementIndex
- *  OK (1) show and prove the returned DCT works with R.evolve
  */
 "use strict";
 // ------- requires ------------
@@ -54,6 +47,12 @@ let main = function (aVTR) { // aVTR:VerseToRead
     let vtrNdx;     // NUM -> NUM -> {k:FN}
     versesCOLL = aVTR.parentElement.children;
     vtrNdx = R.indexOf(aVTR, versesCOLL);
+
+// need a serv_CSD for each Verse
+    let srva_CSD = (vtr_ndx, e_ndx) => R.evolve(// {k: (v → v)} → {k: v} → {k: v}
+        srva_TrnfrmDCT_color(vtr_ndx, e_ndx),
+        dfltCsds.noon
+    );
 // use the default style DCT with on arbitrarily stubbed
     let dfltCsds = require('./SSpc/StyleCSDS');
 
@@ -61,14 +60,11 @@ let main = function (aVTR) { // aVTR:VerseToRead
     R.addIndex(R.map)(// Functor f => (a → b) → f a → f b
         (elem, e_ndx, e_coll) => {//
             // evolve a CSD
-            let srva_CSD = R.evolve(// {k: (v → v)} → {k: v} → {k: v}
-                srva_TrnfrmDCT_color(vtrNdx, e_ndx),
-                dfltCsds.noon
-            );
+            let csd = srva_CSD(vtrNdx, e_ndx);
             C_in_Console(`  > VerseToRead.Index: ${vtrNdx}`);
 
             // now with a new style.Csd, mutate the aVTR Element
-            mutate_anElem(srva_CSD, elem);
+            mutate_anElem(csd, elem);
         }, versesCOLL);
 
     C_in_Console('OUT> ' + TRK);
