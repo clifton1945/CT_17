@@ -47,30 +47,47 @@ let main = function (aVTR) { // aVTR:VerseToRead
     let vtrNdx;     // NUM -> NUM -> {k:FN}
     versesCOLL = aVTR.parentElement.children;
     vtrNdx = R.indexOf(aVTR, versesCOLL);
+    C_in_Both(`  > VerseToRead.Ndx: ${vtrNdx}`);
 
-// need a serv_CSD for each Verse
+
+// use the default style DCT with on arbitrarily stubbed
+    let dfltCsds = require('./SSpc/StyleCSDS');
+
+// need a srva_CSD(vtrNdx) for each Verse now that a VerseToRead::vtrNdx is available.
     let srva_CSD = R.curry(
         /**
-         * FN: srva_CSD evolves a styleCsd for a Element
+         * FN: srva_CSD EVOLVES & SERVES a styleCsd for this Element
          * @param vtr_ndx
          * @param e_ndx
          */
         (vtr_ndx, e_ndx) => R.evolve(// {k: (v → v)} → {k: v} → {k: v}
-        srva_TrnfrmDCT_color(vtr_ndx, e_ndx),
-        dfltCsds.noon
-        ));
-// use the default style DCT with on arbitrarily stubbed
-    let dfltCsds = require('./SSpc/StyleCSDS');
+            srva_TrnfrmDCT_color(vtr_ndx, e_ndx),
+            dfltCsds.noon
+        ))(vtrNdx); // NOTE vtrNdx is invoked here.
 
-// mutate each verseELT using an evolved CSD: for now just a stubCSD
+// will need FN: mutate_thisElement
+    let mutate_thisElem = R.curry(
+        (elem, e_ndx, e_coll) => {
+            mutate_anElem(srva_CSD(e_ndx))(elem);
+            return elem
+        }
+    );
+
+    /*
+     * mutate each verseElem using an evolved CSD:
+     * NOTE: the evolved CSD is using a STUB:  dfltCsds.noon
+    */
     R.addIndex(R.map)(// Functor f => (a → b) → f a → f b
+
         (elem, e_ndx, e_coll) => {//
             // evolve a CSD
-            let csd = srva_CSD(vtrNdx, e_ndx);
-            C_in_Both(`  > VerseToRead.Index: ${vtrNdx}`);
+            // let csd = srva_CSD(vtrNdx, e_ndx);
 
             // now with a new style.Csd, mutate the aVTR Element
-            mutate_anElem(csd, elem);
+            // mutate_anElem( srva_CSD(e_ndx)(elem));//broken
+            // mutate_anElem( srva_CSD(e_ndx))(elem); // GOOD
+            mutate_anElem(srva_CSD(e_ndx))(elem); // GOOD
+            // mutate_thisElem(elem, e_ndx);// BROKEN
         }, versesCOLL);
 
     C_in_Console('OUT> ' + TRK);
