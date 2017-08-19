@@ -67,7 +67,7 @@ let main = function (aVTR) { // aVTR:VerseToRead
         (elem, e_ndx, e_coll) => {//
             // evolve a CSD
             let csd = srva_CSD(vtrNdx, e_ndx);
-            C_in_Console(`  > VerseToRead.Index: ${vtrNdx}`);
+            C_in_Both(`  > VerseToRead.Index: ${vtrNdx}`);
 
             // now with a new style.Csd, mutate the aVTR Element
             mutate_anElem(csd, elem);
