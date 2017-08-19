@@ -16,6 +16,7 @@ let MUTATE_ = curry(
      * @param elt
      * @return {*}
      *
+     *
      * The MUTATE_frmCsdDCT arity:1 form; MUTATE_(a_csd) useful in iterating all verse spans.
      * The verbose form of arity:1 IS SRVa_Span__WTHa_Csd__GVNa_Span
      */

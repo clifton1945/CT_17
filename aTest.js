@@ -54,18 +54,20 @@ let main = function (aVTR) { // aVTR:VerseToRead
     let vtrNdx;     // NUM -> NUM -> {k:FN}
     versesCOLL = aVTR.parentElement.children;
     vtrNdx = R.indexOf(aVTR, versesCOLL);
+// use the default style DCT with on arbitrarily stubbed
+    let dfltCsds = require('./SSpc/StyleCSDS');
 
 // mutate each verseELT using an evolved CSD: for now just a stubCSD
     R.addIndex(R.map)(// Functor f => (a → b) → f a → f b
-        (elem, e_ndx, e_coll) => {
+        (elem, e_ndx, e_coll) => {//
             // evolve a CSD
             let srva_CSD = R.evolve(// {k: (v → v)} → {k: v} → {k: v}
                 srva_TrnfrmDCT_color(vtrNdx, e_ndx),
-                {color: ''}
+                dfltCsds.noon
             );
             C_in_Console(`  > VerseToRead.Index: ${vtrNdx}`);
 
-            // now with a style.Csd, mutate the aVTR Element
+            // now with a new style.Csd, mutate the aVTR Element
             mutate_anElem(srva_CSD, elem);
         }, versesCOLL);
 
