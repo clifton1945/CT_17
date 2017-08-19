@@ -49,10 +49,16 @@ let main = function (aVTR) { // aVTR:VerseToRead
     vtrNdx = R.indexOf(aVTR, versesCOLL);
 
 // need a serv_CSD for each Verse
-    let srva_CSD = (vtr_ndx, e_ndx) => R.evolve(// {k: (v → v)} → {k: v} → {k: v}
+    let srva_CSD = R.curry(
+        /**
+         * FN: srva_CSD evolves a styleCsd for a Element
+         * @param vtr_ndx
+         * @param e_ndx
+         */
+        (vtr_ndx, e_ndx) => R.evolve(// {k: (v → v)} → {k: v} → {k: v}
         srva_TrnfrmDCT_color(vtr_ndx, e_ndx),
         dfltCsds.noon
-    );
+        ));
 // use the default style DCT with on arbitrarily stubbed
     let dfltCsds = require('./SSpc/StyleCSDS');
 
