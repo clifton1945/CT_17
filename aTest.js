@@ -41,7 +41,6 @@ function CLICK_VerseToRead(e) {
     }
     e.stopPropagation();
 }
-
 // SET the EVENT LISTENER in the ChprDIV:: the Light
 srva_ChptDIV(document).addEventListener("click", CLICK_VerseToRead, false);
 
