@@ -9,5 +9,5 @@ let R = require('ramda')
     // , compose = R.compose
 ;
 let sayX = x => console.log('x is ' + x);
-module.exports = R.tap(sayX);// a => a and 'x is a' in console.log
+module.exports = R.tap(sayX);// a => a and 'x is a' in console.log. @usage: pipe(a, R.tap, b)(x) -> console.log( 'x is a')
 

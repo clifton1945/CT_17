@@ -24,6 +24,12 @@ let mutate_anElem = require('./CSpc/src/MUTATE_Elem').MUTATE_;//Fn
 
 // -------- main starts here -------------
 
+// select a DIV in the DOM as theLight
+let ChptDIV;
+let selectFrom = R.invoker(1, 'querySelector');
+ChptDIV = selectFrom('.chpt')(document);//Number → String → (a → b → … → n → Object → *)
+
+
 // This is the MouseEvent handler to select a readFocus span.
 function CLICK_VerseToRead(e) {
     if (e.target !== e.currentTarget) {
@@ -32,16 +38,13 @@ function CLICK_VerseToRead(e) {
     }
     e.stopPropagation();
 }
-
-let ChptDIV = document.querySelector('.chpt');
 ChptDIV.addEventListener("click", CLICK_VerseToRead, false);
-
-
-let main = function (aVTR) { // aVTR:VerseToRead
 
 // ************** MAIN ********
     let TRK = "wbSample/main.js";
     C_in_Console('IN> ' + TRK);
+
+let main = function (aVTR) { // aVTR:VerseToRead
 
 // use the aVTR Span to derive some data constants
     let versesCOLL = aVTR.parentElement.children;
