@@ -8,7 +8,7 @@ let R = require('ramda');
 let chai = require('chai')
     , expect = chai.expect
 ;
-// NEW CODE UNDER TEST -
+
 let srva_ChptDIV = R.pipe(R.invoker(1, 'querySelector')
     ('.chpt')
 );// (Doc)Fn->(div)
@@ -16,7 +16,9 @@ let srva_VerseColl = R.pipe(
     R.invoker(1, 'querySelector')('.chpt'),
     R.prop('children')
 );// (Doc)Fn->(Coll)
-let srva_ChptSpan = R.pipe(
+
+// NEW CODE UNDER TEST -
+let srva_ChptSpan0 = R.pipe(
     R.invoker(1, 'querySelector')
     ('.chpt'),
     R.prop('firstElementChild')
@@ -25,33 +27,35 @@ let srva_SpanNdx = span => R.indexOf(span, span.parentElement.children)
 ; // (Span)Fn->(Ndx)
 
 
-describe(` Fn: SRVa_Span from a Doc: (Doc)Fn->(Span) 
+describe(` (Doc)Fn->(Span): SRVa_Span from a Doc. 
         `, function () {
     beforeEach(function () {
         loadFixtures('index.html');
         this.div = srva_ChptDIV(document);
-        this.span = srva_ChptSpan(document);
+        this.span0 = srva_ChptSpan0(document);
         this.coll = srva_VerseColl(document);
 
     });
-    it(`Fn: SRVa_Span from a Doc: 
+    it(`SRVa_Span from a Doc: 
             typically the first div.childElement
             `, function () {
-            expect(this.span.tagName).is.equal('SPAN');
-            expect(R.indexOf(this.span, this.coll)).is.equal(0)
+        expect(this.span0.tagName).is.equal('SPAN');
+        expect(R.indexOf(this.span0, this.coll)).is.equal(0)
         }
     );
 });
-describe(` Fn: SRVa_SpanNdx from a Span: (Span)Fn->(Ndx) 
+describe(` (Span)Fn->(Ndx): SRVa_SpanNdx for a Span: 
+    the index is its peer position.  
         `, function () {
     beforeEach(function () {
         loadFixtures('index.html');
-        this.span = srva_ChptSpan(document);
+        this.span0 = srva_ChptSpan0(document);
+        this.span5 = R.pipe(srva_VerseColl, R.nth(5))(document)
     });
-    it(`Fn:(Span)Fn->(Ndx) SRVa_SpanNdx returns a index NUM of its peer position. 
+    it(`SRVa_SpanNdx returns 0 for span0; 5 fo span5. 
      `, function () {
-            expect(this.span.tagName).is.equal('SPAN');
-        expect(R.indexOf(this.span, this.span.parentElement.children)).is.equal(0)
+        expect(srva_SpanNdx(this.span0)).is.equal(0);
+        expect(srva_SpanNdx(this.span5)).is.equal(5);
         }
     );
 });
