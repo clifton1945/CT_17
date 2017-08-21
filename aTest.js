@@ -1,6 +1,6 @@
 /**
- * today: break this up into small pieces AND KEEP IT WORKING
- * then
+ * 2017/08/21 @
+ * reduce to just Day1
  */
 "use strict";
 // ------- requires ------------
@@ -13,6 +13,11 @@ let C_in = require('./h/C_in_')
     , C_in_Console = C_in.Console
     , C_in_Both = C_in.Both
 ;
+let myTap = require('./h/myTap')
+;
+let assert = require('assert')
+;
+
 
 let srva_TrnfrmDCT_color;// Num -> Num -> {k:FN}
 srva_TrnfrmDCT_color = require('./SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT;
@@ -22,8 +27,14 @@ mutate_anElem = require('./CSpc/src/MUTATE_Elem').MUTATE_;
 
 // -------- main starts here -------------
 
-// This is the MouseEvent handler to select a readFocus span.
-function CLICK_VerseToRead(e) {// ????
+// FN: select a DIV in the DOM as theLight
+let srva_ChptDIV;
+// let selectFrom = R.invoker(1, 'querySelector');
+srva_ChptDIV = R.invoker(1, 'querySelector')('.chpt', R.__);//Number → String → (a → b → … → n → Object → *)
+// srva_ChptDIV = selectFrom('.chpt', R.__);//Number → String → (a → b → … → n → Object → *)
+
+// This is the MouseEvent handler to select a readFocus span a.k.a theLight
+function CLICK_VerseToRead(e) {
     if (e.target !== e.currentTarget) {
         e.stopPropagation();
         main(e.target)
@@ -31,10 +42,8 @@ function CLICK_VerseToRead(e) {// ????
     e.stopPropagation();
 }
 
-// set the scope of the ClickEvent handler as the div.chpt
-let ChptDIV = document.querySelector('.chpt');//
-ChptDIV.addEventListener("click", CLICK_VerseToRead, false);
-
+// SET the EVENT LISTENER in the ChprDIV:: the Light
+srva_ChptDIV(document).addEventListener("click", CLICK_VerseToRead, false);
 
 let main = function (aVTR) { // aVTR:VerseToRead
 
@@ -72,23 +81,21 @@ let main = function (aVTR) { // aVTR:VerseToRead
             return elem
         }
     );
-
+    ;
     /*
      * mutate each verseElem using an evolved CSD:
      * NOTE: the evolved CSD is using a STUB:  dfltCsds.noon
     */
-    R.addIndex(R.map)(// Functor f => (a → b) → f a → f b
-
-        (elem, e_ndx, e_coll) => {//
+// mutate each verseELT by evolving a CSD
+    R.addIndex(R.map)(
+        (e, n, a) => {
             // evolve a CSD
-            // let csd = srva_CSD(vtrNdx, e_ndx);
+            let aCSD = R.evolve(srva_TrnfrmDCT_color(vtrNdx, n), {color: ''});
+            C_in_Both(`  > VerseToRead.Index: ${vtrNdx}`);
 
-            // now with a new style.Csd, mutate the aVTR Element
-            // mutate_anElem( srva_CSD(e_ndx)(elem));//broken
-            // mutate_anElem( srva_CSD(e_ndx))(elem); // GOOD
-            mutate_anElem(srva_CSD(e_ndx))(elem); // GOOD
-            // mutate_thisElem(elem, e_ndx);// BROKEN
-        }, versesCOLL);
-
+            // now with a style.Csd, mutate the aVTR Element
+            let ret = mutate_anElem(aCSD, e);
+        }
+    )(versesCOLL);
     C_in_Console('OUT> ' + TRK);
 };
