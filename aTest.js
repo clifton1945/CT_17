@@ -25,19 +25,7 @@ let mutate_anElem;// CSD -> ( ELEM -> ELEM )
 mutate_anElem = require('./CSpc/src/MUTATE_Elem').MUTATE_;
 
 // -------- main FUNCTIONS -------------
-let srva_ChptDIV = R.pipe(
-    R.invoker(1, 'querySelector')
-    ('.chpt')
-);// (Doc)Fn->(div)
 
-let srva_VerseColl = R.pipe(
-    R.invoker(1, 'querySelector')
-    ('.chpt'),
-    R.prop('children')
-);// (Doc)Fn->(Coll)
-
-let srva_SpanNdx = span => R.indexOf(span, span.parentElement.children)
-; // (Span)Fn->(Ndx)
 
 // This is the MouseEvent handler to select a readFocus span a.k.a theLight
 function CLICK_VerseToRead(e) {
