@@ -12,8 +12,10 @@ let chai = require('chai')
 let srva_ChptDIV = R.pipe(R.invoker(1, 'querySelector')
     ('.chpt')
 );// (Doc)Fn->(div)
+
 let srva_VerseColl = R.pipe(
-    R.invoker(1, 'querySelector')('.chpt'),
+    R.invoker(1, 'querySelector')
+    ('.chpt'),
     R.prop('children')
 );// (Doc)Fn->(Coll)
 
@@ -23,6 +25,7 @@ let srva_ChptSpan0 = R.pipe(
     ('.chpt'),
     R.prop('firstElementChild')
 );// (Doc)Fn->(Span)
+
 let srva_SpanNdx = span => R.indexOf(span, span.parentElement.children)
 ; // (Span)Fn->(Ndx)
 
@@ -45,7 +48,7 @@ describe(` (Doc)Fn->(Span): SRVa_Span from a Doc.
     );
 });
 describe(` (Span)Fn->(Ndx): SRVa_SpanNdx for a Span: 
-    the index is its peer position.  
+    the index is its peer collection position.  
         `, function () {
     beforeEach(function () {
         loadFixtures('index.html');
