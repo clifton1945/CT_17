@@ -15,8 +15,9 @@ let C_in = require('./h/C_in_')
     , C_in_Both = C_in.Both;
 
 // ------- CodeUnderTest requires
-let srva_chptDiv = require('./CSpc/src/SRVa_CSpc')('.chpt');
-let srva_SpanNdx = require('./CSpc/src/SRVa_CSpc').srva_SpanNdx;
+let srva_chptDiv = require('./CSpc/src/SRVa_CSpc')('.chpt');// (Doc)Fn->(Elem)
+let srva_SpanColl = require('./CSpc/src/SRVa_CSpc').srva_SpanColl;//  (Doc)((Span)Fn->)(Coll)
+let srva_SpanNdx = require('./CSpc/src/SRVa_CSpc').srva_SpanNdx;//(Doc)((Span)Fn->)(Ndx)
 let srva_TrnfrmDCT_color =
     require('./SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT;
 let mutate_anElem =
@@ -24,11 +25,8 @@ let mutate_anElem =
 
 // -------- main starts here -------------
 
-// select a DIV in the DOM as theLight
-let ChptDIV;
-let selectFrom = R.invoker(1, 'querySelector');
-ChptDIV = selectFrom('.chpt')(document);//Number → String → (a → b → … → n → Object → *)
-
+// select a DIV in the DOM: I call it the div.chpr
+let ChptDIV = srva_chptDiv(document);
 
 // This is the MouseEvent handler to select a readFocus span.
 function CLICK_VerseToRead(e) {
@@ -47,8 +45,8 @@ C_in_Console('IN> ' + TRK);
 let main = function (aVTR) { // aVTR:VerseToRead
 
 // use the aVTR Span to derive some data constants
-    let versesCOLL = aVTR.parentElement.children;
-    let vtrNdx = R.indexOf(aVTR, versesCOLL);
+    let versesCOLL = srva_SpanColl(aVTR, document);
+    let vtrNdx = srva_SpanNdx(aVTR, document); // FIX (aVTR)(document) BREAKS
 
 // mutate each verseELT by evolving a CSD
     R.addIndex(R.map)(
