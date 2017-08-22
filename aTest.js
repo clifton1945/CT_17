@@ -1,6 +1,6 @@
 /**
- * 2017/08/21 @
- * reduce to just Day1
+ * 2017/08/22 @
+ *  confirm
  */
 "use strict";
 // ------- requires ------------
@@ -18,7 +18,6 @@ let myTap = require('./h/myTap')
 let assert = require('assert')
 ;
 
-
 let srva_TrnfrmDCT_color;// Num -> Num -> {k:FN}
 srva_TrnfrmDCT_color = require('./SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT;
 
@@ -28,10 +27,9 @@ mutate_anElem = require('./CSpc/src/MUTATE_Elem').MUTATE_;
 // -------- main starts here -------------
 
 // FN: select a DIV in the DOM as theLight
-let srva_ChptDIV;
-// let selectFrom = R.invoker(1, 'querySelector');
-srva_ChptDIV = R.invoker(1, 'querySelector')('.chpt', R.__);//Number → String → (a → b → … → n → Object → *)
-// srva_ChptDIV = selectFrom('.chpt', R.__);//Number → String → (a → b → … → n → Object → *)
+let srva_ChptDIV = R.pipe(R.invoker(1, 'querySelector')
+    ('.chpt')
+);// (Doc)Fn->(div)
 
 // This is the MouseEvent handler to select a readFocus span a.k.a theLight
 function CLICK_VerseToRead(e) {
@@ -43,6 +41,7 @@ function CLICK_VerseToRead(e) {
 }
 // SET the EVENT LISTENER in the ChprDIV:: the Light
 srva_ChptDIV(document).addEventListener("click", CLICK_VerseToRead, false);
+
 
 let main = function (aVTR) { // aVTR:VerseToRead
 
@@ -96,5 +95,6 @@ let main = function (aVTR) { // aVTR:VerseToRead
             let ret = mutate_anElem(aCSD, e);
         }
     )(versesCOLL);
+
     C_in_Console('OUT> ' + TRK);
 };
