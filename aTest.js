@@ -15,6 +15,8 @@ let C_in = require('./h/C_in_')
     , C_in_Both = C_in.Both;
 
 // ------- CodeUnderTest requires
+let srva_chptDiv = require('./CSpc/src/SRVa_CSpc')('.chpt');
+let srva_SpanNdx = require('./CSpc/src/SRVa_CSpc').srva_SpanNdx;
 let srva_TrnfrmDCT_color =
     require('./SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT;
 let mutate_anElem =
@@ -22,7 +24,7 @@ let mutate_anElem =
 
 // -------- main starts here -------------
 
-// select a DIV in the DOM as "theLight"
+// select a DIV in the DOM as theLight
 let ChptDIV;
 let selectFrom = R.invoker(1, 'querySelector');
 ChptDIV = selectFrom('.chpt')(document);//Number → String → (a → b → … → n → Object → *)
@@ -36,7 +38,6 @@ function CLICK_VerseToRead(e) {
     }
     e.stopPropagation();
 }
-
 ChptDIV.addEventListener("click", CLICK_VerseToRead, false);
 
 // ************** MAIN ********
