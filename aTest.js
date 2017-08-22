@@ -24,12 +24,20 @@ srva_TrnfrmDCT_color = require('./SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT;
 let mutate_anElem;// CSD -> ( ELEM -> ELEM )
 mutate_anElem = require('./CSpc/src/MUTATE_Elem').MUTATE_;
 
-// -------- main starts here -------------
-
-// FN: select a DIV in the DOM as theLight
-let srva_ChptDIV = R.pipe(R.invoker(1, 'querySelector')
+// -------- main FUNCTIONS -------------
+let srva_ChptDIV = R.pipe(
+    R.invoker(1, 'querySelector')
     ('.chpt')
 );// (Doc)Fn->(div)
+
+let srva_VerseColl = R.pipe(
+    R.invoker(1, 'querySelector')
+    ('.chpt'),
+    R.prop('children')
+);// (Doc)Fn->(Coll)
+
+let srva_SpanNdx = span => R.indexOf(span, span.parentElement.children)
+; // (Span)Fn->(Ndx)
 
 // This is the MouseEvent handler to select a readFocus span a.k.a theLight
 function CLICK_VerseToRead(e) {
@@ -50,10 +58,10 @@ let main = function (aVTR) { // aVTR:VerseToRead
     C_in_Console('IN> ' + TRK);
 
 // use the aVTR Span to derive some data constants
-    let versesCOLL; // ELEM -> COLL
-    let vtrNdx;     // NUM -> NUM -> {k:FN}
-    versesCOLL = aVTR.parentElement.children;
-    vtrNdx = R.indexOf(aVTR, versesCOLL);
+    let versesCOLL;
+    versesCOLL = srva_VerseColl(aVTR);
+    // versesCOLL = aVTR.parentElement.children;
+    let vtrNdx = srva_SpanNdx(aVTR);
     C_in_Both(`  > VerseToRead.Ndx: ${vtrNdx}`);
 
 
@@ -72,19 +80,10 @@ let main = function (aVTR) { // aVTR:VerseToRead
             dfltCsds.noon
         ))(vtrNdx); // NOTE vtrNdx is invoked here.
 
-// will need FN: mutate_thisElement
-    let mutate_thisElem = R.curry(
-        (elem, e_ndx, e_coll) => {
-            mutate_anElem(srva_CSD(e_ndx))(elem);
-            return elem
-        }
-    );
-    ;
     /*
      * mutate each verseElem using an evolved CSD:
      * NOTE: the evolved CSD is using a STUB:  dfltCsds.noon
     */
-// mutate each verseELT by evolving a CSD
     R.addIndex(R.map)(
         (e, n, a) => {
             // evolve a CSD
