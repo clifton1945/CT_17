@@ -4,7 +4,7 @@
   "description": "Wallaby.js with browserify sample",
   "main": "index.js",
   "scripts": {
-    "watch": "watchify main.js -o bundle.js -d",
+    "main": "watchify main.js -o bundle.js -d",
     "aTest": "watchify aTest.js -o bundle.js -d"
   },
   "repository": {

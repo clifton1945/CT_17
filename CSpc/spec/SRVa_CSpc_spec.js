@@ -2,29 +2,12 @@
 // requires
 let R = require('ramda');
 // let myTap = require('../../h/myTap');
-// let C_inConsole = require('../../h/C_in_').Console;
-// C_inConsole(' Yeah, you can you see me!');
-// let mocha = require('mocha');
+let C_inConsole = require('../../h/C_in_').Console;
+C_inConsole(' Yeah, you can you see me!');
+
 let chai = require('chai')
     , expect = chai.expect
 ;
-
-// TESTING FN
-// let srva_ChptDIV = R.pipe(R.invoker(1, 'querySelector')
-//     ('.chpt')
-// );// (Doc)Fn->(div)
-
-// let srva_VerseColl = R.pipe(
-//     R.invoker(1, 'querySelector')
-//     ('.chpt'),
-//     R.prop('children')
-// );// (Doc)Fn->(Coll)
-
-// let srva_ChptSpan0 = R.pipe(
-//     R.invoker(1, 'querySelector')
-//     ('.chpt'),
-//     R.prop('firstElementChild')
-// );// (Doc)Fn->(Span)
 
 beforeEach(function () {
     loadFixtures('index.html');
@@ -37,7 +20,7 @@ beforeEach(function () {
 });
 
 // NEW CODE UNDER TEST -
-module.exports.srva_ = str => R.pipe(R.invoker(1, 'querySelector'))(str)
+module.exports = str => R.pipe(R.invoker(1, 'querySelector'))(str)
 ; // (Doc)((Str)Fn->)(Elem)
 module.exports.srva_SpanColl = span => R.path(['parentElement', 'children'])(span)
 ; // (Doc)((Span)Fn->)(Coll)
@@ -45,9 +28,9 @@ module.exports.srva_SpanNdx = span => R.indexOf(span, span.parentElement.childre
 ; // (Doc)((Span)Fn->)(Ndx)
 
 
-let srva_ = require('./SRVa_Span_spec').srva_;
-let srva_SpanColl = require('./SRVa_Span_spec').srva_SpanColl;
-let srva_SpanNdx = require('./SRVa_Span_spec').srva_SpanNdx;
+let srva_ = require('./SRVa_CSpc_spec');
+let srva_SpanColl = require('./SRVa_CSpc_spec').srva_SpanColl;
+let srva_SpanNdx = require('./SRVa_CSpc_spec').srva_SpanNdx;
 
 
 describe(` (Doc)(Str)Fn->(*): SRVa_* from Str && a Doc. 
