@@ -1,4 +1,11 @@
 /**
+ * 170822
+ * Somehow this works - can select a focus Verse and mutate all the verse style attributes.
+ * BUT WHY?
+ *  WHAT IS theMain() function
+ *  IT DOES NOT HAVE A starting default focus verse among other things
+ *  NOTE: THE fn srva_TrnfrmDCT_color IS A STUB !!
+ *  ??? WHERE should the Event Handler be in relation to the main() ???
  */
 "use strict";
 // ------- requires ------------
@@ -15,7 +22,7 @@ let mutate_anElem =
 
 // -------- main starts here -------------
 
-// select a DIV in the DOM as theLight
+// select a DIV in the DOM as "theLight"
 let ChptDIV;
 let selectFrom = R.invoker(1, 'querySelector');
 ChptDIV = selectFrom('.chpt')(document);//Number → String → (a → b → … → n → Object → *)
@@ -51,8 +58,6 @@ let main = function (aVTR) { // aVTR:VerseToRead
 
             // now with an evolved style.Csd, mutate the aVTR Element
             mutate_anElem(aCSD, e);
-            // let ret = mutate_anElem(aCSD, e);
-            // C_in_Console(`  > element.style.color: ${ret.style.color}`);
         }
     )(versesCOLL);
 
