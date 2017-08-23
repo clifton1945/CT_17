@@ -1,13 +1,17 @@
 /**
  * 170822
  * Somehow this works - can select a focus Verse and mutate all the verse style attributes.
- * BUT WHY?
- *  WHAT IS theMain() function
- *  IT DOES NOT HAVE A starting default focus verse among other things
- *  NOTE: THE fn srva_TrnfrmDCT_color IS A STUB !!
- *  ??? WHERE should the Event Handler be in relation to the main() ???
+ * the problem has to do w/ the CLICK_VerseToRead
+ *  which has within it the call to main(e.target)
+ *  passing the span into main.
+ *
+ *  ??? (1) put CLICK_Verse.... INSIDE main
+ *      thus not needing to pass it to main???
  */
 "use strict";
+
+let TRK = "wbSample/aTest.js";
+
 // ------- requires ------------
 let R = require('ramda');
 let C_in = require('./h/C_in_')
@@ -28,24 +32,37 @@ let mutate_anElem =
 // select a DIV in the DOM: I call it the div.chpr
 let ChptDIV = srva_chptDiv(document);
 
-// This is the MouseEvent handler to select a readFocus span.
+// These 2 ARE GLOBAL: the MouseEvent handler to select a readFocus span.
+// let XXX = x > R.always(x);
 function CLICK_VerseToRead(e) {
     if (e.target !== e.currentTarget) {
+        main(e.target);
+        // XXX(e.target)();    // TESTING #1
         e.stopPropagation();
-        main(e.target)
     }
     e.stopPropagation();
 }
+
+// this fixes the click event to just div.chpt scope.
 ChptDIV.addEventListener("click", CLICK_VerseToRead, false);
 
 // ************** MAIN ********
-let TRK = "wbSample/main.js";
+
 C_in_Console('IN> ' + TRK);
 
 let main = function (aVTR) { // aVTR:VerseToRead
 
 // use the aVTR Span to derive some data constants
-    let versesCOLL = srva_SpanColl(aVTR, document);
+    let span0 = R.pipe(
+        R.invoker(1, 'querySelector')
+        ('.chpt'),
+        R.prop('firstElementChild'))(document);
+    // aVTR = span0;
+    // suppose we
+    // aVTR = XXX(); // TESTING #1
+
+    let versesCOLL = srva_SpanColl(span0, document); // FIX (aVTR)(document) BREAKS
+
     let vtrNdx = srva_SpanNdx(aVTR, document); // FIX (aVTR)(document) BREAKS
 
 // mutate each verseELT by evolving a CSD

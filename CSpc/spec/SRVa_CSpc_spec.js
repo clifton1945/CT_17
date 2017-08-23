@@ -3,7 +3,7 @@
 let R = require('ramda');
 // let myTap = require('../../h/myTap');
 let C_inConsole = require('../../h/C_in_').Console;
-C_inConsole(' Yeah, you can you see me!');
+// C_inConsole(' IN SRVa_CSpc_spec.  Yeah, you can you see me!');
 
 let chai = require('chai')
     , expect = chai.expect

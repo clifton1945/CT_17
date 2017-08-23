@@ -3,7 +3,7 @@
 let R = require('ramda');
 // let myTap = require('../../h/myTap');
 let C_inConsole = require('../../h/C_in_').Console;
-C_inConsole(' Yeah, you can you see me!');
+// C_inConsole(' IN SRVa_CSpc.   Yeah, you can you see me!');
 
 // NEW CODE UNDER TEST -
 module.exports = str => R.pipe(R.invoker(1, 'querySelector'))(str)
