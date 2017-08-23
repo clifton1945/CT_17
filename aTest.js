@@ -21,7 +21,7 @@ let C_in = require('./h/C_in_')
 // ------- CodeUnderTest requires
 let srva_chptDiv = require('./CSpc/src/SRVa_CSpc')('.chpt');// (Doc)Fn->(Elem)
 let srva_SpanColl = require('./CSpc/src/SRVa_CSpc').srva_SpanColl;//  (Doc)((Span)Fn->)(Coll)
-let srva_SpanNdx = require('./CSpc/src/SRVa_CSpc').srva_SpanNdx;//(Doc)((Span)Fn->)(Ndx)
+let srva_SpanNdx = require('./CSpc/src/SRVa_CSpc').srva_SpanNdx;//(Span)Fn->(Ndx)
 let srva_TrnfrmDCT_color =
     require('./SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT;
 let mutate_anElem =
@@ -33,11 +33,11 @@ let mutate_anElem =
 let ChptDIV = srva_chptDiv(document);
 
 // These 2 ARE GLOBAL: the MouseEvent handler to select a readFocus span.
-// let XXX = x > R.always(x);
+
 function CLICK_VerseToRead(e) {
     if (e.target !== e.currentTarget) {
         main(e.target);
-        // XXX(e.target)();    // TESTING #1
+        srva_Ndx(e.target);    // TESTING #1
         e.stopPropagation();
     }
     e.stopPropagation();
@@ -47,6 +47,7 @@ function CLICK_VerseToRead(e) {
 ChptDIV.addEventListener("click", CLICK_VerseToRead, false);
 
 // ************** MAIN ********
+let srva_Ndx = x => C_in_Console(`>>>> SELECTED Index[${srva_SpanNdx(x)}]`); // TESTING #1
 
 C_in_Console('IN> ' + TRK);
 
@@ -79,3 +80,4 @@ let main = function (aVTR) { // aVTR:VerseToRead
 
     C_in_Console('OUT> ' + TRK);
 };
+

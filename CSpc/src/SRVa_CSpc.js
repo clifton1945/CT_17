@@ -9,8 +9,10 @@ let C_inConsole = require('../../h/C_in_').Console;
 module.exports = str => R.pipe(R.invoker(1, 'querySelector'))(str)
 ; // (Doc)((Str)Fn->)(Elem)
 module.exports.srva_SpanColl = span => R.path(['parentElement', 'children'])(span)
-; // (Doc)((Span)Fn->)(Coll)   FIX args (span)(Doc)  BREAKS
+; // (Span)Fn->(Coll)   FIX args (span)(Doc)  BREAKS
 module.exports.srva_SpanNdx = span => R.indexOf(span, span.parentElement.children)
-; // (Doc)((Span)Fn->)(Ndx)    FIX args (span)(Doc)  BREAKS
+; //
+
+//    FIX args (span)(Doc)  BREAKS
 
 
