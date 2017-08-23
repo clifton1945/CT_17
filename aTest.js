@@ -1,5 +1,5 @@
 /**
- * 170822
+ * 170823
  * Somehow this works - can select a focus Verse and mutate all the verse style attributes.
  * the problem has to do w/ the CLICK_VerseToRead
  *  which has within it the call to main(e.target)
