@@ -72,17 +72,17 @@ let update = R.curry(
     });
 
 // --------INIT------------------
-// let span0 = srva_ChptSpan0(document);
+let span0 = srva_ChptSpan0(document);
 // update(span0); // GOOD
 // update(srva_ChptSpan0(document)); //GOOD
 // R.compose(update, srva_ChptSpan0)(document); // GOOD
-let init_Verses = R.pipe(srva_ChptSpan0, update); // GOOD
+// R.pipe(srva_ChptSpan0, update)(document); // GOOD
+let init_Verses = R.pipe(srva_ChptSpan0, update);// GOOD
 init_Verses(document);
-// const init_Spans = R.pipe(srva_ChptSpan0, update)(document); // initial update
-// -------- EventHandle: mouseClick to selectVerseToRead then update all the spans
-// this fixes the click event to just div.chpt scope.
-let ChptDIV = srva_chptDiv(document);
 
+// -------- THEN invoke an EventHandle: mouseClick to selectVerseToRead then update all the spans
+// set the click event scope to be div.chpr
+let ChptDIV = srva_chptDiv(document);
 ChptDIV.addEventListener("click", CLICK_VerseToRead, false);
 
 C_in_Console('OUT> ' + TRK);
