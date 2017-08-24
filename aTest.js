@@ -2,21 +2,23 @@
  * 170823
  * Somehow this works - can select a focus Verse and mutate all the verse style attributes.
  * the problem has to do w/ the CLICK_VerseToRead
- *  which has within it the call to main(e.target)
- *  passing the span into main.
+ *  which has within it the call to update(e.target)
+ *  passing the span into update.
  *
- *  ??? (1) put CLICK_Verse.... INSIDE main
- *      thus not needing to pass it to main???
+ *  ??? (1) put CLICK_Verse.... INSIDE update
+ *      thus not needing to pass it to update???
  */
 "use strict";
-
-let TRK = "wbSample/aTest.js";
 
 // ------- requires ------------
 let R = require('ramda');
 let C_in = require('./h/C_in_')
     , C_in_Console = C_in.Console
     , C_in_Both = C_in.Both;
+
+
+let TRK = "wbSample/aTest.js";
+C_in_Console('IN> ' + TRK);
 
 // ------- CodeUnderTest requires
 let srva_chptDiv = require('./CSpc/src/SRVa_CSpc')('.chpt')
@@ -34,38 +36,27 @@ let mutate_anElem =
     require('./CSpc/src/MUTATE_Elem').MUTATE_
 ;// (CSD)(ELEM)FN->(ELEM)
 
-// -------- main starts here -------------
-
-// select a the Initial DIV in the DOM: I call it the div.chpr
-let ChptDIV = srva_chptDiv(document);
-
-// This GLOBAL EventListener invokes .
-
+// This EventListener invokes update(for this Event).
 function CLICK_VerseToRead(e) {
     if (e.target !== e.currentTarget) {
-        main(e.target);
-        srva_SpanNdx(e.target);    // TESTING #1
+        update(e.target);
         e.stopPropagation();
     }
     e.stopPropagation();
 }
 
-// this fixes the click event to just div.chpt scope.
-ChptDIV.addEventListener("click", CLICK_VerseToRead, false);
+// -------- update starts here -------------
+/**
+ * FN:update
+ * @usage:  (anySpan)FN-> [all span.styles are updated]
+ * * @param aVTR: the focus Span
+ */
+let update = function (aVTR) { // aVTR:VerseToRead
+    // curried FNs NEXT :ELIMINATE THE document since a span VTR has a parent and a sibling collection.
+    let vtrNdx = srva_SpanNdx(aVTR, document);
+    let versesCOLL = srva_SpanColl(span0, document);
 
-let srva_Ndx = x => C_in_Console(`>>>> SELECTED Index[${srva_SpanNdx(x)}]`); // TESTING #1
-
-let span0 = srva_ChptSpan0(document);
-let versesCOLL = srva_SpanColl(span0, document); // FIX (aVTR)(document) BREAKS
-
-
-let main = function (aVTR) { // aVTR:VerseToRead
-
-    // let vtrNdx = srva_SpanNdx;  // TESTING #1 FIX BREAKS
-    let vtrNdx = srva_SpanNdx(aVTR, document); // TESTING #1 WORKS
-// mutate each verseELT by evolving a CSD
-    C_in_Console('IN> ' + TRK);
-
+// mutate each verseSpan by evolving a styleDCT
     R.addIndex(R.map)(
         (e, n, a) => {
             // evolve a CSD
@@ -76,7 +67,16 @@ let main = function (aVTR) { // aVTR:VerseToRead
             mutate_anElem(aCSD, e);
         }
     )(versesCOLL);
-
-    C_in_Console('OUT> ' + TRK);
 };
+// --------INIT------------------
+let span0 = srva_ChptSpan0(document);
+update(span0); // initial update
+// -------- EventHandle: mouseClick to selectVerseToRead then update all the spans
+// this fixes the click event to just div.chpt scope.
+let ChptDIV = srva_chptDiv(document);
+ChptDIV.addEventListener("click", CLICK_VerseToRead, false);
+
+C_in_Console('OUT> ' + TRK);
+
+
 
