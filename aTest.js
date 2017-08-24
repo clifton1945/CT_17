@@ -52,9 +52,10 @@ function CLICK_VerseToRead(e) {
  * * @param aVTR: the focus Span
  */
 let update = function (aVTR) { // aVTR:VerseToRead
-    // curried FNs NEXT :ELIMINATE THE document since a span VTR has a parent and a sibling collection.
-    let vtrNdx = srva_SpanNdx(aVTR, document);
-    let versesCOLL = srva_SpanColl(span0, document);
+
+    // curried FNs TODO: pipe these into the map below
+    let vtrNdx = srva_SpanNdx(aVTR, document); // TESTING #1 WORKS
+    let versesCOLL = srva_SpanColl(span0, document); // FIX (aVTR)(document) BREAKS
 
 // mutate each verseSpan by evolving a styleDCT
     R.addIndex(R.map)(
