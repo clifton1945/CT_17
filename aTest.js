@@ -72,8 +72,12 @@ let update = R.curry(
     });
 
 // --------INIT------------------
-update(srva_ChptSpan0(document)); // BROKEN
-
+// let span0 = srva_ChptSpan0(document);
+// update(span0); // GOOD
+// update(srva_ChptSpan0(document)); //GOOD
+// R.compose(update, srva_ChptSpan0)(document); // GOOD
+let init_Verses = R.pipe(srva_ChptSpan0, update); // GOOD
+init_Verses(document);
 // const init_Spans = R.pipe(srva_ChptSpan0, update)(document); // initial update
 // -------- EventHandle: mouseClick to selectVerseToRead then update all the spans
 // this fixes the click event to just div.chpt scope.
