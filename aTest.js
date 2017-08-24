@@ -19,9 +19,14 @@ let C_in = require('./h/C_in_')
     , C_in_Both = C_in.Both;
 
 // ------- CodeUnderTest requires
-let srva_chptDiv = require('./CSpc/src/SRVa_CSpc')('.chpt');// (Doc)Fn->(Elem)
-let srva_SpanColl = require('./CSpc/src/SRVa_CSpc').srva_SpanColl;//  (Doc)((Span)Fn->)(Coll)
-let srva_SpanNdx = require('./CSpc/src/SRVa_CSpc').srva_SpanNdx;//(Span)Fn->(Ndx)
+let srva_chptDiv = require('./CSpc/src/SRVa_CSpc')('.chpt')
+;// (Doc)Fn->(Elem)
+let srva_SpanColl = require('./CSpc/src/SRVa_CSpc').srva_SpanColl
+;// (Doc)((Span)Fn->)(Coll)
+let srva_ChptSpan0 = require('./CSpc/src/SRVa_CSpc').srva_ChptSpan0
+;// (Doc)FN->(Span) .. span implying one of many
+let srva_SpanNdx = require('./CSpc/src/SRVa_CSpc').srva_SpanNdx
+;//(Span)Fn->(Ndx)
 let srva_TrnfrmDCT_color =
     require('./SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT;
 let mutate_anElem =
@@ -29,7 +34,7 @@ let mutate_anElem =
 
 // -------- main starts here -------------
 
-// select a DIV in the DOM: I call it the div.chpr
+// select a the Initial DIV in the DOM: I call it the div.chpr
 let ChptDIV = srva_chptDiv(document);
 
 // These 2 ARE GLOBAL: the MouseEvent handler to select a readFocus span.
@@ -46,7 +51,6 @@ function CLICK_VerseToRead(e) {
 // this fixes the click event to just div.chpt scope.
 ChptDIV.addEventListener("click", CLICK_VerseToRead, false);
 
-// ************** MAIN ********
 let srva_Ndx = x => C_in_Console(`>>>> SELECTED Index[${srva_SpanNdx(x)}]`); // TESTING #1
 
 C_in_Console('IN> ' + TRK);
@@ -54,10 +58,14 @@ C_in_Console('IN> ' + TRK);
 let main = function (aVTR) { // aVTR:VerseToRead
 
 // use the aVTR Span to derive some data constants
-    let span0 = R.pipe(
-        R.invoker(1, 'querySelector')
-        ('.chpt'),
-        R.prop('firstElementChild'))(document);
+//     let span0 = R.pipe(
+//         R.invoker(1, 'querySelector')
+//         ('.chpt'),
+//         R.prop('firstElementChild')
+//     )(document);
+
+    let span0 = srva_ChptSpan0(document);
+
     // aVTR = span0;
     // suppose we
     // aVTR = XXX(); // TESTING #1
