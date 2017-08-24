@@ -28,9 +28,11 @@ let srva_ChptSpan0 = require('./CSpc/src/SRVa_CSpc').srva_ChptSpan0
 let srva_SpanNdx = require('./CSpc/src/SRVa_CSpc').srva_SpanNdx
 ;//(Span)Fn->(Ndx)
 let srva_TrnfrmDCT_color =
-    require('./SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT;
+    require('./SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT
+;//(Num, Num)FN-> (FN{k:FN})
 let mutate_anElem =
-    require('./CSpc/src/MUTATE_Elem').MUTATE_;
+    require('./CSpc/src/MUTATE_Elem').MUTATE_
+;// (CSD)(ELEM)FN->(ELEM)
 
 // -------- main starts here -------------
 
