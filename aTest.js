@@ -39,12 +39,12 @@ let mutate_anElem =
 // select a the Initial DIV in the DOM: I call it the div.chpr
 let ChptDIV = srva_chptDiv(document);
 
-// These 2 ARE GLOBAL: the MouseEvent handler to select a readFocus span.
+// This GLOBAL EventListener invokes .
 
 function CLICK_VerseToRead(e) {
     if (e.target !== e.currentTarget) {
         main(e.target);
-        srva_Ndx(e.target);    // TESTING #1
+        srva_SpanNdx(e.target);    // TESTING #1
         e.stopPropagation();
     }
     e.stopPropagation();
@@ -55,28 +55,17 @@ ChptDIV.addEventListener("click", CLICK_VerseToRead, false);
 
 let srva_Ndx = x => C_in_Console(`>>>> SELECTED Index[${srva_SpanNdx(x)}]`); // TESTING #1
 
-C_in_Console('IN> ' + TRK);
+let span0 = srva_ChptSpan0(document);
+let versesCOLL = srva_SpanColl(span0, document); // FIX (aVTR)(document) BREAKS
+
 
 let main = function (aVTR) { // aVTR:VerseToRead
 
-// use the aVTR Span to derive some data constants
-//     let span0 = R.pipe(
-//         R.invoker(1, 'querySelector')
-//         ('.chpt'),
-//         R.prop('firstElementChild')
-//     )(document);
-
-    let span0 = srva_ChptSpan0(document);
-
-    // aVTR = span0;
-    // suppose we
-    // aVTR = XXX(); // TESTING #1
-
-    let versesCOLL = srva_SpanColl(span0, document); // FIX (aVTR)(document) BREAKS
-
-    let vtrNdx = srva_SpanNdx(aVTR, document); // FIX (aVTR)(document) BREAKS
-
+    // let vtrNdx = srva_SpanNdx;  // TESTING #1 FIX BREAKS
+    let vtrNdx = srva_SpanNdx(aVTR, document); // TESTING #1 WORKS
 // mutate each verseELT by evolving a CSD
+    C_in_Console('IN> ' + TRK);
+
     R.addIndex(R.map)(
         (e, n, a) => {
             // evolve a CSD

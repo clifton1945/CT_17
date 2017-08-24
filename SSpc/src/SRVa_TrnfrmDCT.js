@@ -19,7 +19,8 @@ let SRVa = R.curry(
      *
      * @usage: SRVa(3, 5) -> {color: R.always('green')}
      *
-     * NOTE  JUST A STUB TODO REFACT with parameters
+     * NOTE  JUST A STUB
+     * TODO REFACT with parameters
      *      typically for use in an R.evolve(thisDCT, CSD)
      */
     (focus_ndx, a_ndx) => (a_ndx < focus_ndx)
@@ -28,4 +29,5 @@ let SRVa = R.curry(
             ? SRVa_byAlwaysTrnfrm('color', 'green')
             : SRVa_byAlwaysTrnfrm('color', 'blue')
 );
-module.exports.colorStyleTrnfrmDCT = SRVa;// Num -> Num -> {k:FN}
+module.exports.colorStyleTrnfrmDCT = SRVa
+;// (CSD)(ELEM)FN->(ELEM)
