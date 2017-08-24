@@ -46,35 +46,39 @@ function CLICK_VerseToRead(e) {
 }
 
 // -------- update starts here -------------
-/**
- * FN:update
- * @usage:  (anySpan)FN-> [all span.styles are updated]
- * * @param aVTR: the focus Span
- */
-let update = function (aVTR) { // aVTR:VerseToRead
 
-    // curried FNs TODO: pipe these into the map below
-    let vtrNdx = srva_SpanNdx(aVTR, document); // TESTING #1 WORKS
-    let versesCOLL = srva_SpanColl(span0, document); // FIX (aVTR)(document) BREAKS
+let update = R.curry(
+    /**
+     * FN:update (anySpan)FN-> mutates all span.styles
+     * @param aVTR: the focus Span
+     * @usage: update is invoked within click EventHandler which returns a slected span.
+     */
+    (aVTR) => { // aVTR:VerseToRead
 
+// curried FNs TODO: pipe these into the map FN below
+        let vtrNdx = srva_SpanNdx(aVTR, document); // TESTING #1 WORKS
+        let versesCOLL = srva_SpanColl(span0, document); // FIX (aVTR)(document) BREAKS
 // mutate each verseSpan by evolving a styleDCT
-    R.addIndex(R.map)(
-        (e, n, a) => {
-            // evolve a CSD
-            let aCSD = R.evolve(srva_TrnfrmDCT_color(vtrNdx, n), {color: ''});
-            C_in_Both(`  > VerseToRead.Index: ${vtrNdx}`);
+        R.addIndex(R.map)(
+            (e, n, a) => {
+                // evolve a CSD
+                let aCSD = R.evolve(srva_TrnfrmDCT_color(vtrNdx, n), {color: ''});
+                C_in_Both(`  > VerseToRead.Index: ${vtrNdx}`);
 
-            // now with an evolved style.Csd, mutate the aVTR Element
-            mutate_anElem(aCSD, e);
-        }
-    )(versesCOLL);
-};
+                // now with an evolved style.Csd, mutate the aVTR Element
+                mutate_anElem(aCSD, e);
+            }
+        )(versesCOLL);
+    });
+
 // --------INIT------------------
-let span0 = srva_ChptSpan0(document);
-update(span0); // initial update
+update(srva_ChptSpan0(document)); // BROKEN
+
+// const init_Spans = R.pipe(srva_ChptSpan0, update)(document); // initial update
 // -------- EventHandle: mouseClick to selectVerseToRead then update all the spans
 // this fixes the click event to just div.chpt scope.
 let ChptDIV = srva_chptDiv(document);
+
 ChptDIV.addEventListener("click", CLICK_VerseToRead, false);
 
 C_in_Console('OUT> ' + TRK);
