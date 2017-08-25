@@ -13,7 +13,6 @@ let C_in = require('./h/C_in_')
 ;
 let TRK = "wbSample/aTest.js";
 C_in_Console('IN> ' + TRK);
-
 // ------- CodeUnderTest requires
 let srva_chptDiv = require('./CSpc/src/SRVa_CSpc')('.chpt')
 ;// (Doc)Fn->(Elem)
