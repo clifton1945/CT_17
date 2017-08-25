@@ -20,7 +20,7 @@ let SRVa = R.curry(
      * @usage: SRVa(3, 5) -> {color: R.always('green')}
      *
      * NOTE  JUST A STUB
-     * TODO REFACT with parameters
+     * TODO REFACT with  a or many Attribute parameters
      *      typically for use in an R.evolve(thisDCT, CSD)
      */
     (focus_ndx, a_ndx) => (a_ndx < focus_ndx)

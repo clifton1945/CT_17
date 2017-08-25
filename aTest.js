@@ -2,6 +2,10 @@
  * 170825
  * ready to modify the span style attributes fontSize and opacity
  *  as a function of its index in the spanCollection
+ *
+ *   *  CODE UNDER TEST is srva_TrnfrmDCT_color =
+ require('./SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT
+ ;//(Num, Num)FN-> (FN{k:FN})
  */
 "use strict";
 
@@ -22,9 +26,11 @@ let srva_ChptSpan0 = require('./CSpc/src/SRVa_CSpc').srva_ChptSpan0
 ;// (Doc)FN->(Span) .. span implying one of many
 let srva_SpanNdx = require('./CSpc/src/SRVa_CSpc').srva_SpanNdx
 ;//(Span)Fn->(Ndx)
+// --------------- CODE UNDER TEST ----------------
 let srva_TrnfrmDCT_color =
     require('./SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT
 ;//(Num, Num)FN-> (FN{k:FN})
+
 let mutate_anElem =
     require('./CSpc/src/MUTATE_Elem').MUTATE_
 ;// (CSD)(ELEM)FN->(ELEM)
@@ -37,6 +43,7 @@ function CLICK_VerseToRead(e) {
     }
     e.stopPropagation();
 }
+
 // -------- update starts here -------------
 let update = R.curry(
     /**
@@ -53,7 +60,11 @@ let update = R.curry(
         R.addIndex(R.map)(
             (e, n, a) => {
                 // evolve a CSD
-                let aCSD = R.evolve(srva_TrnfrmDCT_color(vtrNdx, n), {color: ''});
+                //---------------- CODE UNDER TEST ---------------------------
+                let aCSD = R.evolve(
+                    srva_TrnfrmDCT_color(vtrNdx, n),
+                    {color: ''}
+                );
                 C_in_Both(`  > VerseToRead.Index: ${vtrNdx}`);
 
                 // now with an evolved style.Csd, mutate the aVTR Element
