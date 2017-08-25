@@ -1,12 +1,7 @@
 /**
- * 170823
- * Somehow this works - can select a focus Verse and mutate all the verse style attributes.
- * the problem has to do w/ the CLICK_VerseToRead
- *  which has within it the call to update(e.target)
- *  passing the span into update.
- *
- *  ??? (1) put CLICK_Verse.... INSIDE update
- *      thus not needing to pass it to update???
+ * 170825
+ * ready to modify the span style attributes fontSize and opacity
+ *  as a function of its index in the spanCollection
  */
 "use strict";
 
@@ -14,9 +9,8 @@
 let R = require('ramda');
 let C_in = require('./h/C_in_')
     , C_in_Console = C_in.Console
-    , C_in_Both = C_in.Both;
-
-
+    , C_in_Both = C_in.Both
+;
 let TRK = "wbSample/aTest.js";
 C_in_Console('IN> ' + TRK);
 
@@ -44,9 +38,7 @@ function CLICK_VerseToRead(e) {
     }
     e.stopPropagation();
 }
-
 // -------- update starts here -------------
-
 let update = R.curry(
     /**
      * FN:update (anySpan)FN-> mutates all span.styles
@@ -70,7 +62,6 @@ let update = R.curry(
             }
         )(versesCOLL);
     });
-
 // --------INIT------------------
 let span0 = srva_ChptSpan0(document);
 // update(span0); // GOOD
