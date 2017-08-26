@@ -5,95 +5,85 @@ let R = require('ramda');
 let C_inConsole = require('../../h/C_in_').Console;
 // C_inConsole(' IN SRVa_CSpc_spec.  Yeah, you can you see me!');
 
+let assert = require('assert');
+
 let chai = require('chai')
     , expect = chai.expect
 ;
 
-beforeEach(function () {
-    loadFixtures('index.html');
-    this.div = R.pipe(R.invoker(1, 'querySelector'))('.chpt')(document);
-    this.span0 = R.pipe(
-        R.invoker(1, 'querySelector')
-        ('.chpt'),
-        R.prop('firstElementChild'))(document);
-    this.coll = R.path(['parentElement', 'children'])(this.span0);
-});
-
-// NEW CODE UNDER TEST -
-module.exports = str => R.pipe(R.invoker(1, 'querySelector'))(str)
-; // (Doc)((Str)Fn->)(Elem)
-module.exports.srva_SpanColl = span => R.path(['parentElement', 'children'])(span)
-; // (Doc)((Span)Fn->)(Coll)
-module.exports.srva_SpanNdx = span => R.indexOf(span, span.parentElement.children)
-; // (Doc)((Span)Fn->)(Ndx)
-
-
-let srva_ = require('./SRVa_CSpc_spec');
-let srva_SpanColl = require('./SRVa_CSpc_spec').srva_SpanColl;
-let srva_SpanNdx = require('./SRVa_CSpc_spec').srva_SpanNdx;
-
-
-describe(` (Doc)(Str)Fn->(*): SRVa_* from Str && a Doc. 
-        `, function () {
+// ------------ CODE UNDER TEST ----------------
+let srva_ = require('../src/SRVa_CSpc') //
+    , srva_div_chpt = srva_('.chpt')
+    , srva_ChptSpan0 = srva_.ChptSpan0
+    , srva_SpanColl = srva_.SpanColl
+    , srva_SpanNdx = srva_.SpanNdx
+;
+describe(`SRVa_CSpc`, () => {
     beforeEach(function () {
-        loadFixtures('index.html');
-        this.div = srva_('.chpt')(document);
-        this.span0 = srva_('.chpt')(document).firstElementChild;
-        this.coll = R.path(['parentElement', 'children'])(this.span0);
+        // loadFixtures('index.html');
+        // this.div_chpt = srva_('.chpt')(document);
+        // this.span0 = srva_ChptSpan0(document);
+        // this.coll = srva_SpanColl(document);
     });
-    it(`SRVa_(Str:'.chpt') from a Doc: 
+    describe(` FN: SRVa_ uses* from Str && a Doc. 
+        `, function () {
+        beforeEach(function () {
+            loadFixtures('index.html');
+            this.div_chpt = srva_div_chpt(document);
+        });
+        it(`***************SRVa_(Str:'.chpt') from a Doc: 
             the div.chpt
             `, function () {
-        expect(this.div.tagName).is.equal('DIV');
-        expect(this.div.firstElementChild.tagName).is.equal('SPAN');
+            assert.equal(R.type(srva_), 'Function');
+            assert.equal(R.type(srva_('.chpt')), 'Function');
+            assert.equal(R.type(srva_('.chpt')(document)), 'HTMLDivElement');
+        });
+        // it(`SRVa_(Str:'.chpt span')' from a Doc:
+        //     the first div.childElement
+        //     `, function () {
+        //     expect(this.span0.tagName).is.equal('SPAN');
+        //     expect(R.indexOf(this.span0, this.coll)).is.equal(0)
+        // });
     });
-    it(`SRVa_(Str:'.chpt span')' from a Doc:
-            the first div.childElement
-            `, function () {
-        expect(this.span0.tagName).is.equal('SPAN');
-        expect(R.indexOf(this.span0, this.coll)).is.equal(0)
-    });
-});
-
-describe(` (Str)(Doc)Fn->(Elem): srva_Elem from a Str and a Doc. 
-        `, function () {
-    beforeEach(function () {
-        loadFixtures('index.html');
-        this.div = srva_('.chpt')(document);
-    });
-    it(`srva_Elem from a Str:'chpt' && a Doc: 
-            is a DIV w/ a first childElement SPAN
-            `, function () {
-        expect(this.div.tagName).is.equal('DIV');
-        expect(this.div.firstElementChild.tagName).is.equal('SPAN');
-    });
-});
-
-describe(` (Doc)(Span)Fn->(Coll): srva_SpanColl from a Span. 
-        `, function () {
-    beforeEach(function () {
-        loadFixtures('index.html');
-        this.coll = srva_SpanColl(this.span0);
-    });
-
-    it(`srva_SpanColl from a Doc: 
-       `, function () {
-            expect(this.coll).is.a('HTMLCollection');
-            expect(this.coll.length).is.gt(0).and.is.lt(100);
-        }
-    );
-});
-describe(` (Span)Fn->(Ndx): SRVa_SpanNdx for a Span: 
-    the index is its peer collection position.  
-        `, function () {
-    beforeEach(function () {
-        loadFixtures('index.html');
-        this.span5 = this.coll[5];
-    });
-    it(`SRVa_SpanNdx returns 0 for span0; 5 fo span5. 
-     `, function () {
-        expect(srva_SpanNdx(this.span0)).is.equal(0);
-        expect(srva_SpanNdx(this.span5)).is.equal(5);
-        }
-    );
+    // describe(` (Str)(Doc)Fn->(Elem): srva_Elem from a Str and a Doc.
+    //     `, function () {
+    //     beforeEach(function () {
+    //         loadFixtures('index.html');
+    //         // this.div_chpt = srva_('.chpt')(document);
+    //     });
+    //     it(`srva_Elem from a Str:'chpt' && a Doc:
+    //         is a DIV w/ a first childElement SPAN
+    //         `, function () {
+    //         expect(this.div_chpt.tagName).is.equal('DIV');
+    //         expect(this.div_chpt.firstElementChild.tagName).is.equal('SPAN');
+    //     });
+    // });
+    // describe(` (Doc)(Span)Fn->(Coll): srva_SpanColl from a Span.
+    //     `, function () {
+    //     beforeEach(function () {
+    //         loadFixtures('index.html');
+    //         // this.coll = srva_SpanColl(this.span0);
+    //     });
+    //     it(`srva_SpanColl from a Doc:
+    //    `, function () {
+    //             expect(this.coll).is.a('HTMLCollection');
+    //             expect(this.coll.length).is.gt(0).and.is.lt(100);
+    //         }
+    //     );
+    // });
+    // describe(` (Span)Fn->(Ndx): SRVa_SpanNdx for a Span:
+    // the index is its peer collection position.
+    //     `, function () {
+    //     beforeEach(function () {
+    //         loadFixtures('index.html');
+    //         // this.coll = srva_SpanColl(this.span0);
+    //         this.span5 = this.coll[5];
+    //     });
+    //     it(`SRVa_SpanNdx returns 0 for span0; 5 fo span5.
+    //  `, function () {
+    //             expect(srva_SpanNdx(this.span0)).is.equal(0);
+    //             expect(srva_SpanNdx(this.span5)).is.equal(5);
+    //         }
+    //     );
+    // });
 });

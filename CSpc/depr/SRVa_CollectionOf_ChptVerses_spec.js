@@ -7,7 +7,7 @@ let chai = require('chai')
     , expect = chai.expect
 ;
 // CODE UNDER TEST
-let SRVa_CollectionOf_ChptVerses = require('../src/SRVa_CollectionOf_ChptVerses').SRVa_CollectionOf_ChptVerses;
+let SRVa_CollectionOf_ChptVerses = require('./SRVa_CollectionOf_ChptVerses').SRVa_CollectionOf_ChptVerses;
 
 
 // NEW CODE UNDER TEST - what is d

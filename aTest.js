@@ -84,6 +84,7 @@ init_Verses(document);
 // -------- THEN invoke an EventHandle: mouseClick to selectVerseToRead then update all the spans
 // set the click event scope to be div.chpr
 let ChptDIV = srva_chptDiv(document);
+//   TODO  LEARN AND USE THE onLoad Event before this addListener
 ChptDIV.addEventListener("click", CLICK_VerseToRead, false);
 
 C_in_Console('OUT> ' + TRK);

@@ -19,7 +19,7 @@ let R = require('ramda')
 // ------- requires ------------
 // let roundToTwoPlaces = require('./h/roundTo_');
 let DfltCsd = require('./RSpc/Dflt_RSpcStyles').Dflt;
-let SRV_ChptVerses_Dflt = require('./CSpc/src/SRVa_NodeListOf_ChptVerses').SRV_ChptVerses_Dflt;
+let SRV_ChptVerses_Dflt = require('./CSpc/depr/SRVa_NodeListOf_ChptVerses').SRV_ChptVerses_Dflt;
 let SRVa_WtFn__GVNa_Cnst = require('./RSpc/src/SRVa_WtFn').SRV_WtFn__GVNa_Cnst;
 
 let EVOL_aCsd = require('./SSpc/src/EVOLVEa_Csd');
