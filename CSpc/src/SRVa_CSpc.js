@@ -14,6 +14,7 @@ module.exports = R.curry(
 );
 
 module.exports.SpanColl = span => R.path(['parentElement', 'children'])(span)
+
 ; // (Span)Fn->(Coll)   FIX args (span)(Doc)  BREAKS
 module.exports.ChptSpan0 = R.pipe(
     R.invoker(1, 'querySelector')
