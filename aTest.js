@@ -53,10 +53,10 @@ let update = R.curry(
      */
     (aVTR) => { // aVTR:VerseToRead
 
-// curried FNs TODO: pipe these into the map FN below
+        // curried FNs TODO: pipe these into the map FN below
         let vtrNdx = srva_SpanNdx(aVTR, document); // TESTING #1 WORKS
         let versesCOLL = srva_SpanColl(span0, document); // FIX (aVTR)(document) BREAKS
-// mutate each verseSpan by evolving a styleDCT
+        // mutate each verseSpan by evolving a styleDCT
         R.addIndex(R.map)(
             (e, n, a) => {
                 // evolve a CSD

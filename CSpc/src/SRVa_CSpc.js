@@ -7,20 +7,22 @@ let C_inConsole = require('../../h/C_in_').Console;
 
 // NEW CODE UNDER TEST -
 
-// module.exports = R.invoker(1, 'querySelector')
-// ; // (Doc)((Str)Fn->)(Elem)
+module.exports = R.invoker(1, 'querySelector')
+; // (Doc)((Str)Fn->)(Elem)
+
 module.exports = R.curry(
     str => R.invoker(1, 'querySelector')(str)
 );
 
 module.exports.SpanColl = span => R.path(['parentElement', 'children'])(span)
-
 ; // (Span)Fn->(Coll)   FIX args (span)(Doc)  BREAKS
+
 module.exports.ChptSpan0 = R.pipe(
     R.invoker(1, 'querySelector')
     ('.chpt'),
     R.prop('firstElementChild')
 );// (Doc)FN->(ChptSpan) .. span implying one of many
+
 /**
  * srva_SpanNdx
  * @param span
