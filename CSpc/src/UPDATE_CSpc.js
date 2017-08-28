@@ -49,6 +49,7 @@ module.exports.update_ = R.curry(
 
                 // now with an evolved style.Csd, mutate the a_span Element
                 mutate_anElem(aCSD, e);
+                return e
             }
         )(srva_SpanColl(a_span));
     }

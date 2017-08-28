@@ -14,9 +14,9 @@ let chai = require('chai')
 // ------------ CODE UNDER TEST ----------------
 let srva_ = require('../src/SRVa_CSpc') //
     , srva_div_chpt = srva_('.chpt')
-    , srva_ChptSpan0 = srva_.ChptSpan0
-    , srva_SpanColl = srva_.SpanColl
-    , srva_SpanNdx = srva_.SpanNdx
+    // , srva_ChptSpan0 = srva_.ChptSpan0
+    // , srva_SpanColl = srva_.SpanColl
+    // , srva_SpanNdx = srva_.SpanNdx
 ;
 describe(`SRVa_CSpc`, () => {
     beforeEach(function () {
@@ -29,7 +29,7 @@ describe(`SRVa_CSpc`, () => {
         `, function () {
         beforeEach(function () {
             loadFixtures('index.html');
-            this.div_chpt = srva_div_chpt(document);
+            // this.div_chpt = srva_div_chpt(document);
         });
         it(`***************SRVa_(Str:'.chpt') from a Doc: 
             the div.chpt
@@ -58,19 +58,21 @@ describe(`SRVa_CSpc`, () => {
     //         expect(this.div_chpt.firstElementChild.tagName).is.equal('SPAN');
     //     });
     // });
-    // describe(` (Doc)(Span)Fn->(Coll): srva_SpanColl from a Span.
-    //     `, function () {
-    //     beforeEach(function () {
-    //         loadFixtures('index.html');
-    //         // this.coll = srva_SpanColl(this.span0);
-    //     });
-    //     it(`srva_SpanColl from a Doc:
-    //    `, function () {
-    //             expect(this.coll).is.a('HTMLCollection');
-    //             expect(this.coll.length).is.gt(0).and.is.lt(100);
-    //         }
-    //     );
-    // });
+    describe(` (Doc)(Span)Fn->(Coll): srva_.SpanColl from a Span.
+        `, function () {
+        beforeEach(function () {
+            loadFixtures('index.html');
+            this.span0 = srva_.ChptSpan0(document);
+            this.coll = srva_.SpanColl(this.span0);
+        });
+        it(`srva_SpanColl from a Doc:
+       `, function () {
+                assert.equal(R.type(this.coll), 'HTMLCollection');
+                assert.equal(R.length(this.coll), 52);
+                assert.equal(R.type(this.coll.item(0)), 'HTMLSpanElement');
+            }
+        );
+    });
     // describe(` (Span)Fn->(Ndx): SRVa_SpanNdx for a Span:
     // the index is its peer collection position.
     //     `, function () {
