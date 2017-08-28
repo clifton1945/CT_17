@@ -31,7 +31,7 @@ let MUTATE_ = curry(
         return elt
     }
 );
-module.exports.MUTATE_ = pipe(MUTATE_);             // CSD -> ( ELEM -> ELEM )
+module.exports.MUTATE_ = MUTATE_;           // CSD -> ( ELEM -> ELEM )
 module.exports.byElem = R.flip(MUTATE_);            // (ELEM)-> ( CSD ->  ELEM )
 //170724 ADD an arity:1 form. SRVa_Span__WTHa_Csd__GVNa_Span
 module.exports.SRVa_ = MUTATE_;

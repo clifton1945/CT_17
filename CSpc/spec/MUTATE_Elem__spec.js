@@ -40,4 +40,22 @@ describe(`Fn: MUTATE_Elem::         mutates - sets and returns - an Element.styl
             ;
         });
     });
+    describe(`Fn: MUTATE_Elem( Elt )         -> RETURNS ( csdDCT -> Elt )   
+        `, function () {
+        // CODE UNDER TEST: (ELEM)-> ( CSD ->  ELEM )
+        let MUTATE_Elem = require('../src/MUTATE_Elem').MUTATE_
+        ;
+        // TEST DATA
+        let TEST_Elem = {}, TEST_Csd = {};
+        beforeEach(function () {
+            loadFixtures('index.html');
+            //REMEMBER this BREAKS a mocha test !!
+            TEST_Elem = document.querySelector('.chpt span');
+            TEST_Csd = {color: 'red', opacity: 0.5};
+        });
+        it(`DCT: MUTATE_Elem( Elt )( csdDCT )    should be a DCT object with a style and properties.`, function () {
+            expect(MUTATE_Elem(TEST_Csd)(TEST_Elem).style).is.property('color').equals('red')
+            ;
+        });
+    })
 });
