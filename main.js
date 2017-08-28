@@ -13,6 +13,16 @@ let srva_TrnfrmDCT_color =
 let mutate_anElem =
     require('./CSpc/src/MUTATE_Elem').MUTATE_;
 
+// ------- CodeUnderTest requires
+let srva_chptDiv = require('./CSpc/src/SRVa_CSpc')('.chpt')
+;// (Doc)Fn->(Elem)
+let srva_SpanColl = require('./CSpc/src/SRVa_CSpc').srva_SpanColl
+;// (Doc)((Span)Fn->)(Coll)
+let srva_ChptSpan0 = require('./CSpc/src/SRVa_CSpc').srva_ChptSpan0
+;// (Doc)FN->(Span) .. span implying one of many
+let srva_SpanNdx = require('./CSpc/src/SRVa_CSpc').srva_SpanNdx
+;//(Span)Fn->(Ndx)
+
 // -------- main starts here -------------
 
 // select a DIV in the DOM as theLight
