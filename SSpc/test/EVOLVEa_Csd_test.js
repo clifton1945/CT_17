@@ -19,7 +19,7 @@ describe(`Fn: EVOLVEa_Csd__GVNa_Trnsfrm      ISa Fn.arity:1 ( Trnsfrm -> Csd )
     `, () => {
 
     //TEST DATA
-    let Dflt_Csd = require('../src/SRVa_StyleCsd').Dflt;
+    let Dflt_Csd = require('../depr/SRVa_StyleCsd').Dflt;
     let STUB_TRNFRM = {am: {backgroundColor: R.always('yellow'), opacity: R.always('0.5')}};
     // CODE UNDER TEST
     let EVOLVE_Csd = require('../src/EVOLVEa_Csd');

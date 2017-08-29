@@ -12,7 +12,7 @@ context(`Fn: SRVa_TRNFRM_byAlways( keyStr )       RETURNS a transformer OBJECT f
        `, () => {
 
     let SRVa_TRNFRM_byAlways, thisTrnfrm;           //CODE UNDER TEST
-    SRVa_TRNFRM_byAlways = require('../src/SRVa_TRNFRM').by_always;
+    SRVa_TRNFRM_byAlways = require('./SRVa_TRNFRM').by_always;
 
     let TEST_Attr = {backgroundColor: 'purple'}; // TEST OBJECT
 
@@ -42,7 +42,7 @@ context(`Fn: SRVa_TRNFRM_byAlways( keyStr )       RETURNS a transformer OBJECT f
 
 describe(`Fn: SRVa_TRNFRM_byFn( keyStr)        RETURNS another transform FUNCTION`, () => {
     let thisTrnfrm;
-    let SRVa_TRNFRM_byFn = require('../src/SRVa_TRNFRM')._by_Fn; //CODE UNDER TEST
+    let SRVa_TRNFRM_byFn = require('./SRVa_TRNFRM')._by_Fn; //CODE UNDER TEST
     let TEST_Attr = {opacity: 1.0, backgroundColor: 'purple'};              // TEST OBJECT
     it(`expects SRVa_TRNFRM_byFn.arity:2          is a Function `, function () {
         expect(SRVa_TRNFRM_byFn).is.a('Function').length(2);
