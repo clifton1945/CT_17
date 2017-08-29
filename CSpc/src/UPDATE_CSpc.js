@@ -20,18 +20,24 @@ let srva_ = require('../src/SRVa_CSpc') //
 //     require('../../CSpc/src/MUTATE_Elem').MUTATE_
 // ;// (CSD)(ELEM)FN->(ELEM)
 
-module.exports.update_ = R.curry(
+const update_ = R.curry(
     /**
-     * FN:update_ChptSpans (anySpan)FN-> mutates all CSpc.span.styles
+     * FN: update_ChptSpans mutates all CSpc.span.styles
+     * @param a_span: the focus_span
      *
-     *  SOV-active: (FN:update_ChptSpans) UPDATES (every_Span) BY APPLYING ( the focus_span )
-     *  DG: ( focus_span ) -> FN:update_Chpt -> (every_span)
-     *  SOV-passive: (every_Span) IS UPDATED BY ( the focus_span ) APPLIED BY (FN:update_ChptSpans)
-     *  DG: (every_span)->FN:update_Chpt-> (focus_span )
+     *** SVO ****************
+     *  {FN:update_ChptSpans}
+     *  UPDATES (every_ChptSpan)
+     *  BY APPLYING ( the focus_span )
+     *  TO FN:update_ChptSpans
      *
-     * @param a_span: the focus Span
+     *** SOV-passive and DG ***
+     *  (every_ChptSpan)
+     *  IS UPDATED BY APPLYING
+     *  (the focus_span)
+     *  TO (FN:update_ChptSpans)
      *
-     * @usage: update_ChptSpans( focus_span)
+     *  @usage: update_ChptSpans( focus_span)
      *      receives a CSpc:click EventHandler Span: the focus VerseToRead )
      *      This FN is the final FN in CeeThought app.
      *      It updates each Span's.style.Attributes
@@ -60,3 +66,5 @@ module.exports.update_ = R.curry(
         )(srva_SpanColl(a_span));
     }
 );
+module.exports.update_ = update_;
+module.exports.srva_ = update_;
