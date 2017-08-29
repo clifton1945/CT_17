@@ -19,6 +19,7 @@ let CLICK_VerseToRead = (e) => {
         update_ChptSpans(e.target);
     }
     e.stopPropagation();
+    return e
 };  // USE this MouseEvent handler to select a readFocus span.
 
 document.addEventListener("DOMContentLoaded", function (event) {
