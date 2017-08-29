@@ -1,16 +1,16 @@
-/**
- */
-
-// ************** MAIN ********
-let TRK = "wbSample/aTest.js";
-C_in_Console('> IN  ' + TRK);
 "use strict";
+let TRK = "wbSample/main.js";
+
+
 // ------- requires ------------
 let R = require('ramda');
 let C_in = require('./h/C_in_')
     , C_in_Console = C_in.Console
     // , C_in_Both = C_in.Both
 ;
+// ************** MAIN ********
+C_in.Both('> IN  ' + TRK);
+
 // ------- CodeUnderTest requires
 let update_ChptSpans = require('./CSpc/src/UPDATE_CSpc').update_;
 let CLICK_VerseToRead = (e) => {

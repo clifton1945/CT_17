@@ -1,6 +1,7 @@
-/**
- */
 "use strict";
+let TRK = "wbSample/aTest.js";
+
+
 // ------- requires ------------
 let R = require('ramda');
 let C_in = require('./h/C_in_')
@@ -8,8 +9,7 @@ let C_in = require('./h/C_in_')
     // , C_in_Both = C_in.Both
 ;
 // ************** MAIN ********
-let TRK = "wbSample/aTest.js";
-C_in_Console('> IN  ' + TRK);
+C_in.Both('> IN  ' + TRK);
 
 // ------- CodeUnderTest requires
 let update_ChptSpans = require('./CSpc/src/UPDATE_CSpc').update_;
