@@ -43,7 +43,7 @@ function CLICK_VerseToRead(e) {
 ChptDIV.addEventListener("click", CLICK_VerseToRead, false);
 
 // ************** MAIN ********
-let TRK = "wbSample/main.js";
+let TRK = "wbSample/aTest.js";
 C_in_Console('IN> ' + TRK);
 
 let main = function (aVTR) { // aVTR:VerseToRead
