@@ -8,44 +8,33 @@ let C_in = require('./h/C_in_')
     , C_in_Both = C_in.Both;
 
 // ------- CodeUnderTest requires
-let srva_TrnfrmDCT_color =
-    require('./SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT;
-let mutate_anElem =
-    require('./CSpc/src/MUTATE_Elem').MUTATE_;
-
-// ------- CodeUnderTest requires
-let srva_chptDiv = require('./CSpc/src/SRVa_CSpc')('.chpt')
-;// (Doc)Fn->(Elem)
-let srva_SpanColl = require('./CSpc/src/SRVa_CSpc').srva_SpanColl
-;// (Doc)((Span)Fn->)(Coll)
-let srva_ChptSpan0 = require('./CSpc/src/SRVa_CSpc').srva_ChptSpan0
-;// (Doc)FN->(Span) .. span implying one of many
-let srva_SpanNdx = require('./CSpc/src/SRVa_CSpc').srva_SpanNdx
-;//(Span)Fn->(Ndx)
-
+let update_ChptSpans = require('./CSpc/src/UPDATE_CSpc').update_;
+//
+// let srva_TrnfrmDCT_color =
+//     require('./SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT;
+// let mutate_anElem =
+//     require('./CSpc/src/MUTATE_Elem').MUTATE_;
 // -------- main starts here -------------
+
+
+// USE this MouseEvent handler to select a readFocus span.
+function CLICK_VerseToRead(e) {
+    if (e.target !== e.currentTarget) {
+        e.stopPropagation();
+        update_ChptSpans(e.target);
+        // main(e.target);
+    }
+    e.stopPropagation();
+}
 
 // select a DIV in the DOM as theLight
 let ChptDIV;
 let selectFrom = R.invoker(1, 'querySelector');
 ChptDIV = selectFrom('.chpt')(document);//Number → String → (a → b → … → n → Object → *)
-
-
-// This is the MouseEvent handler to select a readFocus span.
-function CLICK_VerseToRead(e) {
-    if (e.target !== e.currentTarget) {
-        e.stopPropagation();
-        main(e.target)
-    }
-    e.stopPropagation();
-}
-
 ChptDIV.addEventListener("click", CLICK_VerseToRead, false);
 
 // ************** MAIN ********
 let TRK = "wbSample/aTest.js";
-C_in_Console('IN> ' + TRK);
-
 let main = function (aVTR) { // aVTR:VerseToRead
 
 // use the aVTR Span to derive some data constants
@@ -68,3 +57,5 @@ let main = function (aVTR) { // aVTR:VerseToRead
 
     C_in_Console('OUT> ' + TRK);
 };
+
+C_in_Console('IN> ' + TRK);
