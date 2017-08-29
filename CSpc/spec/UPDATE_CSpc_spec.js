@@ -8,9 +8,6 @@ let C_inConsole = require('../../h/C_in_').Console;
 
 // ------------ CODE UNDER TEST ----------------
 let srva_ = require('../src/SRVa_CSpc') //
-    , srva_ChptSpan0 = srva_.ChptSpan0
-    , srva_SpanNdx = srva_.SpanNdx
-    , srva_SpanColl = srva_.SpanColl
 ;
 let srva_TrnfrmDCT_color =
     require('../../SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT
@@ -19,7 +16,6 @@ let mutate_anElem =
     require('../src/MUTATE_Elem').MUTATE_
 ;// (CSD)(ELEM)FN->(ELEM)
 
-// ------------ CODE UNDER TEST ----------------
 let update_ChptSpans = require('../src/UPDATE_CSpc').update_;
 
 // --------------------- TESTS -------------------------------------
@@ -53,7 +49,7 @@ describe(`module: UPDATE_CSpc.js  ... `, () => {
             assert.notEqual(R.type(cut_ret), 'HTMLNodeList');
 
             assert.equal(R.type(cut_ret[3]), 'HTMLSpanElement');
-            console.log(`>>>>>>>>>> ${(cut_ret[0])}`);
+            console.log('>>>>>>>>>> cut_ret:' + cut_ret[0]);
         });
         it(` should have Span.style.attributes dependent upon the span's ReadSpace.
                     `, function () {
