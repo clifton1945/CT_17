@@ -10,24 +10,24 @@ let SRVa_byAlwaysTrnfrm = require('./SRVa_TRNFRM').by_always;
 // CODE
 let SRVa = R.curry(
     /**
-     * NOTE  JUST A STUB TODO REFACT with parameters
-     * returns a style Trnfrm_DCT typically for use in an R.evolve(DCT, CSD)
-     *  NOTE: FIX for this testing the Attr: color has these values
-     *      read:           red
-     *      reading:        blue
-     *      to read:        green
-     *
-     * @param vtr:      the Index of the focus Elem
-     * @param ndx:      the Index of a Elem
+     * returns a Trnfrm_DCT as f(a_ndx either lt, equal or gt focus_ndx)
+     * @param focus_ndx:  the Index of the focus Elem
+     * @param a_ndx:      the Index of a Elem
      * @return dct:     a DCT:
      *      key: a style Attribute
      *      val: a Fn returning a style value
+     *
      * @usage: SRVa(3, 5) -> {color: R.always('green')}
+     *
+     * NOTE  JUST A STUB
+     * TODO REFACT with  a or many Attribute parameters
+     *      typically for use in an R.evolve(thisDCT, CSD)
      */
-    (vtr, ndx) => (ndx < vtr)
+    (focus_ndx, a_ndx) => (a_ndx < focus_ndx)
         ? SRVa_byAlwaysTrnfrm('color', 'red')
-        : (ndx > vtr )
+        : (a_ndx > focus_ndx )
             ? SRVa_byAlwaysTrnfrm('color', 'green')
             : SRVa_byAlwaysTrnfrm('color', 'blue')
 );
-module.exports.colorStyleTrnfrmDCT = SRVa;// Num -> Num -> {k:FN}
+module.exports.colorStyleTrnfrmDCT = SRVa
+;// (CSD)(ELEM)FN->(ELEM)
