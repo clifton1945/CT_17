@@ -15,7 +15,7 @@ let srva_ = require('../src/SRVa_CSpc') //
 const update_ = R.curry(
     /**
      * FN: update_ChptSpans mutates all CSpc.span.styles
-     * @param a_span: the focus_span
+     * @param focus_span: the focus_span
      *
      *** SVO ****************
      *  {FN:update_ChptSpans}
@@ -34,9 +34,10 @@ const update_ = R.curry(
      *      This FN is the final FN in CeeThought app.
      *      It updates each Span's.style.Attributes
      */
-    (a_span) => { // a_span:VerseToRead Span
-        let focusNdx = srva_SpanNdx(a_span);
+    (focus_span) => { // focus_span:VerseToRead Span
+        let focusNdx = srva_SpanNdx(focus_span);
 
+        // TODO NEXT  - this is a test stub. REPLACE IT with some (aSpan)FN
         let srva_TrnfrmDCT_color =
             require('../../SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT
         ; //(Num, Num)FN-> (FN{k:FN})
@@ -44,8 +45,9 @@ const update_ = R.curry(
         let mutate_anElem =
             require('../../CSpc/src/MUTATE_Elem').MUTATE_
         ;// (CSD)(ELEM)FN->(ELEM)
+
         return R.addIndex(R.map)(
-            (e, n, a) => {
+            (elem, n, a) => {
                 // evolve a CSD
                 let aCSD = R.evolve(
                     srva_TrnfrmDCT_color(focusNdx, n),
@@ -53,11 +55,11 @@ const update_ = R.curry(
                 );
                 C_inConsole(`  >>> VerseToRead.Index: ${focusNdx}`);
 
-                // now with an evolved style.Csd, mutate the a_span Element
-                mutate_anElem(aCSD, e);
-                return e
+                // now with an evolved style.Csd, mutate the elem Element
+                mutate_anElem(aCSD, elem);
+                return elem
             }
-        )(srva_SpanColl(a_span));
+        )(srva_SpanColl(focus_span));
     }
 );
 module.exports.update_ = update_;

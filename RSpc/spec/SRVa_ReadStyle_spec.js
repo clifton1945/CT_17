@@ -13,8 +13,8 @@ let chai = require('chai')
 let myTap = require('../../h/myTap');
 let C_inConsole = require('../../h/C_in_').Console;
 
-describe(`FN(srva_ReadStyleDCT) SERVES (a StyleDCT)       
-    PICKED FROM (all StylesDCT) BY APPLYING (a VerseNdxNUM) TO FN(pick_a_ReadStyleDCT).
+describe(`FN(srva_ReadStyleDCT) SERVES (a ReadStyleDCT)       
+    PICKED FROM (all ReadStylesDCT) BY APPLYING (a VerseNdxNUM) TO FN(pick_a_ReadStyleDCT).
    `, () => {
     // CODE UNDER TEST
     /**
@@ -43,7 +43,7 @@ describe(`FN(srva_ReadStyleDCT) SERVES (a StyleDCT)
         noonSpan = aNodeArray[4];
     });
 
-    let d = require('C:\\Users\\CLIF\\WSProjects\\wbSample\\Read\\Dflt_ReadStyles.js');//Read/Dflt_ReadStyles.js
+    let d = require('C:\\Users\\CLIF\\WSProjects\\wbSample\\RSpc\\Dflt_ReadStyles.js');//Read/Dflt_ReadStyles.js
     dfltStyle = d.Dflt;//Read/Dflt_ReadStyles.js
 
     let SRVa_dfltStyle = SRVa_Style(dfltStyle);
