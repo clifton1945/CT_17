@@ -1,4 +1,11 @@
-//todo next : work within CSpc/src/UPDATE_CSpc/srva_TrnfrmDCT_color(focusNdx, n)
+//todo next I am currently working on replacing
+//  the {color: ''}
+// IN  let aCSD = R.evolve(
+//     srva_TrnfrmDCT_color(focusNdx, n),
+//     {color: ''}
+// );
+//  WITH RSpc/SRVa_Dflt_ReadStyles
+
 
 "use strict";
 let TRK = "wbSample/aTest.js";
