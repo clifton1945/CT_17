@@ -7,6 +7,8 @@ let R = require('ramda')
 ;
 let mocha = require('mocha')
 ;
+let assert = require('assert');
+
 let chai = require('chai')
     , expect = chai.expect
 ;
@@ -43,30 +45,27 @@ describe(`FN(srva_ReadStyleDCT) SERVES (a ReadStyleDCT)
         noonSpan = aNodeArray[4];
     });
 
-    let d = require('C:\\Users\\CLIF\\WSProjects\\wbSample\\RSpc\\Dflt_ReadStyles.js');//Read/Dflt_ReadStyles.js
-    dfltStyle = d.Dflt;//Read/Dflt_ReadStyles.js
-
+    dfltStyle = require('../SRVa_Dflt_ReadStyles').Dflt;
     let SRVa_dfltStyle = SRVa_Style(dfltStyle);
 
     // CODE UNDER TEST
-    describe(`..`, () => {
-        it(` expect SRV_aStyle(csd, 4, 1 ) -> the 'am' readStyle.`, () => {
-            expect(SRVa_dfltStyle(4, 1))
-                .is.a('Object')
-                .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
-                .to.deep.include({opacity: '0.8'});
-        });
-        it(` expect SRV_aStyle(csd, 4, 4 ) -> the 'noon' readStyle.`, () => {
-            expect(SRVa_dfltStyle(4, 4))
-                .is.a('Object')
-                .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
-                .to.deep.include({opacity: '1.0'});
-        });
-        it(` expect SRV_aStyle(csd, 4, 6 ) -> the 'pm' readStyle.`, () => {
-            expect(SRVa_dfltStyle(4, 6))
-                .is.a('Object')
-                .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
-                .to.deep.include({opacity: '0.9'});
-        });
+    it(` expect SRV_aStyle(csd, 4, 1 ) -> the 'am' readStyle.`, () => {
+        expect(SRVa_dfltStyle(4, 1))
+            .is.a('Object')
+            .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
+            .to.deep.include({opacity: '0.8'});
     });
+    it(` expect SRV_aStyle(csd, 4, 4 ) -> the 'noon' readStyle.`, () => {
+        expect(SRVa_dfltStyle(4, 4))
+            .is.a('Object')
+            .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
+            .to.deep.include({opacity: '1.0'});
+    });
+    it(` expect SRV_aStyle(csd, 4, 6 ) -> the 'pm' readStyle.`, () => {
+        expect(SRVa_dfltStyle(4, 6))
+            .is.a('Object')
+            .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
+            .to.deep.include({opacity: '0.9'});
+    });
+
 });
