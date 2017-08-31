@@ -13,26 +13,19 @@ let chai = require('chai')
 let myTap = require('../../h/myTap');
 let C_inConsole = require('../../h/C_in_').Console;
 
-describe(`Fn: SRVa_Csd__GVNa_spanNdx 
-    csd -> noonNdx -> ( spanNdx -> RSpcCsd )
-    FIX: this is too COMPLICATED !!  TOO MUCH NEEDED, TOO ME!!!!. 
-        the _Csd is, in fact, the DEFAULT ReadClass Style CSD
-            with all the StyleAttributes like color, fontSize, backgroundColor, ...
-        FOR the ReadClass of the specific Span INDEX 
-        FOR the index of the specific noon Noon Span.
-        Hey I already know, somehow, which ReadClass each list is
-        SO  
-    `, () => {
+describe(`FN(srva_ReadStyleDCT) SERVES (a StyleDCT)       
+    PICKED FROM (all StylesDCT) BY APPLYING (a VerseNdxNUM) TO FN(pick_a_ReadStyleDCT).
+   `, () => {
     // CODE UNDER TEST
     /**
      * Fn: SRVa_Csd__GVNa_spanNdx
      * Fn: TRIAGE_1
-     * @param RSpcCsdDict
+     * @param ReadCsdDict
      * @param noonNdx
      * @param spanNdx
      * @return a CSD
      */
-    let SRVa_ = require('../src/SRVa_RSpcStyle');
+    let SRVa_ = require('../src/SRVa_ReadStyle');
     let SRVa_Style = SRVa_.Style;
 
     // TEST DATA
@@ -50,28 +43,30 @@ describe(`Fn: SRVa_Csd__GVNa_spanNdx
         noonSpan = aNodeArray[4];
     });
 
-    let d = require('C:\\Users\\CLIF\\WSProjects\\wbSample\\RSpc\\Dflt_RSpcStyles.js');//RSpc/Dflt_RSpcStyles.js
-    dfltStyle = d.Dflt;//RSpc/Dflt_RSpcStyles.js
+    let d = require('C:\\Users\\CLIF\\WSProjects\\wbSample\\Read\\Dflt_ReadStyles.js');//Read/Dflt_ReadStyles.js
+    dfltStyle = d.Dflt;//Read/Dflt_ReadStyles.js
 
     let SRVa_dfltStyle = SRVa_Style(dfltStyle);
 
     // CODE UNDER TEST
-    it(` expect SRV_aStyle(csd, 4, 1 ) -> the 'am' readStyle.`, () => {
-        expect(SRVa_dfltStyle(4, 1))
-            .is.a('Object')
-            .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
-            .to.deep.include({opacity: '0.8'});
-    });
-    it(` expect SRV_aStyle(csd, 4, 4 ) -> the 'noon' readStyle.`, () => {
-        expect(SRVa_dfltStyle(4, 4))
-            .is.a('Object')
-            .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
-            .to.deep.include({opacity: '1.0'});
-    });
-    it(` expect SRV_aStyle(csd, 4, 6 ) -> the 'pm' readStyle.`, () => {
-        expect(SRVa_dfltStyle(4, 6))
-            .is.a('Object')
-            .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
-            .to.deep.include({opacity: '0.9'});
+    describe(`..`, () => {
+        it(` expect SRV_aStyle(csd, 4, 1 ) -> the 'am' readStyle.`, () => {
+            expect(SRVa_dfltStyle(4, 1))
+                .is.a('Object')
+                .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
+                .to.deep.include({opacity: '0.8'});
+        });
+        it(` expect SRV_aStyle(csd, 4, 4 ) -> the 'noon' readStyle.`, () => {
+            expect(SRVa_dfltStyle(4, 4))
+                .is.a('Object')
+                .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
+                .to.deep.include({opacity: '1.0'});
+        });
+        it(` expect SRV_aStyle(csd, 4, 6 ) -> the 'pm' readStyle.`, () => {
+            expect(SRVa_dfltStyle(4, 6))
+                .is.a('Object')
+                .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
+                .to.deep.include({opacity: '0.9'});
+        });
     });
 });

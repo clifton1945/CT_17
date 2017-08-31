@@ -1,3 +1,5 @@
+//todo next : work within CSpc/src/UPDATE_CSpc/srva_TrnfrmDCT_color(focusNdx, n)
+
 "use strict";
 let TRK = "wbSample/aTest.js";
 

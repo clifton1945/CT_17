@@ -8,18 +8,10 @@ let C_inConsole = require('../../h/C_in_').Console;
 
 // ------------ CODE UNDER TEST ----------------
 let srva_ = require('../src/SRVa_CSpc') //
-    , srva_ChptSpan0 = srva_.ChptSpan0
+    // , srva_ChptSpan0 = srva_.ChptSpan0
     , srva_SpanNdx = srva_.SpanNdx
     , srva_SpanColl = srva_.SpanColl
 ;
-//
-// let srva_TrnfrmDCT_color =
-//     require('../../SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT
-// ; //(Num, Num)FN-> (FN{k:FN})
-// let mutate_anElem =
-//     require('../../CSpc/src/MUTATE_Elem').MUTATE_
-// ;// (CSD)(ELEM)FN->(ELEM)
-
 const update_ = R.curry(
     /**
      * FN: update_ChptSpans mutates all CSpc.span.styles
@@ -47,6 +39,7 @@ const update_ = R.curry(
         let srva_TrnfrmDCT_color =
             require('../../SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT
         ; //(Num, Num)FN-> (FN{k:FN})
+
         let mutate_anElem =
             require('../../CSpc/src/MUTATE_Elem').MUTATE_
         ;// (CSD)(ELEM)FN->(ELEM)
