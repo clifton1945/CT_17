@@ -36,6 +36,7 @@ const update_ = R.curry(
      */
     (a_span) => { // a_span:VerseToRead Span
         let focusNdx = srva_SpanNdx(a_span);
+
         let srva_TrnfrmDCT_color =
             require('../../SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT
         ; //(Num, Num)FN-> (FN{k:FN})
