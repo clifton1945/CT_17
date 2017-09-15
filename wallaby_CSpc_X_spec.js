@@ -19,7 +19,7 @@ module.exports = function (wallaby) {
             {pattern: 'CSpc/Dflt*.js', load: false},
             {pattern: 'RSpc/src/*.js', load: false},
             {pattern: 'RSpc/Dflt*.js', load: false},
-            {pattern: 'SSpc/spec/*.js', load: false},
+            {pattern: 'SSpc/src/*.js', load: false},
             {pattern: 'SSpc/Dflt*.js', load: false},
             {pattern: 'h/*.js', load: false},
             {pattern: 'main.js', load: false},
@@ -27,7 +27,7 @@ module.exports = function (wallaby) {
         ],
 
         tests: [
-            {pattern: 'CSpc/spec/SRVa_CSpc_spec.js', load: false},
+            {pattern: 'CSpc/spec/UPDATE_CSpc_spec.js', load: false},
         ],
 
         compilers: {
