@@ -45,7 +45,7 @@ describe(`FN(srva_ReadStyleDCT) SERVES (a ReadStyleDCT)
         noonSpan = aNodeArray[4];
     });
 
-    dfltStyle = require('../Dflt_ReadStyles'); //FIX THIS require BREAK
+    dfltStyle = require('../Dflt_ReadStyles');
     let SRVa_dfltStyle = SRVa_Style(dfltStyle);
 
     // CODE UNDER TEST
