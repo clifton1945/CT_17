@@ -14,16 +14,16 @@ let chai = require('chai')
 // ------------ CODE UNDER TEST ----------------
 let srva_ = require('../src/SRVa_CSpc') //
     , srva_div_chpt = srva_('.chpt')
-    // , srva_ChptSpan0 = srva_.ChptSpan0
-    // , srva_SpanColl = srva_.SpanColl
-    // , srva_SpanNdx = srva_.SpanNdx
+    , srva_ChptSpan0 = srva_.ChptSpan0
+    , srva_SpanColl = srva_.SpanColl
+    , srva_SpanNdx = srva_.SpanNdx
 ;
 describe(`SRVa_CSpc`, () => {
     beforeEach(function () {
-        // loadFixtures('index.html');
-        // this.div_chpt = srva_('.chpt')(document);
-        // this.span0 = srva_ChptSpan0(document);
-        // this.coll = srva_SpanColl(document);
+        loadFixtures('index.html');
+        this.div_chpt = srva_('.chpt')(document);
+        this.span0 = srva_ChptSpan0(document);
+        this.coll = srva_SpanColl(document);
     });
     describe(` FN: SRVa_ uses* from Str && a Doc. 
         `, function () {
