@@ -9,13 +9,6 @@ let C_inConsole = require('../../h/C_in_').Console;
 // ------------ CODE UNDER TEST ----------------
 let srva_ = require('../src/SRVa_CSpc') //
 ;
-// let srva_TrnfrmDCT_color =
-//     require('../../SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT
-// ; //(Num, Num)FN-> (FN{k:FN})
-// let mutate_anElem =
-//     require('../src/MUTATE_Elem').MUTATE_
-// ;// (CSD)(ELEM)FN->(ELEM)
-
 let update_ChptSpans = require('../src/UPDATE_CSpc').update_;
 
 // --------------------- TESTS -------------------------------------

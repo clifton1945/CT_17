@@ -41,7 +41,9 @@ const update_ = R.curry(
         let srva_TrnfrmDCT_color =
             require('../../SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT
         ; //(Num, Num)FN-> (FN{k:FN})
-
+        let Dflt_ReadStyle =
+            require('../../RSpc/Dflt_ReadStyles')
+        ; // -> DCT
         let mutate_anElem =
             require('../../CSpc/src/MUTATE_Elem').MUTATE_
         ;// (CSD)(ELEM)FN->(ELEM)

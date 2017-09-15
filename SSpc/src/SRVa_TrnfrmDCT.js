@@ -5,7 +5,7 @@ let R = require('ramda')
     , curry = R.curry
 ;
 
-let SRVa_byAlwaysTrnfrm = require('./SRVa_TRNFRM').by_always;
+let SRVa_byAlwaysTrnfrm = require('../src/SRVa_TRNFRM').by_always;
 
 // CODE
 let SRVa = R.curry(
