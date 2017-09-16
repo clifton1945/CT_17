@@ -9,18 +9,12 @@ let C_inConsole = require('../../h/C_in_').Console;
 // ------------ CODE UNDER TEST ----------------
 let srva_ = require('../src/SRVa_CSpc') //
 ;
-let srva_TrnfrmDCT_color =
-    require('../../SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT
-; //(Num, Num)FN-> (FN{k:FN})
-let mutate_anElem =
-    require('../src/MUTATE_Elem').MUTATE_
-;// (CSD)(ELEM)FN->(ELEM)
-
-let update_ChptSpans = require('../src/UPDATE_CSpc').update_;
+let UPDATE_CSpc = require('../src/UPDATE_CSpc').update_;
 
 // --------------------- TESTS -------------------------------------
 describe(`module: UPDATE_CSpc.js  ... `, () => {
-    describe(` FN: update_ChptSpans's    ARGUMENT should be a 'HTMLSpanElement'
+
+    describe(` FN: UPDATE_CSpc's    ARGUMENT should be a 'HTMLSpanElement'
     `, function () {
         beforeEach(function () {
             loadFixtures('index.html');
@@ -32,13 +26,13 @@ describe(`module: UPDATE_CSpc.js  ... `, () => {
             assert.equal(srva_.SpanNdx(this.span0), 0);
         });
     });
-    describe(` FN: update_ChptSpans   RETURNS Array of verseSpans, each individual ReadSpace style.attributes.
+    describe(` FN: UPDATE_CSpc   RETURNS Array of verseSpans, each with individual ReadSpace style.attributes.
     `, function () {
         let span0, cut_ret, span3;
         beforeEach(function () {
             loadFixtures('index.html');
             span0 = srva_.ChptSpan0(document);
-            cut_ret = update_ChptSpans(span0);
+            cut_ret = UPDATE_CSpc(span0);
             span3 = R.nth(3, cut_ret)
         });
         it(` should return an Array of Spans, NOT a HTMLCollection NOR a NodeList

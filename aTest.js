@@ -1,12 +1,10 @@
+
 "use strict";
 let TRK = "wbSample/aTest.js";
-
 
 // ------- requires ------------
 let R = require('ramda');
 let C_in = require('./h/C_in_')
-    , C_in_Console = C_in.Console
-    // , C_in_Both = C_in.Both
 ;
 // ************** MAIN ********
 C_in.Both('> IN  ' + TRK);
@@ -20,11 +18,24 @@ let CLICK_VerseToRead = (e) => {
     }
     e.stopPropagation();
     return e
-};  // USE this MouseEvent handler to select a readFocus span.
+};  // USE mouse select a readFocus span.
 
 document.addEventListener("DOMContentLoaded", function (event) {
+    /**
+     *      SET the scope of the focus read verses
+     * @type {Element}
+     */
     let ChptDIV = document.querySelector('.chpt');
-    update_ChptSpans(ChptDIV.firstElementChild);
-    ChptDIV.addEventListener('click', CLICK_VerseToRead, false);
+
+    /**
+     *      INIT  Chapter Verse Spans
+     */
+    update_ChptSpans(ChptDIV.firstElementChild);//
+
+    /**
+     *      SELECT the RSpc focusVerse Span
+     */
+    ChptDIV.addEventListener('click',
+        CLICK_VerseToRead, false);//
 });
-C_in_Console('> OUT> ' + TRK);
+C_in.Console('> OUT> ' + TRK);

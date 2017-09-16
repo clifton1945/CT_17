@@ -4,7 +4,7 @@ let R = require('ramda')
 ;
 /**
  * EVOLVEa_:: Csd__GVNa_Trnsfrm IS a Fn.arity:1
- *  RESULTING FROM rovided its @param: csd
+ *  RESULTING FROM provided its @param: csd
  * It RETURNS a Fn.artiy:1
  *  that WHEN provided its @param: styleTransform
  * It RETURNS a styleCsdObj

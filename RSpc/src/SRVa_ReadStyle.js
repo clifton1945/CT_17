@@ -31,11 +31,6 @@ let SRVa_Style = curry(
 module.exports.RSpcCsd = SRVa_Style;
 module.exports.ReadStyle = SRVa_Style;
 module.exports.Style = SRVa_Style;
-// module.exports.b = SRVa_Style;
-// 20170729 TOO DARN COMPLICATED !!!
-
-// module.exports.SRVa_RSpcCsd__WTHa_SSpcStyles__GVNa_noonNdx__GVNa_spanNdx = curry((styles) => SRVa_Style(styles, R.__, R.__));
-// module.exports.SRVa_RSpcCsd__WTHa_SSpc__WTHa_noonNdx__GVNa_spanNdx = curry((styles, noonNdx) => SRVa_Style(styles, noonNdx, R.__));
 
 
 
