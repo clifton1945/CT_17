@@ -9,10 +9,11 @@ let C_inConsole = require('../../h/C_in_').Console;
 // ------------ CODE UNDER TEST ----------------
 let srva_ = require('../src/SRVa_CSpc') //
 ;
-let update_ChptSpans = require('../src/UPDATE_CSpc').update_;
+let UPDATE_CSpc = require('../src/UPDATE_CSpc').update_;
 
 // --------------------- TESTS -------------------------------------
 describe(`module: UPDATE_CSpc.js  ... `, () => {
+
     describe(` FN: UPDATE_CSpc's    ARGUMENT should be a 'HTMLSpanElement'
     `, function () {
         beforeEach(function () {
@@ -31,7 +32,7 @@ describe(`module: UPDATE_CSpc.js  ... `, () => {
         beforeEach(function () {
             loadFixtures('index.html');
             span0 = srva_.ChptSpan0(document);
-            cut_ret = update_ChptSpans(span0);
+            cut_ret = UPDATE_CSpc(span0);
             span3 = R.nth(3, cut_ret)
         });
         it(` should return an Array of Spans, NOT a HTMLCollection NOR a NodeList

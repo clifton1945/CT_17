@@ -8,9 +8,7 @@ let R = require('ramda')
 // let mocha = require('mocha')
 // ;
 let assert = require('assert');
-
-let chai = require('chai')
-    , expect = chai.expect
+let chai = require('chai'), expect = chai.expect
 ;
 let myTap = require('../../h/myTap');
 let C_inConsole = require('../../h/C_in_').Console;
@@ -32,7 +30,6 @@ describe(`FN(srva_ReadStyleDCT) SERVES (a ReadStyleDCT)
 
     // TEST DATA
     let aSpanColl = []
-        , aNodeList = []
         , aNodeArray = []
         , noonSpan = {}
         , dfltStyle = {}
@@ -40,20 +37,20 @@ describe(`FN(srva_ReadStyleDCT) SERVES (a ReadStyleDCT)
     beforeEach(function () {
         loadFixtures('index.html');
         //      REMEMBER loadFixtures BREAKS a Mocha debug !!
-        aNodeList = document.querySelectorAll('.chpt span');
-        aNodeArray = Array.apply(null, aNodeList);
+        this.NodeList = document.querySelectorAll('.chpt span');
+        aNodeArray = Array.apply(null, this.NodeList);
         noonSpan = aNodeArray[4];
     });
 
     dfltStyle = require('../Dflt_ReadStyles');
     let SRVa_dfltStyle = SRVa_Style(dfltStyle);
 
-    // CODE UNDER TEST
+    // CODE UNDER TEST FIX TO NOT BE expected Data but rather expected functionality.
+
     it(` expect SRV_aStyle(csd, 4, 1 ) -> the 'am' readStyle.`, () => {
         expect(SRVa_dfltStyle(4, 1))
             .is.a('Object')
             .has.key('color', 'backgroundColor', 'opacity', 'fontSize')
-        // .to.deep.include({opacity: '0.8'})
         ;
     });
     it(` expect SRV_aStyle(csd, 4, 4 ) -> the 'noon' readStyle.`, () => {
