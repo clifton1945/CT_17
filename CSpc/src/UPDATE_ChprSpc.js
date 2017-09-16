@@ -38,7 +38,8 @@ const UPDATE_ = R.curry(
     (focus_span) => { // focus_span:VerseToRead Span
         let focusNdx = srva_SpanNdx(focus_span);
 
-        // TODO NEXT  - this is a test stub. REPLACE IT with some (aSpan)FN
+        // TODO NEXT  - ISOLATE the update FROM the srv_aSpan
+        // this is a test stub. REPLACE IT with some (aSpan)FN
         let srva_TrnfrmDCT_color =
             require('../../SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT
         ; //(Num, Num)FN-> (FN{k:FN})
@@ -54,11 +55,10 @@ const UPDATE_ = R.curry(
                 // evolve a CSD
                 let aCSD = R.evolve(
                     srva_TrnfrmDCT_color(focusNdx, n),
-                    {color: ''}
+                    {color: ''} // fix this to essentially be Dflt_ReadStyle
                 );
-                C_inConsole(`  >>> VerseToRead.Index: ${focusNdx}`);
-
-                // now with an evolved style.Csd, mutate the elem Element
+                // C_inConsole(`  >>> VerseToRead.Index: ${focusNdx}`);
+                // now mutate the Element w/ the evolved style.Csd,
                 mutate_anElem(aCSD, elem);
                 return elem
             }

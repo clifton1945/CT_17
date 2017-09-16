@@ -15,28 +15,31 @@ let UPDATE_CSpc = require('../src/UPDATE_ChprSpc').update_
 describe(`module: UPDATE_ChptSpc.js  updates all Verse Spans w/ FNs:
     _BY_Evnt_MOUSE, _BY_Evnt_CLICK, _BY_DFLT_focus
     `, () => {
-    describe(`FN: UPDATE_ChptSpc_BY_DFLT_focus  
+    describe(`FN: UPDATE_ChptSpc_BY_SRV_aSpan()
         EXPECTS a SPAN 
-        RETURNS a updated DIV.
+        RETURNS a ARRAY of updated Spans
    `, () => {
-        describe(` FN: _BY_DFLT_focus   ARGUMENT should be a 'HTMLSpanElement.'
+        /**
+         * FN: SRV_aSpan  (document)FN->(SPAN)
+         * @type {Function}
+         */
+        let SRV_aSpan_ndx0 = R.pipe(
+            R.invoker(1, 'querySelector')
+            ('.chpt'),
+            R.prop('firstElementChild')
+        );
+        beforeEach(function () {
+            loadFixtures('index.html');
+            this.span0 = SRV_aSpan_ndx0(document);
+        });
+        describe(` FN: ARGUMENT should be a FN returning a  'HTMLSpanElement.'
         `, function () {
-            let SRV_aSpan = R.pipe(
-                R.invoker(1, 'querySelector')
-                ('.chpt'),
-                R.prop('firstElementChild')
-            );
-            beforeEach(function () {
-                loadFixtures('index.html');
-                this.span0 = SRV_aSpan(document);
-            });
-            it(` UPDATE_CSpc's Argument is the span0 of the chapter spans collection.'
+            it(` UPDATE_ChptSpc's Argument is a HTMLSpanElement.'
                     `, function () {
                 assert.equal(R.type(this.span0), 'HTMLSpanElement');
-                assert.equal(srva_.SpanNdx(this.span0), 0);
             });
         });
-        describe(` FN: UPDATE_CSpc   RETURNS Array of verseSpans, each with individual ReadSpace style.attributes.
+        describe(` FN:  RETURNS Array of verseSpans, each with individual ReadSpace style.attributes.
     `, function () {
             let span0, cut_ret, span3;
             beforeEach(function () {
