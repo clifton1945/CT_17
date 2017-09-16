@@ -5,11 +5,11 @@ let assert = require('assert');
 
 // let myTap = require('../../h/myTap');
 let C_inConsole = require('../../h/C_in_').Console;
-
 // ------------ CODE UNDER TEST ----------------
 let srva_ = require('../src/SRVa_CSpc') //
 ;
-let UPDATE_CSpc = require('../src/UPDATE_CSpc').update_;
+let UPDATE_CSpc = require('../src/UPDATE_ChprSpc').update_
+;
 
 // --------------------- TESTS -------------------------------------
 describe(`module: UPDATE_CSpc.js  ... `, () => {

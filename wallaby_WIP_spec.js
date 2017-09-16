@@ -27,7 +27,7 @@ module.exports = function (wallaby) {
         ],
 
         tests: [
-            {pattern: 'CSpc/spec/UPDATE_CSpc_spec.js', load: false},
+            {pattern: 'CSpc/spec/UPDATE_ChptSpc_spec.js', load: false},
         ],
 
         compilers: {

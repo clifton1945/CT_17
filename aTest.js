@@ -1,4 +1,3 @@
-
 "use strict";
 let TRK = "wbSample/aTest.js";
 
@@ -10,7 +9,7 @@ let C_in = require('./h/C_in_')
 C_in.Both('> IN  ' + TRK);
 
 // ------- CodeUnderTest requires
-let update_ChptSpans = require('./CSpc/src/UPDATE_CSpc').update_;
+let update_ChptSpans = require('./CSpc/src/UPDATE_ChprSpc').update_;
 let CLICK_VerseToRead = (e) => {
     if (e.target !== e.currentTarget) {
         e.stopPropagation();
@@ -22,18 +21,24 @@ let CLICK_VerseToRead = (e) => {
 
 document.addEventListener("DOMContentLoaded", function (event) {
     /**
-     *      SET the scope of the focus read verses
+     *      FIRST wait for content loaded
+     *      THEN SET the scope of a Chapter set of focus/read Verses
+     * @type {Element}
+     */
+
+    /**
+     * the ChptDiv will be the scope Verses to be read
      * @type {Element}
      */
     let ChptDIV = document.querySelector('.chpt');
 
     /**
-     *      INIT  Chapter Verse Spans
+     *      INIT  Chapter Verse Spans to the default focus span: span index 0.
      */
     update_ChptSpans(ChptDIV.firstElementChild);//
 
     /**
-     *      SELECT the RSpc focusVerse Span
+     *      On Mouse, and later Key, Events UPDATE all Chpt Verse Spans
      */
     ChptDIV.addEventListener('click',
         CLICK_VerseToRead, false);//
