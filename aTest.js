@@ -9,23 +9,23 @@ let C_in = require('./h/C_in_')
 C_in.Both('> IN  ' + TRK);
 
 // ------- CodeUnderTest requires
-let update_ChptSpans = require('./CSpc/src/UPDATE_ChprSpc').update_;
+let UPDATE_ChptSpans = require('./CSpc/src/UPDATE_ChprSpc').update_;
 let CLICK_VerseToRead = (e) => {
     if (e.target !== e.currentTarget) {
         e.stopPropagation();
-        update_ChptSpans(e.target);
+        UPDATE_ChptSpans(e.target);
     }
     e.stopPropagation();
     return e
 };  // USE mouse select a readFocus span.
 
-document.addEventListener("DOMContentLoaded", function (event) {
-    /**
-     *      FIRST wait for content loaded
-     *      THEN SET the scope of a Chapter set of focus/read Verses
-     * @type {Element}
-     */
 
+/**
+ *      FIRST wait for content loaded
+ *      BEFORE UPDATE_ChptSpans
+ * @type {Element}
+ */
+document.addEventListener("DOMContentLoaded", function (event) {
     /**
      * the ChptDiv will be the scope Verses to be read
      * @type {Element}
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     /**
      *      INIT  Chapter Verse Spans to the default focus span: span index 0.
      */
-    update_ChptSpans(ChptDIV.firstElementChild);//
+    UPDATE_ChptSpans(ChptDIV.firstElementChild);//
 
     /**
      *      On Mouse, and later Key, Events UPDATE all Chpt Verse Spans
