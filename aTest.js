@@ -7,7 +7,6 @@ let C_in = require('./h/C_in_')
 ;
 // ************** MAIN ********
 C_in.Both('> IN  ' + TRK);
-
 // ------- CodeUnderTest requires
 let UPDATE_ChptSpans = require('./CSpc/src/UPDATE_ChprSpc').update_;
 let CLICK_VerseToRead = (e) => {
@@ -18,8 +17,6 @@ let CLICK_VerseToRead = (e) => {
     e.stopPropagation();
     return e
 };  // USE mouse select a readFocus span.
-
-
 /**
  *      FIRST wait for content loaded
  *      BEFORE UPDATE_ChptSpans
@@ -31,7 +28,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
      * @type {Element}
      */
     let ChptDIV = document.querySelector('.chpt');
-
+    // WIP
+    let f = R.invoker(1, 'querySelector'); // STR -> (DOC -> ELEM);
+    let ret = f('.chpt')(document);
     /**
      *      INIT  Chapter Verse Spans to the default focus span: span index 0.
      */
@@ -43,4 +42,4 @@ document.addEventListener("DOMContentLoaded", function (event) {
     ChptDIV.addEventListener('click',
         CLICK_VerseToRead, false);//
 });
-C_in.Console('> OUT> ' + TRK);
+C_in.Both('> WAITING FOR Events ' + TRK);

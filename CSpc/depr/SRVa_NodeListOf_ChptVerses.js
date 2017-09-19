@@ -13,7 +13,7 @@ let SELECT_DivSpans = curry(
      *  SRV_ChptVerses_Dflt: Fn( DOC -> dfltChptVersesNL )
      */
     function (doc) {
-        let DfltSelector = require('../DfltSelector_ChptVerses');
+        let DfltSelector = require('../Dflt_ChptSelector');
         return doc.querySelectorAll(DfltSelector); // Fn(invoked w/ document) -> div.span NodeList
     });
 module.exports.SELECT_DivSpans = SELECT_DivSpans;

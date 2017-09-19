@@ -6,11 +6,9 @@ let C_inConsole = require('../../h/C_in_').Console;
 // C_inConsole(' IN SRVa_CSpc_spec.  Yeah, you can you see me!');
 
 let assert = require('assert');
-
 let chai = require('chai')
     , expect = chai.expect
 ;
-
 // ------------ CODE UNDER TEST ----------------
 let srva_ = require('../src/SRVa_CSpc') //
     , srva_div_chpt = srva_('.chpt')

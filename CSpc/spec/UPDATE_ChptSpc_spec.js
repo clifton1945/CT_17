@@ -15,7 +15,7 @@ let UPDATE_CSpc = require('../src/UPDATE_ChprSpc').update_
 describe(`module: UPDATE_ChptSpc.js  updates all Verse Spans w/ FNs:
     _BY_Evnt_MOUSE, _BY_Evnt_CLICK, _BY_DFLT_focus
     `, () => {
-    describe(`FN: UPDATE_ChptSpc_BY_SRV_aSpan()
+    describe(`UPDATE_ChptSpc: BY_SRV_aSpan()
         EXPECTS a SPAN 
         RETURNS a ARRAY of updated Spans
    `, () => {
@@ -23,48 +23,57 @@ describe(`module: UPDATE_ChptSpc.js  updates all Verse Spans w/ FNs:
          * FN: SRV_aSpan  (document)FN->(SPAN)
          * @type {Function}
          */
-        let SRV_aSpan_ndx0 = R.pipe(
+        let SRV_aSpan_children = R.pipe(
             R.invoker(1, 'querySelector')
             ('.chpt'),
-            R.prop('firstElementChild')
+            R.prop('children')
         );
+        let CUT_Array;
         beforeEach(function () {
             loadFixtures('index.html');
-            this.span0 = SRV_aSpan_ndx0(document);
+            this.Chpt = SRV_aSpan_children(document)[0];
+            this.origSpan3 = SRV_aSpan_children(document)[3];
+            // CUT_Array = UPDATE_CSpc(this.Chpt);
         });
-        describe(` FN: ARGUMENT should be a FN returning a  'HTMLSpanElement.'
+        describe(` UPDATE_ChptSpc: ARGUMENT should be a HTMLSpanElement.'
         `, function () {
             it(` UPDATE_ChptSpc's Argument is a HTMLSpanElement.'
                     `, function () {
-                assert.equal(R.type(this.span0), 'HTMLSpanElement');
+                assert.equal(R.type(this.Chpt), 'HTMLSpanElement');
             });
         });
-        describe(` FN:  RETURNS Array of verseSpans, each with individual ReadSpace style.attributes.
-    `, function () {
-            let span0, cut_ret, span3;
+        describe(` UPDATE_ChptSpc:  RETURNS Array of verseSpans, not a Collection NOR NodeList.
+        `, function () {
             beforeEach(function () {
-                loadFixtures('index.html');
-                span0 = srva_.ChptSpan0(document);
-                cut_ret = UPDATE_CSpc(span0);
-                span3 = R.nth(3, cut_ret)
+                this.CUT_Array = UPDATE_CSpc(this.Chpt);
             });
             it(` should return an Array of Spans, NOT a HTMLCollection NOR a NodeList
                     `, function () {
-                assert.equal(R.type(cut_ret), 'Array');
-                assert.equal(R.gt(cut_ret.length, 0), true);
-                assert.notEqual(R.type(cut_ret), 'HTMLCollection');
-                assert.notEqual(R.type(cut_ret), 'HTMLNodeList');
-
-                assert.equal(R.type(cut_ret[3]), 'HTMLSpanElement');
-                console.log('>>>>>>>>>> cut_ret:' + cut_ret[0]);
+                assert.equal(R.type(this.CUT_Array), 'Array');
+                assert.equal(R.gt(this.CUT_Array.length, 0), true);
+                assert.notEqual(R.type(this.CUT_Array), 'HTMLCollection');
+                assert.notEqual(R.type(this.CUT_Array), 'HTMLNodeList');
             });
-            it(` should have Span.style.attributes dependent upon the span's ReadSpace.
+
+        });
+        describe(` UPDATE_ChptSpc: with each Element.style.Attributes different
+        `, function () {
+            beforeEach(function () {
+                this.Chpt = SRV_aSpan_children(document)[0];
+                this.origSpan3 = SRV_aSpan_children(document)[3];
+                this.CUT_Array = UPDATE_CSpc(this.Chpt);
+            });
+            it(` should have returned a Span.style.attributes dependent upon the span's ReadSpace.
                     `, function () {
-                assert.equal(R.gt(cut_ret.length, 0), true);
-                assert.equal(cut_ret[0].style.color, 'blue');
-                assert.equal(cut_ret[1].style.color, 'green');
-                assert.notEqual(cut_ret[0].style.fontsize, 'undefined');
+                assert.equal(R.gt(this.CUT_Array.length, 0), true);
+
+                assert.equal(this.Chpt.style.color, 'blue');
+                assert.equal(this.CUT_Array[0].style.color, 'blue');
+                assert.equal(this.origSpan3.style.color, 'green');
+                assert.equal(this.CUT_Array[1].style.color, 'green');
+                assert.notEqual(this.CUT_Array[0].style.fontsize, 'undefined');
             });
         });
+
     });
 });
