@@ -12,32 +12,34 @@ let srva_ = require('../src/SRVa_CSpc') //
     , srva_SpanNdx = srva_.SpanNdx
     , srva_SpanColl = srva_.SpanColl
 ;
-const update_ = R.curry(
+const UPDATE_ = R.curry(
     /**
-     * FN: update_ChptSpans mutates all CSpc.span.styles
+     * FIX this DOC after WIP UPDATE_ChptSpc
+     * FN: UPDATE_ChptSpans mutates all CSpc.span.styles
      * @param focus_span: the focus_span
      *
      *** SVO ****************
-     *  {FN:update_ChptSpans}
+     *  {FN:UPDATE_ChptSpans}
      *  UPDATES (every_ChptSpan)
      *  BY APPLYING ( the focus_span )
-     *  TO FN:update_ChptSpans
+     *  TO FN:UPDATE_ChptSpans
      *
      *** SOV-passive and DG ***
      *  (every_ChptSpan)
      *  IS UPDATED BY APPLYING
      *  (the focus_span)
-     *  TO (FN:update_ChptSpans)
+     *  TO (FN:UPDATE_ChptSpans)
      *
-     *  @usage: update_ChptSpans( focus_span)
+     *  @usage: UPDATE_ChptSpans( focus_span)
      *      receives a CSpc:click EventHandler Span: the focus VerseToRead )
      *      This FN is the final FN in CeeThought app.
-     *      It updates each Span's.style.Attributes
+     *      It UPDATEs each Span's.style.Attributes
      */
     (focus_span) => { // focus_span:VerseToRead Span
         let focusNdx = srva_SpanNdx(focus_span);
 
-        // TODO NEXT  - this is a test stub. REPLACE IT with some (aSpan)FN
+        // TODO NEXT  - ISOLATE the update FROM the srv_aSpan
+        // this is a test stub. REPLACE IT with some (aSpan)FN
         let srva_TrnfrmDCT_color =
             require('../../SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT
         ; //(Num, Num)FN-> (FN{k:FN})
@@ -53,16 +55,15 @@ const update_ = R.curry(
                 // evolve a CSD
                 let aCSD = R.evolve(
                     srva_TrnfrmDCT_color(focusNdx, n),
-                    {color: ''}
+                    {color: ''} // fix this to essentially be Dflt_ReadStyle
                 );
-                C_inConsole(`  >>> VerseToRead.Index: ${focusNdx}`);
-
-                // now with an evolved style.Csd, mutate the elem Element
+                // C_inConsole(`  >>> VerseToRead.Index: ${focusNdx}`);
+                // now mutate the Element w/ the evolved style.Csd,
                 mutate_anElem(aCSD, elem);
                 return elem
             }
         )(srva_SpanColl(focus_span));
     }
 );
-module.exports.update_ = update_;
-module.exports.srva_ = update_;
+module.exports.update_ = UPDATE_;
+module.exports.srva_ = UPDATE_;

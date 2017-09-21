@@ -1,4 +1,3 @@
-
 "use strict";
 let TRK = "wbSample/aTest.js";
 
@@ -8,34 +7,32 @@ let C_in = require('./h/C_in_')
 ;
 // ************** MAIN ********
 C_in.Both('> IN  ' + TRK);
-
 // ------- CodeUnderTest requires
-let update_ChptSpans = require('./CSpc/src/UPDATE_CSpc').update_;
-let CLICK_VerseToRead = (e) => {
-    if (e.target !== e.currentTarget) {
-        e.stopPropagation();
-        update_ChptSpans(e.target);
-    }
-    e.stopPropagation();
-    return e
-};  // USE mouse select a readFocus span.
+let UPDATE_ChptSpans = require('./CSpc/src/UPDATE_ChprDIV').update_;
+let CLICK_toRead_aVerse = require('./CSpc/src/CLICK_toRead_aVerse').CLICK(UPDATE_ChptSpans);
 
+/**
+ *      FIRST wait for content loaded
+ *      BEFORE UPDATE_ChptSpans
+ * @type {Element}
+ */
 document.addEventListener("DOMContentLoaded", function (event) {
     /**
-     *      SET the scope of the focus read verses
+     * the ChptDiv will be the scope Verses to be read
      * @type {Element}
      */
     let ChptDIV = document.querySelector('.chpt');
-
+    // WIP
+    // let f = R.invoker(1, 'querySelector'); // STR -> (DOC -> ELEM);
+    // let ret = f('.chpt')(document);
     /**
-     *      INIT  Chapter Verse Spans
+     *      INIT  Chapter Verse Spans to the default focus span: span index 0.
      */
-    update_ChptSpans(ChptDIV.firstElementChild);//
-
+    UPDATE_ChptSpans(ChptDIV.firstElementChild);
     /**
-     *      SELECT the RSpc focusVerse Span
+     *      On Mouse, and later Key, Events UPDATE all Chpt Verse Spans
      */
     ChptDIV.addEventListener('click',
-        CLICK_VerseToRead, false);//
+        CLICK_toRead_aVerse, false);
 });
-C_in.Console('> OUT> ' + TRK);
+C_in.Both('> WAITING ...' + TRK);

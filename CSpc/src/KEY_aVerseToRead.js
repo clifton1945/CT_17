@@ -1,7 +1,3 @@
-/**
- * Created by CLIF on 4/21/2017.
- */
-
 "use strict";
 let R = require('ramda')
 ;
