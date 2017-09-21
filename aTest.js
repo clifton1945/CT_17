@@ -9,7 +9,7 @@ let C_in = require('./h/C_in_')
 C_in.Both('> IN  ' + TRK);
 // ------- CodeUnderTest requires
 let UPDATE_ChptSpans = require('./CSpc/src/UPDATE_ChprDIV').update_;
-let CLICK_aVerseToRead = require('./CSpc/src/CLICK_aVerseToRead').CLICK(UPDATE_ChptSpans);
+let CLICK_toRead_aVerse = require('./CSpc/src/CLICK_toRead_aVerse').CLICK(UPDATE_ChptSpans);
 
 /**
  *      FIRST wait for content loaded
@@ -33,6 +33,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
      *      On Mouse, and later Key, Events UPDATE all Chpt Verse Spans
      */
     ChptDIV.addEventListener('click',
-        CLICK_aVerseToRead, false);
+        CLICK_toRead_aVerse, false);
 });
 C_in.Both('> WAITING ...' + TRK);
