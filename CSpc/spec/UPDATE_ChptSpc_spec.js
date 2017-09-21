@@ -12,8 +12,7 @@ let UPDATE_CSpc = require('../src/UPDATE_ChprSpc').update_
 ;
 
 // --------------------- TESTS -------------------------------------
-describe(`module: UPDATE_ChptSpc.js  updates all Verse Spans w/ FNs:
-    _BY_Evnt_MOUSE, _BY_Evnt_CLICK, _BY_DFLT_focus
+describe(`module: UPDATE_ChptSpc.js  updates all Verse Spans.
     `, () => {
     describe(`UPDATE_ChptSpc: BY_SRV_aSpan()
         EXPECTS a SPAN 
