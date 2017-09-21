@@ -9,6 +9,7 @@ let C_in = require('./h/C_in_')
 C_in.Both('> IN  ' + TRK);
 // ------- CodeUnderTest requires
 let UPDATE_ChptSpans = require('./CSpc/src/UPDATE_ChprSpc').update_;
+
 let CLICK_VerseToRead = (e) => {
     if (e.target !== e.currentTarget) {
         e.stopPropagation();
@@ -29,17 +30,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
      */
     let ChptDIV = document.querySelector('.chpt');
     // WIP
-    let f = R.invoker(1, 'querySelector'); // STR -> (DOC -> ELEM);
-    let ret = f('.chpt')(document);
+    // let f = R.invoker(1, 'querySelector'); // STR -> (DOC -> ELEM);
+    // let ret = f('.chpt')(document);
     /**
      *      INIT  Chapter Verse Spans to the default focus span: span index 0.
      */
-    UPDATE_ChptSpans(ChptDIV.firstElementChild);//
-
+    UPDATE_ChptSpans(ChptDIV.firstElementChild);
     /**
      *      On Mouse, and later Key, Events UPDATE all Chpt Verse Spans
      */
     ChptDIV.addEventListener('click',
-        CLICK_VerseToRead, false);//
+        CLICK_VerseToRead, false);
 });
-C_in.Both('> WAITING FOR Events ' + TRK);
+C_in.Both('> WAITING ...' + TRK);
