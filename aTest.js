@@ -8,12 +8,12 @@ let C_in = require('./h/C_in_')
 // ************** MAIN ********
 C_in.Both('> IN  ' + TRK);
 // ------- CodeUnderTest requires
-let UPDATE_ChptSpans = require('./CSpc/src/UPDATE_ChprDIV').update_;
-let CLICK_toRead_aVerse = require('./CSpc/src/CLICK_toRead_aVerse').CLICK(UPDATE_ChptSpans);
+let UPDATE_ChptDIV = require('./CSpc/src/UPDATE_ChptDIV').update_;
+let CLICK_toRead_aVerse = require('./CSpc/src/CLICK_toRead_aVerse').CLICK(UPDATE_ChptDIV);
 
 /**
  *      FIRST wait for content loaded
- *      BEFORE UPDATE_ChptSpans
+ *      BEFORE UPDATE_ChptDIV
  * @type {Element}
  */
 document.addEventListener("DOMContentLoaded", function (event) {
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     /**
      *      INIT  Chapter Verse Spans to the default focus span: span index 0.
      */
-    UPDATE_ChptSpans(ChptDIV.firstElementChild);
+    UPDATE_ChptDIV(ChptDIV.firstElementChild);
     /**
      *      On Mouse, and later Key, Events UPDATE all Chpt Verse Spans
      */

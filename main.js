@@ -12,7 +12,7 @@ let C_in = require('./h/C_in_')
 C_in.Both('> IN  ' + TRK);
 
 // ------- CodeUnderTest requires
-let update_ChptSpans = require('./CSpc/src/UPDATE_ChprDIV').update_;
+let update_ChptSpans = require('./CSpc/src/UPDATE_ChptDIV').update_;
 let CLICK_VerseToRead = (e) => {
     if (e.target !== e.currentTarget) {
         e.stopPropagation();

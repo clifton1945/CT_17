@@ -6,7 +6,7 @@ let C_inConsole = require('../../h/C_in_').Console;
 // ------------ CODE UNDER TEST ----------------
 let srva_ = require('../src/SRVa_CSpc') //
 ;
-let UPDATE_CSpc = require('../src/UPDATE_ChprDIV').update_
+let UPDATE_CSpc = require('../src/UPDATE_ChptDIV').update_
 ;
 // --------------------- TESTS ----------------------------------
 describe(`module: UPDATE_ChptDIV.js  updates all Verse Spans.
