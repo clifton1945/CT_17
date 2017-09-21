@@ -8,13 +8,13 @@ let C_inConsole = require('../../h/C_in_').Console;
 // ------------ CODE UNDER TEST ----------------
 let srva_ = require('../src/SRVa_CSpc') //
 ;
-let UPDATE_CSpc = require('../src/UPDATE_ChprSpc').update_
+let UPDATE_CSpc = require('../src/UPDATE_ChprDIV').update_
 ;
 
-// --------------------- TESTS -------------------------------------
-describe(`module: UPDATE_ChptSpc.js  updates all Verse Spans.
+// --------------------- TESTS ----------------------------------
+describe(`module: UPDATE_ChptDIV.js  updates all Verse Spans.
     `, () => {
-    describe(`UPDATE_ChptSpc: BY_SRV_aSpan()
+    describe(`UPDATE_ChptDIV: BY_SRV_aSpan()
         EXPECTS a SPAN 
         RETURNS a ARRAY of updated Spans
    `, () => {
@@ -34,14 +34,14 @@ describe(`module: UPDATE_ChptSpc.js  updates all Verse Spans.
             this.origSpan3 = SRV_aSpan_children(document)[3];
             // CUT_Array = UPDATE_CSpc(this.Chpt);
         });
-        describe(` UPDATE_ChptSpc: ARGUMENT should be a HTMLSpanElement.'
+        describe(` UPDATE_ChptDIV: ARGUMENT should be a HTMLSpanElement.'
         `, function () {
-            it(` UPDATE_ChptSpc's Argument is a HTMLSpanElement.'
+            it(` UPDATE_ChptDIV's Argument is a HTMLSpanElement.'
                     `, function () {
                 assert.equal(R.type(this.Chpt), 'HTMLSpanElement');
             });
         });
-        describe(` UPDATE_ChptSpc:  RETURNS Array of verseSpans, not a Collection NOR NodeList.
+        describe(` UPDATE_ChptDIV:  RETURNS Array of verseSpans, not a Collection NOR NodeList.
         `, function () {
             beforeEach(function () {
                 this.CUT_Array = UPDATE_CSpc(this.Chpt);
@@ -55,7 +55,7 @@ describe(`module: UPDATE_ChptSpc.js  updates all Verse Spans.
             });
 
         });
-        describe(` UPDATE_ChptSpc: with each Element.style.Attributes different
+        describe(` UPDATE_ChptDIV: with each Element.style.Attributes different
         `, function () {
             beforeEach(function () {
                 this.Chpt = SRV_aSpan_children(document)[0];

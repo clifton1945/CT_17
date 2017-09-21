@@ -8,7 +8,7 @@ let C_in = require('./h/C_in_')
 // ************** MAIN ********
 C_in.Both('> IN  ' + TRK);
 // ------- CodeUnderTest requires
-let UPDATE_ChptSpans = require('./CSpc/src/UPDATE_ChprSpc').update_;
+let UPDATE_ChptSpans = require('./CSpc/src/UPDATE_ChprDIV').update_;
 
 let CLICK_VerseToRead = (e) => {
     if (e.target !== e.currentTarget) {
