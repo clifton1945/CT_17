@@ -2,15 +2,12 @@
 // requires
 let R = require('ramda');
 let assert = require('assert');
-
-// let myTap = require('../../h/myTap');
 let C_inConsole = require('../../h/C_in_').Console;
 // ------------ CODE UNDER TEST ----------------
 let srva_ = require('../src/SRVa_CSpc') //
 ;
 let UPDATE_CSpc = require('../src/UPDATE_ChprDIV').update_
 ;
-
 // --------------------- TESTS ----------------------------------
 describe(`module: UPDATE_ChptDIV.js  updates all Verse Spans.
     `, () => {
@@ -27,7 +24,7 @@ describe(`module: UPDATE_ChptDIV.js  updates all Verse Spans.
             ('.chpt'),
             R.prop('children')
         );
-        let CUT_Array;
+        // let CUT_Array;
         beforeEach(function () {
             loadFixtures('index.html');
             this.Chpt = SRV_aSpan_children(document)[0];
