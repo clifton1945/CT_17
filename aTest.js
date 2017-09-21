@@ -10,14 +10,16 @@ C_in.Both('> IN  ' + TRK);
 // ------- CodeUnderTest requires
 let UPDATE_ChptSpans = require('./CSpc/src/UPDATE_ChprDIV').update_;
 
-let CLICK_VerseToRead = (e) => {
-    if (e.target !== e.currentTarget) {
-        e.stopPropagation();
-        UPDATE_ChptSpans(e.target);
-    }
-    e.stopPropagation();
-    return e
-};  // USE mouse select a readFocus span.
+let CLICK_aVerseToRead = require('./CSpc/src/CLICK_aVerseToRead').CLICK_aVerseToRead;
+
+// let CLICK_aVerseToRead = (e) => {
+//     if (e.target !== e.currentTarget) {
+//         e.stopPropagation();
+//         UPDATE_ChptSpans(e.target);
+//     }
+//     e.stopPropagation();
+//     return e
+// };  // USE mouse select a readFocus span.
 /**
  *      FIRST wait for content loaded
  *      BEFORE UPDATE_ChptSpans
@@ -40,6 +42,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
      *      On Mouse, and later Key, Events UPDATE all Chpt Verse Spans
      */
     ChptDIV.addEventListener('click',
-        CLICK_VerseToRead, false);
+        CLICK_aVerseToRead, false);
 });
 C_in.Both('> WAITING ...' + TRK);
