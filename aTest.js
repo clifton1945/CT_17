@@ -9,17 +9,8 @@ let C_in = require('./h/C_in_')
 C_in.Both('> IN  ' + TRK);
 // ------- CodeUnderTest requires
 let UPDATE_ChptSpans = require('./CSpc/src/UPDATE_ChprDIV').update_;
+let CLICK_aVerseToRead = require('./CSpc/src/CLICK_aVerseToRead').CLICK(UPDATE_ChptSpans);
 
-let CLICK_aVerseToRead = require('./CSpc/src/CLICK_aVerseToRead').CLICK_aVerseToRead;
-
-// let CLICK_aVerseToRead = (e) => {
-//     if (e.target !== e.currentTarget) {
-//         e.stopPropagation();
-//         UPDATE_ChptSpans(e.target);
-//     }
-//     e.stopPropagation();
-//     return e
-// };  // USE mouse select a readFocus span.
 /**
  *      FIRST wait for content loaded
  *      BEFORE UPDATE_ChptSpans

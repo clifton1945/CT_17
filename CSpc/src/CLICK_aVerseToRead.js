@@ -1,17 +1,17 @@
 "use strict";
-// let R = require('ramda')
-// ;
-
-let UPDATE_ChptSpans = require('./UPDATE_ChprDIV').update_;
-
+let R = require('ramda')
+;
+// let UPDATE_ChptSpans = require('./UPDATE_ChprDIV').update_;
 let CLICK_aVerseToRead;
-CLICK_aVerseToRead = (e) => {
-    if (e.target !== e.currentTarget) {
+CLICK_aVerseToRead = R.curry(
+    (fn, e) => {
+        if (e.target !== e.currentTarget) {
+            e.stopPropagation();
+            fn(e.target);
+        }
         e.stopPropagation();
-        UPDATE_ChptSpans(e.target);
+        return e
     }
-    e.stopPropagation();
-    return e
-};  // USE mouse select a readFocus span.
+);  // USE mouse select a readFocus span.
 
-module.exports.CLICK_aVerseToRead = CLICK_aVerseToRead;
+module.exports.CLICK = CLICK_aVerseToRead;
