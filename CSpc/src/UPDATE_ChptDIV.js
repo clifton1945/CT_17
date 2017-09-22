@@ -18,34 +18,27 @@ const UPDATE_ = R.curry(
      */
     (focus_span) => { // focus_span:VerseToRead Span
         let focusNdx = srva_SpanNdx(focus_span);
-
-        // TODO NEXT  - ISOLATE the update FROM the srv_aSpan
         // this is a test stub. REPLACE IT with some (aSpan)FN
         let srva_TrnfrmDCT_color =
             require('../../SSpc/src/SRVa_TrnfrmDCT').colorStyleTrnfrmDCT
-        ; //(Num, Num)FN-> (FN{k:FN})
+        ; //(Num, Num)FN-> (FN{k:FN}) //red, green, blue
         let Dflt_ReadStyle =
             require('../../RSpc/Dflt_ReadStyles')
         ; // -> DCT
-
-        let EVOLVE_aCSD = R.curry(
-            (ndx_focus, ndx_span) => R.evolve(
-                srva_TrnfrmDCT_color(ndx_focus, ndx_span),
-                {color: ''} // fix this to essentially be Dflt_ReadStyle
-            ));
-
         let MUTATE_anElem =
             require('../../CSpc/src/MUTATE_Elem').MUTATE_
         ;// (CSD)(ELEM)FN->(ELEM)
 
         return R.addIndex(R.map)(
             (elem, n, a) => {
-                // evolve a CSD
-                // EVOLVE_aCSD(focusNdx, n)                );
-                // now mutate the Element w/ the evolved style.Csd,
-                MUTATE_anElem(EVOLVE_aCSD(focus_span, n), elem);
+                let EVOLVE_aCSD = R.curry(
+                    (focus_ndx, span_ndx) => R.evolve(
+                        srva_TrnfrmDCT_color(focus_ndx, span_ndx),
+                        {color: ''} // fix this to essentially be Dflt_ReadStyle
+                    ))(focusNdx);
+                MUTATE_anElem(EVOLVE_aCSD(n), elem);
                 return elem
-            }
+            },
         )(srva_SpanColl(focus_span));
     }
 );
