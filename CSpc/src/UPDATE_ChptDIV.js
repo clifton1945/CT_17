@@ -2,7 +2,6 @@
 // requires
 let R = require('ramda');
 let assert = require('assert');
-
 // let myTap = require('../../h/myTap');
 let C_inConsole = require('../../h/C_in_').Console;
 
@@ -14,26 +13,8 @@ let srva_ = require('../src/SRVa_CSpc') //
 ;
 const UPDATE_ = R.curry(
     /**
-     * FIX this DOC after WIP UPDATE_ChptSpc
-     * FN: UPDATE_ChptSpans mutates all CSpc.span.styles
-     * @param focus_span: the focus_span
      *
-     *** SVO ****************
-     *  {FN:UPDATE_ChptSpans}
-     *  UPDATES (every_ChptSpan)
-     *  BY APPLYING ( the focus_span )
-     *  TO FN:UPDATE_ChptSpans
-     *
-     *** SOV-passive and DG ***
-     *  (every_ChptSpan)
-     *  IS UPDATED BY APPLYING
-     *  (the focus_span)
-     *  TO (FN:UPDATE_ChptSpans)
-     *
-     *  @usage: UPDATE_ChptSpans( focus_span)
-     *      receives a CSpc:click EventHandler Span: the focus VerseToRead )
-     *      This FN is the final FN in CeeThought app.
-     *      It UPDATEs each Span's.style.Attributes
+     * @param focus_span
      */
     (focus_span) => { // focus_span:VerseToRead Span
         let focusNdx = srva_SpanNdx(focus_span);
@@ -46,6 +27,7 @@ const UPDATE_ = R.curry(
         let Dflt_ReadStyle =
             require('../../RSpc/Dflt_ReadStyles')
         ; // -> DCT
+
         let mutate_anElem =
             require('../../CSpc/src/MUTATE_Elem').MUTATE_
         ;// (CSD)(ELEM)FN->(ELEM)
@@ -57,7 +39,6 @@ const UPDATE_ = R.curry(
                     srva_TrnfrmDCT_color(focusNdx, n),
                     {color: ''} // fix this to essentially be Dflt_ReadStyle
                 );
-                // C_inConsole(`  >>> VerseToRead.Index: ${focusNdx}`);
                 // now mutate the Element w/ the evolved style.Csd,
                 mutate_anElem(aCSD, elem);
                 return elem

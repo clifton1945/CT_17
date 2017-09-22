@@ -21,7 +21,7 @@ describe(`WIP: CodeUnderTest
    `, () => {
         beforeEach(function () {
             loadFixtures('index.html');
-            this.Chpt = SRV_Dflt_ChptDIV(document);
+            this.spanFocus = SRV_Dflt_ChptDIV(document);
         });
         describe(` SRV_DfltChptDIV  IS aFunction READY TO DELIVER the Default ChptDIV.
             @form: (docDiv) FN-> (chptDIV)
@@ -35,9 +35,9 @@ describe(`WIP: CodeUnderTest
         describe(` SRV_DfltChptDIV(document) -> RETURNS typeOf HTMLDivElement.
         `, function () {
             it(` SRV_DfltChptDIV's a DIV                  `, function () {
-                assert.equal(R.type(this.Chpt), 'HTMLDivElement');
-                assert.equal(R.type(this.Chpt.children), 'HTMLCollection');
-                assert.equal(R.type(this.Chpt.children[0]), 'HTMLSpanElement');
+                assert.equal(R.type(this.spanFocus), 'HTMLDivElement');
+                assert.equal(R.type(this.spanFocus.children), 'HTMLCollection');
+                assert.equal(R.type(this.spanFocus.children[0]), 'HTMLSpanElement');
             });
         });
     });

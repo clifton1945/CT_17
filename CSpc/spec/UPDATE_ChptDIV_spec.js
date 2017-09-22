@@ -4,16 +4,14 @@ let R = require('ramda');
 let assert = require('assert');
 let C_inConsole = require('../../h/C_in_').Console;
 // ------------ CODE UNDER TEST ----------------
-let srva_ = require('../src/SRVa_CSpc') //
-;
-let UPDATE_CSpc = require('../src/UPDATE_ChptDIV').update_
+// let srva_ = require('../src/SRVa_CSpc') //
+// ;
+let UPDATE_DIV = require('../src/UPDATE_ChptDIV').update_
 ;
 // --------------------- TESTS ----------------------------------
-describe(`module: UPDATE_ChptDIV.js  updates all Verse Spans.
+describe(`module: UPDATE_ChptDIV.js  updates all of the div.chpt span Verses.
     `, () => {
-    describe(`UPDATE_ChptDIV: BY_SRV_aSpan()
-        EXPECTS a SPAN 
-        RETURNS a ARRAY of updated Spans
+    describe(`UPDATE_ChptDIV EXPECTS a focusSPAN, RETURNS ARRAY of updated Spans
    `, () => {
         /**
          * FN: SRV_aSpan  (document)FN->(SPAN)
@@ -27,21 +25,21 @@ describe(`module: UPDATE_ChptDIV.js  updates all Verse Spans.
         // let CUT_Array;
         beforeEach(function () {
             loadFixtures('index.html');
-            this.Chpt = SRV_aSpan_children(document)[0];
+            this.spanFocus = SRV_aSpan_children(document)[0];
             this.origSpan3 = SRV_aSpan_children(document)[3];
-            // CUT_Array = UPDATE_CSpc(this.Chpt);
         });
         describe(` UPDATE_ChptDIV: ARGUMENT should be a HTMLSpanElement.'
         `, function () {
-            it(` UPDATE_ChptDIV's Argument is a HTMLSpanElement.'
+            it(`, this Argument, IS a HTMLSpanElement  DEFINING  theReadSpace:
+            (SpanElement)FN.'
                     `, function () {
-                assert.equal(R.type(this.Chpt), 'HTMLSpanElement');
+                assert.equal(R.type(this.spanFocus), 'HTMLSpanElement');
             });
         });
         describe(` UPDATE_ChptDIV:  RETURNS Array of verseSpans, not a Collection NOR NodeList.
         `, function () {
             beforeEach(function () {
-                this.CUT_Array = UPDATE_CSpc(this.Chpt);
+                this.CUT_Array = UPDATE_DIV(this.spanFocus);
             });
             it(` should return an Array of Spans, NOT a HTMLCollection NOR a NodeList
                     `, function () {
@@ -55,15 +53,15 @@ describe(`module: UPDATE_ChptDIV.js  updates all Verse Spans.
         describe(` UPDATE_ChptDIV: with each Element.style.Attributes different
         `, function () {
             beforeEach(function () {
-                this.Chpt = SRV_aSpan_children(document)[0];
+                this.spanFocus = SRV_aSpan_children(document)[0];
                 this.origSpan3 = SRV_aSpan_children(document)[3];
-                this.CUT_Array = UPDATE_CSpc(this.Chpt);
+                this.CUT_Array = UPDATE_DIV(this.spanFocus);
             });
             it(` should have returned a Span.style.attributes dependent upon the span's ReadSpace.
                     `, function () {
                 assert.equal(R.gt(this.CUT_Array.length, 0), true);
 
-                assert.equal(this.Chpt.style.color, 'blue');
+                assert.equal(this.spanFocus.style.color, 'blue');
                 assert.equal(this.CUT_Array[0].style.color, 'blue');
                 assert.equal(this.origSpan3.style.color, 'green');
                 assert.equal(this.CUT_Array[1].style.color, 'green');
