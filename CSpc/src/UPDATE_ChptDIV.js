@@ -28,19 +28,22 @@ const UPDATE_ = R.curry(
             require('../../RSpc/Dflt_ReadStyles')
         ; // -> DCT
 
-        let mutate_anElem =
+        let EVOLVE_aCSD = R.curry(
+            (ndx_focus, ndx_span) => R.evolve(
+                srva_TrnfrmDCT_color(ndx_focus, ndx_span),
+                {color: ''} // fix this to essentially be Dflt_ReadStyle
+            ));
+
+        let MUTATE_anElem =
             require('../../CSpc/src/MUTATE_Elem').MUTATE_
         ;// (CSD)(ELEM)FN->(ELEM)
 
         return R.addIndex(R.map)(
             (elem, n, a) => {
                 // evolve a CSD
-                let aCSD = R.evolve(
-                    srva_TrnfrmDCT_color(focusNdx, n),
-                    {color: ''} // fix this to essentially be Dflt_ReadStyle
-                );
+                // EVOLVE_aCSD(focusNdx, n)                );
                 // now mutate the Element w/ the evolved style.Csd,
-                mutate_anElem(aCSD, elem);
+                MUTATE_anElem(EVOLVE_aCSD(focus_span, n), elem);
                 return elem
             }
         )(srva_SpanColl(focus_span));
